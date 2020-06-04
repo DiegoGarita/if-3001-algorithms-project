@@ -1,0 +1,8 @@
+Nombre|Contrasena-
+Nombre1|Contrasena+
+Nombre2|Contrasena*
+
+Nombre3|Contrasena-
+Nombre4|Contrasena+
+Nombre5|Contrasena*
+Nombre6|Contrasena*
