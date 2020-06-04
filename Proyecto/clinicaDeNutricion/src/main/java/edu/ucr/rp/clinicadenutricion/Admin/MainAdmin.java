@@ -6,8 +6,7 @@ import java.io.IOException;
 public class MainAdmin {
 
     public static void main(String... args) throws IOException {
-        AdminGui mainInterface = new AdminGui();
-        mainInterface.display();
-    }//end main 
-
-}
+        AdminGui AdmiGui = new AdminGui();
+        AdmiGui.display();
+    }//end main
+}//end mainAdmi
