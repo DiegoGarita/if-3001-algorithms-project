@@ -6,7 +6,7 @@ import java.io.IOException;
 public class MainCliente {
 
     public static void main(String... args) throws IOException {
-        ClienteGui mainInterface = new ClienteGui();
-        mainInterface.display();
+        ClienteGui clienteGui = new ClienteGui();
+        clienteGui.display();
     }//end main 
 }//end mainCliente

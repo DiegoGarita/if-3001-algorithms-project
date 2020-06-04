@@ -5,10 +5,8 @@ import java.io.IOException;
 
 public class MainSuperAdmin {
 
-
     public static void main(String... args) throws IOException {
-        SuperAdminGui mainInterface = new SuperAdminGui();
-        mainInterface.display();
+        SuperAdminGui superAdmi = new SuperAdminGui();
+        superAdmi.display();
     }//end main 
-
 }//end mainSuperAdmi

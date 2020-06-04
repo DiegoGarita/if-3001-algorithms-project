@@ -7,16 +7,14 @@ import javafx.stage.Stage;
 
 public class InicioDeSesionGui extends Application {
 
-    //ConstantsElements constantsElements = new ConstantsElements();
     @Override
     public void start(Stage stage) throws Exception {
         MainMenuBar mainMenuBar = new MainMenuBar();
-        //   Image image = new Image("file:src/image/icono.png");
+        Image image = new Image("file:src/image/sesIni.png");
         stage.setResizable(false);//Para que no pueda reajustar tamaño
-        //   stage.getIcons().add(image);
-        stage.setTitle("Sistema de inventarios DieAle S.A");
+        stage.getIcons().add(image);
+        stage.setTitle("Clinica SusanaDistancia S.A");
         stage.setScene(mainMenuBar.getMainScene());
-        //  constantsElements.soundPlayer("ini");
         stage.show();
     }//end Start
 
@@ -24,4 +22,4 @@ public class InicioDeSesionGui extends Application {
         launch();
     }//end display
 
-}
+}//end inicioSsionGui

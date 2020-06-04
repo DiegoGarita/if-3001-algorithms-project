@@ -16,16 +16,10 @@ import javafx.scene.layout.VBox;
 
 public class MainMenuBar {
 
-    //  About about = new About();
-    //   Credits credits = new Credits();
-    //   Help help = new Help();
-    //   CreateNewCatalogue createNewCatalog = new CreateNewCatalogue("");
-    //   DefineProperties defineProperties = new DefineProperties("");
-    //   DeleteCatalogues deleteCatalogs = new DeleteCatalogues();
-    //   CatalogueSearch catalogSearch = new CatalogueSearch();
-    //   ModifyProperties modifyCatalog = new ModifyProperties();
-    //   ShowPropertiesOfElements showPropertiesOfElements = new ShowPropertiesOfElements();
-    //   ShowCatalogue showCatalog = new ShowCatalogue();
+    InfoPaciente infoPaciente = new InfoPaciente();
+    PlanAlimentos planAlimentos = new PlanAlimentos();
+    ReservaCita reservarCita = new ReservaCita();
+   
     VBox vBoxWindows, vBoxMain;
 
     /**
@@ -51,112 +45,59 @@ public class MainMenuBar {
 
         SeparatorMenuItem separator = new SeparatorMenuItem();
         //Menu Sistema
-        Menu menuPaciente = new Menu("Pacientes", new ImageView(new Image("file:src/image/sistema.png")));
+        Menu menuPaciente = new Menu("Pacientes", new ImageView(new Image("file:src/image/pacien.png")));
         menuPaciente.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"
                 + "-fx-effect: dropshadow(gaussian, red, 50, 0, 0, 0);"
                 + "-fx-background-insets: 50;");
         //SubMenu de Sistema
-        MenuItem menuItemAbout = new MenuItem("Acerca de", new ImageView(new Image("file:src/image/aD.png")));
-        menuItemAbout.setAccelerator(KeyCombination.keyCombination("Ctrl+A"));
-        MenuItem menuItemCredits = new MenuItem("Créditos", new ImageView(new Image("file:src/image/ojo.png")));
-        menuItemCredits.setAccelerator(KeyCombination.keyCombination("Ctrl+C"));
-        MenuItem menuItemPerformance = new MenuItem("Funcionamiento", new ImageView(new Image("file:src/image/preg.png")));
-        MenuItem menuItemExit = new MenuItem("Salir", new ImageView(new Image("file:src/image/exit.png")));
+        MenuItem menuItemInfoPaciente = new MenuItem("Acceder a informacion", new ImageView(new Image("file:src/image/infoPaci.png")));
+        menuItemInfoPaciente.setAccelerator(KeyCombination.keyCombination("Ctrl+A"));
+        MenuItem menuItemExit = new MenuItem("Salir", new ImageView(new Image("file:src/image/salir.png")));
         menuItemExit.setAccelerator(KeyCombination.keyCombination("Alt+S"));
 
-        menuItemCredits.setOnAction((event) -> {
-            vBoxWindows.getChildren().clear();
-            // vBoxWindows.getChildren().addAll(credits.getGraphicalUserInterfaceCredits());
-        });
 
-        menuItemAbout.setOnAction((event) -> {
+        menuItemInfoPaciente.setOnAction((event) -> {
             vBoxWindows.getChildren().clear();
             // vBoxWindows.getChildren().addAll(about.getGraphicalUserInterfaceAbout());
         });
 
-        menuItemPerformance.setOnAction((event) -> {
-            vBoxWindows.getChildren().clear();
-            // vBoxWindows.getChildren().addAll(help.getGraphicalUserInterfaceHelper());
-        });
 
         menuItemExit.setOnAction((event) -> Platform.exit());
 
-        menuPaciente.getItems().addAll(menuItemAbout, menuItemCredits, menuItemPerformance, menuItemExit);//agregados a m_SIstema
+        menuPaciente.getItems().addAll(menuItemInfoPaciente, menuItemExit);//agregados a m_SIstema
 
-        Menu menuCita = new Menu("Reservar cita", new ImageView(new Image("file:src/image/catal.png")));
+        Menu menuCita = new Menu("Citas", new ImageView(new Image("file:src/image/cita.png")));
         menuCita.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"
                 + "-fx-effect: dropshadow(gaussian, red, 50, 0, 0, 0);"
                 + "-fx-background-insets: 50;");
-        MenuItem menuItemDefineCatalogue = new MenuItem("Definir Catalogo", new ImageView(new Image("file:src/image/ADD.png")));
-        menuItemDefineCatalogue.setAccelerator(KeyCombination.keyCombination("Ctrl+D"));
-        MenuItem menuItemDefineProperties = new MenuItem("Definir propiedades", new ImageView(new Image("file:src/image/prop.png")));
+        MenuItem menuItemReservarCita = new MenuItem("Reservar cita", new ImageView(new Image("file:src/image/reservaCita.png")));
+        menuItemReservarCita.setAccelerator(KeyCombination.keyCombination("Ctrl+D"));
 
-        menuItemDefineCatalogue.setOnAction((event) -> {
+        menuItemReservarCita.setOnAction((event) -> {
             vBoxWindows.getChildren().clear();
             // vBoxWindows.getChildren().addAll(createNewCatalog.createCatalogue());
         });
-        menuItemDefineProperties.setOnAction((event) -> {
-            vBoxWindows.getChildren().clear();
-//            try {
-//                vBoxWindows.getChildren().addAll(defineProperties.defineProperties());
-//            } catch (IOException ex) {
-//                Logger.getLogger(MainMenuBar.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-        });
-        menuCita.getItems().addAll(menuItemDefineCatalogue, menuItemDefineProperties);//agregados a m_Paises
 
-        Menu menuAlimentacion = new Menu("Planes de alimentacion", new ImageView(new Image("file:src/image/mantenimiento.png")));
+        menuCita.getItems().addAll(menuItemReservarCita);
+
+        Menu menuAlimentacion = new Menu("Planes de alimentacion", new ImageView(new Image("file:src/image/planAli.png")));
         menuAlimentacion.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"
                 + "-fx-effect: dropshadow(gaussian, red, 50, 0, 0, 0);"
                 + "-fx-background-insets: 50;");
-        MenuItem menuItemDeleteCatalogue = new MenuItem("Eliminar catalogos", new ImageView(new Image("file:src/image/elim.png")));
+        MenuItem menuItemVerPlanes = new MenuItem("Ver planes de alimentacion", new ImageView(new Image("file:src/image/verPlan.png")));
         //Funcionamiento
-        menuItemDeleteCatalogue.setOnAction((event) -> {
+        menuItemVerPlanes.setOnAction((event) -> {
             vBoxWindows.getChildren().clear();
             // vBoxWindows.getChildren().addAll(deleteCatalogs.deleteCatalogues());
         });
-        menuAlimentacion.getItems().addAll(menuItemDeleteCatalogue);//agregado a menuMaintenance
+        menuAlimentacion.getItems().addAll(menuItemVerPlanes);//agregado a menuMaintenance
 
-        Menu menuInformacion = new Menu("Informacion", new ImageView(new Image("file:src/image/rep.png")));
-        menuInformacion.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"
-                + "-fx-effect: dropshadow(gaussian, red, 50, 0, 0, 0);"
-                + "-fx-background-insets: 50;");
 
-        Menu menuSubReports = new Menu("Listados", new ImageView(new Image("file:src/image/list.png")));
-        menuInformacion.getItems().addAll(menuSubReports);
-        MenuItem menuItemSearchCatalogue = new MenuItem("Busqueda por catalogo", new ImageView(new Image("file:src/image/sear.png")));
-        menuItemSearchCatalogue.setAccelerator(KeyCombination.keyCombination("Ctrl+V"));
-        MenuItem menuItemModifyCatalogue = new MenuItem("Modificar catalogo", new ImageView(new Image("file:src/image/edita.png")));
-        MenuItem menuItemPropertiesList = new MenuItem("Listado de propiedades por catalogo");
-        MenuItem menuItemCataloguesList = new MenuItem("Listado de catalogos");
-
-        menuItemSearchCatalogue.setOnAction((event) -> {
-            vBoxWindows.getChildren().clear();
-            // vBoxWindows.getChildren().addAll(catalogSearch.catalogueSearching());
-        });
-
-        menuItemModifyCatalogue.setOnAction((event) -> {
-            vBoxWindows.getChildren().clear();
-            //vBoxWindows.getChildren().addAll(modifyCatalog.modifyProperties());
-        });
-
-        menuItemPropertiesList.setOnAction((event) -> {
-            vBoxWindows.getChildren().clear();
-            // vBoxWindows.getChildren().addAll(showPropertiesOfElements.showInformationByCatalogue());
-        });
-
-        menuItemCataloguesList.setOnAction((event) -> {
-            vBoxWindows.getChildren().clear();
-            //  vBoxWindows.getChildren().addAll(showCatalog.showExistingCatalogues());
-        });
-
-        menuSubReports.getItems().addAll(menuItemPropertiesList, menuItemCataloguesList);
-        menuInformacion.getItems().addAll(menuItemSearchCatalogue, menuItemModifyCatalogue, separator, menuSubReports);//agregados a menuReports
         menuBarMenu.setOpacity(0.0);
         menuBarMenu.setOnMouseMoved((event) -> {
             menuBarMenu.setOpacity(0.9);
         });
-        menuBarMenu.getMenus().addAll(menuPaciente, menuCita, menuAlimentacion, menuInformacion);
+        menuBarMenu.getMenus().addAll(menuPaciente, menuCita, menuAlimentacion);
         ((VBox) scene.getRoot()).getChildren().addAll(menuBarMenu, vBoxWindows);
         return scene;
 
