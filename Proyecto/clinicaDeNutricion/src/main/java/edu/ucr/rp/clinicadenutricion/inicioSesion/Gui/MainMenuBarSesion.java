@@ -1,5 +1,10 @@
 package edu.ucr.rp.clinicadenutricion.inicioSesion.Gui;
 
+//import edu.ucr.rp.clinicadenutricion.Cliente.Gui.ClienteGui;
+import edu.ucr.rp.clinicadenutricion.Admin.Gui.MainMenuBarAdmi;
+import edu.ucr.rp.clinicadenutricion.Cliente.Gui.MainMenuBarCliente;
+import edu.ucr.rp.clinicadenutricion.Cliente.Gui.ModificaCancela;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.MainMenuBarSuperAdmi;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.EncripMD5;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -10,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -18,7 +24,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.VBox;
 import javax.swing.JOptionPane;
 
-public class MainMenuBar {
+public class MainMenuBarSesion {
 
     AcercaDe acercaDe = new AcercaDe();
     Ayuda ayuda = new Ayuda();
@@ -103,31 +109,42 @@ public class MainMenuBar {
             menuBarMenu.setOpacity(0.9);
         });
 
+        Button botonAceptar = new Button("Aceptar");
         TextField textFieldNombre = new TextField();
         textFieldNombre.setPromptText("Ingrese su nombre de usuario");
 
-        TextField textFieldContraseña = new TextField();
-        textFieldContraseña.setPromptText("Ingrese su contraseña");
-
-        Button botonAceptar = new Button("Aceptar");
-        botonAceptar.setOnAction((event) -> {
-
-            //encriptar.encriptar("clinicaSusanaDistancia", textFieldContraseña.getText());
-            String cadenaEncriptada = encriptar.encriptar("clinicaSusanaDistancia", textFieldContraseña.getText());
-            JOptionPane.showMessageDialog(null, "Cadena encriptada: " + cadenaEncriptada);
-            String cadenaDesencriptada = encriptar.desencriptar("clinicaSusanaDistancia", cadenaEncriptada);
-            JOptionPane.showMessageDialog(null, "Cadena desencriptada: " + cadenaDesencriptada);
-
-        });
+        PasswordField fieldContraseña = new PasswordField();
+        fieldContraseña.setPromptText("Ingrese su contraseña");
 
         menuBarMenu.getMenus().addAll(menuSystem, menuCrearUsuario);
         vBoxWindows.getChildren().add(textFieldNombre);
-        vBoxWindows.getChildren().add(textFieldContraseña);
+        vBoxWindows.getChildren().add(fieldContraseña);
         vBoxWindows.getChildren().add(botonAceptar);
 
         ((VBox) scene.getRoot()).getChildren().addAll(menuBarMenu, vBoxWindows);
+
+      
+        MainMenuBarCliente zz = new MainMenuBarCliente();
+        MainMenuBarSuperAdmi mm = new MainMenuBarSuperAdmi();
+        MainMenuBarAdmi nn = new MainMenuBarAdmi();
+
+        botonAceptar.setOnAction((event) -> {
+
+//            encriptar.encriptar("clinicaSusanaDistancia", fieldContraseña.getText());
+//            String cadenaEncriptada = encriptar.encriptar("clinicaSusanaDistancia", fieldContraseña.getText());
+//            JOptionPane.showMessageDialog(null, "Cadena encriptada: " + cadenaEncriptada);
+//            String cadenaDesencriptada = encriptar.desencriptar("clinicaSusanaDistancia", cadenaEncriptada);
+//            JOptionPane.showMessageDialog(null, "Cadena desencriptada: " + cadenaDesencriptada);
+            vBoxWindows.getChildren().clear();
+            menuBarMenu.setVisible(false);
+            //vBoxWindows.getChildren().add(zz.menuCliente());
+            // vBoxWindows.getChildren().add(mm.menuSuperAdmi());
+            vBoxWindows.getChildren().add(nn.menuAdmi());
+
+        });
+
         return scene;
 
     }//end Scene getMainScene()
 
-}//end MainMenuBar
+}//end MainMenuBarSesion

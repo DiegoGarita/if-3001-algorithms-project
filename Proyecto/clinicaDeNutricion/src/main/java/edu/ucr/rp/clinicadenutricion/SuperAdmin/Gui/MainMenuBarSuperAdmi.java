@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -12,9 +13,10 @@ import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
-public class MainMenuBar {
+public class MainMenuBarSuperAdmi {
     
     HorarioTiempoClinica horarioTiempo = new HorarioTiempoClinica();
     
@@ -25,22 +27,23 @@ public class MainMenuBar {
     RespaldarArchivos respaldarArchivos = new RespaldarArchivos();
     ResgistrosPaginacion registrosPag = new ResgistrosPaginacion();
 
-    VBox vBoxWindows, vBoxMain;
 
     /**
      *
      * @return Nos da la GUI que contiene todos los elementos por mostrar en la
      * barra de menú
      */
-    public Scene getMainScene() {
+    public GridPane menuSuperAdmi() {
 
-        vBoxMain = new VBox();
-//        vBoxMain.setStyle(("-fx-background-image:url('file:src/image/inicio1.jpg');"
-//                + "-fx-background-repeat : no-repeat;"
-//                + "-fx-background-size: 920 920, 20 20, 20 20, 20 20, auto;"));
-
-        Scene scene = new Scene(vBoxMain, 900, 700);
-        vBoxWindows = new VBox();
+        /// File file = new File(fileName);
+        GridPane gridPaneSuperAdmi = new GridPane();
+        gridPaneSuperAdmi.setMinSize(600, 700);
+        // determina el espacio entre columnas (vertical y horizontal)
+        gridPaneSuperAdmi.setVgap(15);   //espacio
+        gridPaneSuperAdmi.setHgap(15);    // espacio
+        // alinear el grip
+        gridPaneSuperAdmi.setAlignment(Pos.CENTER);
+        gridPaneSuperAdmi.setStyle("-fx-background-color: dodgerblue");
 
         MenuBar menuBarMenu = new MenuBar();
         //mB_Menu.setStyle("-fx-background-color: #0a5ba0;");
@@ -62,7 +65,7 @@ public class MainMenuBar {
         menuItemExit.setAccelerator(KeyCombination.keyCombination("Alt+S"));
 
         menuItemHorario.setOnAction((event) -> {
-            vBoxWindows.getChildren().clear();
+            gridPaneSuperAdmi.getChildren().clear();
             //   vBoxWindows.getChildren().addAll(about.getGraphicalUserInterfaceAbout());
         });
 
@@ -80,19 +83,19 @@ public class MainMenuBar {
         MenuItem menuItemNumPag = new MenuItem("Numero de registros, paginacion", new ImageView(new Image("file:src/image/numRegis.png")));
 
         menuItemReporAcciones.setOnAction((event) -> {
-            vBoxWindows.getChildren().clear();
+            gridPaneSuperAdmi.getChildren().clear();
             // vBoxWindows.getChildren().addAll(createNewCatalog.createCatalogue());
         });
         menuItemRespaldar.setOnAction((event) -> {
-            vBoxWindows.getChildren().clear();
+            gridPaneSuperAdmi.getChildren().clear();
 //            try {
 //                vBoxWindows.getChildren().addAll(defineProperties.defineProperties());
 //            } catch (IOException ex) {
-//                Logger.getLogger(MainMenuBar.class.getName()).log(Level.SEVERE, null, ex);
+//                Logger.getLogger(MainMenuBarSuperAdmi.class.getName()).log(Level.SEVERE, null, ex);
 //            }
         });
         menuItemNumPag.setOnAction((event) -> {
-            vBoxWindows.getChildren().clear();
+            gridPaneSuperAdmi.getChildren().clear();
             // vBoxWindows.getChildren().addAll(createNewCatalog.createCatalogue());
         });
 
@@ -110,22 +113,22 @@ public class MainMenuBar {
         MenuItem menuItemCataloguesList = new MenuItem("Listado de catalogos");
 
         menuItemSearchCatalogue.setOnAction((event) -> {
-            vBoxWindows.getChildren().clear();
+            gridPaneSuperAdmi.getChildren().clear();
             // vBoxWindows.getChildren().addAll(catalogSearch.catalogueSearching());
         });
 
         menuItemModifyCatalogue.setOnAction((event) -> {
-            vBoxWindows.getChildren().clear();
+            gridPaneSuperAdmi.getChildren().clear();
             //  vBoxWindows.getChildren().addAll(modifyCatalog.modifyProperties());
         });
 
         menuItemPropertiesList.setOnAction((event) -> {
-            vBoxWindows.getChildren().clear();
+            gridPaneSuperAdmi.getChildren().clear();
             //  vBoxWindows.getChildren().addAll(showPropertiesOfElements.showInformationByCatalogue());
         });
 
         menuItemCataloguesList.setOnAction((event) -> {
-            vBoxWindows.getChildren().clear();
+            gridPaneSuperAdmi.getChildren().clear();
             //  vBoxWindows.getChildren().addAll(showCatalog.showExistingCatalogues());
         });
 
@@ -135,8 +138,9 @@ public class MainMenuBar {
             menuBarMenu.setOpacity(0.9);
         });
         menuBarMenu.getMenus().addAll(menuAjustes, menuRegistros, menuOtros);
-        ((VBox) scene.getRoot()).getChildren().addAll(menuBarMenu, vBoxWindows);
-        return scene;
+        gridPaneSuperAdmi.add(menuBarMenu, 0, 0);
+        
+        return gridPaneSuperAdmi;
 
     }//end Scene getMainScene()
 }

@@ -49,11 +49,10 @@ public class CrearUsuarioNuevo {
 //                + "-fx-background-repeat : no-repeat;"
 //                + "-fx-background-size: 920 920, 20 20, 20 20, 20 20, auto;"));
 
-        comboBoxRol.setValue("Herramientas");
+        comboBoxRol.setValue("Elige un rol");
         comboBoxRol.setStyle("-fx-background-color: lightblue");
         ObservableList<String> Roles
                 = FXCollections.observableArrayList(
-                        "Super Administrador",
                         "Administrador",
                         "Usuario"
                 );
