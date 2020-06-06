@@ -3,26 +3,15 @@ package edu.ucr.rp.clinicadenutricion.inicioSesion.Gui;
 //import edu.ucr.rp.clinicadenutricion.Cliente.Gui.ClienteGui;
 import edu.ucr.rp.clinicadenutricion.Admin.Gui.MainMenuBarAdmi;
 import edu.ucr.rp.clinicadenutricion.Cliente.Gui.MainMenuBarCliente;
-import edu.ucr.rp.clinicadenutricion.Cliente.Gui.ModificaCancela;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.MainMenuBarSuperAdmi;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.EncripMD5;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.SeparatorMenuItem;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.VBox;
-import javax.swing.JOptionPane;
 
 public class MainMenuBarSesion {
 
@@ -44,9 +33,9 @@ public class MainMenuBarSesion {
     public Scene getMainScene() {
 
         vBoxMain = new VBox();
-        //  vBoxMain.setStyle(("-fx-background-image:url('file:src/image/inicio1.jpg');"
-        //           + "-fx-background-repeat : no-repeat;"
-        //          + "-fx-background-size: 920 920, 20 20, 20 20, 20 20, auto;"));
+        vBoxMain.setStyle(("-fx-background-image:url('file:src/image/inicio1.jpg');"
+                + "-fx-background-repeat : no-repeat;"
+                + "-fx-background-size: 920 920, 20 20, 20 20, 20 20, auto;"));
 
         Scene scene = new Scene(vBoxMain, 900, 700);
         vBoxWindows = new VBox();
@@ -123,7 +112,6 @@ public class MainMenuBarSesion {
 
         ((VBox) scene.getRoot()).getChildren().addAll(menuBarMenu, vBoxWindows);
 
-      
         MainMenuBarCliente zz = new MainMenuBarCliente();
         MainMenuBarSuperAdmi mm = new MainMenuBarSuperAdmi();
         MainMenuBarAdmi nn = new MainMenuBarAdmi();
@@ -136,10 +124,11 @@ public class MainMenuBarSesion {
 //            String cadenaDesencriptada = encriptar.desencriptar("clinicaSusanaDistancia", cadenaEncriptada);
 //            JOptionPane.showMessageDialog(null, "Cadena desencriptada: " + cadenaDesencriptada);
             vBoxWindows.getChildren().clear();
-            menuBarMenu.setVisible(false);
-            //vBoxWindows.getChildren().add(zz.menuCliente());
+            //vBoxWindows.getChildren().removeAll(vBoxWindows);
+             menuBarMenu.setVisible(false);
+            vBoxWindows.getChildren().add(zz.menuCliente());
             // vBoxWindows.getChildren().add(mm.menuSuperAdmi());
-            vBoxWindows.getChildren().add(nn.menuAdmi());
+           // vBoxWindows.getChildren().add(nn.menuAdmi());
 
         });
 
