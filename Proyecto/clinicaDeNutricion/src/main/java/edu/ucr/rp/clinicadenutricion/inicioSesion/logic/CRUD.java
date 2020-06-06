@@ -1,17 +1,25 @@
 package edu.ucr.rp.clinicadenutricion.inicioSesion.logic;
 
-import java.util.ArrayList;
-
 class Node {
 
-    Object element;
+    Usuario element;
     Node next;
 
-    public Node(Object n) {
+    public Node(Usuario n) {
         element = n;
         next = null;
 
     } //end public
+    
+       Usuario seeElement() { //instancia para ver el elemento (utilizado solo en IndexOf)
+
+        return this.element; //retorna al elemento recibido por public Node
+    }// end seeElement
+
+    Node seeNext() { //instancia para ver al siguiente
+
+        return this.next; //retorna next
+    } //ver siguiente
 
 }
 
@@ -21,31 +29,50 @@ public class CRUD {
     }
     Node inicio, fin;
 
-    public String add(Object n) { //object 
+    public void add(Usuario n) { //inserta un elemento en la lista
 
-        Node aux = inicio;
-        String guardado = null;
+        Node aux = inicio; //auxiliar tipo nodo 
 
-        if (aux == null) {
+        if (aux == null) { //se pregunta si la lista está vacia
 
-            aux = new Node(n);
-            inicio = aux;
-            guardado = inicio.element + "";
+            aux = new Node(n); //se crea un primer objeto
+            inicio = aux; //inicio es igual al auxiliar tipo Nodo con el elemento n que pasa como parámetro en el método
 
         } //end if
         else { //else
-            while (aux.next != null) {
+            while (aux.next != null) { //mientras el siguiente del auxiliar sea diferente de nulo
 
-                aux = aux.next;
+                aux = aux.next; //se le asigna la variable aux a los siguientes
 
             } // end while
-            aux.next = new Node(n);
-            fin = aux.next;
-            guardado = fin.element + "";
+            aux.next = new Node(n); //el auxiliar siguiente es siguiente nodo
+            fin = aux.next; //la variable fin guarda al auxiliar siguiente
 
         }// end else  
-        return guardado;
     } //end add(Object n)
+    
+      public void alternativeAdd(Usuario n) { //inserta un elemento en la lista
+
+        Node aux = inicio; //auxiliar tipo nodo 
+
+        if (aux == null) { //se pregunta si la lista está vacia
+
+            aux = new Node(n); //se crea un primer objeto
+            inicio = aux; //inicio es igual al auxiliar tipo Nodo con el elemento n que pasa como parámetro en el método
+
+        } //end if
+        else { //else
+            while (aux.next != null) { //mientras el siguiente del auxiliar sea diferente de nulo
+
+                aux = aux.next; //se le asigna la variable aux a los siguientes
+
+            } // end while
+            aux.next = new Node(n); //el auxiliar siguiente es siguiente nodo
+            fin = aux.next; //la variable fin guarda al auxiliar siguiente
+
+        }// end else  
+    } //end add(Object n)
+    
 
     public int size() {
 
@@ -59,42 +86,33 @@ public class CRUD {
 
     }//end size
 
-    public ArrayList<Object> getList() {
+    public void remove(Usuario usuario) {
 
-        ArrayList<Object> List = new ArrayList<Object>();
-        Node aux = inicio;
+        System.out.println("USUARIO: " + usuario.getName());
 
-        for (int i = 0; i <= (size() - 1); i++) {
-            List.add(i, aux.element);
-            aux = aux.next;
-        }// end for
-
-        return List; //retorna la lista
-
-    }
-    
-        public void remove(Object element) { //metodo remover el elemento que pasa como parametro. Adv: si el objeto no está dentro de la lista se cae
-
-        if (isEmpty() == false) { //usa el metodo "isEmpty" para saber si está vacío
-            if (inicio.equals(fin) && element.equals(inicio.element)) { //si el inicio es igual al final y el elemento es igual al inicio.elemento
-                inicio = fin = null; //inicio es igual a fin y ambos son iguales a nulo
+        if (isEmpty() == false) {
+            if (inicio.equals(fin) && usuario.equals(inicio.element)) {
+                inicio = fin = null;
             }//end if
-            else if (element.equals(inicio.element)) { //else if
-                inicio = inicio.next; //recorre toda la lista
+            else if (usuario.equals(inicio.element)) { //else if
+                inicio = inicio.next;
 
             }// end else if
             else { //else
-                Node aux1, aux; //nodos auxiliares
-                aux1 = inicio; //auxiliar1 es inicio
-                aux = inicio.next; //auxiliar es el siguiente de inicio
-                while (!(aux.equals(null)) && !(aux.element.equals(element))) { //mientras auxiliar sea diferente de nulo y el elemento de exiñiar sea diferente de elemento
-                    aux1 = aux1.next; //siguiente
-                    aux = aux.next; //siguiente del siguiente
+                Node aux1, aux;
+                aux1 = inicio;
+                aux = inicio.next;
+
+                while (!(aux.equals(null)) && !(aux.element.getName().equals(usuario.getName()))) {// 
+                    System.out.println("AUX: " + aux1.element.getName());
+                    aux1 = aux1.next;
+                    aux = aux.next;
+
                 }//end while
-                if (aux != null) { //si el auxiliar (siguiente) es diferente de nulo
-                    aux1.next = aux.next; //el auxiliar1 siguiente es igual al auxiliar siguiente del siguiente
-                    if (aux.equals(fin)) { ////si auxiliar es igual a fin
-                        fin = aux1; //fin es igual a auxiliar1
+                if (aux != null) {
+                    aux1.next = aux.next;
+                    if (aux.equals(fin)) {
+                        fin = aux1;
                     }//end if
                 }//end if
             }//end else
@@ -102,19 +120,160 @@ public class CRUD {
         }//end IF
 
     } //end remove
-        
-            public boolean isEmpty() { //metodo isEmpty
 
-        boolean empty = false; //empty tipo booleano
-        Node aux = inicio; //aux tipo nodo es inicio
+    public boolean isEmpty() {
 
-        if (aux == null) { //si auxiliar es nulo
-            return empty = true; //retorne true
+        boolean empty = false;
+        Node aux = inicio;
+
+        if (aux == null) {
+            return empty = true;
         }// end if
         else { //else
-            return empty; //retorne false
+            return empty;
 
         } // end else
     } //end isEmpty
 
+
+    public Usuario keepline(Usuario element) {
+
+        return element;
+    }
+
+    public Usuario newUser(Usuario element, String pass) {
+        Usuario u = keepline(element);
+        Usuario user = new Usuario(u.getName(), pass, u.getTelefono(), u.getDireccion(), u.getCorreo(), u.getTipo());
+
+        return user;
+    }
+
+    public void display() {
+        //Node current will point to head    
+        Node current = inicio;
+
+        if (inicio == null) {
+            System.out.println("List is empty");
+            return;
+        }
+        System.out.println("linked list: ");
+        while (current != null) {
+            System.out.print(current.element.getContraseña() + " ");
+            current = current.next;
+        }
+        System.out.println();
+    }
+     
+    public boolean search(String x){
+        Node current = inicio;    //Initialize current 
+        while (current != null){
+                   
+            if (current.element.getName().equals(x)||current.element.getContraseña().equals(x))
+                return true;    //data found 
+            current = current.next; 
+        }
+        return false;    //data not found 
+    } 
+    
+    
+        public Usuario indexOf(int index) { //metodo que encuentra por indice
+
+        Node aux = inicio; //el aux tipo nodo es igual al inicio
+
+        for (int i = -1; i < index - 1; i++) { //for para recorrer desde el anterior, va aumentando
+
+            aux = aux.seeNext(); // aux es igual a seeNext (metodo definido arriba)
+        } // end for
+
+        return aux.seeElement(); //retorna el seeElement para ver el elemento (tipo object)(metodo definido arriba)
+
+    } //end indexOf
+    
+    
+//        public boolean searchPassword(Usuario x){
+//        Node current = inicio;    //Initialize current 
+//        while (current != null){
+//                   
+//            if (current.element.getContraseña().equals(x.getName()))
+//                return true;    //data found 
+//            current = current.next; 
+//        }
+//        return false;    //data not found 
+//    } 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+//    public ArrayList<Object> getList() { //metodo getList (se le quito lo del parametro que recibia porque no era necesario)
+//
+//        ArrayList<Object> List = new ArrayList<Object>(); //crea lista
+//        Node aux = inicio;//aux tipo nodo es igual a inicio
+//
+//        for (int i = 0; i <= (size() - 1); i++) { //for para recorrer la lista
+//            List.add(i, aux.element); // = agrega al ArrayList
+//            aux = aux.next; //recorre, aux igual al siguiente aux
+//        }// end for
+//
+//        return List; //retorna la lista
+//
+//    }
+    //        public void delete(Usuario usuario) {
+//        usuario = null;
+//
+////        Node aux = inicio; //el auxiliar (nodo) se inicializa en inicio
+////
+//////        while (aux != null) { //si el auxiliar es diferente de nulo
+////            System.out.println("while");
+////
+////            String lineKeeper = aux.element + "";
+////            System.out.println(lineKeeper);
+////            StringTokenizer stringTokenizer = new StringTokenizer(lineKeeper, "|"); //string tokenizer
+////            while (stringTokenizer.hasMoreTokens()) {
+////                System.out.println("whileee");
+////                String keeper = stringTokenizer.nextToken(); //mantiene el string para comparar
+////                keeper = keeper.substring(1, keeper.length());
+////
+////                if (keeper.equals(usuario)) { //si es igual al nombre
+////                    System.out.println("iffffff");
+////                    System.out.println("será borrado :" + aux.element);
+////                    aux.element = null;
+////                    return;
+////                } else {
+////                    stringTokenizer.nextToken();
+////                }
+////            }
+////
+////            aux = aux.next; //para recorrer toda la lista de objetos
+//////        }// end while
+//
+//    }
+    
+   //    public void removeLast() {//remueve el primer elemento 
+//
+//        var Object = fin.element; //objeto tipo var es el elemento final
+//
+//        if (inicio == fin.next) { //si el inicio es igual al siguiente del fin
+//            inicio = fin = null; //inicio es igual a fin y es igual a nulo
+//            System.out.println("esta vacio"); //imprime si está vacío
+//        }//end if
+//        else {//else
+//            Node temporal = inicio;//el nodo temporal es igual a inicio
+//            while (temporal.next != fin) { //mientras el siguiente temporal es diferente de fin
+//                temporal = temporal.next; //temporal es igual al siguiente (recorre)
+//
+//            }//end while
+//            fin = temporal; //fin es igual al temporal 
+//            fin.next = null; //el siguiente del fin es nulo
+//
+//        }//end else
+//    }// end removerLast
 }

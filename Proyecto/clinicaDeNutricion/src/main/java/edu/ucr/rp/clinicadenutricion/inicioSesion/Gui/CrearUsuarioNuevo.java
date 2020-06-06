@@ -1,5 +1,9 @@
 package edu.ucr.rp.clinicadenutricion.inicioSesion.Gui;
 
+import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.CRUD;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.EncripMD5;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Logic;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Usuario;
 import java.io.File;
 import java.util.ArrayList;
 import javafx.beans.Observable;
@@ -26,6 +30,10 @@ public class CrearUsuarioNuevo {
     Button buttonCreaUsuario;
     ComboBox comboBoxRol = new ComboBox();
     String fileName;
+        Logic l = new Logic();
+    EncripMD5 e = new EncripMD5();
+    CRUD c = new CRUD();
+
 
 //////////    public CrearUsuarioNuevo(String fileName) {
 //////////        this.fileName = fileName;
@@ -49,11 +57,10 @@ public class CrearUsuarioNuevo {
 //                + "-fx-background-repeat : no-repeat;"
 //                + "-fx-background-size: 920 920, 20 20, 20 20, 20 20, auto;"));
 
-        comboBoxRol.setValue("Herramientas");
+        comboBoxRol.setValue("Elige un rol");
         comboBoxRol.setStyle("-fx-background-color: lightblue");
         ObservableList<String> Roles
                 = FXCollections.observableArrayList(
-                        "Super Administrador",
                         "Administrador",
                         "Usuario"
                 );
@@ -90,6 +97,16 @@ public class CrearUsuarioNuevo {
         buttonCreaUsuario.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
         gridPanecreaUsuario.add(buttonCreaUsuario, 0, 4);
         buttonCreaUsuario.setOnAction((event) -> {
+
+            Usuario usuario = new Usuario(textFieldNombreUsu.getText(), textFieldContra.getText(), "", "", "", comboBoxRol.getValue().toString());
+            Usuario usuario2 = new Usuario("Marcelo", textFieldContra.getText(), "", "", "", comboBoxRol.getValue().toString());
+            l.writeInFile(usuario);
+            l.readInFile();
+
+            l.removeLineFromFile(textFieldNombreUsu.getText() + "|" + textFieldContra.getText());
+//            System.out.println(l.size());
+//            l.modified(usuario);
+//            System.out.println(l.size());
 
         });//end setOnAction
 

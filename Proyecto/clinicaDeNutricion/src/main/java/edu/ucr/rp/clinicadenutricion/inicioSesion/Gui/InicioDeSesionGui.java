@@ -9,7 +9,7 @@ public class InicioDeSesionGui extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        MainMenuBar mainMenuBar = new MainMenuBar();
+        MainMenuBarSesion mainMenuBar = new MainMenuBarSesion();
         Image image = new Image("file:src/image/sesIni.png");
         stage.setResizable(false);//Para que no pueda reajustar tamaño
         stage.getIcons().add(image);
