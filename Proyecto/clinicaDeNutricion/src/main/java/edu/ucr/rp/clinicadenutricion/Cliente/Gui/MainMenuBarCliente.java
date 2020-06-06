@@ -1,10 +1,7 @@
 package edu.ucr.rp.clinicadenutricion.Cliente.Gui;
 
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Platform;
-import javafx.scene.Scene;
+import javafx.geometry.Pos;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -12,36 +9,37 @@ import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.GridPane;
 
-
-public class MainMenuBar {
+public class MainMenuBarCliente {
 
     ReporteCitas reporteCitas = new ReporteCitas();
     ReporteProgreso reporteProgreso = new ReporteProgreso();
-    
+
     ApartarCita apartarCita = new ApartarCita();
     ModificaCancela modifCancela = new ModificaCancela();
-    
+
     PlanesAlimentacion planAlimentos = new PlanesAlimentacion();
-    
+
     AjustesCliente ajustes = new AjustesCliente();
-    
-     VBox vBoxWindows, vBoxMain;
 
-     /**
-      * 
-      * @return Nos da la GUI que contiene todos los elementos por mostrar en la barra de menú
-      */
-    public Scene getMainScene() {
+    // VBox vBoxWindows, vBoxMain;
+    /**
+     *
+     * @return Nos da la GUI que contiene todos los elementos por mostrar en la
+     * barra de menú
+     */
+    public GridPane menuCliente() {
 
-        vBoxMain = new VBox();
-//        vBoxMain.setStyle(("-fx-background-image:url('file:src/image/inicio1.jpg');"
-//                + "-fx-background-repeat : no-repeat;"
-//                + "-fx-background-size: 920 920, 20 20, 20 20, 20 20, auto;"));
-
-        Scene scene = new Scene(vBoxMain, 900, 700);
-        vBoxWindows = new VBox();
+        /// File file = new File(fileName);
+        GridPane gridPaneUsuario = new GridPane();
+        gridPaneUsuario.setMinSize(600, 700);
+        // determina el espacio entre columnas (vertical y horizontal)
+        gridPaneUsuario.setVgap(15);   //espacio
+        gridPaneUsuario.setHgap(15);    // espacio
+        // alinear el grip
+        gridPaneUsuario.setAlignment(Pos.CENTER);
+        gridPaneUsuario.setStyle("-fx-background-color: dodgerblue");
 
         MenuBar menuBarMenu = new MenuBar();
         //mB_Menu.setStyle("-fx-background-color: #0a5ba0;");
@@ -63,13 +61,13 @@ public class MainMenuBar {
         menuItemExit.setAccelerator(KeyCombination.keyCombination("Alt+S"));
 
         menuItemCitas.setOnAction((event) -> {
-            vBoxWindows.getChildren().clear();
-           // vBoxWindows.getChildren().addAll(credits.getGraphicalUserInterfaceCredits());
+            gridPaneUsuario.getChildren().clear();
+            // vBoxWindows.getChildren().addAll(credits.getGraphicalUserInterfaceCredits());
         });
 
         menuItemProgreso.setOnAction((event) -> {
-            vBoxWindows.getChildren().clear();
-           // vBoxWindows.getChildren().addAll(about.getGraphicalUserInterfaceAbout());
+            gridPaneUsuario.getChildren().clear();
+            // vBoxWindows.getChildren().addAll(about.getGraphicalUserInterfaceAbout());
         });
 
         menuItemExit.setOnAction((event) -> Platform.exit());
@@ -85,16 +83,13 @@ public class MainMenuBar {
         MenuItem menuItemModiCancela = new MenuItem("Modificar/Cancelar cita", new ImageView(new Image("file:src/image/canModi.png")));
 
         menuItemSolicitaCita.setOnAction((event) -> {
-            vBoxWindows.getChildren().clear();
-           // vBoxWindows.getChildren().addAll(createNewCatalog.createCatalogue());
+            gridPaneUsuario.getChildren().clear();
+            gridPaneUsuario.getChildren().addAll(apartarCita.reservar());
         });
         menuItemModiCancela.setOnAction((event) -> {
-            vBoxWindows.getChildren().clear();
-//            try {
-//                vBoxWindows.getChildren().addAll(defineProperties.defineProperties());
-//            } catch (IOException ex) {
-//                Logger.getLogger(MainMenuBar.class.getName()).log(Level.SEVERE, null, ex);
-//            }
+            gridPaneUsuario.getChildren().clear();
+            gridPaneUsuario.getChildren().addAll(modifCancela.modiCancel());
+
         });
         menuNuevaCita.getItems().addAll(menuItemSolicitaCita, menuItemModiCancela);//agregados a m_Paises
 
@@ -102,13 +97,13 @@ public class MainMenuBar {
         menuPlanes.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"
                 + "-fx-effect: dropshadow(gaussian, red, 50, 0, 0, 0);"
                 + "-fx-background-insets: 50;");
-        MenuItem menuItemDeleteCatalogue = new MenuItem("Ver planes", new ImageView(new Image("file:src/image/verPlan.png")));
+        MenuItem menuItemPalnes = new MenuItem("Ver planes", new ImageView(new Image("file:src/image/verPlan.png")));
         //Funcionamiento
-        menuItemDeleteCatalogue.setOnAction((event) -> {
-            vBoxWindows.getChildren().clear();
-           // vBoxWindows.getChildren().addAll(deleteCatalogs.deleteCatalogues());
+        menuItemPalnes.setOnAction((event) -> {
+            gridPaneUsuario.getChildren().clear();
+            gridPaneUsuario.getChildren().addAll(planAlimentos.misPlanesAlimentos());
         });
-        menuPlanes.getItems().addAll(menuItemDeleteCatalogue);//agregado a menuMaintenance
+        menuPlanes.getItems().addAll(menuItemPalnes);//agregado a menuMaintenance
 
         Menu menuAjustes = new Menu("Ajustes", new ImageView(new Image("file:src/image/ajus.png")));
         menuAjustes.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"
@@ -118,22 +113,35 @@ public class MainMenuBar {
         MenuItem menuItemCuenta = new MenuItem("Cuenta", new ImageView(new Image("file:src/image/usua.png")));
         menuItemCuenta.setAccelerator(KeyCombination.keyCombination("Ctrl+V"));
 
-
         menuItemCuenta.setOnAction((event) -> {
-            vBoxWindows.getChildren().clear();
-           // vBoxWindows.getChildren().addAll(catalogSearch.catalogueSearching());
+            gridPaneUsuario.getChildren().clear();
+            // vBoxWindows.getChildren().addAll(catalogSearch.catalogueSearching());
         });
+        menuAjustes.getItems().addAll(menuItemCuenta, separator);
 
-      
-       
-        menuAjustes.getItems().addAll(menuItemCuenta, separator);//agregados a menuReports
+        Menu menuMas = new Menu("Mas", new ImageView(new Image("file:src/image/ajus.png")));
+        menuMas.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"
+                + "-fx-effect: dropshadow(gaussian, red, 50, 0, 0, 0);"
+                + "-fx-background-insets: 50;");
+
+        MenuItem menuItemMasInfo = new MenuItem("Encuentra más info", new ImageView(new Image("file:src/image/usua.png")));
+        menuItemMasInfo.setAccelerator(KeyCombination.keyCombination("Ctrl+V"));
+
+        menuItemMasInfo.setOnAction((event) -> {
+            gridPaneUsuario.getChildren().clear();
+            // vBoxWindows.getChildren().addAll(catalogSearch.catalogueSearching());
+        });
+        menuMas.getItems().addAll(menuItemMasInfo);
+
         menuBarMenu.setOpacity(0.0);
         menuBarMenu.setOnMouseMoved((event) -> {
             menuBarMenu.setOpacity(0.9);
         });
-        menuBarMenu.getMenus().addAll(menuReportes, menuNuevaCita, menuPlanes, menuAjustes);
-        ((VBox) scene.getRoot()).getChildren().addAll(menuBarMenu, vBoxWindows);
-        return scene;
+
+        menuBarMenu.getMenus().addAll(menuReportes, menuNuevaCita, menuPlanes, menuAjustes, menuMas);
+        gridPaneUsuario.add(menuBarMenu, 0, 0);
+
+        return gridPaneUsuario;
 
     }//end Scene getMainScene()
-}//end class MainMenuBar 
+}//end class MainMenuBarCliente 

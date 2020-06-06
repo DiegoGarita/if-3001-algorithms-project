@@ -6,3 +6,5 @@ Nombre3|Contrasena-
 Nombre4|Contrasena+
 Nombre5|Contrasena*
 Nombre6|Contrasena*
+Nombre6|Contrasena*
+null
