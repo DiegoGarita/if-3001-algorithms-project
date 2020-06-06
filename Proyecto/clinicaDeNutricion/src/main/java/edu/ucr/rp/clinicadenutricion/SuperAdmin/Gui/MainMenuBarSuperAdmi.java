@@ -1,11 +1,7 @@
 package edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui;
 
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -14,7 +10,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 
 public class MainMenuBarSuperAdmi {
     
@@ -37,12 +32,7 @@ public class MainMenuBarSuperAdmi {
 
         /// File file = new File(fileName);
         GridPane gridPaneSuperAdmi = new GridPane();
-        gridPaneSuperAdmi.setMinSize(600, 700);
-        // determina el espacio entre columnas (vertical y horizontal)
-        gridPaneSuperAdmi.setVgap(15);   //espacio
-        gridPaneSuperAdmi.setHgap(15);    // espacio
-        // alinear el grip
-        gridPaneSuperAdmi.setAlignment(Pos.CENTER);
+        gridPaneSuperAdmi.setMinSize(900, 700);
         gridPaneSuperAdmi.setStyle("-fx-background-color: dodgerblue");
 
         MenuBar menuBarMenu = new MenuBar();

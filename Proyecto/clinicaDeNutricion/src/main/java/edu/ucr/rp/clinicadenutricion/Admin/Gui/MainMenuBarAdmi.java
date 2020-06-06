@@ -1,11 +1,7 @@
 package edu.ucr.rp.clinicadenutricion.Admin.Gui;
 
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -14,14 +10,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 
 public class MainMenuBarAdmi {
 
     InfoPaciente infoPaciente = new InfoPaciente();
     PlanAlimentos planAlimentos = new PlanAlimentos();
     ReservaCita reservarCita = new ReservaCita();
-
 
     /**
      *
@@ -32,12 +26,12 @@ public class MainMenuBarAdmi {
 
         /// File file = new File(fileName);
         GridPane gridPaneAdmi = new GridPane();
-        gridPaneAdmi.setMinSize(600, 700);
+        gridPaneAdmi.setMinSize(900, 700);
         // determina el espacio entre columnas (vertical y horizontal)
-        gridPaneAdmi.setVgap(15);   //espacio
-        gridPaneAdmi.setHgap(15);    // espacio
+       // gridPaneAdmi.setVgap(15);   //espacio
+       // gridPaneAdmi.setHgap(15);    // espacio
         // alinear el grip
-        gridPaneAdmi.setAlignment(Pos.CENTER);
+        ///gridPaneAdmi.setAlignment(Pos.CENTER);
         gridPaneAdmi.setStyle("-fx-background-color: dodgerblue");
 
         MenuBar menuBarMenu = new MenuBar();
@@ -47,7 +41,7 @@ public class MainMenuBarAdmi {
                 + "-fx-background-insets: 50;");
 
         SeparatorMenuItem separator = new SeparatorMenuItem();
-        //Menu Sistema
+
         Menu menuPaciente = new Menu("Pacientes", new ImageView(new Image("file:src/image/pacien.png")));
         menuPaciente.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"
                 + "-fx-effect: dropshadow(gaussian, red, 50, 0, 0, 0);"
@@ -97,10 +91,10 @@ public class MainMenuBarAdmi {
         menuBarMenu.setOnMouseMoved((event) -> {
             menuBarMenu.setOpacity(0.9);
         });
+
         menuBarMenu.getMenus().addAll(menuPaciente, menuCita, menuAlimentacion);
         gridPaneAdmi.add(menuBarMenu, 0, 0);
-      
-        
+
         return gridPaneAdmi;
 
     }//end Scene getMainScene()

@@ -16,7 +16,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 
-public class ModificaCancela {
+public class ModificaCancelaCita {
       TextField textFieldNombreUsu;
     Button buttonDesplegar;
     Button buttonModiCita;

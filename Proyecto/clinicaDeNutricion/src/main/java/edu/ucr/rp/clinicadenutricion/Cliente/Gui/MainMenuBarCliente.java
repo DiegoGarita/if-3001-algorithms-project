@@ -17,7 +17,7 @@ public class MainMenuBarCliente {
     ReporteProgreso reporteProgreso = new ReporteProgreso();
 
     ApartarCita apartarCita = new ApartarCita();
-    ModificaCancela modifCancela = new ModificaCancela();
+    ModificaCancelaCita modifCancela = new ModificaCancelaCita();
 
     PlanesAlimentacion planAlimentos = new PlanesAlimentacion();
 
@@ -33,12 +33,7 @@ public class MainMenuBarCliente {
 
         /// File file = new File(fileName);
         GridPane gridPaneUsuario = new GridPane();
-        gridPaneUsuario.setMinSize(600, 700);
-        // determina el espacio entre columnas (vertical y horizontal)
-        gridPaneUsuario.setVgap(15);   //espacio
-        gridPaneUsuario.setHgap(15);    // espacio
-        // alinear el grip
-        gridPaneUsuario.setAlignment(Pos.CENTER);
+        gridPaneUsuario.setMinSize(900, 700);
         gridPaneUsuario.setStyle("-fx-background-color: dodgerblue");
 
         MenuBar menuBarMenu = new MenuBar();
@@ -115,7 +110,7 @@ public class MainMenuBarCliente {
 
         menuItemCuenta.setOnAction((event) -> {
             gridPaneUsuario.getChildren().clear();
-            // vBoxWindows.getChildren().addAll(catalogSearch.catalogueSearching());
+            gridPaneUsuario.getChildren().addAll(ajustes.ajustes());
         });
         menuAjustes.getItems().addAll(menuItemCuenta, separator);
 
