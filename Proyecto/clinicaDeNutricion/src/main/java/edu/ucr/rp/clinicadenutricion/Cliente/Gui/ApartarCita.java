@@ -16,6 +16,7 @@ public class ApartarCita {
     TextField textFieldDoctora;
     TextField textFieldHora;
     Button botonGuardar;
+    String agendo = "Agendo cita";
     ClienteLogic clienteLogic = new ClienteLogic();
 
     /**

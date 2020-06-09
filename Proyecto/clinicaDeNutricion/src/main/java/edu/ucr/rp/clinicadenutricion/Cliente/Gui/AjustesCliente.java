@@ -1,5 +1,6 @@
 package edu.ucr.rp.clinicadenutricion.Cliente.Gui;
 
+import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.EncripMD5;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Logic;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Usuario;
 import javafx.geometry.Pos;
@@ -19,7 +20,10 @@ public class AjustesCliente {
     Button buttonAceptar;
 
     String fileName;
+    String accionBorra = "Borro su usuario";
+    String accionModi = "Modifico su usuario";
     Logic l = new Logic();
+    EncripMD5 e = new EncripMD5();
 
     /**
      *
@@ -79,7 +83,7 @@ public class AjustesCliente {
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
         gridPaneAjustes.add(textFieldNuevaContraUsu, 0, 4);
         textFieldNuevaContraUsu.setFocusTraversable(false);
-          textFieldNuevaContraUsu.setVisible(false);
+        textFieldNuevaContraUsu.setVisible(false);
 
         buttonModiUsu = new Button("Modificar usuario");
         buttonModiUsu.setTextFill(Color.WHITE);//Color de la letra del boton
@@ -117,10 +121,10 @@ public class AjustesCliente {
         buttonAceptar.setOnAction((event) -> {
 
             Usuario usuario = new Usuario(textFieldNombreUsu.getText(), textFieldContraUsu.getText(), "", "", "", l.readType(textFieldNombreUsu.getText() + "|" + textFieldContraUsu.getText()));
-            Usuario usuario1 = new Usuario(textFieldNombreUsu.getText(), textFieldNuevaContraUsu.getText(), "", "", "", l.readType(textFieldNombreUsu.getText() + "|" + textFieldContraUsu.getText()));
+            Usuario usuario1 = new Usuario(textFieldNombreUsu.getText(), textFieldNuevaContraUsu.getText(), "", "", "", l.readType(textFieldNombreUsu.getText() + "|" +  textFieldContraUsu.getText()));
             l.writeInFile(usuario1);
             l.readInFile();
-            l.modified(usuario, textFieldNuevaContraUsu.getText());
+            l.modified(usuario, textFieldNuevaContraUsu.getText()); 
             l.removeLineFromFile(textFieldNombreUsu.getText() + "|" + textFieldContraUsu.getText());
 
         });//end setOnAction
