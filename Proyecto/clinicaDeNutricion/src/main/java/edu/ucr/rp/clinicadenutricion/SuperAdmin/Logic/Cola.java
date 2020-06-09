@@ -1,11 +1,11 @@
 package edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic;
 
-import edu.ucr.rp.clinicadenutricion.Objetos.Citas;
+import edu.ucr.rp.clinicadenutricion.Objetos.ReporteMedico;
 import java.util.ArrayList;
 
 public interface Cola {
 
-    public String insertarCita(Citas cita);
+    public String insertarCita(Object cita);
 
     public void buscarNodo();
 

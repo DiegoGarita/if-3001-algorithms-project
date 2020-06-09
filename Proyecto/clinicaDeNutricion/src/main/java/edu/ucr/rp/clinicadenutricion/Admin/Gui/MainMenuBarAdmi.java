@@ -16,6 +16,7 @@ public class MainMenuBarAdmi {
     InfoPaciente infoPaciente = new InfoPaciente();
     PlanAlimentos planAlimentos = new PlanAlimentos();
     ReservaCita reservarCita = new ReservaCita();
+    FormuDoctor formulario = new FormuDoctor();
 
     /**
      *
@@ -28,8 +29,8 @@ public class MainMenuBarAdmi {
         GridPane gridPaneAdmi = new GridPane();
         gridPaneAdmi.setMinSize(900, 700);
         // determina el espacio entre columnas (vertical y horizontal)
-       // gridPaneAdmi.setVgap(15);   //espacio
-       // gridPaneAdmi.setHgap(15);    // espacio
+        // gridPaneAdmi.setVgap(15);   //espacio
+        // gridPaneAdmi.setHgap(15);    // espacio
         // alinear el grip
         ///gridPaneAdmi.setAlignment(Pos.CENTER);
         gridPaneAdmi.setStyle("-fx-background-color: dodgerblue");
@@ -49,6 +50,8 @@ public class MainMenuBarAdmi {
         //SubMenu de Sistema
         MenuItem menuItemInfoPaciente = new MenuItem("Acceder a informacion", new ImageView(new Image("file:src/image/infoPaci.png")));
         menuItemInfoPaciente.setAccelerator(KeyCombination.keyCombination("Ctrl+A"));
+        MenuItem menuItemForm = new MenuItem("Form nuevo", new ImageView(new Image("file:src/image/formDo.png")));
+        menuItemForm.setAccelerator(KeyCombination.keyCombination("Ctrl+F"));
         MenuItem menuItemExit = new MenuItem("Salir", new ImageView(new Image("file:src/image/salir.png")));
         menuItemExit.setAccelerator(KeyCombination.keyCombination("Alt+S"));
 
@@ -57,9 +60,14 @@ public class MainMenuBarAdmi {
             gridPaneAdmi.getChildren().addAll(infoPaciente.infoCliente());
         });
 
+        menuItemForm.setOnAction((event) -> {
+            gridPaneAdmi.getChildren().clear();
+            gridPaneAdmi.getChildren().addAll(formulario.formulario());
+        });
+
         menuItemExit.setOnAction((event) -> Platform.exit());
 
-        menuPaciente.getItems().addAll(menuItemInfoPaciente, menuItemExit);//agregados a m_SIstema
+        menuPaciente.getItems().addAll(menuItemInfoPaciente,menuItemForm, menuItemExit);//agregados a m_SIstema
 
         Menu menuCita = new Menu("Citas", new ImageView(new Image("file:src/image/cita.png")));
         menuCita.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"

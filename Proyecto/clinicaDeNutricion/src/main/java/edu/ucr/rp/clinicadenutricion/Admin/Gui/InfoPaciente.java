@@ -2,24 +2,12 @@ package edu.ucr.rp.clinicadenutricion.Admin.Gui;
 
 // en esta clase los admin tendran acceso a info de  los pacientes
 
-import java.io.File;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.media.MediaPlayer;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
+import javafx.scene.text.*;
 
 public class InfoPaciente {
     
@@ -34,25 +22,25 @@ public class InfoPaciente {
   //  cuentaBusquedas cB = new cuentaBusquedas("registroBusqueda.txt");
 
 
-    public BorderPane infoCliente() {
+    public GridPane infoCliente() {
 
-        BorderPane bP_acomodarInterfaz = new BorderPane();
-        bP_acomodarInterfaz.setPrefSize(600, 550);
+//        BorderPane bP_acomodarInterfaz = new BorderPane();
+//        bP_acomodarInterfaz.setPrefSize(600, 550);
 
-        GridPane gP_buscar = new GridPane();
-        gP_buscar.setMinSize(300, 350);
+        GridPane gridPaneInfo = new GridPane();
+        gridPaneInfo.setMinSize(600, 700);
         // determina el espacio entre columnas (vertical y horizontal)
-        gP_buscar.setVgap(15);   //espacio
-        gP_buscar.setHgap(15);    // espacio
+        gridPaneInfo.setVgap(15);   //espacio
+        gridPaneInfo.setHgap(15);    // espacio
         // alinear el grip
-        gP_buscar.setAlignment(Pos.CENTER);
-        gP_buscar.setStyle("-fx-background-color: dodgerblue");
+        gridPaneInfo.setAlignment(Pos.CENTER);
+        gridPaneInfo.setStyle("-fx-background-color: dodgerblue");
 
         TextField tF_buscar = new TextField();
         tF_buscar.setPromptText("Nombre de cliente");
 
         tF_buscar.setFocusTraversable(false);
-        gP_buscar.add(tF_buscar, 0, 0); /// columna fila
+        gridPaneInfo.add(tF_buscar, 0, 0); /// columna fila
 
         TableView<String> tV_pais = new TableView<>();
 
@@ -82,20 +70,15 @@ public class InfoPaciente {
         bTN_buscar.setTextFill(Color.WHITE);//Color de la letra del boton
         bTN_buscar.setStyle("-fx-background-color: BLACK");//Color del fondo
         bTN_buscar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
-        gP_buscar.add(bTN_buscar, 0, 5);
+        gridPaneInfo.add(bTN_buscar, 0, 5);
         bTN_buscar.setDisable(false);
-
-        tF_buscar.setOnKeyPressed((event) -> {
-            bTN_buscar.setDisable(false);
-            // tV_pais.setVisible(false);
-        });
 
 
         Button bTN_Cerrar = new Button("Cerrar");
         bTN_Cerrar.setTextFill(Color.WHITE);//Color de la letra del boton
         bTN_Cerrar.setStyle("-fx-background-color: BLACK");//Color del fondo
         bTN_Cerrar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
-        gP_buscar.add(bTN_Cerrar, 0, 6);
+        gridPaneInfo.add(bTN_Cerrar, 0, 6);
 
 
         bTN_buscar.setOnAction((event) -> {
@@ -179,23 +162,27 @@ public class InfoPaciente {
 //            }//end else
 //
         });// end boton
+        
+                //***
+        MainMenuBarAdmi o = new MainMenuBarAdmi();
+        //***
        
         bTN_Cerrar.setOnAction(
                 (event) -> {
-                    gP_buscar.getChildren().clear();
-                    gP_buscar.setBackground(Background.EMPTY);  //limpia color para que quede el color
+                    gridPaneInfo.getChildren().clear();
+                    gridPaneInfo.setBackground(Background.EMPTY);  //limpia color para que quede el color
+                    gridPaneInfo.getChildren().add(o.menuAdmi());
 
-                 //   tV_pais.setVisible(false);
                   
 
                 });
 
    
-        bP_acomodarInterfaz.setTop(gP_buscar);
+       /// bP_acomodarInterfaz.setTop(gridPaneInfo);
 
     ///    bP_acomodarInterfaz.setBottom(tV_pais);
 
-        return bP_acomodarInterfaz;
+        return gridPaneInfo;
     }
 
 //*************************************************************************\\
