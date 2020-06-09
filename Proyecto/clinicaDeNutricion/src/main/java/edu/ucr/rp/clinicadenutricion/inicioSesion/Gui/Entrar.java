@@ -3,6 +3,7 @@ package edu.ucr.rp.clinicadenutricion.inicioSesion.Gui;
 import edu.ucr.rp.clinicadenutricion.Admin.Gui.MainMenuBarAdmi;
 import edu.ucr.rp.clinicadenutricion.Cliente.Gui.MainMenuBarCliente;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.MainMenuBarSuperAdmi;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Logic;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -17,6 +18,7 @@ public class Entrar {
     PasswordField textFieldContra;
     Button buttonCreaUsuario;
     ComboBox comboBoxRol = new ComboBox();
+    Logic logic = new Logic();
     String fileName;
 
     MainMenuBarSuperAdmi mm = new MainMenuBarSuperAdmi();
@@ -72,16 +74,28 @@ public class Entrar {
         buttonCreaUsuario.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
         gridPaneEntrar.add(buttonCreaUsuario, 0, 4);
         buttonCreaUsuario.setOnAction((event) -> {
-
-            //   gridPaneEntrar.getChildren().clear();
-            //vBoxWindows.getChildren().removeAll(vBoxWindows);
-            //   menuBarMenu.setVisible(false);
-            //vBoxWindows.getChildren().add(zz.menuCliente());
-            // vBoxWindows.getChildren().add(mm.menuSuperAdmi());
             Node node = gridPaneEntrar.getChildren().get(2);
-            gridPaneEntrar.getChildren().clear();
-            gridPaneEntrar.getChildren().add(0, node);
-            gridPaneEntrar.getChildren().add(zz.menuCliente());
+            logic.readInFile();
+
+            if (logic.search(textFieldNombreUsu.getText()) && logic.search(textFieldContra.getText())) {
+
+                gridPaneEntrar.getChildren().clear();
+                //menuBarMenu.setVisible(false);
+
+                if (logic.readType(textFieldNombreUsu.getText() + "|" + textFieldContra.getText()).equals("-")) {
+                    gridPaneEntrar.getChildren().add(0, node);
+                    gridPaneEntrar.getChildren().add(zz.menuCliente());
+                } else if (logic.readType(textFieldNombreUsu.getText() + "|" + textFieldContra.getText()).equals("+")) {
+                    gridPaneEntrar.getChildren().add(0, node);
+                    gridPaneEntrar.getChildren().add(nn.menuAdmi());
+                } else if (logic.readType(textFieldNombreUsu.getText() + "|" + textFieldContra.getText()).equals("*")) {
+                    gridPaneEntrar.getChildren().add(0, node);
+                    gridPaneEntrar.getChildren().add(mm.menuSuperAdmi());
+                }
+
+            } else {
+                System.out.println("Usuario no existe");
+            }
 
         });//end setOnAction
 

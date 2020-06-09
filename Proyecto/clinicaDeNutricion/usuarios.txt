@@ -1,4 +1,2 @@
-+Nombre1|Contrasena1
-*Nombre2|Contrasena2
--Nombre3|Contrasena3
--Nombre|con
++Fabi|ola
+-Al|Lei

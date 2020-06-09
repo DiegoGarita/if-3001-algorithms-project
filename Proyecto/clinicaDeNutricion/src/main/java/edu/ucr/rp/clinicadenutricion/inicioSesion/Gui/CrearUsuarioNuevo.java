@@ -1,18 +1,10 @@
 package edu.ucr.rp.clinicadenutricion.inicioSesion.Gui;
 
-
-import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.CRUD;
-import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.EncripMD5;
-import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Logic;
-import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Usuario;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.*;
+import javafx.collections.*;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.GridPane;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 
@@ -21,13 +13,15 @@ public class CrearUsuarioNuevo {
 
     TextField textFieldNombreUsu;
     TextField textFieldContra;
+    TextField textFieldTel;
+    TextField textFieldDirec;
+    TextField textFieldCorreo;
     Button buttonCreaUsuario;
     ComboBox comboBoxRol = new ComboBox();
     String fileName;
-        Logic l = new Logic();
+    Logic l = new Logic();
     EncripMD5 e = new EncripMD5();
     CRUD c = new CRUD();
-
 
 //////////    public CrearUsuarioNuevo(String fileName) {
 //////////        this.fileName = fileName;
@@ -85,15 +79,51 @@ public class CrearUsuarioNuevo {
         gridPanecreaUsuario.add(textFieldContra, 0, 3); /// columna fila
         textFieldContra.setFocusTraversable(false);
 
+        textFieldTel = new TextField();
+        textFieldTel.setPromptText("Telefono");
+        textFieldTel.setStyle(
+                "-fx-background-color: lightblue; "
+                + "-fx-background-insets: 4; "
+                +// tamano
+                "-fx-background-radius: 4; "
+                +// tamano
+                "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
+        gridPanecreaUsuario.add(textFieldTel, 0, 4); /// columna fila
+        textFieldTel.setFocusTraversable(false);
+
+        textFieldDirec = new TextField();
+        textFieldDirec.setPromptText("Direccion");
+        textFieldDirec.setStyle(
+                "-fx-background-color: lightblue; "
+                + "-fx-background-insets: 4; "
+                +// tamano
+                "-fx-background-radius: 4; "
+                +// tamano
+                "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
+        gridPanecreaUsuario.add(textFieldDirec, 0, 5); /// columna fila
+        textFieldDirec.setFocusTraversable(false);
+
+        textFieldCorreo = new TextField();
+        textFieldCorreo.setPromptText("Correo");
+        textFieldCorreo.setStyle(
+                "-fx-background-color: lightblue; "
+                + "-fx-background-insets: 4; "
+                +// tamano
+                "-fx-background-radius: 4; "
+                +// tamano
+                "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
+        gridPanecreaUsuario.add(textFieldCorreo, 0, 6); /// columna fila
+        textFieldCorreo.setFocusTraversable(false);
+
         buttonCreaUsuario = new Button("Crear usuario");
         buttonCreaUsuario.setTextFill(Color.WHITE);//Color de la letra del boton
         buttonCreaUsuario.setStyle("-fx-background-color: BLACK");//Color del fondo
         buttonCreaUsuario.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
-        gridPanecreaUsuario.add(buttonCreaUsuario, 0, 4);
+        gridPanecreaUsuario.add(buttonCreaUsuario, 0, 8);
         buttonCreaUsuario.setOnAction((event) -> {
 
-           Usuario usuario = new Usuario(textFieldNombreUsu.getText(), textFieldContra.getText(), "", "", "", comboBoxRol.getValue().toString());
-           l.writeInFile(usuario);
+            Usuario usuario = new Usuario(textFieldNombreUsu.getText(), textFieldContra.getText(), "", "", "", comboBoxRol.getValue().toString());
+            l.writeInFile(usuario);
 
         });//end setOnAction
 
