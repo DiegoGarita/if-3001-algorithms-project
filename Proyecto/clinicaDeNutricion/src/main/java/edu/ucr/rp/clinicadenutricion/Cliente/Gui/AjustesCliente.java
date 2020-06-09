@@ -18,10 +18,8 @@ public class AjustesCliente {
     Button buttonElimUsu;
     Button buttonAceptar;
 
-
     String fileName;
     Logic l = new Logic();
-
 
     /**
      *
@@ -65,6 +63,10 @@ public class AjustesCliente {
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
         gridPaneAjustes.add(textFieldContraUsu, 0, 2);
         textFieldContraUsu.setFocusTraversable(false);
+        textFieldContraUsu.setOnMouseClicked((event) -> {
+            buttonModiUsu.setDisable(false);
+            buttonElimUsu.setDisable(false);
+        });
 
         textFieldNuevaContraUsu = new TextField();
         textFieldNuevaContraUsu.setPromptText("Nueva contra");
@@ -77,13 +79,42 @@ public class AjustesCliente {
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
         gridPaneAjustes.add(textFieldNuevaContraUsu, 0, 4);
         textFieldNuevaContraUsu.setFocusTraversable(false);
+          textFieldNuevaContraUsu.setVisible(false);
 
         buttonModiUsu = new Button("Modificar usuario");
         buttonModiUsu.setTextFill(Color.WHITE);//Color de la letra del boton
         buttonModiUsu.setStyle("-fx-background-color: BLACK");//Color del fondo
         buttonModiUsu.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
         gridPaneAjustes.add(buttonModiUsu, 1, 3);
+        buttonModiUsu.setDisable(true);
         buttonModiUsu.setOnAction((event) -> {
+
+            textFieldNuevaContraUsu.setVisible(true);
+            buttonAceptar.setVisible(true);
+
+        });//end setOnAction
+
+        buttonElimUsu = new Button("Eliminar usuario");
+        buttonElimUsu.setTextFill(Color.WHITE);//Color de la letra del boton
+        buttonElimUsu.setStyle("-fx-background-color: BLACK");//Color del fondo
+        buttonElimUsu.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
+        gridPaneAjustes.add(buttonElimUsu, 2, 3);
+        buttonElimUsu.setDisable(true);
+        buttonElimUsu.setOnAction((event) -> {
+            Usuario usuario = new Usuario(textFieldNombreUsu.getText(), textFieldContraUsu.getText(), "", "", "", l.readType(textFieldNombreUsu.getText() + "|" + textFieldContraUsu.getText()));
+            l.readInFile();
+            l.modidelete(usuario);
+            l.removeLineFromFile(textFieldNombreUsu.getText() + "|" + textFieldContraUsu.getText());
+
+        });//end setOnAction
+
+        buttonAceptar = new Button("Aceptar");
+        buttonAceptar.setTextFill(Color.WHITE);//Color de la letra del boton
+        buttonAceptar.setStyle("-fx-background-color: BLACK");//Color del fondo
+        buttonAceptar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
+        gridPaneAjustes.add(buttonAceptar, 0, 5);
+        buttonAceptar.setVisible(false);
+        buttonAceptar.setOnAction((event) -> {
 
             Usuario usuario = new Usuario(textFieldNombreUsu.getText(), textFieldContraUsu.getText(), "", "", "", l.readType(textFieldNombreUsu.getText() + "|" + textFieldContraUsu.getText()));
             Usuario usuario1 = new Usuario(textFieldNombreUsu.getText(), textFieldNuevaContraUsu.getText(), "", "", "", l.readType(textFieldNombreUsu.getText() + "|" + textFieldContraUsu.getText()));
@@ -94,34 +125,10 @@ public class AjustesCliente {
 
         });//end setOnAction
 
-        buttonElimUsu = new Button("Eliminar usuario");
-        buttonElimUsu.setTextFill(Color.WHITE);//Color de la letra del boton
-        buttonElimUsu.setStyle("-fx-background-color: BLACK");//Color del fondo
-        buttonElimUsu.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
-        gridPaneAjustes.add(buttonElimUsu, 2, 3);
-        buttonElimUsu.setOnAction((event) -> {
-            Usuario usuario = new Usuario(textFieldNombreUsu.getText(), textFieldContraUsu.getText(), "", "", "", l.readType(textFieldNombreUsu.getText() + "|" + textFieldContraUsu.getText()));
-            l.readInFile();
-            l.modidelete(usuario);
-            l.removeLineFromFile(textFieldNombreUsu.getText() + "|" + textFieldContraUsu.getText());
-
-        });//end setOnAction
-
-
-        buttonAceptar = new Button("Aceptar");
-        buttonAceptar.setTextFill(Color.WHITE);//Color de la letra del boton
-        buttonAceptar.setStyle("-fx-background-color: BLACK");//Color del fondo
-        buttonAceptar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
-        gridPaneAjustes.add(buttonAceptar, 0, 5);
-        buttonAceptar.setOnAction((event) -> {
-
-        });//end setOnAction
-
-
-
         //***
         MainMenuBarCliente barCliente = new MainMenuBarCliente();
         //***
+
         Button buttonClose = new Button("Cerrar");
         buttonClose.setTextFill(Color.WHITE);//Color de la letra del boton
         buttonClose.setStyle("-fx-background-color: BLACK");//Color del fondo

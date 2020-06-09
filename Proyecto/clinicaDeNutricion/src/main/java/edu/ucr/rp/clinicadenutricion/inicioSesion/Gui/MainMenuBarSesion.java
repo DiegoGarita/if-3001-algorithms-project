@@ -110,47 +110,47 @@ public class MainMenuBarSesion {
             menuBarMenu.setOpacity(0.9);
         });
 
-
-        Button botonAceptar = new Button("Aceptar");
-        TextField textFieldNombre = new TextField();
-        textFieldNombre.setPromptText("Ingrese su nombre de usuario");
-        
-
-        PasswordField fieldContraseña = new PasswordField();
-        fieldContraseña.setPromptText("Ingrese su contraseña");
+//
+//        Button botonAceptar = new Button("Aceptar");
+//        TextField textFieldNombre = new TextField();
+//        textFieldNombre.setPromptText("Ingrese su nombre de usuario");
+//        
+//
+//        PasswordField fieldContraseña = new PasswordField();
+//        fieldContraseña.setPromptText("Ingrese su contraseña");
         
 
         menuBarMenu.getMenus().addAll(menuSystem, menuCrearUsuario);
         ((VBox) scene.getRoot()).getChildren().addAll(menuBarMenu, vBoxWindows);
 
-
-        MainMenuBarCliente zz = new MainMenuBarCliente();
-        MainMenuBarSuperAdmi mm = new MainMenuBarSuperAdmi();
-        MainMenuBarAdmi nn = new MainMenuBarAdmi();
-
-        botonAceptar.setOnAction((event) -> {
-            
-            l.readInFile();
-          
-            if(l.search(textFieldNombre.getText())&&l.search(fieldContraseña.getText())){
-                
-            vBoxWindows.getChildren().clear();
-             menuBarMenu.setVisible(false);
-             
-             if(l.readType(textFieldNombre.getText()+"|"+fieldContraseña.getText()).equals("-")){
-              vBoxWindows.getChildren().add(zz.menuCliente());
-             }
-             else if(l.readType(textFieldNombre.getText()+"|"+fieldContraseña.getText()).equals("+")){
-                 vBoxWindows.getChildren().add(nn.menuAdmi());
-             }
-             else if(l.readType(textFieldNombre.getText()+"|"+fieldContraseña.getText()).equals("*")){
-                     vBoxWindows.getChildren().add(mm.menuSuperAdmi());
-             }
-                
-            }
-            else{
-                System.out.println("Usuario no existe");
-            }
+//
+//        MainMenuBarCliente zz = new MainMenuBarCliente();
+//        MainMenuBarSuperAdmi mm = new MainMenuBarSuperAdmi();
+//        MainMenuBarAdmi nn = new MainMenuBarAdmi();
+//
+//        botonAceptar.setOnAction((event) -> {
+//            
+//            l.readInFile();
+//          
+//            if(l.search(textFieldNombre.getText())&&l.search(fieldContraseña.getText())){
+//                
+//            vBoxWindows.getChildren().clear();
+//             menuBarMenu.setVisible(false);
+//             
+//             if(l.readType(textFieldNombre.getText()+"|"+fieldContraseña.getText()).equals("-")){
+//              vBoxWindows.getChildren().add(zz.menuCliente());
+//             }
+//             else if(l.readType(textFieldNombre.getText()+"|"+fieldContraseña.getText()).equals("+")){
+//                 vBoxWindows.getChildren().add(nn.menuAdmi());
+//             }
+//             else if(l.readType(textFieldNombre.getText()+"|"+fieldContraseña.getText()).equals("*")){
+//                     vBoxWindows.getChildren().add(mm.menuSuperAdmi());
+//             }
+//                
+//            }
+//            else{
+//                System.out.println("Usuario no existe");
+//            }
             
               //encriptar.encriptar("clinicaSusanaDistancia", fieldContraseña.getText());
                         //vBoxWindows.getChildren().removeAll(vBoxWindows);
@@ -202,7 +202,7 @@ public class MainMenuBarSesion {
 //                System.out.println("no existo");
 //            }
 
-        });
+      //  });
 
         return scene;
 
