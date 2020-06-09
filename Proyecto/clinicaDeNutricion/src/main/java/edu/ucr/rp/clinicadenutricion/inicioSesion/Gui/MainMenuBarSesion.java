@@ -1,10 +1,6 @@
 package edu.ucr.rp.clinicadenutricion.inicioSesion.Gui;
 
 //import edu.ucr.rp.clinicadenutricion.Cliente.Gui.ClienteGui;
-import edu.ucr.rp.clinicadenutricion.Admin.Gui.MainMenuBarAdmi;
-import edu.ucr.rp.clinicadenutricion.Cliente.Gui.MainMenuBarCliente;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.MainMenuBarSuperAdmi;
-import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.EncripMD5;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -20,8 +16,7 @@ public class MainMenuBarSesion {
     Creditos creditos = new Creditos();
 
     CrearUsuarioNuevo crearUsuarionuevo = new CrearUsuarioNuevo();
-
-    EncripMD5 encriptar = new EncripMD5();
+    Entrar entrar = new Entrar();
 
     VBox vBoxWindows, vBoxMain;
 
@@ -33,9 +28,9 @@ public class MainMenuBarSesion {
     public Scene getMainScene() {
 
         vBoxMain = new VBox();
-        vBoxMain.setStyle(("-fx-background-image:url('file:src/image/inicio1.jpg');"
-                + "-fx-background-repeat : no-repeat;"
-                + "-fx-background-size: 920 920, 20 20, 20 20, 20 20, auto;"));
+//        vBoxMain.setStyle(("-fx-background-image:url('file:src/image/inicio1.jpg');"
+//                + "-fx-background-repeat : no-repeat;"
+//                + "-fx-background-size: 920 920, 20 20, 20 20, 20 20, auto;"));
 
         Scene scene = new Scene(vBoxMain, 900, 700);
         vBoxWindows = new VBox();
@@ -62,75 +57,52 @@ public class MainMenuBarSesion {
 
         menuItemCredits.setOnAction((event) -> {
             vBoxWindows.getChildren().clear();
-            // vBoxWindows.getChildren().addAll(credits.getGraphicalUserInterfaceCredits());
+            vBoxWindows.getChildren().addAll(creditos.getGraphicalUserInterfaceCredits());
         });
 
         menuItemAbout.setOnAction((event) -> {
             vBoxWindows.getChildren().clear();
-            // vBoxWindows.getChildren().addAll(about.getGraphicalUserInterfaceAbout());
+            vBoxWindows.getChildren().addAll(acercaDe.getGraphicalUserInterfaceAbout());
         });
 
         menuItemPerformance.setOnAction((event) -> {
             vBoxWindows.getChildren().clear();
-            //  vBoxWindows.getChildren().addAll(help.getGraphicalUserInterfaceHelper());
+            vBoxWindows.getChildren().addAll(ayuda.getGraphicalUserInterfaceHelper());
         });
 
         menuItemExit.setOnAction((event) -> Platform.exit());
 
         menuSystem.getItems().addAll(menuItemAbout, menuItemCredits, menuItemPerformance, menuItemExit);
 
-        Menu menuCrearUsuario = new Menu("Registrarse", new ImageView(new Image("file:src/image/regis.png")));
+        Menu menuCrearUsuario = new Menu("Cuenta", new ImageView(new Image("file:src/image/regis.png")));
         menuCrearUsuario.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"
                 + "-fx-effect: dropshadow(gaussian, red, 50, 0, 0, 0);"
                 + "-fx-background-insets: 50;");
-        MenuItem menuItemDefineCatalogue = new MenuItem("Crear cuenta", new ImageView(new Image("file:src/image/nuevo.png")));
-        menuItemDefineCatalogue.setAccelerator(KeyCombination.keyCombination("Ctrl+D"));
+        MenuItem menuItemCreaCuenta = new MenuItem("Crear cuenta", new ImageView(new Image("file:src/image/nuevo.png")));
+        menuItemCreaCuenta.setAccelerator(KeyCombination.keyCombination("Ctrl+D"));
 
-        menuItemDefineCatalogue.setOnAction((event) -> {
+        MenuItem menuItemIngresar = new MenuItem("Ingresar", new ImageView(new Image("file:src/image/ingr.png")));
+        menuItemIngresar.setAccelerator(KeyCombination.keyCombination("Ctrl+D"));
+
+        menuItemCreaCuenta.setOnAction((event) -> {
             vBoxWindows.getChildren().clear();
             vBoxWindows.getChildren().addAll(crearUsuarionuevo.creaUsuario());
         });
 
-        menuCrearUsuario.getItems().addAll(menuItemDefineCatalogue);
+        menuItemIngresar.setOnAction((event) -> {
+            vBoxWindows.getChildren().clear();
+            vBoxWindows.getChildren().addAll(entrar.ingresaCuenta());
+        });
+
+        menuCrearUsuario.getItems().addAll(menuItemCreaCuenta, menuItemIngresar);
 
         menuBarMenu.setOpacity(0.0);
         menuBarMenu.setOnMouseMoved((event) -> {
             menuBarMenu.setOpacity(0.9);
         });
 
-        Button botonAceptar = new Button("Aceptar");
-        TextField textFieldNombre = new TextField();
-        textFieldNombre.setPromptText("Ingrese su nombre de usuario");
-
-        PasswordField fieldContraseña = new PasswordField();
-        fieldContraseña.setPromptText("Ingrese su contraseña");
-
         menuBarMenu.getMenus().addAll(menuSystem, menuCrearUsuario);
-        vBoxWindows.getChildren().add(textFieldNombre);
-        vBoxWindows.getChildren().add(fieldContraseña);
-        vBoxWindows.getChildren().add(botonAceptar);
-
         ((VBox) scene.getRoot()).getChildren().addAll(menuBarMenu, vBoxWindows);
-
-        MainMenuBarCliente zz = new MainMenuBarCliente();
-        MainMenuBarSuperAdmi mm = new MainMenuBarSuperAdmi();
-        MainMenuBarAdmi nn = new MainMenuBarAdmi();
-
-        botonAceptar.setOnAction((event) -> {
-
-//            encriptar.encriptar("clinicaSusanaDistancia", fieldContraseña.getText());
-//            String cadenaEncriptada = encriptar.encriptar("clinicaSusanaDistancia", fieldContraseña.getText());
-//            JOptionPane.showMessageDialog(null, "Cadena encriptada: " + cadenaEncriptada);
-//            String cadenaDesencriptada = encriptar.desencriptar("clinicaSusanaDistancia", cadenaEncriptada);
-//            JOptionPane.showMessageDialog(null, "Cadena desencriptada: " + cadenaDesencriptada);
-            vBoxWindows.getChildren().clear();
-            //vBoxWindows.getChildren().removeAll(vBoxWindows);
-             menuBarMenu.setVisible(false);
-            vBoxWindows.getChildren().add(zz.menuCliente());
-            // vBoxWindows.getChildren().add(mm.menuSuperAdmi());
-           // vBoxWindows.getChildren().add(nn.menuAdmi());
-
-        });
 
         return scene;
 

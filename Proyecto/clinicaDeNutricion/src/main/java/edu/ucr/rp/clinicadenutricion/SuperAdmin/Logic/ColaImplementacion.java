@@ -1,14 +1,14 @@
 package edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic;
 
-import edu.ucr.rp.clinicadenutricion.Objetos.Citas;
+import edu.ucr.rp.clinicadenutricion.Objetos.ReporteMedico;
 import java.util.Scanner;
 
 class Nodo {
 
-    Citas cita;
+    Object cita;
     Nodo siguiente;
 
-    public Nodo(Citas n) {
+    public Nodo(Object n) {
         cita = n;
     }//end constructorNodo
 
@@ -26,7 +26,7 @@ public class ColaImplementacion implements Cola{
     }//end constructor
 
     //@Override
-    public String insertarCita(Citas n) {
+    public String insertarCita(Object n) {
         
         Nodo nuevo = new Nodo(n);
         String guardado = null;

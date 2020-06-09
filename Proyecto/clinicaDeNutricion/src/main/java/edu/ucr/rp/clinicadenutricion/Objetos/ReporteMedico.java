@@ -1,9 +1,12 @@
 package edu.ucr.rp.clinicadenutricion.Objetos;
 
-public class Citas {
+import javafx.scene.control.TextArea;
+
+public class ReporteMedico {
 
     private String fecha ;
-    private String hora ;
+    private String hora ;  
+    private String actividadFisica;
     private double porcenAgua;
     private double porcenMasaMuscular;
     private double grasa;
@@ -14,13 +17,15 @@ public class Citas {
     private double altura;     
     private int horasDeSueño;
     private int edad;    
-    private String actividadFisica;
+    private TextArea textAreaNotas;
 
-    public Citas(String fecha, String hora, double porcenAgua, double porcenMasaMuscular,
-            double grasa, double grasaVisceral, double hueso, double edadMetabolica,
-            double peso, double altura, int horasDeSueño, int edad, String actividadFisica) {
+    public ReporteMedico(String fecha, String hora, String actividadFisica,
+            double porcenAgua, double porcenMasaMuscular, double grasa,
+            double grasaVisceral, double hueso, double edadMetabolica,
+            double peso, double altura, int horasDeSueño, int edad, TextArea textAreaNotas) {
         this.fecha = fecha;
         this.hora = hora;
+        this.actividadFisica = actividadFisica;
         this.porcenAgua = porcenAgua;
         this.porcenMasaMuscular = porcenMasaMuscular;
         this.grasa = grasa;
@@ -31,11 +36,9 @@ public class Citas {
         this.altura = altura;
         this.horasDeSueño = horasDeSueño;
         this.edad = edad;
-        this.actividadFisica = actividadFisica;
+        this.textAreaNotas = textAreaNotas;
     }
 
-    
-    
     public String getFecha() {
         return fecha;
     }
@@ -50,6 +53,14 @@ public class Citas {
 
     public void setHora(String hora) {
         this.hora = hora;
+    }
+
+    public String getActividadFisica() {
+        return actividadFisica;
+    }
+
+    public void setActividadFisica(String actividadFisica) {
+        this.actividadFisica = actividadFisica;
     }
 
     public double getPorcenAgua() {
@@ -132,15 +143,13 @@ public class Citas {
         this.edad = edad;
     }
 
-    public String getActividadFisica() {
-        return actividadFisica;
+    public TextArea getTextAreaNotas() {
+        return textAreaNotas;
     }
 
-    public void setActividadFisica(String actividadFisica) {
-        this.actividadFisica = actividadFisica;
+    public void setTextAreaNotas(TextArea textAreaNotas) {
+        this.textAreaNotas = textAreaNotas;
     }
-    
-    
-    
+  
 
 }//end citas

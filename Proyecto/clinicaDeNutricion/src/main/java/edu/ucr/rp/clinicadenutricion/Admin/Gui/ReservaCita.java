@@ -1,46 +1,30 @@
 package edu.ucr.rp.clinicadenutricion.Admin.Gui;
 
 //en esta clase el admin podra apartar una cita para su cliente
-
-import java.io.File;
 import java.util.ArrayList;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.GridPane;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
+import javafx.scene.text.*;
 
 public class ReservaCita {
-    
-    
-  //  SaveObject saveObject = new SaveObject();
-  //  ConstantsElements constantsElements = new ConstantsElements();
+
+    //  SaveObject saveObject = new SaveObject();
+    //  ConstantsElements constantsElements = new ConstantsElements();
     Object object;
-    
 
-    ArrayList<TextField> textFieldProperties;
-    TextField textFieldCatalogueName;
-    TextField textFieldPropertiesQuantity;
+    TextField textFieldPaciente;
+    TextField textFieldDoctora;
     Button botonGuardar;
-    String fileName;
-    int quantityOfProperties;
-
-//    public ReservaCita(String fileName) {
-//        this.fileName = fileName;
-//    }
 
     /**
-     * 
+     *
      * @return Nos da la GUI que nos permite crear un nuevo catálogo
      */
     public GridPane reservar() {
 
-      //  File file = new File(fileName);
+        //  File file = new File(fileName);
         GridPane gridPaneNewCatalogue = new GridPane();
         gridPaneNewCatalogue.setMinSize(600, 700);
         gridPaneNewCatalogue.setVgap(15);
@@ -51,61 +35,64 @@ public class ReservaCita {
 //                + "-fx-background-repeat : no-repeat;"
 //                + "-fx-background-size: 920 920, 20 20, 20 20, 20 20, auto;"));
 
-        textFieldCatalogueName = new TextField();
-        textFieldCatalogueName.setPromptText("Nombre del paciente");
-        textFieldCatalogueName.setStyle(
+        textFieldPaciente = new TextField();
+        textFieldPaciente.setPromptText("Nombre del paciente");
+        textFieldPaciente.setStyle(
                 "-fx-background-color: lightblue; "
                 + "-fx-background-insets: 4; "
                 +// tamano
                 "-fx-background-radius: 4; "
                 +// tamano
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-        gridPaneNewCatalogue.add(textFieldCatalogueName, 0, 1);
-        textFieldCatalogueName.setFocusTraversable(false);
-        textFieldCatalogueName.setOnKeyPressed((event) -> {
-            textFieldPropertiesQuantity.setDisable(false);
+        gridPaneNewCatalogue.add(textFieldPaciente, 0, 1);
+        textFieldPaciente.setFocusTraversable(false);
+        textFieldPaciente.setOnKeyPressed((event) -> {
+
         });
-        
+
         Label labelFechHora = new Label("Hacer algo con Hora y fecha");
         gridPaneNewCatalogue.add(labelFechHora, 0, 2);
 
-        textFieldPropertiesQuantity = new TextField();
-        textFieldPropertiesQuantity.setPromptText("Doctora");
-        textFieldPropertiesQuantity.setStyle(
+        textFieldDoctora = new TextField();
+        textFieldDoctora.setPromptText("Doctora");
+        textFieldDoctora.setStyle(
                 "-fx-background-color: lightblue; "
                 + "-fx-background-insets: 4; "
                 +// tamano
                 "-fx-background-radius: 4; "
                 +// tamano
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-        gridPaneNewCatalogue.add(textFieldPropertiesQuantity, 0, 3); /// columna fila
-        textFieldPropertiesQuantity.setFocusTraversable(false);
-        textFieldPropertiesQuantity.setDisable(true);
+        gridPaneNewCatalogue.add(textFieldDoctora, 0, 3); /// columna fila
+        textFieldDoctora.setFocusTraversable(false);
 
 
         botonGuardar = new Button("Guardar");
-        botonGuardar.setTextFill(Color.WHITE);//Color de la letra del boton
-        botonGuardar.setStyle("-fx-background-color: BLACK");//Color del fondo
-        botonGuardar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
+        botonGuardar.setTextFill(Color.WHITE);
+        botonGuardar.setStyle("-fx-background-color: BLACK");
+        botonGuardar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         gridPaneNewCatalogue.add(botonGuardar, 0, 7);
         botonGuardar.setDisable(true);
         botonGuardar.setOnAction((event) -> {
-          
+
         });//END BUTTON
 
+        //***
+        MainMenuBarAdmi o = new MainMenuBarAdmi();
+        //***
         Button botonCerrar = new Button("Cerrar");
-        botonCerrar.setTextFill(Color.WHITE);//Color de la letra del boton
-        botonCerrar.setStyle("-fx-background-color: BLACK");//Color del fondo
-        botonCerrar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
+        botonCerrar.setTextFill(Color.WHITE);
+        botonCerrar.setStyle("-fx-background-color: BLACK");
+        botonCerrar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         gridPaneNewCatalogue.add(botonCerrar, 0, 8);
         botonCerrar.setOnAction((event) -> {
-            
+
             gridPaneNewCatalogue.getChildren().clear();
-            gridPaneNewCatalogue.setBackground(Background.EMPTY);  //limpia color para que quede el color
+            gridPaneNewCatalogue.setBackground(Background.EMPTY);
+            gridPaneNewCatalogue.getChildren().add(o.menuAdmi());
 
         });//end btn cerrar
 
         return gridPaneNewCatalogue;
     }//end GridPane createCatalogue()
-    
+
 }

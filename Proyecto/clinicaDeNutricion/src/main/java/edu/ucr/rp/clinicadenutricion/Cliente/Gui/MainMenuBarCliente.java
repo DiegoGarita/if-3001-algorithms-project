@@ -57,12 +57,12 @@ public class MainMenuBarCliente {
 
         menuItemCitas.setOnAction((event) -> {
             gridPaneUsuario.getChildren().clear();
-            // vBoxWindows.getChildren().addAll(credits.getGraphicalUserInterfaceCredits());
+            gridPaneUsuario.getChildren().addAll(reporteCitas.busquedaPais());
         });
 
         menuItemProgreso.setOnAction((event) -> {
             gridPaneUsuario.getChildren().clear();
-            // vBoxWindows.getChildren().addAll(about.getGraphicalUserInterfaceAbout());
+            gridPaneUsuario.getChildren().addAll(reporteProgreso.reporAvan());
         });
 
         menuItemExit.setOnAction((event) -> Platform.exit());
@@ -114,12 +114,12 @@ public class MainMenuBarCliente {
         });
         menuAjustes.getItems().addAll(menuItemCuenta, separator);
 
-        Menu menuMas = new Menu("Mas", new ImageView(new Image("file:src/image/ajus.png")));
+        Menu menuMas = new Menu("Mas", new ImageView(new Image("file:src/image/ma.png")));
         menuMas.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"
                 + "-fx-effect: dropshadow(gaussian, red, 50, 0, 0, 0);"
                 + "-fx-background-insets: 50;");
 
-        MenuItem menuItemMasInfo = new MenuItem("Encuentra más info", new ImageView(new Image("file:src/image/usua.png")));
+        MenuItem menuItemMasInfo = new MenuItem("Encuentra más info", new ImageView(new Image("file:src/image/pagW.png")));
         menuItemMasInfo.setAccelerator(KeyCombination.keyCombination("Ctrl+V"));
 
         menuItemMasInfo.setOnAction((event) -> {
