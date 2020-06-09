@@ -15,7 +15,7 @@ import javafx.scene.text.*;
 
 public class Entrar {
 
-    TextField textFieldNombreUsu;
+    public TextField textFieldNombreUsu;
     PasswordField textFieldContra;
     Button buttonCreaUsuario;
     ComboBox comboBoxRol = new ComboBox();
@@ -78,7 +78,7 @@ public class Entrar {
         buttonCreaUsuario.setOnAction((event) -> {
             Node node = gridPaneEntrar.getChildren().get(2);
             logic.readInFile();
-            String desencrip = e.encriptar("Susa", textFieldContra.getText());
+            String desencrip = e.encriptar("SusanaDistancia", textFieldContra.getText());
             ///System.out.println("-->"+e.desencriptar("Susa", textFieldContra.getText()));
             
             if (logic.search(textFieldNombreUsu.getText()) && logic.search(desencrip)) {

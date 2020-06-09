@@ -5,7 +5,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
@@ -64,7 +63,7 @@ public class FormuDoctor {
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
         //////////////////////GridPane.setConstraints(textFieldPorAgua, 5, 0);
         gridPaneForm.add(textFieldPorAgua, 0, 1);
-        gridPaneForm.getColumnConstraints().add(new ColumnConstraints(150));// --------> GRAN PROBLEMA
+        GridPane.setColumnSpan(textAreaNotas, Integer.BYTES);
         textFieldPorAgua.setFocusTraversable(false);
 
         textFieldPormasaMuscular = new TextField();

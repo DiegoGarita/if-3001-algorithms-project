@@ -1,6 +1,10 @@
 package edu.ucr.rp.clinicadenutricion.Cliente.Gui;
 
 //clase para que el cliente modifique o cancel su cita
+import edu.ucr.rp.clinicadenutricion.AVL.AVLArchivo;
+import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
+import edu.ucr.rp.clinicadenutricion.Utilitario.HoraFecha;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.Entrar;
 import javafx.collections.*;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -17,8 +21,10 @@ public class ModificaCancelaCita {
     TextArea textAreaMostrar = new TextArea();
     ComboBox comboBoxRol = new ComboBox();
     String fileName;
-    String modiCita= "Modifico cita";
-    String cancelCita= "Cancelo cita";
+    String modiCita = "Modifico cita";
+    String cancelCita = "Cancelo cita";
+    AVLArchivo histo = new AVLArchivo();
+    HoraFecha horaFecha = new HoraFecha();
 
     /**
      *
@@ -69,6 +75,9 @@ public class ModificaCancelaCita {
         gridPaneModiCan.add(buttonModiCita, 1, 5);
         buttonModiCita.setOnAction((event) -> {
 
+            Acciones acc = new Acciones("TODO traerDetras", modiCita, horaFecha.histoFechaHora());
+            histo.writeFileCitas(acc);
+
         });//end setOnAction
 
         buttonCanceCita = new Button("Cancelar");
@@ -78,9 +87,12 @@ public class ModificaCancelaCita {
         gridPaneModiCan.add(buttonCanceCita, 2, 5);
         buttonCanceCita.setOnAction((event) -> {
 
+            Acciones acc = new Acciones("TODO traerDetras", cancelCita, horaFecha.histoFechaHora());
+            histo.writeFileCitas(acc);
+
         });//end setOnAction
-        
-                //***
+
+        //***
         MainMenuBarCliente barCliente = new MainMenuBarCliente();
         //***
 
@@ -92,7 +104,7 @@ public class ModificaCancelaCita {
         buttonClose.setOnAction((event) -> {
 
             gridPaneModiCan.getChildren().clear();
-            gridPaneModiCan.setBackground(Background.EMPTY); 
+            gridPaneModiCan.setBackground(Background.EMPTY);
             gridPaneModiCan.getChildren().add(barCliente.menuCliente());
 
         });//end btn cerrar
