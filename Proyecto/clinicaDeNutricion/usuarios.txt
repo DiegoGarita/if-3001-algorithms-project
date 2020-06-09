@@ -1,10 +1,4 @@
-Nombre|Contrasena-
-Nombre1|Contrasena+
-Nombre2|Contrasena*
-
-Nombre3|Contrasena-
-Nombre4|Contrasena+
-Nombre5|Contrasena*
-Nombre6|Contrasena*
-Nombre6|Contrasena*
-null
++Nombre1|Contrasena1
+*Nombre2|Contrasena2
+-Nombre3|Contrasena3
+-Nombre|con

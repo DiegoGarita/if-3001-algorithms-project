@@ -1,6 +1,11 @@
 package edu.ucr.rp.clinicadenutricion.inicioSesion.Gui;
 
 //import edu.ucr.rp.clinicadenutricion.Cliente.Gui.ClienteGui;
+import edu.ucr.rp.clinicadenutricion.Admin.Gui.MainMenuBarAdmi;
+import edu.ucr.rp.clinicadenutricion.Cliente.Gui.MainMenuBarCliente;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.MainMenuBarSuperAdmi;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.EncripMD5;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Logic;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -19,6 +24,10 @@ public class MainMenuBarSesion {
     Entrar entrar = new Entrar();
 
     VBox vBoxWindows, vBoxMain;
+    
+
+    Logic l = new Logic();
+
 
     /**
      *
@@ -101,8 +110,99 @@ public class MainMenuBarSesion {
             menuBarMenu.setOpacity(0.9);
         });
 
+
+        Button botonAceptar = new Button("Aceptar");
+        TextField textFieldNombre = new TextField();
+        textFieldNombre.setPromptText("Ingrese su nombre de usuario");
+        
+
+        PasswordField fieldContraseña = new PasswordField();
+        fieldContraseña.setPromptText("Ingrese su contraseña");
+        
+
         menuBarMenu.getMenus().addAll(menuSystem, menuCrearUsuario);
         ((VBox) scene.getRoot()).getChildren().addAll(menuBarMenu, vBoxWindows);
+
+
+        MainMenuBarCliente zz = new MainMenuBarCliente();
+        MainMenuBarSuperAdmi mm = new MainMenuBarSuperAdmi();
+        MainMenuBarAdmi nn = new MainMenuBarAdmi();
+
+        botonAceptar.setOnAction((event) -> {
+            
+            l.readInFile();
+          
+            if(l.search(textFieldNombre.getText())&&l.search(fieldContraseña.getText())){
+                
+            vBoxWindows.getChildren().clear();
+             menuBarMenu.setVisible(false);
+             
+             if(l.readType(textFieldNombre.getText()+"|"+fieldContraseña.getText()).equals("-")){
+              vBoxWindows.getChildren().add(zz.menuCliente());
+             }
+             else if(l.readType(textFieldNombre.getText()+"|"+fieldContraseña.getText()).equals("+")){
+                 vBoxWindows.getChildren().add(nn.menuAdmi());
+             }
+             else if(l.readType(textFieldNombre.getText()+"|"+fieldContraseña.getText()).equals("*")){
+                     vBoxWindows.getChildren().add(mm.menuSuperAdmi());
+             }
+                
+            }
+            else{
+                System.out.println("Usuario no existe");
+            }
+            
+              //encriptar.encriptar("clinicaSusanaDistancia", fieldContraseña.getText());
+                        //vBoxWindows.getChildren().removeAll(vBoxWindows);
+            
+            //            String cadenaEncriptada = encriptar.encriptar("clinicaSusanaDistancia", fieldContraseña.getText());
+//            JOptionPane.showMessageDialog(null, "Cadena encriptada: " + cadenaEncriptada);
+//            String cadenaDesencriptada = encriptar.desencriptar("clinicaSusanaDistancia", cadenaEncriptada);
+//            JOptionPane.showMessageDialog(null, "Cadena desencriptada: " + cadenaDesencriptada);
+            
+            
+            
+//            if (l.readProperties(textFieldNombre.getText()).size() != 0){
+//
+//                System.out.println("existo\n");
+//                System.out.println(l.readProperties(textFieldNombre.getText()).get(0));
+//                String password="";
+//
+//                if (l.readProperties(textFieldNombre.getText()).get(0).contains("-")) {
+//                   password = l.readProperties(textFieldNombre.getText()).get(1);
+//                    System.out.println(password);
+//                    System.out.println(encriptar.encriptar("clinicaSusanaDistancia", textFieldContraseña.getText()));
+//                    if (password.equals(encriptar.encriptar("clinicaSusanaDistancia", textFieldContraseña.getText()))) {
+//                        System.out.println("Contraseña correcta, entró");
+//                    } else {
+//                        System.out.println("Contraseña incorrecta");
+//                    }
+//
+//                } else if (l.readProperties(textFieldNombre.getText()).get(0).contains("+")) {
+//                    password = l.readProperties(textFieldNombre.getText()).get(1);
+//                    System.out.println(password);
+//                    if (password.equals(encriptar.encriptar("SusanaDistancia", textFieldContraseña.getText()))) {
+//                        System.out.println("Contraseña correcta, entró");
+//                    } else {
+//                        System.out.println("Contraseña incorrecta");
+//                    }
+//
+//                } else if (l.readProperties(textFieldNombre.getText()).get(0).contains("*")) {
+//                    password = l.readProperties(textFieldNombre.getText()).get(1);
+//                    System.out.println(password);
+//                    if (password.equals(encriptar.encriptar("SusanaDistancia", textFieldContraseña.getText()))) {
+//                        System.out.println("Contraseña correcta, entró");
+//                    } else {
+//                        System.out.println("Contraseña incorrecta");
+//                    }
+//
+//                }
+//
+//            } else {
+//                System.out.println("no existo");
+//            }
+
+        });
 
         return scene;
 

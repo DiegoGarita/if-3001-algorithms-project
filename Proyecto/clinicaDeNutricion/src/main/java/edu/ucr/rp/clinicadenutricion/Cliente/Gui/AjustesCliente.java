@@ -1,6 +1,7 @@
 package edu.ucr.rp.clinicadenutricion.Cliente.Gui;
 
-// en esta clase el cliente podra realiazar ajustes en su cuenta
+import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Logic;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Usuario;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.Background;
@@ -16,6 +17,11 @@ public class AjustesCliente {
     Button buttonModiUsu;
     Button buttonElimUsu;
     Button buttonAceptar;
+
+
+    String fileName;
+    Logic l = new Logic();
+
 
     /**
      *
@@ -79,6 +85,13 @@ public class AjustesCliente {
         gridPaneAjustes.add(buttonModiUsu, 1, 3);
         buttonModiUsu.setOnAction((event) -> {
 
+            Usuario usuario = new Usuario(textFieldNombreUsu.getText(), textFieldContraUsu.getText(), "", "", "", l.readType(textFieldNombreUsu.getText() + "|" + textFieldContraUsu.getText()));
+            Usuario usuario1 = new Usuario(textFieldNombreUsu.getText(), textFieldNuevaContraUsu.getText(), "", "", "", l.readType(textFieldNombreUsu.getText() + "|" + textFieldContraUsu.getText()));
+            l.writeInFile(usuario1);
+            l.readInFile();
+            l.modified(usuario, textFieldNuevaContraUsu.getText());
+            l.removeLineFromFile(textFieldNombreUsu.getText() + "|" + textFieldContraUsu.getText());
+
         });//end setOnAction
 
         buttonElimUsu = new Button("Eliminar usuario");
@@ -87,8 +100,13 @@ public class AjustesCliente {
         buttonElimUsu.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
         gridPaneAjustes.add(buttonElimUsu, 2, 3);
         buttonElimUsu.setOnAction((event) -> {
+            Usuario usuario = new Usuario(textFieldNombreUsu.getText(), textFieldContraUsu.getText(), "", "", "", l.readType(textFieldNombreUsu.getText() + "|" + textFieldContraUsu.getText()));
+            l.readInFile();
+            l.modidelete(usuario);
+            l.removeLineFromFile(textFieldNombreUsu.getText() + "|" + textFieldContraUsu.getText());
 
         });//end setOnAction
+
 
         buttonAceptar = new Button("Aceptar");
         buttonAceptar.setTextFill(Color.WHITE);//Color de la letra del boton
@@ -98,6 +116,8 @@ public class AjustesCliente {
         buttonAceptar.setOnAction((event) -> {
 
         });//end setOnAction
+
+
 
         //***
         MainMenuBarCliente barCliente = new MainMenuBarCliente();

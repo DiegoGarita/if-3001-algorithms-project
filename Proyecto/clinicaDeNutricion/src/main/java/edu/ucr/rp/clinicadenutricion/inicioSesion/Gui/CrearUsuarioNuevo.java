@@ -1,8 +1,16 @@
 package edu.ucr.rp.clinicadenutricion.inicioSesion.Gui;
 
-import javafx.collections.*;
+
+import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.CRUD;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.EncripMD5;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Logic;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Usuario;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -16,6 +24,10 @@ public class CrearUsuarioNuevo {
     Button buttonCreaUsuario;
     ComboBox comboBoxRol = new ComboBox();
     String fileName;
+        Logic l = new Logic();
+    EncripMD5 e = new EncripMD5();
+    CRUD c = new CRUD();
+
 
 //////////    public CrearUsuarioNuevo(String fileName) {
 //////////        this.fileName = fileName;
@@ -44,7 +56,7 @@ public class CrearUsuarioNuevo {
         ObservableList<String> Roles
                 = FXCollections.observableArrayList(
                         "Administrador",
-                        "Usuario"
+                        "Cliente"
                 );
         comboBoxRol.setItems(Roles);
         gridPanecreaUsuario.add(comboBoxRol, 0, 1);
@@ -79,6 +91,9 @@ public class CrearUsuarioNuevo {
         buttonCreaUsuario.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
         gridPanecreaUsuario.add(buttonCreaUsuario, 0, 4);
         buttonCreaUsuario.setOnAction((event) -> {
+
+           Usuario usuario = new Usuario(textFieldNombreUsu.getText(), textFieldContra.getText(), "", "", "", comboBoxRol.getValue().toString());
+           l.writeInFile(usuario);
 
         });//end setOnAction
 
