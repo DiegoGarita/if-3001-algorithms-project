@@ -122,7 +122,7 @@ public class CrearUsuarioNuevo {
         gridPanecreaUsuario.add(buttonCreaUsuario, 0, 8);
         buttonCreaUsuario.setOnAction((event) -> {
 
-            Usuario usuario = new Usuario(textFieldNombreUsu.getText(), e.encriptar("Susa", textFieldContra.getText()) , "", "", "", comboBoxRol.getValue().toString());
+            Usuario usuario = new Usuario(textFieldNombreUsu.getText(), e.encriptar("SusanaDistancia", textFieldContra.getText()) , "", "", "", comboBoxRol.getValue().toString());
             logic.writeInFile(usuario);
 
         });//end setOnAction

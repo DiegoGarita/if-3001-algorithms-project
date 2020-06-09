@@ -1,6 +1,9 @@
 package edu.ucr.rp.clinicadenutricion.Cliente.Gui;
 
 //en esta clase el usuario pued ver sus planes de alimentacion
+import edu.ucr.rp.clinicadenutricion.AVL.AVLArchivo;
+import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
+import edu.ucr.rp.clinicadenutricion.Utilitario.HoraFecha;
 import javafx.collections.*;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -15,7 +18,9 @@ public class PlanesAlimentacion {
     TextArea textAreaMostrar = new TextArea();
     ComboBox comboBoxRol = new ComboBox();
     String fileName;
-    String consu="Consulto planes/recetas";
+    String consu = "Consulto planes/recetas";
+    AVLArchivo histo = new AVLArchivo();
+    HoraFecha horaFecha = new HoraFecha();
 
     /**
      *
@@ -67,6 +72,9 @@ public class PlanesAlimentacion {
         buttonDesplegarInfo.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
         gridPanePlanAli.add(buttonDesplegarInfo, 0, 4);
         buttonDesplegarInfo.setOnAction((event) -> {
+
+            Acciones acc = new Acciones("TODO traerDetras", consu, horaFecha.histoFechaHora());
+            histo.writeFileCitas(acc);
 
         });//end setOnAction
 

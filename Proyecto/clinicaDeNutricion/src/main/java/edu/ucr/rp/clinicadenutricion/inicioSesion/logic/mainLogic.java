@@ -1,5 +1,8 @@
 package edu.ucr.rp.clinicadenutricion.inicioSesion.logic;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class mainLogic {
 
     public static void main(String[] args) {
@@ -10,6 +13,10 @@ public class mainLogic {
         System.out.println(d);
         String j = m.desencriptar("gf", d);
         System.out.println(j);
+
+
+     java.util.Date fecha = new Date();
+        System.out.println(fecha);
 
     }
 

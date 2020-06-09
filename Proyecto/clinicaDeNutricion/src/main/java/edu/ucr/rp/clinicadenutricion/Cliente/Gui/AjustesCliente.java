@@ -1,5 +1,8 @@
 package edu.ucr.rp.clinicadenutricion.Cliente.Gui;
 
+import edu.ucr.rp.clinicadenutricion.AVL.AVLArchivo;
+import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
+import edu.ucr.rp.clinicadenutricion.Utilitario.HoraFecha;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.EncripMD5;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Logic;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Usuario;
@@ -24,6 +27,8 @@ public class AjustesCliente {
     String accionModi = "Modifico su usuario";
     Logic l = new Logic();
     EncripMD5 e = new EncripMD5();
+    AVLArchivo histo = new AVLArchivo();
+    HoraFecha horaFecha = new HoraFecha();
 
     /**
      *
@@ -109,6 +114,8 @@ public class AjustesCliente {
             l.readInFile();
             l.modidelete(usuario);
             l.removeLineFromFile(textFieldNombreUsu.getText() + "|" + textFieldContraUsu.getText());
+            Acciones acc = new Acciones("TODO traerDetras", accionBorra, horaFecha.histoFechaHora());
+            histo.writeFileCitas(acc);
 
         });//end setOnAction
 
@@ -121,11 +128,13 @@ public class AjustesCliente {
         buttonAceptar.setOnAction((event) -> {
 
             Usuario usuario = new Usuario(textFieldNombreUsu.getText(), textFieldContraUsu.getText(), "", "", "", l.readType(textFieldNombreUsu.getText() + "|" + textFieldContraUsu.getText()));
-            Usuario usuario1 = new Usuario(textFieldNombreUsu.getText(), textFieldNuevaContraUsu.getText(), "", "", "", l.readType(textFieldNombreUsu.getText() + "|" +  textFieldContraUsu.getText()));
+            Usuario usuario1 = new Usuario(textFieldNombreUsu.getText(), textFieldNuevaContraUsu.getText(), "", "", "", l.readType(textFieldNombreUsu.getText() + "|" + textFieldContraUsu.getText()));
             l.writeInFile(usuario1);
             l.readInFile();
-            l.modified(usuario, textFieldNuevaContraUsu.getText()); 
+            l.modified(usuario, textFieldNuevaContraUsu.getText());
             l.removeLineFromFile(textFieldNombreUsu.getText() + "|" + textFieldContraUsu.getText());
+            Acciones acc = new Acciones("TODO traerDetras", accionModi, horaFecha.histoFechaHora());
+            histo.writeFileCitas(acc);
 
         });//end setOnAction
 

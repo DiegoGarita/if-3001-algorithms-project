@@ -1,9 +1,12 @@
 package edu.ucr.rp.clinicadenutricion.Cliente.Gui;
 
 // clase para que el cliente aparte una cita
+import edu.ucr.rp.clinicadenutricion.AVL.AVLArchivo;
 import edu.ucr.rp.clinicadenutricion.Cliente.Logic.ClienteLogic;
 import edu.ucr.rp.clinicadenutricion.Cliente.Logic.PilaImplementacion;
+import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Objetos.Cita;
+import edu.ucr.rp.clinicadenutricion.Utilitario.HoraFecha;
 import java.time.LocalDate;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -18,6 +21,8 @@ public class ApartarCita {
     Button botonGuardar;
     String agendo = "Agendo cita";
     ClienteLogic clienteLogic = new ClienteLogic();
+    AVLArchivo histo = new AVLArchivo();
+    HoraFecha horaFecha = new HoraFecha();
 
     /**
      *
@@ -71,14 +76,15 @@ public class ApartarCita {
         botonGuardar.setStyle("-fx-background-color: BLACK");//Color del fondo
         botonGuardar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
         gridPaneCitaNue.add(botonGuardar, 0, 7);
-        
-        Cita cita = new Cita("traer por detras",  dT_DateFligth.getValue().toString(),
-                    textFieldHora.getText(), textFieldDoctora.getText());
-        
+
+        Cita cita = new Cita("traer por detras", dT_DateFligth.getValue().toString(),
+                textFieldHora.getText(), textFieldDoctora.getText());
+
         botonGuardar.setOnAction((event) -> {
 
-           clienteLogic.writeFileCitas(cita);
-         
+            clienteLogic.writeFileApartaCita(cita);
+            Acciones acc = new Acciones("TODO traerDetras", agendo, horaFecha.histoFechaHora());
+            histo.writeFileCitas(acc);
 
         });//END BUTTON
 
