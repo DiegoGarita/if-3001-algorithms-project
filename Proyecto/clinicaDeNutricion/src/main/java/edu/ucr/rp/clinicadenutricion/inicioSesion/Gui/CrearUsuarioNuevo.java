@@ -19,7 +19,7 @@ public class CrearUsuarioNuevo {
     Button buttonCreaUsuario;
     ComboBox comboBoxRol = new ComboBox();
     String fileName;
-    Logic l = new Logic();
+    Logic logic = new Logic();
     EncripMD5 e = new EncripMD5();
     CRUD c = new CRUD();
 
@@ -122,8 +122,8 @@ public class CrearUsuarioNuevo {
         gridPanecreaUsuario.add(buttonCreaUsuario, 0, 8);
         buttonCreaUsuario.setOnAction((event) -> {
 
-            Usuario usuario = new Usuario(textFieldNombreUsu.getText(), textFieldContra.getText(), "", "", "", comboBoxRol.getValue().toString());
-            l.writeInFile(usuario);
+            Usuario usuario = new Usuario(textFieldNombreUsu.getText(), e.encriptar("Susa", textFieldContra.getText()) , "", "", "", comboBoxRol.getValue().toString());
+            logic.writeInFile(usuario);
 
         });//end setOnAction
 

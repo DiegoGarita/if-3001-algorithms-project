@@ -13,6 +13,7 @@ public class ReporteProgreso {
     TextField textFieldDoctora;
     TextField textFieldHora;
     Button botonGrafico;
+    String repoPro ="Vio su progreso";
     Grafico grafico = new Grafico();
 
     /**

@@ -17,6 +17,8 @@ public class ModificaCancelaCita {
     TextArea textAreaMostrar = new TextArea();
     ComboBox comboBoxRol = new ComboBox();
     String fileName;
+    String modiCita= "Modifico cita";
+    String cancelCita= "Cancelo cita";
 
     /**
      *

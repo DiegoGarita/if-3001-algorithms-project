@@ -3,6 +3,7 @@ package edu.ucr.rp.clinicadenutricion.inicioSesion.Gui;
 import edu.ucr.rp.clinicadenutricion.Admin.Gui.MainMenuBarAdmi;
 import edu.ucr.rp.clinicadenutricion.Cliente.Gui.MainMenuBarCliente;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.MainMenuBarSuperAdmi;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.EncripMD5;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Logic;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -24,6 +25,7 @@ public class Entrar {
     MainMenuBarSuperAdmi mm = new MainMenuBarSuperAdmi();
     MainMenuBarAdmi nn = new MainMenuBarAdmi();
     MainMenuBarCliente zz = new MainMenuBarCliente();
+    EncripMD5 e = new EncripMD5();
 
     /**
      *
@@ -76,19 +78,21 @@ public class Entrar {
         buttonCreaUsuario.setOnAction((event) -> {
             Node node = gridPaneEntrar.getChildren().get(2);
             logic.readInFile();
-
-            if (logic.search(textFieldNombreUsu.getText()) && logic.search(textFieldContra.getText())) {
+            String desencrip = e.encriptar("Susa", textFieldContra.getText());
+            ///System.out.println("-->"+e.desencriptar("Susa", textFieldContra.getText()));
+            
+            if (logic.search(textFieldNombreUsu.getText()) && logic.search(desencrip)) {
 
                 gridPaneEntrar.getChildren().clear();
                 //menuBarMenu.setVisible(false);
 
-                if (logic.readType(textFieldNombreUsu.getText() + "|" + textFieldContra.getText()).equals("-")) {
+                if (logic.readType(textFieldNombreUsu.getText() + "|" + desencrip).equals("-")) {
                     gridPaneEntrar.getChildren().add(0, node);
                     gridPaneEntrar.getChildren().add(zz.menuCliente());
-                } else if (logic.readType(textFieldNombreUsu.getText() + "|" + textFieldContra.getText()).equals("+")) {
+                } else if (logic.readType(textFieldNombreUsu.getText() + "|" + desencrip).equals("+")) {
                     gridPaneEntrar.getChildren().add(0, node);
                     gridPaneEntrar.getChildren().add(nn.menuAdmi());
-                } else if (logic.readType(textFieldNombreUsu.getText() + "|" + textFieldContra.getText()).equals("*")) {
+                } else if (logic.readType(textFieldNombreUsu.getText() + "|" + desencrip).equals("*")) {
                     gridPaneEntrar.getChildren().add(0, node);
                     gridPaneEntrar.getChildren().add(mm.menuSuperAdmi());
                 }

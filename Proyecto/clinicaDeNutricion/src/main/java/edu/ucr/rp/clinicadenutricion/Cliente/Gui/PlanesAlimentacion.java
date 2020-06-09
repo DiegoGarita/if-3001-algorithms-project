@@ -15,6 +15,7 @@ public class PlanesAlimentacion {
     TextArea textAreaMostrar = new TextArea();
     ComboBox comboBoxRol = new ComboBox();
     String fileName;
+    String consu="Consulto planes/recetas";
 
     /**
      *

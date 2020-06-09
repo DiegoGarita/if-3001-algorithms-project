@@ -11,6 +11,7 @@ import javafx.scene.text.*;
 
 public class ReporteCitas {
 
+    String repoCita = "Vio su reporte de citas";
     //ClienteLogic ma = new ClienteLogic("Países.txt");
     public BorderPane busquedaPais() {
 
