@@ -1,5 +1,6 @@
 package edu.ucr.rp.clinicadenutricion.Cliente.Gui;
 
+import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.Entrar;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.EncripMD5;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Logic;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Usuario;
@@ -12,9 +13,22 @@ import javafx.scene.text.*;
 
 public class AjustesCliente {
 
+    TextField textFieldType;
+    TextField textFieldID;
     TextField textFieldNombreUsu;
     TextField textFieldContraUsu;
-    TextField textFieldNuevaContraUsu;
+    TextField textFieldCorreo;
+    TextField textFieldPhone;
+    TextField textFieldDirection;
+
+    Label labelType;
+    Label labelID;
+    Label labelNombreUsu;
+    Label labelContraUsu;
+    Label labelCorreo;
+    Label labelPhone;
+    Label labelDirection;
+
     Button buttonModiUsu;
     Button buttonElimUsu;
     Button buttonAceptar;
@@ -24,6 +38,7 @@ public class AjustesCliente {
     String accionModi = "Modifico su usuario";
     Logic l = new Logic();
     EncripMD5 e = new EncripMD5();
+    Entrar en;
 
     /**
      *
@@ -31,21 +46,58 @@ public class AjustesCliente {
      */
     public GridPane ajustes() {
 
-        /// File file = new File(fileName);
         GridPane gridPaneAjustes = new GridPane();
         gridPaneAjustes.setMinSize(600, 700);
-        // determina el espacio entre columnas (vertical y horizontal)
         gridPaneAjustes.setVgap(15);   //espacio
         gridPaneAjustes.setHgap(15);    // espacio
-        // alinear el grip
         gridPaneAjustes.setAlignment(Pos.CENTER);
         gridPaneAjustes.setStyle("-fx-background-color: dodgerblue");
-//        gridPaneNewCatalogue.setStyle(("-fx-background-image:url('file:src/image/FCrear.jpg');"
-//                + "-fx-background-repeat : no-repeat;"
-//                + "-fx-background-size: 920 920, 20 20, 20 20, 20 20, auto;"));
 
-        textFieldNombreUsu = new TextField();
-        textFieldNombreUsu.setPromptText("usuario");
+        Usuario uwu = l.stringTokenizer(l.readLine(en.ID));
+        String tipo = "";
+        if (uwu.getTipo().equals("ä")) {
+            tipo = "Cliente";
+        } else if (uwu.getTipo().equals("ö")) {
+            tipo = "Administración";
+        }
+
+        labelType = new Label("Tipo");
+        gridPaneAjustes.add(labelType, 0, 0);
+
+        textFieldType = new TextField(tipo);
+        textFieldType.setPromptText("Tipo");
+        textFieldType.setDisable(true);
+        textFieldType.setStyle(
+                "-fx-background-color: lightblue; "
+                + "-fx-background-insets: 4; "
+                +// tamano
+                "-fx-background-radius: 4; "
+                +// tamano
+                "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
+        gridPaneAjustes.add(textFieldType, 1, 0);
+        textFieldType.setFocusTraversable(false);
+
+        labelID = new Label("ID: ");
+        gridPaneAjustes.add(labelID, 0, 1);
+        textFieldID = new TextField(uwu.getId());
+        textFieldID.setPromptText("ID");
+        textFieldID.setDisable(true);
+        textFieldID.setStyle(
+                "-fx-background-color: lightblue; "
+                + "-fx-background-insets: 4; "
+                +// tamano
+                "-fx-background-radius: 4; "
+                +// tamano
+                "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
+        gridPaneAjustes.add(textFieldID, 1, 1);
+        textFieldID.setFocusTraversable(false);
+
+        labelNombreUsu = new Label("Nombre: ");
+        gridPaneAjustes.add(labelNombreUsu, 0, 2);
+
+        textFieldNombreUsu = new TextField(uwu.getName());
+        textFieldNombreUsu.setPromptText("Nombre");
+        textFieldNombreUsu.setDisable(true);
         textFieldNombreUsu.setStyle(
                 "-fx-background-color: lightblue; "
                 + "-fx-background-insets: 4; "
@@ -53,11 +105,14 @@ public class AjustesCliente {
                 "-fx-background-radius: 4; "
                 +// tamano
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-        gridPaneAjustes.add(textFieldNombreUsu, 0, 1);
+        gridPaneAjustes.add(textFieldNombreUsu, 1, 2);
         textFieldNombreUsu.setFocusTraversable(false);
 
+        labelContraUsu = new Label("Contraseña: ");
+        gridPaneAjustes.add(labelContraUsu, 0, 3);
+
         textFieldContraUsu = new TextField();
-        textFieldContraUsu.setPromptText("Contra");
+        textFieldContraUsu.setPromptText("Contraseña");
         textFieldContraUsu.setStyle(
                 "-fx-background-color: lightblue; "
                 + "-fx-background-insets: 4; "
@@ -65,36 +120,81 @@ public class AjustesCliente {
                 "-fx-background-radius: 4; "
                 +// tamano
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-        gridPaneAjustes.add(textFieldContraUsu, 0, 2);
+        gridPaneAjustes.add(textFieldContraUsu, 1, 3);
         textFieldContraUsu.setFocusTraversable(false);
         textFieldContraUsu.setOnMouseClicked((event) -> {
             buttonModiUsu.setDisable(false);
             buttonElimUsu.setDisable(false);
         });
 
-        textFieldNuevaContraUsu = new TextField();
-        textFieldNuevaContraUsu.setPromptText("Nueva contra");
-        textFieldNuevaContraUsu.setStyle(
+        labelCorreo = new Label("Correo: ");
+        labelCorreo.setVisible(false);
+        gridPaneAjustes.add(labelCorreo, 0, 4);
+
+        textFieldCorreo = new TextField(uwu.getCorreo());
+        textFieldCorreo.setPromptText("correo");
+        textFieldCorreo.setVisible(false);
+        textFieldCorreo.setStyle(
                 "-fx-background-color: lightblue; "
                 + "-fx-background-insets: 4; "
                 +// tamano
                 "-fx-background-radius: 4; "
                 +// tamano
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-        gridPaneAjustes.add(textFieldNuevaContraUsu, 0, 4);
-        textFieldNuevaContraUsu.setFocusTraversable(false);
-        textFieldNuevaContraUsu.setVisible(false);
+        gridPaneAjustes.add(textFieldCorreo, 1, 4);
+        textFieldCorreo.setFocusTraversable(false);
+
+        labelPhone = new Label("Teléfono: ");
+        labelPhone.setVisible(false);
+        gridPaneAjustes.add(labelPhone, 0, 5);
+
+        textFieldPhone = new TextField(uwu.getTelefono());
+        textFieldPhone.setPromptText("telefono");
+        textFieldPhone.setVisible(false);
+        textFieldPhone.setStyle(
+                "-fx-background-color: lightblue; "
+                + "-fx-background-insets: 4; "
+                +// tamano
+                "-fx-background-radius: 4; "
+                +// tamano
+                "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
+        gridPaneAjustes.add(textFieldPhone, 1, 5);
+        textFieldPhone.setFocusTraversable(false);
+
+        labelDirection = new Label("Dirección: ");
+        labelDirection.setVisible(false);
+        gridPaneAjustes.add(labelDirection, 0, 6);
+
+        textFieldDirection = new TextField(uwu.getDireccion());
+        textFieldDirection.setPromptText("direccion");
+        textFieldDirection.setVisible(false);
+        textFieldDirection.setStyle(
+                "-fx-background-color: lightblue; "
+                + "-fx-background-insets: 4; "
+                +// tamano
+                "-fx-background-radius: 4; "
+                +// tamano
+                "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
+        gridPaneAjustes.add(textFieldDirection, 1, 6);
+        textFieldDirection.setFocusTraversable(false);
 
         buttonModiUsu = new Button("Modificar usuario");
         buttonModiUsu.setTextFill(Color.WHITE);//Color de la letra del boton
         buttonModiUsu.setStyle("-fx-background-color: BLACK");//Color del fondo
         buttonModiUsu.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
-        gridPaneAjustes.add(buttonModiUsu, 1, 3);
+        gridPaneAjustes.add(buttonModiUsu, 2, 3);
         buttonModiUsu.setDisable(true);
         buttonModiUsu.setOnAction((event) -> {
 
-            textFieldNuevaContraUsu.setVisible(true);
-            buttonAceptar.setVisible(true);
+            if (uwu.getContraseña().equals(e.encriptar("SusanaDistancia", textFieldContraUsu.getText()))) {
+                textFieldContraUsu.setDisable(true);
+                textFieldCorreo.setVisible(true);
+                textFieldDirection.setVisible(true);
+                textFieldPhone.setVisible(true);
+                buttonAceptar.setVisible(true);
+                buttonElimUsu.setDisable(true);
+                buttonModiUsu.setDisable(true);
+            }
 
         });//end setOnAction
 
@@ -102,31 +202,39 @@ public class AjustesCliente {
         buttonElimUsu.setTextFill(Color.WHITE);//Color de la letra del boton
         buttonElimUsu.setStyle("-fx-background-color: BLACK");//Color del fondo
         buttonElimUsu.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
-        gridPaneAjustes.add(buttonElimUsu, 2, 3);
+        gridPaneAjustes.add(buttonElimUsu, 3, 3);
         buttonElimUsu.setDisable(true);
         buttonElimUsu.setOnAction((event) -> {
-            Usuario usuario = new Usuario(textFieldNombreUsu.getText(), textFieldContraUsu.getText(), "", "", "", l.readType(textFieldNombreUsu.getText() + "|" + textFieldContraUsu.getText()));
-            l.readInFile();
-            l.modidelete(usuario);
-            l.removeLineFromFile(textFieldNombreUsu.getText() + "|" + textFieldContraUsu.getText());
 
+            if (uwu.getContraseña().equals(e.encriptar("SusanaDistancia", textFieldContraUsu.getText()))) {
+                Usuario usuario = l.stringTokenizer(l.readLine(textFieldID.getText()));
+                l.readInFile();
+                l.modidelete(usuario);
+                l.removeLineFromFile(usuario.getId());
+                buttonModiUsu.setDisable(true);
+            }
         });//end setOnAction
 
         buttonAceptar = new Button("Aceptar");
         buttonAceptar.setTextFill(Color.WHITE);//Color de la letra del boton
         buttonAceptar.setStyle("-fx-background-color: BLACK");//Color del fondo
         buttonAceptar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
-        gridPaneAjustes.add(buttonAceptar, 0, 5);
+        gridPaneAjustes.add(buttonAceptar, 1, 8);
         buttonAceptar.setVisible(false);
         buttonAceptar.setOnAction((event) -> {
 
-            Usuario usuario = new Usuario(textFieldNombreUsu.getText(), textFieldContraUsu.getText(), "", "", "", l.readType(textFieldNombreUsu.getText() + "|" + textFieldContraUsu.getText()));
-            Usuario usuario1 = new Usuario(textFieldNombreUsu.getText(), textFieldNuevaContraUsu.getText(), "", "", "", l.readType(textFieldNombreUsu.getText() + "|" +  textFieldContraUsu.getText()));
-            l.writeInFile(usuario1);
-            l.readInFile();
-            l.modified(usuario, textFieldNuevaContraUsu.getText()); 
-            l.removeLineFromFile(textFieldNombreUsu.getText() + "|" + textFieldContraUsu.getText());
+            Usuario usuario = l.stringTokenizer(l.readLine(textFieldID.getText()));
+            Usuario usuario1 = new Usuario(textFieldType.getText(), textFieldID.getText(), textFieldNombreUsu.getText(), e.encriptar("SusanaDistancia", textFieldContraUsu.getText()), textFieldCorreo.getText(), textFieldPhone.getText(), textFieldDirection.getText());
 
+            l.readInFile();
+            l.modified(usuario, e.encriptar("SusanaDistancia", textFieldCorreo.getText()));
+            l.removeLineFromFile(usuario.getId());
+            l.writeInFile(usuario1);
+            textFieldDirection.setDisable(true);
+            textFieldCorreo.setDisable(true);
+            textFieldPhone.setDisable(true);
+            
+            buttonAceptar.setDisable(true);
         });//end setOnAction
 
         //***
@@ -137,7 +245,7 @@ public class AjustesCliente {
         buttonClose.setTextFill(Color.WHITE);//Color de la letra del boton
         buttonClose.setStyle("-fx-background-color: BLACK");//Color del fondo
         buttonClose.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
-        gridPaneAjustes.add(buttonClose, 0, 8);
+        gridPaneAjustes.add(buttonClose, 1, 9);
         buttonClose.setOnAction((event) -> {
 
             gridPaneAjustes.getChildren().clear();
