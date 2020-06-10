@@ -43,11 +43,12 @@ public class ClienteLogic {
 
         File newFile = new File("ApartaCita.txt");
         String lineKeeper = "";
+        String currentRegistry = null;
         try {
             FileInputStream fileInputStream = new FileInputStream(newFile);
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            String currentRegistry = bufferedReader.readLine();
+            currentRegistry = bufferedReader.readLine();
 
             while (currentRegistry != null) {
 
@@ -61,7 +62,6 @@ public class ClienteLogic {
                 while (stringTokenizer.hasMoreTokens()) {
                     if (counterTokens == 0) {
                         name = stringTokenizer.nextToken();
-                        //  name = name.substring(1, name.length());
                         fecha = stringTokenizer.nextToken();
                         hora = stringTokenizer.nextToken();
                         counterTokens++;
@@ -75,19 +75,20 @@ public class ClienteLogic {
                 Cita cita = new Cita(name, fecha, hora, doc);
                 pilaImple.push(cita);
 
-                currentRegistry = bufferedReader.readLine();
+                currentRegistry += bufferedReader.readLine() + "\n";
                 System.out.println(currentRegistry);
+                // return currentRegistry;
             }//end while
 
-            //StringTokenizer stringTokenizer = new StringTokenizer(lineKeeper, "&");
-            // lineKeeper += stringTokenizer.nextToken();
+           // StringTokenizer stringTokenizer = new StringTokenizer(lineKeeper, "&");
+           // lineKeeper += stringTokenizer.nextToken();
+           // return lineKeeper;
         } catch (FileNotFoundException fileNotFoundException) {
             System.out.println(fileNotFoundException + ": Problemas con el archivo");
         } catch (IOException IOException) {
             System.out.println(IOException + ": Problemas con el archivo");
         }
+    //   return "*";
     }// end readProperties()
-
-    
 
 }// end writeFileCitas

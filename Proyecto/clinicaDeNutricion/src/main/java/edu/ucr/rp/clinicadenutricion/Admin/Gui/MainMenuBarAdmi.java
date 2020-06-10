@@ -1,13 +1,8 @@
 package edu.ucr.rp.clinicadenutricion.Admin.Gui;
 
 import javafx.application.Platform;
-import javafx.geometry.Pos;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.SeparatorMenuItem;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.*;
+import javafx.scene.image.*;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.GridPane;
 
