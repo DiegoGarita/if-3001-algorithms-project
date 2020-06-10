@@ -12,16 +12,15 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.GridPane;
 
 public class MainMenuBarSuperAdmi {
-    
+
     HorarioTiempoClinica horarioTiempo = new HorarioTiempoClinica();
-    
+
     LogoApp logo = new LogoApp();
     IndicarPath indicadorPath = new IndicarPath();
-    
+
     ReportesAcciones reportesAcciones = new ReportesAcciones();
     RespaldarArchivos respaldarArchivos = new RespaldarArchivos();
     ResgistrosPaginacion registrosPag = new ResgistrosPaginacion();
-
 
     /**
      *
@@ -129,7 +128,7 @@ public class MainMenuBarSuperAdmi {
         });
         menuBarMenu.getMenus().addAll(menuAjustes, menuRegistros, menuOtros);
         gridPaneSuperAdmi.add(menuBarMenu, 0, 0);
-        
+
         return gridPaneSuperAdmi;
 
     }//end Scene getMainScene()

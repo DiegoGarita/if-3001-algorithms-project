@@ -6,6 +6,9 @@ import edu.ucr.rp.clinicadenutricion.Cliente.Logic.ClienteLogic;
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Objetos.Cita;
 import edu.ucr.rp.clinicadenutricion.Utilitario.HoraFecha;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.Entrar;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Logic;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Usuario;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,6 +26,9 @@ public class ReporteCitas {
     HoraFecha horaFecha = new HoraFecha();
     ClienteLogic clienteLogic = new ClienteLogic();
 
+    Logic l = new Logic();
+    Entrar en;
+
     //ClienteLogic ma = new ClienteLogic("Países.txt");
     public GridPane reporteCita() {
 
@@ -37,11 +43,19 @@ public class ReporteCitas {
         gridPanehisto.setAlignment(Pos.CENTER);
         gridPanehisto.setStyle("-fx-background-color: dodgerblue");
 
-        //  TextArea t = new TextArea();
-        //  String sal = clienteLogic.readApartaCita();
-        //  System.out.println("sal--->"+ sal);
-        //   t.setText(sal);
-        //   gridPanehisto.add(t, 0, 4);
+        Usuario uwu = l.stringTokenizer(l.readLine(en.ID));
+        String tipo = "";
+        if (uwu.getTipo().equals("ä")) {
+            tipo = "Cliente";
+        } else if (uwu.getTipo().equals("ö")) {
+            tipo = "Administración";
+        }
+
+       // TextArea t = new TextArea();
+       //// String sal = clienteLogic.readApartaCita();
+       /// System.out.println("sal--->" + sal);
+       // t.setText(sal);
+       // gridPanehisto.add(t, 0, 4);
         TableView<Cita> tV_pais = new TableView<>();
 
         TableColumn tc_continenteColumna = new TableColumn("Cliente");
@@ -66,7 +80,7 @@ public class ReporteCitas {
         //tV_pais.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
         //    tV_pais.getItems().addAll(clienteLogic.readApartaCita());
 
-        Acciones acc = new Acciones("TODO traerDetras", repoCita, horaFecha.histoFechaHora());
+        Acciones acc = new Acciones(uwu.getName(), repoCita, horaFecha.histoFechaHora());
         histo.writeFileCitas(acc);
 
         //***

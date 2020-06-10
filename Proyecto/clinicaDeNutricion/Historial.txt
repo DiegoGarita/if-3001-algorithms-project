@@ -26,3 +26,11 @@ TODO traerDetras & Vio su reporte de citas & Tue Jun 09 18:36:51 CST 2020
 TODO traerDetras & Vio su reporte de citas & Tue Jun 09 18:37:22 CST 2020
 TODO traerDetras & Vio su reporte de citas & Tue Jun 09 18:45:54 CST 2020
 TODO traerDetras & Modifico su usuario & Wed Jun 10 00:04:43 CST 2020
+asd & Modifico su usuario & Wed Jun 10 12:02:18 CST 2020
+asas & Modifico su usuario & Wed Jun 10 12:38:12 CST 2020
+asd & Vio su progreso & Wed Jun 10 12:54:20 CST 2020
+asd & Vio su reporte de citas & Wed Jun 10 12:54:29 CST 2020
+asd & Agendo cita & Wed Jun 10 12:55:21 CST 2020
+asd & Consulto planes/recetas & Wed Jun 10 12:55:27 CST 2020
+asd & Agendo cita & Wed Jun 10 13:11:28 CST 2020
+asas & Agendo cita & Wed Jun 10 13:13:56 CST 2020
