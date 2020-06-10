@@ -5,6 +5,8 @@ import edu.ucr.rp.clinicadenutricion.Cliente.Logic.Grafico;
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Utilitario.HoraFecha;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.Entrar;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Logic;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Usuario;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -22,6 +24,9 @@ public class ReporteProgreso {
     AVLArchivo histo = new AVLArchivo();
     HoraFecha horaFecha = new HoraFecha();
 
+    Logic l = new Logic();
+    Entrar en;
+
     /**
      *
      * @return Nos da la GUI que nos permite crear un nuevo catálogo
@@ -38,6 +43,14 @@ public class ReporteProgreso {
 //                + "-fx-background-repeat : no-repeat;"
 //                + "-fx-background-size: 920 920, 20 20, 20 20, 20 20, auto;"));
 
+        Usuario uwu = l.stringTokenizer(l.readLine(en.ID));
+        String tipo = "";
+        if (uwu.getTipo().equals("ä")) {
+            tipo = "Cliente";
+        } else if (uwu.getTipo().equals("ö")) {
+            tipo = "Administración";
+        }
+
         Label labelFechHora = new Label("TODO TRAER INFO DEL MAN EN LABEL'S");
         gridPanePorgreso.add(labelFechHora, 0, 2);
 
@@ -50,7 +63,7 @@ public class ReporteProgreso {
         botonGrafico.setOnAction((event) -> {
 
             grafico.showGraficMethods(66.5, 20.5, 6.5, 6.5); //--> %agua, %masMusc, grasa , grasaVisc
-            Acciones acc = new Acciones("TODO traerDetras", repoPro, horaFecha.histoFechaHora());
+            Acciones acc = new Acciones(uwu.getName(), repoPro, horaFecha.histoFechaHora());
             histo.writeFileCitas(acc);
         });//END BUTTON
 

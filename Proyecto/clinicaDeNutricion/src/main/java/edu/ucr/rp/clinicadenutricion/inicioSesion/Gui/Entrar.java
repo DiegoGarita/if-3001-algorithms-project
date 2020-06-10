@@ -15,7 +15,7 @@ import javafx.scene.text.*;
 import javax.swing.JOptionPane;
 
 public class Entrar {
-    
+
     public static String ID;
 
     TextField textFieldID;
@@ -84,14 +84,14 @@ public class Entrar {
             Node node = gridPaneEntrar.getChildren().get(2);
             logic.readInFile();
 
-
             if (textFieldID.getText().equals("Super") && textFieldContra.getText().equals("1234")) {
-                //gridPaneEntrar.getChildren().add(0, node); /////////////////////////////////////////////////////////
+
+                gridPaneEntrar.getChildren().clear();
+                gridPaneEntrar.getChildren().add(0, node);
                 gridPaneEntrar.getChildren().add(mm.menuSuperAdmi());
             } else if (logic.search(textFieldID.getText())) {
 
-            gridPaneEntrar.getChildren().clear();
-            
+                gridPaneEntrar.getChildren().clear();
 
                 if (logic.readLine(textFieldID.getText()).substring(0, 1).equals("ä")) {
                     if (logic.stringTokenizer(logic.readLine(textFieldID.getText())).getId().equals(textFieldID.getText())) {

@@ -5,6 +5,8 @@ import edu.ucr.rp.clinicadenutricion.AVL.AVLArchivo;
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Utilitario.HoraFecha;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.Entrar;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Logic;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Usuario;
 import javafx.collections.*;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -26,6 +28,9 @@ public class ModificaCancelaCita {
     AVLArchivo histo = new AVLArchivo();
     HoraFecha horaFecha = new HoraFecha();
 
+    Logic l = new Logic();
+    Entrar en;
+
     /**
      *
      * @return Nos da la GUI que nos permite crear un nuevo catálogo
@@ -44,6 +49,14 @@ public class ModificaCancelaCita {
 //        gridPaneNewCatalogue.setStyle(("-fx-background-image:url('file:src/image/FCrear.jpg');"
 //                + "-fx-background-repeat : no-repeat;"
 //                + "-fx-background-size: 920 920, 20 20, 20 20, 20 20, auto;"));
+
+        Usuario uwu = l.stringTokenizer(l.readLine(en.ID));
+        String tipo = "";
+        if (uwu.getTipo().equals("ä")) {
+            tipo = "Cliente";
+        } else if (uwu.getTipo().equals("ö")) {
+            tipo = "Administración";
+        }
 
         comboBoxRol.setValue("Citas futuras");
         comboBoxRol.setStyle("-fx-background-color: lightblue");
@@ -75,7 +88,7 @@ public class ModificaCancelaCita {
         gridPaneModiCan.add(buttonModiCita, 1, 5);
         buttonModiCita.setOnAction((event) -> {
 
-            Acciones acc = new Acciones("TODO traerDetras", modiCita, horaFecha.histoFechaHora());
+            Acciones acc = new Acciones(uwu.getName(), modiCita, horaFecha.histoFechaHora());
             histo.writeFileCitas(acc);
 
         });//end setOnAction
@@ -87,7 +100,7 @@ public class ModificaCancelaCita {
         gridPaneModiCan.add(buttonCanceCita, 2, 5);
         buttonCanceCita.setOnAction((event) -> {
 
-            Acciones acc = new Acciones("TODO traerDetras", cancelCita, horaFecha.histoFechaHora());
+            Acciones acc = new Acciones(uwu.getName(), cancelCita, horaFecha.histoFechaHora());
             histo.writeFileCitas(acc);
 
         });//end setOnAction

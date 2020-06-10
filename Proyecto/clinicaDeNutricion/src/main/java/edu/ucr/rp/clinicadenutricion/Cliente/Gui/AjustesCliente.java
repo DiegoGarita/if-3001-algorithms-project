@@ -1,6 +1,5 @@
 package edu.ucr.rp.clinicadenutricion.Cliente.Gui;
 
-
 import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.Entrar;
 
 import edu.ucr.rp.clinicadenutricion.AVL.AVLArchivo;
@@ -42,14 +41,13 @@ public class AjustesCliente {
     String fileName;
     String accionBorra = "Borro su usuario";
     String accionModi = "Modifico su usuario";
-    Logic l = new Logic();
-    EncripMD5 e = new EncripMD5();
 
+    EncripMD5 e = new EncripMD5();
+    Logic l = new Logic();
     Entrar en;
 
     AVLArchivo histo = new AVLArchivo();
     HoraFecha horaFecha = new HoraFecha();
-
 
     /**
      *
@@ -216,10 +214,9 @@ public class AjustesCliente {
         buttonElimUsu.setDisable(true);
         buttonElimUsu.setOnAction((event) -> {
 
-           
-            Acciones acc = new Acciones("TODO traerDetras", accionBorra, horaFecha.histoFechaHora());
+            Acciones acc = new Acciones(uwu.getName(), accionBorra, horaFecha.histoFechaHora());
             histo.writeFileCitas(acc);
-          
+
             if (uwu.getContraseña().equals(e.encriptar("SusanaDistancia", textFieldContraUsu.getText()))) {
                 Usuario usuario = l.stringTokenizer(l.readLine(textFieldID.getText()));
                 l.readInFile();
@@ -237,7 +234,6 @@ public class AjustesCliente {
         buttonAceptar.setVisible(false);
         buttonAceptar.setOnAction((event) -> {
 
-
             Usuario usuario = l.stringTokenizer(l.readLine(textFieldID.getText()));
             Usuario usuario1 = new Usuario(textFieldType.getText(), textFieldID.getText(), textFieldNombreUsu.getText(), e.encriptar("SusanaDistancia", textFieldContraUsu.getText()), textFieldCorreo.getText(), textFieldPhone.getText(), textFieldDirection.getText());
 
@@ -245,14 +241,14 @@ public class AjustesCliente {
             l.modified(usuario, e.encriptar("SusanaDistancia", textFieldCorreo.getText()));
             l.removeLineFromFile(usuario.getId());
             l.writeInFile(usuario1);
-            
-            Acciones acc = new Acciones("TODO traerDetras", accionModi, horaFecha.histoFechaHora());
+
+            Acciones acc = new Acciones(uwu.getName(), accionModi, horaFecha.histoFechaHora());
             histo.writeFileCitas(acc);
-            
+
             textFieldDirection.setDisable(true);
             textFieldCorreo.setDisable(true);
             textFieldPhone.setDisable(true);
-            
+
             buttonAceptar.setDisable(true);
         });//end setOnAction
 
