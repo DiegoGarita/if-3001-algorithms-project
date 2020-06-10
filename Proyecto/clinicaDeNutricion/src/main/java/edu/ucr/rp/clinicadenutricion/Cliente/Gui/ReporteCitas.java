@@ -37,8 +37,11 @@ public class ReporteCitas {
         gridPanehisto.setAlignment(Pos.CENTER);
         gridPanehisto.setStyle("-fx-background-color: dodgerblue");
 
-        
-
+        //  TextArea t = new TextArea();
+        //  String sal = clienteLogic.readApartaCita();
+        //  System.out.println("sal--->"+ sal);
+        //   t.setText(sal);
+        //   gridPanehisto.add(t, 0, 4);
         TableView<Cita> tV_pais = new TableView<>();
 
         TableColumn tc_continenteColumna = new TableColumn("Cliente");
@@ -61,7 +64,7 @@ public class ReporteCitas {
                 tc_capitalColumna, tc_poblacionColumna, tc_monedaColumna);
         tV_pais.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         //tV_pais.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
-    //    tV_pais.getItems().addAll(clienteLogic.readApartaCita());
+        //    tV_pais.getItems().addAll(clienteLogic.readApartaCita());
 
         Acciones acc = new Acciones("TODO traerDetras", repoCita, horaFecha.histoFechaHora());
         histo.writeFileCitas(acc);
@@ -80,13 +83,13 @@ public class ReporteCitas {
             gridPanehisto.getChildren().add(barCliente.menuCliente());
         });
 
+        clienteLogic.readApartaCita();
         //bP_acomodarInterfaz.setTop(gridPanehisto);
         gridPanehisto.add(tV_pais, 0, 4);
         return gridPanehisto;
 
+    }//end class reporte citas
 
-}//end class reporte citas
-            
 //    public ObservableList<Cita> getListaPaises() {
 //        ArrayList array = new ArrayList();
 //        Cita arrayPaises[] = clienteLogic.readApartaCita();
@@ -98,5 +101,4 @@ public class ReporteCitas {
 //
 //        return oL_ListadoContactos;
 //    }
-    
 }

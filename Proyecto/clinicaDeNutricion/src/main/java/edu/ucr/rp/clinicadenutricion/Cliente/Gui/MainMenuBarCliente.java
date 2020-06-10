@@ -1,6 +1,8 @@
 package edu.ucr.rp.clinicadenutricion.Cliente.Gui;
 
+import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.Entrar;
 import javafx.application.Platform;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -134,7 +136,6 @@ public class MainMenuBarCliente {
 
         menuBarMenu.getMenus().addAll(menuReportes, menuNuevaCita, menuPlanes, menuAjustes, menuMas);
         gridPaneUsuario.add(menuBarMenu, 0, 0);
-
 
         return gridPaneUsuario;
 
