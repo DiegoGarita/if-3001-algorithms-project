@@ -2,7 +2,6 @@ edu\ucr\rp\clinicadenutricion\Cliente\Gui\ModificaCancelaCita.class
 edu\ucr\rp\clinicadenutricion\Admin\Gui\FormuDoctor.class
 edu\ucr\rp\clinicadenutricion\Cliente\Gui\AjustesCliente.class
 edu\ucr\rp\clinicadenutricion\Cliente\Logic\ProCola.class
-edu\ucr\rp\clinicadenutricion\AVL\AVLImple.class
 edu\ucr\rp\clinicadenutricion\inicioSesion\Gui\Entrar.class
 edu\ucr\rp\clinicadenutricion\inicioSesion\Gui\InicioDeSesionGui.class
 edu\ucr\rp\clinicadenutricion\EjecutorClinica.class
@@ -52,4 +51,5 @@ edu\ucr\rp\clinicadenutricion\Utilitario\HoraFecha.class
 edu\ucr\rp\clinicadenutricion\inicioSesion\logic\mainLogic.class
 edu\ucr\rp\clinicadenutricion\SuperAdmin\Gui\LogoApp.class
 edu\ucr\rp\clinicadenutricion\Cliente\Logic\Pila.class
+edu\ucr\rp\clinicadenutricion\Utilitario\Alertas.class
 edu\ucr\rp\clinicadenutricion\Admin\logic\ColaImpl$Node.class

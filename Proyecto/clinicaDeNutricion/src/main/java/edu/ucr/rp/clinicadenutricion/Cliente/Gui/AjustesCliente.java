@@ -198,7 +198,6 @@ public class AjustesCliente {
         buttonModiUsu.setOnAction((event) -> {
 
             if (uwu.getContraseña().equals(e.encriptar("SusanaDistancia", textFieldContraUsu.getText()))) {
-                textFieldContraUsu.setDisable(true);
                 textFieldCorreo.setVisible(true);
                 textFieldDirection.setVisible(true);
                 textFieldPhone.setVisible(true);
@@ -217,10 +216,7 @@ public class AjustesCliente {
         buttonElimUsu.setDisable(true);
         buttonElimUsu.setOnAction((event) -> {
 
-            Usuario usuario = new Usuario(textFieldNombreUsu.getText(), textFieldContraUsu.getText(), "", "", "", l.readType(textFieldNombreUsu.getText() + "|" + textFieldContraUsu.getText()));
-            l.readInFile();
-            l.modidelete(usuario);
-            l.removeLineFromFile(textFieldNombreUsu.getText() + "|" + textFieldContraUsu.getText());
+           
             Acciones acc = new Acciones("TODO traerDetras", accionBorra, horaFecha.histoFechaHora());
             histo.writeFileCitas(acc);
           
@@ -245,20 +241,14 @@ public class AjustesCliente {
             Usuario usuario = l.stringTokenizer(l.readLine(textFieldID.getText()));
             Usuario usuario1 = new Usuario(textFieldType.getText(), textFieldID.getText(), textFieldNombreUsu.getText(), e.encriptar("SusanaDistancia", textFieldContraUsu.getText()), textFieldCorreo.getText(), textFieldPhone.getText(), textFieldDirection.getText());
 
-            Usuario usuario = new Usuario(textFieldNombreUsu.getText(), textFieldContraUsu.getText(), "", "", "", l.readType(textFieldNombreUsu.getText() + "|" + textFieldContraUsu.getText()));
-            Usuario usuario1 = new Usuario(textFieldNombreUsu.getText(), textFieldNuevaContraUsu.getText(), "", "", "", l.readType(textFieldNombreUsu.getText() + "|" + textFieldContraUsu.getText()));
-            l.writeInFile(usuario1);
-            l.readInFile();
-            l.modified(usuario, textFieldNuevaContraUsu.getText());
-            l.removeLineFromFile(textFieldNombreUsu.getText() + "|" + textFieldContraUsu.getText());
-            Acciones acc = new Acciones("TODO traerDetras", accionModi, horaFecha.histoFechaHora());
-            histo.writeFileCitas(acc);
-
-
             l.readInFile();
             l.modified(usuario, e.encriptar("SusanaDistancia", textFieldCorreo.getText()));
             l.removeLineFromFile(usuario.getId());
             l.writeInFile(usuario1);
+            
+            Acciones acc = new Acciones("TODO traerDetras", accionModi, horaFecha.histoFechaHora());
+            histo.writeFileCitas(acc);
+            
             textFieldDirection.setDisable(true);
             textFieldCorreo.setDisable(true);
             textFieldPhone.setDisable(true);

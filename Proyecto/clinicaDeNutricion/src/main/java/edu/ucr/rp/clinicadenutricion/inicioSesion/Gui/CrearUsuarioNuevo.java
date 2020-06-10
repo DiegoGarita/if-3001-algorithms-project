@@ -142,11 +142,7 @@ public class CrearUsuarioNuevo {
                     logic.writeInFile(usuario);
                 } else {
                     System.out.println("Ya existe alguien con este ID");
-
-
-            Usuario usuario = new Usuario(textFieldNombreUsu.getText(), e.encriptar("SusanaDistancia", textFieldContra.getText()) , "", "", "", comboBoxRol.getValue().toString());
-            logic.writeInFile(usuario);
-
+                }
 
         });//end setOnAction
 
