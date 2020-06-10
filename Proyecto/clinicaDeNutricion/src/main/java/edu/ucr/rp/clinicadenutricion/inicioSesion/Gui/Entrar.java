@@ -90,13 +90,8 @@ public class Entrar {
                 gridPaneEntrar.getChildren().add(mm.menuSuperAdmi());
             } else if (logic.search(textFieldID.getText())) {
 
-            String desencrip = e.encriptar("SusanaDistancia", textFieldContra.getText());
-            ///System.out.println("-->"+e.desencriptar("Susa", textFieldContra.getText()));
+            gridPaneEntrar.getChildren().clear();
             
-            if (logic.search(textFieldNombreUsu.getText()) && logic.search(desencrip)) {
-
-                gridPaneEntrar.getChildren().clear();
-                //menuBarMenu.setVisible(false);
 
                 if (logic.readLine(textFieldID.getText()).substring(0, 1).equals("ä")) {
                     if (logic.stringTokenizer(logic.readLine(textFieldID.getText())).getId().equals(textFieldID.getText())) {
