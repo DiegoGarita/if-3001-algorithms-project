@@ -2,20 +2,38 @@ package edu.ucr.rp.clinicadenutricion.inicioSesion.logic;
 
 public class Usuario {
 
+    private String tipo;
+    private String id;
     private String name;
     private String contraseña;
+    private String correo;
     private String telefono;
     private String direccion;
-    private String correo;
-    private String tipo;
 
-    public Usuario(String name, String contraseña, String telefono, String direccion, String correo, String tipo) {
+    public Usuario(String tipo, String id, String name, String contraseña, String correo, String telefono, String direccion) {
+        this.tipo = tipo;
+        this.id = id;
         this.name = name;
         this.contraseña = contraseña;
+        this.correo = correo;
         this.telefono = telefono;
         this.direccion = direccion;
-        this.correo = correo;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -34,6 +52,14 @@ public class Usuario {
         this.contraseña = contraseña;
     }
 
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
     public String getTelefono() {
         return telefono;
     }
@@ -48,22 +74,6 @@ public class Usuario {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
     }
 
 }

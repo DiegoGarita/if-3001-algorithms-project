@@ -98,12 +98,6 @@ public class CRUD {
         } // end else
     } 
 
-    public Usuario newPassword(Usuario element, String pass) {
-        Usuario u = element;
-        Usuario user = new Usuario(u.getName(), pass, u.getTelefono(), u.getDireccion(), u.getCorreo(), u.getTipo());
-
-        return user;
-    }
 
     public void display() {
         Node current = inicio;
@@ -114,7 +108,7 @@ public class CRUD {
         }
         System.out.println("linked list: ");
         while (current != null) {
-            System.out.print(current.element.getContraseña() + " ");
+            System.out.print(current.element.getId() + "* ");
             current = current.next;
         }
         System.out.println();
@@ -123,8 +117,8 @@ public class CRUD {
     public boolean search(String x) {
         Node current = inicio;   
         while (current != null) {
-
-            if (current.element.getName().equals(x) || current.element.getContraseña().equals(x) || current.element.getContraseña().equals(x)) {
+        
+            if (current.element.getName().equals(x) || current.element.getId().equals(x)) {
                 return true;
             }
             current = current.next;

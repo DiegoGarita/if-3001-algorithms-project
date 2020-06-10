@@ -13,6 +13,7 @@ public class CrearUsuarioNuevo {
 
     TextField textFieldNombreUsu;
     TextField textFieldContra;
+    TextField textFieldId;
     TextField textFieldTel;
     TextField textFieldDirec;
     TextField textFieldCorreo;
@@ -53,7 +54,19 @@ public class CrearUsuarioNuevo {
                         "Cliente"
                 );
         comboBoxRol.setItems(Roles);
-        gridPanecreaUsuario.add(comboBoxRol, 0, 1);
+        gridPanecreaUsuario.add(comboBoxRol, 0, 0);
+
+        textFieldId = new TextField();
+        textFieldId.setPromptText("Número de identificación");
+        textFieldId.setStyle(
+                "-fx-background-color: lightblue; "
+                + "-fx-background-insets: 4; "
+                +// tamano
+                "-fx-background-radius: 4; "
+                +// tamano
+                "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
+        gridPanecreaUsuario.add(textFieldId, 0, 1); /// columna fila
+        textFieldId.setFocusTraversable(false);
 
         textFieldNombreUsu = new TextField();
         textFieldNombreUsu.setPromptText("Nombre de usuario");
@@ -79,6 +92,18 @@ public class CrearUsuarioNuevo {
         gridPanecreaUsuario.add(textFieldContra, 0, 3); /// columna fila
         textFieldContra.setFocusTraversable(false);
 
+        textFieldCorreo = new TextField();
+        textFieldCorreo.setPromptText("Correo");
+        textFieldCorreo.setStyle(
+                "-fx-background-color: lightblue; "
+                + "-fx-background-insets: 4; "
+                +// tamano
+                "-fx-background-radius: 4; "
+                +// tamano
+                "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
+        gridPanecreaUsuario.add(textFieldCorreo, 0, 4); /// columna fila
+        textFieldCorreo.setFocusTraversable(false);
+
         textFieldTel = new TextField();
         textFieldTel.setPromptText("Telefono");
         textFieldTel.setStyle(
@@ -88,7 +113,7 @@ public class CrearUsuarioNuevo {
                 "-fx-background-radius: 4; "
                 +// tamano
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-        gridPanecreaUsuario.add(textFieldTel, 0, 4); /// columna fila
+        gridPanecreaUsuario.add(textFieldTel, 0, 5); /// columna fila
         textFieldTel.setFocusTraversable(false);
 
         textFieldDirec = new TextField();
@@ -100,20 +125,8 @@ public class CrearUsuarioNuevo {
                 "-fx-background-radius: 4; "
                 +// tamano
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-        gridPanecreaUsuario.add(textFieldDirec, 0, 5); /// columna fila
+        gridPanecreaUsuario.add(textFieldDirec, 0, 6); /// columna fila
         textFieldDirec.setFocusTraversable(false);
-
-        textFieldCorreo = new TextField();
-        textFieldCorreo.setPromptText("Correo");
-        textFieldCorreo.setStyle(
-                "-fx-background-color: lightblue; "
-                + "-fx-background-insets: 4; "
-                +// tamano
-                "-fx-background-radius: 4; "
-                +// tamano
-                "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-        gridPanecreaUsuario.add(textFieldCorreo, 0, 6); /// columna fila
-        textFieldCorreo.setFocusTraversable(false);
 
         buttonCreaUsuario = new Button("Crear usuario");
         buttonCreaUsuario.setTextFill(Color.WHITE);//Color de la letra del boton
@@ -122,8 +135,18 @@ public class CrearUsuarioNuevo {
         gridPanecreaUsuario.add(buttonCreaUsuario, 0, 8);
         buttonCreaUsuario.setOnAction((event) -> {
 
+            logic.readInFile();
+   
+                if (logic.search(textFieldId.getText()) == false) {
+                    Usuario usuario = new Usuario(comboBoxRol.getValue().toString(), textFieldId.getText(), textFieldNombreUsu.getText(), e.encriptar("SusanaDistancia", textFieldContra.getText()), textFieldCorreo.getText(), textFieldTel.getText(), textFieldDirec.getText());
+                    logic.writeInFile(usuario);
+                } else {
+                    System.out.println("Ya existe alguien con este ID");
+
+
             Usuario usuario = new Usuario(textFieldNombreUsu.getText(), e.encriptar("SusanaDistancia", textFieldContra.getText()) , "", "", "", comboBoxRol.getValue().toString());
             logic.writeInFile(usuario);
+
 
         });//end setOnAction
 

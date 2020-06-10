@@ -23,14 +23,18 @@ public class Logic {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(newFile, true);
             PrintStream printStream = new PrintStream(fileOutputStream);
-
-            if (usuario.getTipo().equals("Cliente") || usuario.getTipo().equals("-")) {
-                tipoDeToken = "-";
-            } else if (usuario.getTipo().equals("Administrador") || usuario.getTipo().equals("+")) {
-                tipoDeToken = "+";
+            
+            if(newFile.length()==0){
+                printStream.println("ë|Super|1234");
             }
 
-            printStream.println(tipoDeToken + usuario.getName() + "|" + usuario.getContraseña());
+            if (usuario.getTipo().equals("Cliente")) {
+                tipoDeToken = "ä";
+            } else if (usuario.getTipo().equals("Administrador")) {
+                tipoDeToken = "ö";
+            }
+
+            printStream.println(tipoDeToken + "|" + usuario.getId() + "|" + usuario.getName() + "|" + usuario.getContraseña() + "|" + usuario.getCorreo() + "|" + usuario.getTelefono() + "|" + usuario.getDireccion());
 
         } catch (FileNotFoundException fileNotFoundException) {
             JOptionPane.showMessageDialog(null, fileNotFoundException + "\nProblemas con el archivo");
@@ -48,37 +52,19 @@ public class Logic {
 
             while (currentRegistry != null) {
 
-                StringTokenizer stringTokenizer = new StringTokenizer(currentRegistry, "|");
-                int counterTokens = 0;
-                String name = "";
-                String password = "";
-                while (stringTokenizer.hasMoreTokens()) {
-                    if (counterTokens == 0) {
-                        name = stringTokenizer.nextToken();
-                        name = name.substring(1, name.length());
-                        counterTokens++;
-                    } else if (counterTokens == 1) {
-                        password = stringTokenizer.nextToken();
-                        counterTokens++;
-                    }
-
-                }
-
-                Usuario u = new Usuario(name, password, "", "", "", "");
-                c.add(u);
+                c.add(stringTokenizer(currentRegistry));
 
                 currentRegistry = bufferedReader.readLine();
             }
 
         } catch (FileNotFoundException fileNotFoundException) {
-            JOptionPane.showMessageDialog(null, fileNotFoundException + ": Problemas con el archivo");
         } catch (IOException IOException) {
             JOptionPane.showMessageDialog(null, IOException + ": Problemas con el archivo");
         }
     }// end readProperties()
 
-    public void removeLineFromFile(String lineToRemove) {
-        CRUD cr = new CRUD();
+    public void removeLineFromFile(String idSearched) {
+     CRUD cr = new CRUD();
         File previousFile = new File("usuarios.txt");
         try {
             FileInputStream fileInputStream = new FileInputStream(previousFile);
@@ -87,28 +73,9 @@ public class Logic {
             String currentRegistry = bufferedReader.readLine();
 
             while (currentRegistry != null) {
-                if (!currentRegistry.contains(lineToRemove)) {
-                    StringTokenizer stringTokenizer = new StringTokenizer(currentRegistry, "|"); //string 
-                    int counterTokens = 0;
-                    String name = "";
-                    String password = "";
-                    String tipoToken = "";
-                    while (stringTokenizer.hasMoreTokens()) {
-                        if (counterTokens == 0) {
-                            name = stringTokenizer.nextToken(); //mantiene el string para comparar
-                            tipoToken = name.subSequence(0, 1) + "";
-                            name = name.substring(1, name.length());
-                            counterTokens++;
-                        } else if (counterTokens == 1) {
-                            password = stringTokenizer.nextToken();
-                            counterTokens++;
-                        }
-
-                    }
-
-                    Usuario usuario = new Usuario(name, password, "", "", "", tipoToken);
-                    cr.add(usuario);
-
+                if (!currentRegistry.contains(idSearched)) {
+                    
+                     cr.add(stringTokenizer(currentRegistry));
                 }
                 currentRegistry = bufferedReader.readLine();
             }
@@ -123,14 +90,67 @@ public class Logic {
             FileOutputStream fileOutputStream = new FileOutputStream(fileNew);
             PrintStream printStream = new PrintStream(fileOutputStream);
             for (int i = 0; i < cr.size(); i++) {
-                printStream.println(cr.indexOf(i).getTipo() + cr.indexOf(i).getName() + "|" + cr.indexOf(i).getContraseña());
+                printStream.println(cr.indexOf(i).getTipo() + "|" + cr.indexOf(i).getId() +"|"+ cr.indexOf(i).getName() + "|" + cr.indexOf(i).getContraseña() + "|" + cr.indexOf(i).getCorreo() + "|" + cr.indexOf(i).getTelefono() + "|" + cr.indexOf(i).getDireccion());
             }
         } catch (FileNotFoundException fileNotFoundException) {
             JOptionPane.showMessageDialog(null, fileNotFoundException + "\nProblemas con el archivo");
         }
     }//end removeLineFromFile(
 
-    public String readType(String cont) {
+    public Usuario stringTokenizer(String lines) {
+
+        StringTokenizer stringTokenizer = new StringTokenizer(lines, "|");
+        int counterTokens = 0;
+        String type = "";
+        String id = "";
+        String name = "";
+        String password = "";
+        String email = "";
+        String phone = "";
+        String direction = "";
+
+        while (stringTokenizer.hasMoreTokens()) {
+            switch (counterTokens) {
+                case 0:
+                    type = stringTokenizer.nextToken();
+                    counterTokens++;
+                    break;
+                case 1:
+                    id = stringTokenizer.nextToken();
+                    counterTokens++;
+                    break;
+                case 2:
+                    name = stringTokenizer.nextToken();
+                    counterTokens++;
+                    break;
+                case 3:
+                    password = stringTokenizer.nextToken();
+                    counterTokens++;
+                    break;
+                case 4:
+                    email = stringTokenizer.nextToken();
+                    counterTokens++;
+                    break;
+                case 5:
+                    phone = stringTokenizer.nextToken();
+                    counterTokens++;
+                    break;
+                case 6:
+                    direction = stringTokenizer.nextToken();
+                    counterTokens++;
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
+        Usuario u = new Usuario(type, id, name, password, email, phone, direction);
+        return u;
+
+    }
+
+    public String readLine(String idIdentifier) {
 
         File newFile = new File("usuarios.txt");
         try {
@@ -141,8 +161,8 @@ public class Logic {
 
             while (currentRegistry != null) {
 
-                if (currentRegistry.contains(cont)) {
-                    return currentRegistry.substring(0, 1);
+                if (currentRegistry.contains(idIdentifier)) {
+                    return currentRegistry;
 
                 }
 
@@ -159,7 +179,7 @@ public class Logic {
 
     public void modified(Usuario usuario, String s) {
         c.remove(usuario);
-        c.add(c.newPassword(usuario, s));
+        c.add(newPassword(usuario, s));
     }
 
     public void modidelete(Usuario usuario) {
@@ -171,19 +191,23 @@ public class Logic {
         return c.search(user);
     }
 
-    
     public void disp() { //mostrar nodos
         c.display();
-        
-     }
-    
-    
-    
+
+    }
+
+    public Usuario newPassword(Usuario element, String pass) {
+        Usuario u = element;
+        Usuario user = new Usuario(u.getTipo(), u.getId(), u.getName(), pass, u.getCorreo(), u.getTelefono(), u.getDireccion());
+
+        return user;
+
+    }
+
 //    
 //        public void delete(String line) {
 //        removeLineFromFile(line);
 //    }
-
 //        public int size() {
 //        return c.size();
 //    }

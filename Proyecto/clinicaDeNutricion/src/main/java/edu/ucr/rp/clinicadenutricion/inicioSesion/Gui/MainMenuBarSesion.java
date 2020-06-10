@@ -137,13 +137,13 @@ public class MainMenuBarSesion {
 //            vBoxWindows.getChildren().clear();
 //             menuBarMenu.setVisible(false);
 //             
-//             if(l.readType(textFieldNombre.getText()+"|"+fieldContraseña.getText()).equals("-")){
+//             if(l.readLine(textFieldNombre.getText()+"|"+fieldContraseña.getText()).equals("-")){
 //              vBoxWindows.getChildren().add(zz.menuCliente());
 //             }
-//             else if(l.readType(textFieldNombre.getText()+"|"+fieldContraseña.getText()).equals("+")){
+//             else if(l.readLine(textFieldNombre.getText()+"|"+fieldContraseña.getText()).equals("+")){
 //                 vBoxWindows.getChildren().add(nn.menuAdmi());
 //             }
-//             else if(l.readType(textFieldNombre.getText()+"|"+fieldContraseña.getText()).equals("*")){
+//             else if(l.readLine(textFieldNombre.getText()+"|"+fieldContraseña.getText()).equals("*")){
 //                     vBoxWindows.getChildren().add(mm.menuSuperAdmi());
 //             }
 //                

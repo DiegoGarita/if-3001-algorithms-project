@@ -12,10 +12,15 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
+import javax.swing.JOptionPane;
 
 public class Entrar {
+    
+    public static String ID;
 
+    TextField textFieldID;
     public TextField textFieldNombreUsu;
+
     PasswordField textFieldContra;
     Button buttonCreaUsuario;
     ComboBox comboBoxRol = new ComboBox();
@@ -46,17 +51,17 @@ public class Entrar {
 //                + "-fx-background-repeat : no-repeat;"
 //                + "-fx-background-size: 920 920, 20 20, 20 20, 20 20, auto;"));
 
-        textFieldNombreUsu = new TextField();
-        textFieldNombreUsu.setPromptText("Nombre de usuario");
-        textFieldNombreUsu.setStyle(
+        textFieldID = new TextField();
+        textFieldID.setPromptText("Ingrese ID del usuario");
+        textFieldID.setStyle(
                 "-fx-background-color: lightblue; "
                 + "-fx-background-insets: 4; "
                 +// tamano
                 "-fx-background-radius: 4; "
                 +// tamano
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-        gridPaneEntrar.add(textFieldNombreUsu, 0, 2);
-        textFieldNombreUsu.setFocusTraversable(false);
+        gridPaneEntrar.add(textFieldID, 0, 2);
+        textFieldID.setFocusTraversable(false);
 
         textFieldContra = new PasswordField();
         textFieldContra.setPromptText("Contraseña");
@@ -78,6 +83,13 @@ public class Entrar {
         buttonCreaUsuario.setOnAction((event) -> {
             Node node = gridPaneEntrar.getChildren().get(2);
             logic.readInFile();
+
+
+            if (textFieldID.getText().equals("Super") && textFieldContra.getText().equals("1234")) {
+                //gridPaneEntrar.getChildren().add(0, node); /////////////////////////////////////////////////////////
+                gridPaneEntrar.getChildren().add(mm.menuSuperAdmi());
+            } else if (logic.search(textFieldID.getText())) {
+
             String desencrip = e.encriptar("SusanaDistancia", textFieldContra.getText());
             ///System.out.println("-->"+e.desencriptar("Susa", textFieldContra.getText()));
             
@@ -86,19 +98,29 @@ public class Entrar {
                 gridPaneEntrar.getChildren().clear();
                 //menuBarMenu.setVisible(false);
 
-                if (logic.readType(textFieldNombreUsu.getText() + "|" + desencrip).equals("-")) {
-                    gridPaneEntrar.getChildren().add(0, node);
-                    gridPaneEntrar.getChildren().add(zz.menuCliente());
-                } else if (logic.readType(textFieldNombreUsu.getText() + "|" + desencrip).equals("+")) {
-                    gridPaneEntrar.getChildren().add(0, node);
-                    gridPaneEntrar.getChildren().add(nn.menuAdmi());
-                } else if (logic.readType(textFieldNombreUsu.getText() + "|" + desencrip).equals("*")) {
-                    gridPaneEntrar.getChildren().add(0, node);
-                    gridPaneEntrar.getChildren().add(mm.menuSuperAdmi());
+                if (logic.readLine(textFieldID.getText()).substring(0, 1).equals("ä")) {
+                    if (logic.stringTokenizer(logic.readLine(textFieldID.getText())).getId().equals(textFieldID.getText())) {
+                        if (logic.stringTokenizer(logic.readLine(textFieldID.getText())).getContraseña().equals(e.encriptar("SusanaDistancia", textFieldContra.getText()))) {
+                            ID = textFieldID.getText();
+                            gridPaneEntrar.getChildren().add(0, node);
+                            gridPaneEntrar.getChildren().add(zz.menuCliente());
+                        }
+                    }
+                } else if (logic.readLine(textFieldID.getText()).substring(0, 1).equals("ö")) {
+                    if (logic.stringTokenizer(logic.readLine(textFieldID.getText())).getId().equals(textFieldID.getText())) {
+                        if (logic.stringTokenizer(logic.readLine(textFieldID.getText())).getContraseña().equals(e.encriptar("SusanaDistancia", textFieldContra.getText()))) {
+                            ID = textFieldID.getText();
+                            gridPaneEntrar.getChildren().add(0, node);
+                            gridPaneEntrar.getChildren().add(nn.menuAdmi());
+
+                        }
+                    }
+
                 }
 
             } else {
-                System.out.println("Usuario no existe");
+                JOptionPane.showMessageDialog(null, "El usuario no existe");
+
             }
 
         });//end setOnAction
