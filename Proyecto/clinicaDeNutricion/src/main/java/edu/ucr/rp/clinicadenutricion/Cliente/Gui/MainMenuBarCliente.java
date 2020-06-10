@@ -1,7 +1,8 @@
 package edu.ucr.rp.clinicadenutricion.Cliente.Gui;
 
+import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.Entrar;
 import javafx.application.Platform;
-import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -57,7 +58,7 @@ public class MainMenuBarCliente {
 
         menuItemCitas.setOnAction((event) -> {
             gridPaneUsuario.getChildren().clear();
-            gridPaneUsuario.getChildren().addAll(reporteCitas.busquedaPais());
+            gridPaneUsuario.getChildren().addAll(reporteCitas.reporteCita());
         });
 
         menuItemProgreso.setOnAction((event) -> {

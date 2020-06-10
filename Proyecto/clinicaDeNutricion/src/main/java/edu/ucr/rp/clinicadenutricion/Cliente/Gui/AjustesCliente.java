@@ -1,6 +1,12 @@
 package edu.ucr.rp.clinicadenutricion.Cliente.Gui;
 
+
 import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.Entrar;
+
+import edu.ucr.rp.clinicadenutricion.AVL.AVLArchivo;
+import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
+import edu.ucr.rp.clinicadenutricion.Utilitario.HoraFecha;
+
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.EncripMD5;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Logic;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Usuario;
@@ -38,7 +44,12 @@ public class AjustesCliente {
     String accionModi = "Modifico su usuario";
     Logic l = new Logic();
     EncripMD5 e = new EncripMD5();
+
     Entrar en;
+
+    AVLArchivo histo = new AVLArchivo();
+    HoraFecha horaFecha = new HoraFecha();
+
 
     /**
      *
@@ -206,6 +217,13 @@ public class AjustesCliente {
         buttonElimUsu.setDisable(true);
         buttonElimUsu.setOnAction((event) -> {
 
+            Usuario usuario = new Usuario(textFieldNombreUsu.getText(), textFieldContraUsu.getText(), "", "", "", l.readType(textFieldNombreUsu.getText() + "|" + textFieldContraUsu.getText()));
+            l.readInFile();
+            l.modidelete(usuario);
+            l.removeLineFromFile(textFieldNombreUsu.getText() + "|" + textFieldContraUsu.getText());
+            Acciones acc = new Acciones("TODO traerDetras", accionBorra, horaFecha.histoFechaHora());
+            histo.writeFileCitas(acc);
+          
             if (uwu.getContraseña().equals(e.encriptar("SusanaDistancia", textFieldContraUsu.getText()))) {
                 Usuario usuario = l.stringTokenizer(l.readLine(textFieldID.getText()));
                 l.readInFile();
@@ -223,8 +241,19 @@ public class AjustesCliente {
         buttonAceptar.setVisible(false);
         buttonAceptar.setOnAction((event) -> {
 
+
             Usuario usuario = l.stringTokenizer(l.readLine(textFieldID.getText()));
             Usuario usuario1 = new Usuario(textFieldType.getText(), textFieldID.getText(), textFieldNombreUsu.getText(), e.encriptar("SusanaDistancia", textFieldContraUsu.getText()), textFieldCorreo.getText(), textFieldPhone.getText(), textFieldDirection.getText());
+
+            Usuario usuario = new Usuario(textFieldNombreUsu.getText(), textFieldContraUsu.getText(), "", "", "", l.readType(textFieldNombreUsu.getText() + "|" + textFieldContraUsu.getText()));
+            Usuario usuario1 = new Usuario(textFieldNombreUsu.getText(), textFieldNuevaContraUsu.getText(), "", "", "", l.readType(textFieldNombreUsu.getText() + "|" + textFieldContraUsu.getText()));
+            l.writeInFile(usuario1);
+            l.readInFile();
+            l.modified(usuario, textFieldNuevaContraUsu.getText());
+            l.removeLineFromFile(textFieldNombreUsu.getText() + "|" + textFieldContraUsu.getText());
+            Acciones acc = new Acciones("TODO traerDetras", accionModi, horaFecha.histoFechaHora());
+            histo.writeFileCitas(acc);
+
 
             l.readInFile();
             l.modified(usuario, e.encriptar("SusanaDistancia", textFieldCorreo.getText()));

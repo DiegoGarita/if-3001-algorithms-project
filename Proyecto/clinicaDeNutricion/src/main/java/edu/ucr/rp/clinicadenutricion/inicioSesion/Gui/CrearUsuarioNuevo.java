@@ -134,6 +134,7 @@ public class CrearUsuarioNuevo {
         buttonCreaUsuario.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
         gridPanecreaUsuario.add(buttonCreaUsuario, 0, 8);
         buttonCreaUsuario.setOnAction((event) -> {
+
             logic.readInFile();
    
                 if (logic.search(textFieldId.getText()) == false) {
@@ -141,7 +142,11 @@ public class CrearUsuarioNuevo {
                     logic.writeInFile(usuario);
                 } else {
                     System.out.println("Ya existe alguien con este ID");
-                }
+
+
+            Usuario usuario = new Usuario(textFieldNombreUsu.getText(), e.encriptar("SusanaDistancia", textFieldContra.getText()) , "", "", "", comboBoxRol.getValue().toString());
+            logic.writeInFile(usuario);
+
 
         });//end setOnAction
 

@@ -28,8 +28,6 @@ public class PilaImplementacion implements Pila {
             aux = new Node(infocita); //agrega si no hay
             start = aux; //start guarda el aux
             salida = infocita + "";
-            //  System.out.println(infocita);
-           // return salida;
         }// end if
         else {
             while (aux.next != null) {//si el siguiente es siguiente de nulo 
@@ -37,8 +35,6 @@ public class PilaImplementacion implements Pila {
             }// end while
             aux.next = new Node(infocita); //nuevo si ya hay uno
             salida = infocita + "";
-            // System.out.println(infocita);
-           // return salida;
         }// end else
         //  return salida;
     }

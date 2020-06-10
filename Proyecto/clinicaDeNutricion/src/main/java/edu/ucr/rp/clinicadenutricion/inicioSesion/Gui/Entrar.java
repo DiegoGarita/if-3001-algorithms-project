@@ -19,6 +19,8 @@ public class Entrar {
     public static String ID;
 
     TextField textFieldID;
+    public TextField textFieldNombreUsu;
+
     PasswordField textFieldContra;
     Button buttonCreaUsuario;
     ComboBox comboBoxRol = new ComboBox();
@@ -82,10 +84,16 @@ public class Entrar {
             Node node = gridPaneEntrar.getChildren().get(2);
             logic.readInFile();
 
+
             if (textFieldID.getText().equals("Super") && textFieldContra.getText().equals("1234")) {
                 //gridPaneEntrar.getChildren().add(0, node); /////////////////////////////////////////////////////////
                 gridPaneEntrar.getChildren().add(mm.menuSuperAdmi());
             } else if (logic.search(textFieldID.getText())) {
+
+            String desencrip = e.encriptar("SusanaDistancia", textFieldContra.getText());
+            ///System.out.println("-->"+e.desencriptar("Susa", textFieldContra.getText()));
+            
+            if (logic.search(textFieldNombreUsu.getText()) && logic.search(desencrip)) {
 
                 gridPaneEntrar.getChildren().clear();
                 //menuBarMenu.setVisible(false);

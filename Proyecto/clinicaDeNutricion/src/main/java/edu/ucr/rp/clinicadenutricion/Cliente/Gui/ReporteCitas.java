@@ -1,7 +1,14 @@
 package edu.ucr.rp.clinicadenutricion.Cliente.Gui;
 
 // clase para poder visualizar las citas del cliente
+import edu.ucr.rp.clinicadenutricion.AVL.AVLArchivo;
+import edu.ucr.rp.clinicadenutricion.Cliente.Logic.ClienteLogic;
+import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Objetos.Cita;
+import edu.ucr.rp.clinicadenutricion.Utilitario.HoraFecha;
+import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -12,12 +19,15 @@ import javafx.scene.text.*;
 public class ReporteCitas {
 
     String repoCita = "Vio su reporte de citas";
+    AVLArchivo histo = new AVLArchivo();
+    HoraFecha horaFecha = new HoraFecha();
+    ClienteLogic clienteLogic = new ClienteLogic();
+
     //ClienteLogic ma = new ClienteLogic("Países.txt");
-    public BorderPane busquedaPais() {
+    public GridPane reporteCita() {
 
-        BorderPane bP_acomodarInterfaz = new BorderPane();
-        bP_acomodarInterfaz.setPrefSize(600, 550);
-
+        //   BorderPane bP_acomodarInterfaz = new BorderPane();
+        //   bP_acomodarInterfaz.setPrefSize(600, 550);
         GridPane gridPanehisto = new GridPane();
         gridPanehisto.setMinSize(300, 350);
         // determina el espacio entre columnas (vertical y horizontal)
@@ -27,28 +37,37 @@ public class ReporteCitas {
         gridPanehisto.setAlignment(Pos.CENTER);
         gridPanehisto.setStyle("-fx-background-color: dodgerblue");
 
+        //  TextArea t = new TextArea();
+        //  String sal = clienteLogic.readApartaCita();
+        //  System.out.println("sal--->"+ sal);
+        //   t.setText(sal);
+        //   gridPanehisto.add(t, 0, 4);
         TableView<Cita> tV_pais = new TableView<>();
 
         TableColumn tc_continenteColumna = new TableColumn("Cliente");
         tc_continenteColumna.setStyle("-fx-background-color: lightsteelblue;");
-        tc_continenteColumna.setCellValueFactory(new PropertyValueFactory("Nombre"));
+        tc_continenteColumna.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
 
         TableColumn tc_capitalColumna = new TableColumn("Fecha");
         tc_capitalColumna.setStyle("-fx-background-color: lightsteelblue;");
-        tc_capitalColumna.setCellValueFactory(new PropertyValueFactory("fecha"));
+        tc_capitalColumna.setCellValueFactory(new PropertyValueFactory<>("fecha"));
 
         TableColumn tc_poblacionColumna = new TableColumn("Hora");
         tc_poblacionColumna.setStyle("-fx-background-color: lightsteelblue;");
-        tc_poblacionColumna.setCellValueFactory(new PropertyValueFactory("hora"));
+        tc_poblacionColumna.setCellValueFactory(new PropertyValueFactory<>("hora"));
 
-        TableColumn tc_monedaColumna = new TableColumn("Doctora");
+        TableColumn tc_monedaColumna = new TableColumn("Doc");
         tc_monedaColumna.setStyle("-fx-background-color: lightsteelblue;");
-        tc_monedaColumna.setCellValueFactory(new PropertyValueFactory("doctora"));
+        tc_monedaColumna.setCellValueFactory(new PropertyValueFactory<>("doctora"));
 
         tV_pais.getColumns().addAll(tc_continenteColumna,
                 tc_capitalColumna, tc_poblacionColumna, tc_monedaColumna);
         tV_pais.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         //tV_pais.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+        //    tV_pais.getItems().addAll(clienteLogic.readApartaCita());
+
+        Acciones acc = new Acciones("TODO traerDetras", repoCita, horaFecha.histoFechaHora());
+        histo.writeFileCitas(acc);
 
         //***
         MainMenuBarCliente barCliente = new MainMenuBarCliente();
@@ -59,14 +78,27 @@ public class ReporteCitas {
         bTN_Cerrar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
         gridPanehisto.add(bTN_Cerrar, 0, 6);
         bTN_Cerrar.setOnAction((event) -> {
-            bP_acomodarInterfaz.getChildren().clear();
-            bP_acomodarInterfaz.setBackground(Background.EMPTY);
-            bP_acomodarInterfaz.getChildren().add(barCliente.menuCliente());
+            gridPanehisto.getChildren().clear();
+            gridPanehisto.setBackground(Background.EMPTY);
+            gridPanehisto.getChildren().add(barCliente.menuCliente());
         });
 
-        bP_acomodarInterfaz.setTop(gridPanehisto);
-        bP_acomodarInterfaz.setBottom(tV_pais);
-        return bP_acomodarInterfaz;
-    }
+        clienteLogic.readApartaCita();
+        //bP_acomodarInterfaz.setTop(gridPanehisto);
+        gridPanehisto.add(tV_pais, 0, 4);
+        return gridPanehisto;
 
-}//end class reporte citas
+    }//end class reporte citas
+
+//    public ObservableList<Cita> getListaPaises() {
+//        ArrayList array = new ArrayList();
+//        Cita arrayPaises[] = clienteLogic.readApartaCita();
+//        for (int j = 0; j < arrayPaises.length; j++) {
+//            array.add(arrayPaises[j]);
+//        }
+//
+//        ObservableList<Cita> oL_ListadoContactos = FXCollections.observableArrayList(array);
+//
+//        return oL_ListadoContactos;
+//    }
+}

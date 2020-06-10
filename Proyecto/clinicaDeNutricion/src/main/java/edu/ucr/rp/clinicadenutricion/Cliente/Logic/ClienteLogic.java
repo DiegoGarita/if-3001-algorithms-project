@@ -1,6 +1,7 @@
 package edu.ucr.rp.clinicadenutricion.Cliente.Logic;
 
 import edu.ucr.rp.clinicadenutricion.Objetos.Cita;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Usuario;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,11 +13,11 @@ import java.io.PrintStream;
 import java.util.StringTokenizer;
 import javax.swing.JOptionPane;
 
-
 public class ClienteLogic {
-   PilaImplementacion pilaImple = new PilaImplementacion();
 
-    public void writeFileCitas(Cita cita) {
+    PilaImplementacion pilaImple = new PilaImplementacion();
+
+    public void writeFileApartaCita(Cita cita) {
 
         File newFile = new File("ApartaCita.txt");
 
@@ -25,54 +26,69 @@ public class ClienteLogic {
             PrintStream printStream = new PrintStream(fileOutputStream);
 
             // printStream.println(c.add(nombre) + "|" + contraseña + tipoDeToken);
-          //  printStream.println(c.insertarCita(fecha + hora + porcenAgua + porcenMasaMuscular + grasa + grasaVisceral
-          //         + hueso + edadMetabolica + peso + altura + horasDeSueño + edad + actividadFisica));
-
+            //  printStream.println(c.insertarCita(fecha + hora + porcenAgua + porcenMasaMuscular + grasa + grasaVisceral
+            //         + hueso + edadMetabolica + peso + altura + horasDeSueño + edad + actividadFisica));
 ////          + hueso +  edadMetabolica+ peso + altura + horasDeSueño+ edad + actividadFisica));
 //Citas c = new Citas(fecha, hora, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, actividadFisica);
-          //  printStream.println(c.push(Nombre+ " & " +fecha+ " & " +hora+ " & " +doctora));
-         // printStream.println(c.push(cita.getNombre()+"&"+ cita.getFecha()+"&"+cita.getHora()+"&"+cita.getDoctora()));
-         
-         printStream.println(cita.getNombre()+" & "+ cita.getFecha()+" & "+cita.getHora()+" & "+cita.getDoctora() );
-       
-         
+            //  printStream.println(c.push(Nombre+ " & " +fecha+ " & " +hora+ " & " +doctora));
+            // printStream.println(c.push(cita.getNombre()+"&"+ cita.getFecha()+"&"+cita.getHora()+"&"+cita.getDoctora()));
+            printStream.println(cita.getNombre() + " & " + cita.getFecha() + " & " + cita.getHora() + " & " + cita.getDoctora());
+
         } catch (FileNotFoundException fileNotFoundException) {
             JOptionPane.showMessageDialog(null, fileNotFoundException + "\nProblemas con el archivo");
         }
     }//end writeFileCatalogue()
 
-    
-    public void readProperties() {
+    public void readApartaCita() {
 
         File newFile = new File("ApartaCita.txt");
         String lineKeeper = "";
+        String currentRegistry = null;
         try {
             FileInputStream fileInputStream = new FileInputStream(newFile);
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            String currentRegistry = bufferedReader.readLine();
+            currentRegistry = bufferedReader.readLine();
 
             while (currentRegistry != null) {
 
-                
-                    lineKeeper = currentRegistry + " : Cliente : ";
+                StringTokenizer stringTokenizer = new StringTokenizer(currentRegistry, "&");
+                int counterTokens = 0;
+                String name = "";
+                String fecha = "";
+                String hora = "";
+                String doc = "";
 
-                
+                while (stringTokenizer.hasMoreTokens()) {
+                    if (counterTokens == 0) {
+                        name = stringTokenizer.nextToken();
+                        fecha = stringTokenizer.nextToken();
+                        hora = stringTokenizer.nextToken();
+                        counterTokens++;
+                    } //end if
+                    else if (counterTokens == 1) {
+                        doc = stringTokenizer.nextToken();
+                        counterTokens++;
+                    }//end elseif
+                }//end while interno
 
-                currentRegistry = bufferedReader.readLine();
-            }
-            
-//  pilaImple.push(cita);
-            StringTokenizer stringTokenizer = new StringTokenizer(lineKeeper, "&");
-            lineKeeper += stringTokenizer.nextToken();
+                Cita cita = new Cita(name, fecha, hora, doc);
+                pilaImple.push(cita);
 
+                currentRegistry += bufferedReader.readLine() + "\n";
+                System.out.println(currentRegistry);
+                // return currentRegistry;
+            }//end while
+
+           // StringTokenizer stringTokenizer = new StringTokenizer(lineKeeper, "&");
+           // lineKeeper += stringTokenizer.nextToken();
+           // return lineKeeper;
         } catch (FileNotFoundException fileNotFoundException) {
             System.out.println(fileNotFoundException + ": Problemas con el archivo");
         } catch (IOException IOException) {
             System.out.println(IOException + ": Problemas con el archivo");
         }
-       // return lineKeeper;
+    //   return "*";
     }// end readProperties()
-    
-    
+
 }// end writeFileCitas

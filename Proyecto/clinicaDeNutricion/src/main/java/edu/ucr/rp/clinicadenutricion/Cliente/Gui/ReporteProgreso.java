@@ -1,6 +1,10 @@
 package edu.ucr.rp.clinicadenutricion.Cliente.Gui;
 
+import edu.ucr.rp.clinicadenutricion.AVL.AVLArchivo;
 import edu.ucr.rp.clinicadenutricion.Cliente.Logic.Grafico;
+import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
+import edu.ucr.rp.clinicadenutricion.Utilitario.HoraFecha;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.Entrar;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -9,12 +13,14 @@ import javafx.scene.text.*;
 
 //en esta clase el cliente podra ver su avance
 public class ReporteProgreso {
-    
+
     TextField textFieldDoctora;
     TextField textFieldHora;
     Button botonGrafico;
-    String repoPro ="Vio su progreso";
+    String repoPro = "Vio su progreso";
     Grafico grafico = new Grafico();
+    AVLArchivo histo = new AVLArchivo();
+    HoraFecha horaFecha = new HoraFecha();
 
     /**
      *
@@ -33,20 +39,19 @@ public class ReporteProgreso {
 //                + "-fx-background-size: 920 920, 20 20, 20 20, 20 20, auto;"));
 
         Label labelFechHora = new Label("TODO TRAER INFO DEL MAN EN LABEL'S");
-         gridPanePorgreso.add(labelFechHora, 0, 2);
-
-
-
+        gridPanePorgreso.add(labelFechHora, 0, 2);
 
         botonGrafico = new Button("Ver grafica");
         botonGrafico.setTextFill(Color.WHITE);//Color de la letra del boton
         botonGrafico.setStyle("-fx-background-color: BLACK");//Color del fondo
         botonGrafico.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
         gridPanePorgreso.add(botonGrafico, 0, 7);
-        botonGrafico.setOnAction((event) -> {
-   
-            grafico.showGraficMethods(66.5, 20.5 ,6.5 , 6.5); //--> %agua, %masMusc, grasa , grasaVisc
 
+        botonGrafico.setOnAction((event) -> {
+
+            grafico.showGraficMethods(66.5, 20.5, 6.5, 6.5); //--> %agua, %masMusc, grasa , grasaVisc
+            Acciones acc = new Acciones("TODO traerDetras", repoPro, horaFecha.histoFechaHora());
+            histo.writeFileCitas(acc);
         });//END BUTTON
 
         //***
