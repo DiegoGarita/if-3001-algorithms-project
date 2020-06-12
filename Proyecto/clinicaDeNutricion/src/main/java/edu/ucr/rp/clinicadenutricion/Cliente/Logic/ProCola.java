@@ -16,7 +16,7 @@ public class ProCola {
         t.setText("hjbd");
       //  cita = new ReporteMedico("fsd", "edf", "nula", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, t);
         AdminLogic vv = new AdminLogic();
-        vv.writeFileCitas("fsd", "edf", "nula", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, t);
+//        vv.writeFileCitas("fsd", "edf", "nula", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, t);
     }
     
 }

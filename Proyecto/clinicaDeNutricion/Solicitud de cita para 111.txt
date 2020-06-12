@@ -1,0 +1,2 @@
+111|asd|ingresar fecha de cita*|ingresar hora de cita*|19|32|1,59|56|20%|50%|25%|3%|80%|n/A|5|Paguese a ver a nuestra clinica Susana Distancia
+111|asd|ingresar fecha de cita*|ingresar hora de cita*|15|14|1,79|90|40%|50%|10%|n/A|80%|1h|8h|Descansa bastante bien, calculos del musculo al punto máximo soportado

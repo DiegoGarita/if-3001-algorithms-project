@@ -101,7 +101,7 @@ public class ApartarCita {
         botonGuardar.setOnAction((event) -> {
 
             Cita cita = new Cita(uwu.getName(), dT_DateFligth.getValue().toString(),
-                    comboHora.getValue().toString(), textFieldDoctora.getText());
+                    comboHora.getValue().toString(), textFieldDoctora.getText(), "");
             clienteLogic.writeFileApartaCita(cita);
             Acciones acc = new Acciones(uwu.getName(), agendo, horaFecha.histoFechaHora());
             histo.writeFileCitas(acc);

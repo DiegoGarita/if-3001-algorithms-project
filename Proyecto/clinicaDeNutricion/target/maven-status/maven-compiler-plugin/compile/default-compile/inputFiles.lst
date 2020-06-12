@@ -12,7 +12,6 @@ C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\j
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\inicioSesion\logic\Usuario.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\EjecutorClinica.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\Cliente\Gui\PlanesAlimentacion.java
-C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\Admin\logic\ColaImpl.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\Utilitario\HoraFecha.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\SuperAdmin\Logic\probando.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\SuperAdmin\Gui\LogoApp.java
@@ -41,6 +40,7 @@ C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\j
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\Cliente\Gui\MainMenuBarCliente.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\AVL\AVLImple.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\SuperAdmin\Gui\HorarioTiempoClinica.java
+C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\Admin\logic\NodoCola.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\SuperAdmin\Gui\IndicarPath.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\Cliente\Gui\ModificaCancelaCita.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\Cliente\Logic\ProCola.java

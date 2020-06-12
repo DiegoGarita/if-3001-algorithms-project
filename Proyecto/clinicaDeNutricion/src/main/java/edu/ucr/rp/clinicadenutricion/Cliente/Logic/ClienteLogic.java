@@ -72,7 +72,7 @@ public class ClienteLogic {
                     }//end elseif
                 }//end while interno
 
-                Cita cita = new Cita(name, fecha, hora, doc);
+                Cita cita = new Cita(name, fecha, hora, doc, "");
                 pilaImple.push(cita);
 
                 currentRegistry += bufferedReader.readLine() + "\n";
