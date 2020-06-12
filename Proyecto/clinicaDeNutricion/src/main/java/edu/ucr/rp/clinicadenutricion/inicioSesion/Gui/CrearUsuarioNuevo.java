@@ -1,5 +1,6 @@
 package edu.ucr.rp.clinicadenutricion.inicioSesion.Gui;
 
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.*;
 import javafx.collections.*;
 import javafx.geometry.Pos;
@@ -41,10 +42,14 @@ public class CrearUsuarioNuevo {
         gridPanecreaUsuario.setHgap(15);    // espacio
         // alinear el grip
         gridPanecreaUsuario.setAlignment(Pos.CENTER);
-        ///   gridPanecreaUsuario.setStyle("-fx-background-color: dodgerblue");
-//        gridPaneNewCatalogue.setStyle(("-fx-background-image:url('file:src/image/FCrear.jpg');"
-//                + "-fx-background-repeat : no-repeat;"
-//                + "-fx-background-size: 920 920, 20 20, 20 20, 20 20, auto;"));
+        
+            LogoApp logo = new LogoApp();
+
+
+        
+        gridPanecreaUsuario.setStyle(("-fx-background-image:url('file:src/image/" + logo.NombreLogo + ".jpeg');"
+                + "-fx-background-repeat : no-repeat;"
+                + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
         comboBoxRol.setValue("Elige un rol");
         comboBoxRol.setStyle("-fx-background-color: lightblue");
@@ -136,13 +141,15 @@ public class CrearUsuarioNuevo {
         buttonCreaUsuario.setOnAction((event) -> {
 
             logic.readInFile();
-   
-                if (logic.search(textFieldId.getText()) == false) {
-                    Usuario usuario = new Usuario(comboBoxRol.getValue().toString(), textFieldId.getText(), textFieldNombreUsu.getText(), e.encriptar("SusanaDistancia", textFieldContra.getText()), textFieldCorreo.getText(), textFieldTel.getText(), textFieldDirec.getText());
-                    logic.writeInFile(usuario);
-                } else {
-                    System.out.println("Ya existe alguien con este ID");
-                }
+
+            if (logic.search(textFieldId.getText()) == false) {
+                Usuario usuario = new Usuario(comboBoxRol.getValue().toString(), textFieldId.getText(),
+                        textFieldNombreUsu.getText(), e.encriptar("SusanaDistancia", textFieldContra.getText()),
+                        textFieldCorreo.getText(), textFieldTel.getText(), textFieldDirec.getText());
+                logic.writeInFile(usuario);
+            } else {
+                System.out.println("Ya existe alguien con este ID");
+            }
 
         });//end setOnAction
 

@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 
 public class Logic {
 
-    CRUD c = new CRUD();
+    CRUD crudListas = new CRUD();
 
     public void writeInFile(Usuario usuario) {
 
@@ -52,7 +52,7 @@ public class Logic {
 
             while (currentRegistry != null) {
 
-                c.add(stringTokenizer(currentRegistry));
+                crudListas.add(stringTokenizer(currentRegistry));
 
                 currentRegistry = bufferedReader.readLine();
             }
@@ -178,21 +178,21 @@ public class Logic {
     }// end readProperties()
 
     public void modified(Usuario usuario, String s) {
-        c.remove(usuario);
-        c.add(newPassword(usuario, s));
+        crudListas.remove(usuario);
+        crudListas.add(newPassword(usuario, s));
     }
 
     public void modidelete(Usuario usuario) {
-        c.remove(usuario);
+        crudListas.remove(usuario);
 
     }
 
     public boolean search(String user) {
-        return c.search(user);
+        return crudListas.search(user);
     }
 
     public void disp() { //mostrar nodos
-        c.display();
+        crudListas.display();
 
     }
 

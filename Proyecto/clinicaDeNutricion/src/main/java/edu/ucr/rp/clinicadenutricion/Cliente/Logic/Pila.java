@@ -10,7 +10,7 @@ public interface Pila {
 
     public Object pop();
 //
-//    public int size();
+    public int size();
 //
 //    public boolean isEmpty();
 //

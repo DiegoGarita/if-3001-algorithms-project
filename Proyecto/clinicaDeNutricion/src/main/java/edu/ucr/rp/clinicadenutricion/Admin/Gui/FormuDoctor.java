@@ -1,5 +1,6 @@
 package edu.ucr.rp.clinicadenutricion.Admin.Gui;
 
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -11,7 +12,7 @@ import javafx.scene.text.*;
 
 public class FormuDoctor {
 
-    TextField textFieldPorAgua;  //--> %Agua
+    TextField textFieldPorAgua;        //--> %Agua
     TextField textFieldPormasaMuscular;
     TextField textFieldGrasa;
     TextField textFieldGrasaVisceral;
@@ -29,6 +30,7 @@ public class FormuDoctor {
 
     Button buttonAceptar;
     String fileName;
+    LogoApp logo = new LogoApp();
 
 //////////    public CrearUsuarioNuevo(String fileName) {
 //////////        this.fileName = fileName;
@@ -47,10 +49,10 @@ public class FormuDoctor {
         gridPaneForm.setHgap(15);    // espacio
         // alinear el grip
         gridPaneForm.setAlignment(Pos.CENTER);
-        gridPaneForm.setStyle("-fx-background-color: dodgerblue");
-//        gridPaneNewCatalogue.setStyle(("-fx-background-image:url('file:src/image/FCrear.jpg');"
-//                + "-fx-background-repeat : no-repeat;"
-//                + "-fx-background-size: 920 920, 20 20, 20 20, 20 20, auto;"));
+
+        gridPaneForm.setStyle(("-fx-background-image:url('file:src/image/"+logo.NombreLogo+".jpeg');"
+                + "-fx-background-repeat : no-repeat;"
+                + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
         textFieldPorAgua = new TextField();
         textFieldPorAgua.setPromptText("% de agua");
@@ -61,7 +63,7 @@ public class FormuDoctor {
                 "-fx-background-radius: 4; "
                 +// tamano
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-        //////////////////////GridPane.setConstraints(textFieldPorAgua, 5, 0);
+
         gridPaneForm.add(textFieldPorAgua, 0, 1);
         GridPane.setColumnSpan(textAreaNotas, Integer.BYTES);
         textFieldPorAgua.setFocusTraversable(false);
@@ -215,7 +217,7 @@ public class FormuDoctor {
             gridPaneForm.setBackground(Background.EMPTY);
 
             gridPaneForm.getChildren().add(o.menuAdmi());
-           /// gridPaneForm.getColumnConstraints().add(new ColumnConstraints(0));// --------> GRAN PROBLEMA
+            /// gridPaneForm.getColumnConstraints().add(new ColumnConstraints(0));// --------> GRAN PROBLEMA
 
         });//end btn cerrar
 

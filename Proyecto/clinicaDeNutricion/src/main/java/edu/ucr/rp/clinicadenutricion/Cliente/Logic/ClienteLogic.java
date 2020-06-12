@@ -1,7 +1,6 @@
 package edu.ucr.rp.clinicadenutricion.Cliente.Logic;
 
 import edu.ucr.rp.clinicadenutricion.Objetos.Cita;
-import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Usuario;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,7 +14,7 @@ import javax.swing.JOptionPane;
 
 public class ClienteLogic {
 
-    PilaImplementacion pilaImple = new PilaImplementacion();
+    PilaImplementacion crudPila = new PilaImplementacion();
 
     public void writeFileApartaCita(Cita cita) {
 
@@ -73,22 +72,145 @@ public class ClienteLogic {
                 }//end while interno
 
                 Cita cita = new Cita(name, fecha, hora, doc);
-                pilaImple.push(cita);
+                crudPila.push(cita);
 
-                currentRegistry += bufferedReader.readLine() + "\n";
+                currentRegistry = bufferedReader.readLine();
                 System.out.println(currentRegistry);
                 // return currentRegistry;
             }//end while
 
-           // StringTokenizer stringTokenizer = new StringTokenizer(lineKeeper, "&");
-           // lineKeeper += stringTokenizer.nextToken();
-           // return lineKeeper;
+//            StringTokenizer stringTokenizer = new StringTokenizer(lineKeeper, "&");
+//            lineKeeper = stringTokenizer.nextToken();
+            // return lineKeeper;
         } catch (FileNotFoundException fileNotFoundException) {
             System.out.println(fileNotFoundException + ": Problemas con el archivo");
         } catch (IOException IOException) {
             System.out.println(IOException + ": Problemas con el archivo");
         }
-    //   return "*";
+        //   return "*";
     }// end readProperties()
+
+    public void removeLineFromFile(String idSearched) {
+        // CRUD cr = new CRUD();
+        //  pilaImple
+        File previousFile = new File("ApartaCita.txt");
+        try {
+            FileInputStream fileInputStream = new FileInputStream(previousFile);
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            String currentRegistry = bufferedReader.readLine();
+
+            while (currentRegistry != null) {
+                if (!currentRegistry.contains(idSearched)) {
+
+                    // cr.add(stringTokenizer(currentRegistry));
+                    crudPila.push(stringTokenizer(currentRegistry));
+                }
+                currentRegistry = bufferedReader.readLine();
+            }
+            previousFile.deleteOnExit();
+        } catch (FileNotFoundException fileNotFoundException) {
+            JOptionPane.showMessageDialog(null, fileNotFoundException + "\nProblemas con el archivo");
+        } catch (IOException IOException) {
+            JOptionPane.showMessageDialog(null, IOException + "\nProblemas con el archivo");
+        }
+        File fileNew = new File("ApartaCita.txt");
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(fileNew);
+            PrintStream printStream = new PrintStream(fileOutputStream);
+            //  for (int i = 0; i < cr.size(); i++) {
+            for (int i = 0; i < crudPila.size(); i++) {
+                printStream.println(crudPila.indexOf(i).getNombre() + "&" + crudPila.indexOf(i).getFecha() + "&"
+                        + crudPila.indexOf(i).getHora() + "&" + crudPila.indexOf(i).getDoctora());
+                // printStream.println(pilaImple.indexOf(i).getTipo() + "|" + cr.indexOf(i).getId() + "|" + cr.indexOf(i).getName() + "|" + cr.indexOf(i).getContraseña() + "|" + cr.indexOf(i).getCorreo() + "|" + cr.indexOf(i).getTelefono() + "|" + cr.indexOf(i).getDireccion());
+            }
+        } catch (FileNotFoundException fileNotFoundException) {
+            JOptionPane.showMessageDialog(null, fileNotFoundException + "\nProblemas con el archivo");
+        }
+    }//end removeLineFromFile(
+
+    public Cita stringTokenizer(String lines) {
+
+        StringTokenizer stringTokenizer = new StringTokenizer(lines, "&");
+        int counterTokens = 0;
+        String nombre = "";
+        String fecha = "";
+        String hora = "";
+        String doc = "";
+
+        while (stringTokenizer.hasMoreTokens()) {
+            switch (counterTokens) {
+                case 0:
+                    nombre = stringTokenizer.nextToken();
+                    counterTokens++;
+                    break;
+                case 1:
+                    fecha = stringTokenizer.nextToken();
+                    counterTokens++;
+                    break;
+                case 2:
+                    hora = stringTokenizer.nextToken();
+                    counterTokens++;
+                    break;
+                case 3:
+                    doc = stringTokenizer.nextToken();
+                    counterTokens++;
+                    break;
+                default:
+                    break;
+            }//end switch
+
+        }//end while
+
+        //  Usuario u = new Usuario(type, id, name, password, email, phone, direction);
+        Cita cita = new Cita(nombre, fecha, hora, doc);  //--> nombre fecha hota doc
+        return cita;
+
+    }//end token
+
+    public String readLine(String idIdentifier) {
+
+        File newFile = new File("ApartaCita.txt");
+        try {
+            FileInputStream fileInputStream = new FileInputStream(newFile);
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            String currentRegistry = bufferedReader.readLine();
+
+            while (currentRegistry != null) {
+
+                if (currentRegistry.contains(idIdentifier)) {
+                    return currentRegistry;
+
+                }
+
+                currentRegistry = bufferedReader.readLine();
+            }
+
+        } catch (FileNotFoundException fileNotFoundException) {
+            JOptionPane.showMessageDialog(null, fileNotFoundException + ": Problemas con el archivo");
+        } catch (IOException IOException) {
+            JOptionPane.showMessageDialog(null, IOException + ": Problemas con el archivo");
+        }
+        return null;
+    }// end readProperties()
+
+    public Cita cambioCita(Cita element, String fechaNueva, String horaNueva) {
+        Cita cita = element;
+        Cita nuevaCita = new Cita(cita.getNombre(), fechaNueva, horaNueva, cita.getDoctora());
+
+        return nuevaCita;
+    }
+
+    public void modified(Cita usuario, String fech, String hor) {
+        //crudPila.remove(usuario);
+        crudPila.pop();
+        crudPila.push(cambioCita(usuario, fech, hor));
+    }
+
+    public void delete(Cita citas) {
+        // crudPila.remove(citas);
+        crudPila.pop();
+    }
 
 }// end writeFileCitas

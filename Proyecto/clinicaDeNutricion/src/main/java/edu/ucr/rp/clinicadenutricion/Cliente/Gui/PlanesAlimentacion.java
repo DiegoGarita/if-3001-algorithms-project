@@ -3,6 +3,7 @@ package edu.ucr.rp.clinicadenutricion.Cliente.Gui;
 //en esta clase el usuario pued ver sus planes de alimentacion
 import edu.ucr.rp.clinicadenutricion.AVL.AVLArchivo;
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import edu.ucr.rp.clinicadenutricion.Utilitario.HoraFecha;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.Entrar;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Logic;
@@ -27,6 +28,7 @@ public class PlanesAlimentacion {
 
     Logic l = new Logic();
     Entrar en;
+    LogoApp logo = new LogoApp();
 
     /**
      *
@@ -41,10 +43,9 @@ public class PlanesAlimentacion {
         gridPanePlanAli.setHgap(15);    // espacio
         // alinear el grip
         gridPanePlanAli.setAlignment(Pos.CENTER);
-        gridPanePlanAli.setStyle("-fx-background-color: dodgerblue");
-//        gridPaneNewCatalogue.setStyle(("-fx-background-image:url('file:src/image/FCrear.jpg');"
-//                + "-fx-background-repeat : no-repeat;"
-//                + "-fx-background-size: 920 920, 20 20, 20 20, 20 20, auto;"));
+        gridPanePlanAli.setStyle(("-fx-background-image:url('file:src/image/" + logo.NombreLogo + ".jpeg');"
+                + "-fx-background-repeat : no-repeat;"
+                + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
         Usuario uwu = l.stringTokenizer(l.readLine(en.ID));
         String tipo = "";

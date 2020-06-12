@@ -1,5 +1,6 @@
 package edu.ucr.rp.clinicadenutricion.inicioSesion.Gui;
 
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -19,6 +20,13 @@ public class Creditos {
         gridPaneCredits.setVgap(15);
         gridPaneCredits.setHgap(15);
         gridPaneCredits.setAlignment(Pos.TOP_LEFT);
+        
+            LogoApp logo = new LogoApp();
+
+        
+        gridPaneCredits.setStyle(("-fx-background-image:url('file:src/image/" + logo.NombreLogo + ".jpeg');"
+                + "-fx-background-repeat : no-repeat;"
+                + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
         Text setTitle = new Text(200, 200, "Creditos de la aplicacion: Control de inventarios");
         setTitle.setFont(Font.font(20));

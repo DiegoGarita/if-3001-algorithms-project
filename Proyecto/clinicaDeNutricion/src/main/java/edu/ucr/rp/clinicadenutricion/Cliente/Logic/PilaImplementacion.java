@@ -11,6 +11,17 @@ class Node {
         this.element = x;
         next = null;
     }
+
+    Cita seeElement() { //instancia para ver el elemento (utilizado solo en IndexOf)
+
+        return this.element; //retorna al elemento recibido por public Node
+    }// end seeElement
+
+    Node seeNext() { //instancia para ver al siguiente
+
+        return this.next; //retorna next
+    } //ver siguiente
+
 }
 
 public class PilaImplementacion implements Pila {
@@ -58,7 +69,7 @@ public class PilaImplementacion implements Pila {
 //
 
     @Override
-    public Object pop() { //quita el ultimo 
+    public Object pop() { //quita el ultimo    -->>> Seria este ?????
         Node aux = start;
         Node element = null;
         Object peekNode = null; //para devolver el que borra
@@ -105,24 +116,39 @@ public class PilaImplementacion implements Pila {
 //        return peekNode;
 //    }
 //
-//    @Override
-//    public int size() { //tamaño (hecho en clase)
-//        int s = 1;
-//        Node aux = start;
-//
-//        if (aux == null) {
-//            return 0;
-//        } else {
-//            do {
-//                s++;
-//                aux = aux.next;
-//            } while (aux.next != null);
-//        }
-//        return s;
-//    }
+
+    @Override
+    public int size() { //tamaño (hecho en clase)
+        int s = 1;
+        Node aux = start;
+
+        if (aux == null) {
+            return 0;
+        } else {
+            do {
+                s++;
+                aux = aux.next;
+            } while (aux.next != null);
+        }
+        return s;
+    }
+
+    public Cita indexOf(int index) {
+
+        Node aux = start;
+
+        for (int i = -1; i < index - 1; i++) {
+
+            aux = aux.seeNext();
+        } // end for
+
+        return aux.seeElement();
+
+    } //end indexOf
+
 //
 //    @Override
 //    public boolean isFull() {
 //        return start != null ? true : false; //contrario al isEmpty()
 //    }
-    }
+}

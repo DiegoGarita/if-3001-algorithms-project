@@ -1,6 +1,7 @@
 package edu.ucr.rp.clinicadenutricion.Admin.Gui;
 
 //en etsa clase el admin tendra acceso a los planes de alimentacion
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import javafx.collections.*;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -14,10 +15,8 @@ public class PlanAlimentos {
     Button buttonDesplegarInfo;
     TextArea textAreaMostrar = new TextArea();
     ComboBox comboBoxOp = new ComboBox();
+    LogoApp logo = new LogoApp();
 
-//////////    public CrearUsuarioNuevo(String fileName) {
-//////////        this.fileName = fileName;
-//////////    }
     /**
      *
      * @return Nos da la GUI que nos permite crear un nuevo catálogo
@@ -32,10 +31,9 @@ public class PlanAlimentos {
         gridPanePlanRece.setHgap(15);    // espacio
         // alinear el grip
         gridPanePlanRece.setAlignment(Pos.CENTER);
-        gridPanePlanRece.setStyle("-fx-background-color: dodgerblue");
-//        gridPaneNewCatalogue.setStyle(("-fx-background-image:url('file:src/image/FCrear.jpg');"
-//                + "-fx-background-repeat : no-repeat;"
-//                + "-fx-background-size: 920 920, 20 20, 20 20, 20 20, auto;"));
+        gridPanePlanRece.setStyle(("-fx-background-image:url('file:src/image/" + logo.NombreLogo + ".jpeg');"
+                + "-fx-background-repeat : no-repeat;"
+                + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
         comboBoxOp.setValue("Elige una opcion");
         comboBoxOp.setStyle("-fx-background-color: lightblue");
@@ -91,4 +89,4 @@ public class PlanAlimentos {
         return gridPanePlanRece;
     }//end GridPane createCatalogue()
 
-}
+}//end PlanAlimentos

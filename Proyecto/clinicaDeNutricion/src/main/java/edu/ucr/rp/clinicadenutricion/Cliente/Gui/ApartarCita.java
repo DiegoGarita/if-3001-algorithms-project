@@ -6,6 +6,8 @@ import edu.ucr.rp.clinicadenutricion.Cliente.Logic.ClienteLogic;
 import edu.ucr.rp.clinicadenutricion.Cliente.Logic.PilaImplementacion;
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Objetos.Cita;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.HorarioTiempoClinica;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import edu.ucr.rp.clinicadenutricion.Utilitario.HoraFecha;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.Entrar;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Logic;
@@ -27,9 +29,11 @@ public class ApartarCita {
     ClienteLogic clienteLogic = new ClienteLogic();
     AVLArchivo histo = new AVLArchivo();
     HoraFecha horaFecha = new HoraFecha();
+    HorarioTiempoClinica ajustahorarios = new HorarioTiempoClinica();
 
     Logic l = new Logic();
     Entrar en;
+    LogoApp logo = new LogoApp();
 
     /**
      *
@@ -42,28 +46,21 @@ public class ApartarCita {
         gridPaneCitaNue.setVgap(15);
         gridPaneCitaNue.setHgap(15);
         gridPaneCitaNue.setAlignment(Pos.CENTER);
-        gridPaneCitaNue.setStyle("-fx-background-color: dodgerblue");
-//        gridPaneNewCatalogue.setStyle(("-fx-background-image:url('file:src/image/FCrear.jpg');"
-//                + "-fx-background-repeat : no-repeat;"
-//                + "-fx-background-size: 920 920, 20 20, 20 20, 20 20, auto;"));
+
+        gridPaneCitaNue.setStyle(("-fx-background-image:url('file:src/image/" + logo.NombreLogo + ".jpeg');"
+                + "-fx-background-repeat : no-repeat;"
+                + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
         // Label labelFechHora = new Label("Hacer algo con Hora y fecha");
         //  gridPaneNewCatalogue.add(labelFechHora, 0, 2);
-        Usuario uwu = l.stringTokenizer(l.readLine(en.ID));
-        String tipo = "";
-        if (uwu.getTipo().equals("ä")) {
-            tipo = "Cliente";
-        } else if (uwu.getTipo().equals("ö")) {
-            tipo = "Administración";
-        }
-
         gridPaneCitaNue.add(new Label("Fecha de cita"), 0, 2);
         DatePicker dT_DateFligth = new DatePicker(LocalDate.now());
         dT_DateFligth.setEditable(false);
         gridPaneCitaNue.add(dT_DateFligth, 1, 2);
 
         comboHora.setValue("Hora de cita");
-        for (int i = 9; i < 17; i++) {  //--> horario de 9am a 5pm -->>Estos valores (9y17) van a ser variables
+        //-->  abre      cierra      intervalo
+        for (int i = ajustahorarios.abre; i < ajustahorarios.cierra; i = i + ajustahorarios.intervalo) {  //--> horario de 9am a 5pm -->>Estos valores (9y17) van a ser variables
             // que vengan desde superAdmin -->> Consultas cada hora
             comboHora.getItems().addAll(i + ":00");
         }
@@ -91,6 +88,14 @@ public class ApartarCita {
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
         gridPaneCitaNue.add(textFieldDoctora, 0, 4); /// columna fila
         textFieldDoctora.setFocusTraversable(false);
+
+        Usuario uwu = l.stringTokenizer(l.readLine(en.ID));
+        String tipo = "";
+        if (uwu.getTipo().equals("ä")) {
+            tipo = "Cliente";
+        } else if (uwu.getTipo().equals("ö")) {
+            tipo = "Administración";
+        }
 
         botonGuardar = new Button("Guardar");
         botonGuardar.setTextFill(Color.WHITE);//Color de la letra del boton

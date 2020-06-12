@@ -2,6 +2,7 @@ package edu.ucr.rp.clinicadenutricion.inicioSesion.Gui;
 
 //En esta clase se colocara informacion basica del app
 
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -9,6 +10,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 
 public class AcercaDe {
+    
+        LogoApp logo = new LogoApp();
+
 
     /**
      * 
@@ -20,10 +24,9 @@ public class AcercaDe {
         about.setVgap(15); 
         about.setHgap(15);
         about.setAlignment(Pos.TOP_LEFT);
-        about.setStyle("-fx-background-image:url(aCd.png);" 
-                + "-fx-background-position:center;"
-                + "-fx-background-repeat : no-repeat;" 
-                + "-fx-background-size: auto-size");
+        about.setStyle(("-fx-background-image:url('file:src/image/" + logo.NombreLogo + ".jpeg');"
+                + "-fx-background-repeat : no-repeat;"
+                + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
 
         Text title = new Text(200, 200, "Acerca de la aplicación: Control de inventarios");

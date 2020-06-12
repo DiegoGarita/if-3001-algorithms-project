@@ -1,5 +1,6 @@
 package edu.ucr.rp.clinicadenutricion.inicioSesion.Gui;
 
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -15,6 +16,9 @@ public class Ayuda {
     Button buttonCatalogue;
     Button buttonMaintenance;
     Button buttonReports;
+    
+        LogoApp logo = new LogoApp();
+
 
     /**
      * 
@@ -26,6 +30,9 @@ public class Ayuda {
         gridPaneHelper.setVgap(15);
         gridPaneHelper.setHgap(15);
         gridPaneHelper.setAlignment(Pos.TOP_LEFT);
+        gridPaneHelper.setStyle(("-fx-background-image:url('file:src/image/" + logo.NombreLogo + ".jpeg');"
+                + "-fx-background-repeat : no-repeat;"
+                + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
         Label labelFunctionality = new Label("¿ Y cómo funciona cada una de las opciones del app Control de inventarios ?");
         labelFunctionality.setFont(Font.font("Rockwell", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 20));
