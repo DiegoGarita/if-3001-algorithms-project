@@ -1,13 +1,15 @@
 package edu.ucr.rp.clinicadenutricion.Admin.logic;
 
-public class ColaImpl {
+import edu.ucr.rp.clinicadenutricion.Objetos.ReporteMedico;
+
+public class NodoCola {
 
     class Node {
 
-        Object elem;
+        ReporteMedico elem;
         Node Next;
 
-        public Node(Object o) {
+        public Node(ReporteMedico o) {
             elem = o;
             Next = null;
         }
@@ -17,40 +19,40 @@ public class ColaImpl {
     Node end;
     int size;
 
-    public ColaImpl() {
+    public NodoCola() {
         end = null;
         size = 0;
     }
 
-    public String enqueue(Object o) {
+    public String enqueue(ReporteMedico o) {
         Node new_node = new Node(o);
         String salida;
         if (first == null) {
             first = new_node;
             end = new_node;
             salida = end + "";
+            size++;
             return  salida;
         } else {
             end.Next = new_node;
             end = new_node;
             salida = end + "";
+            size++;
             return salida;
         }
-       // size++;
+        
     }
 
-    ; // inserts an object onto the queue
 
-  public Object dequeue() {
+  public ReporteMedico dequeue() {
         if (first == null) {
             return null;
         }
-        ;
-        Object o = first.elem;
+        ReporteMedico o = first.elem;
         first = first.Next;
         size--;
         return o;
-    } // gets the object from the queue
+    } 
 
     public boolean isEmpty() {
         return (size == 0);
@@ -60,7 +62,7 @@ public class ColaImpl {
         return size;
     }
 
-    public Object first() {
+    public  ReporteMedico first() {
         if (first == null) {
             return null;
         } else {
@@ -68,4 +70,4 @@ public class ColaImpl {
         }
     }
 
-} // class LinkedQueue
+}
