@@ -1,10 +1,7 @@
 package edu.ucr.rp.clinicadenutricion.inicioSesion.Gui;
 
 //import edu.ucr.rp.clinicadenutricion.Cliente.Gui.ClienteGui;
-import edu.ucr.rp.clinicadenutricion.Admin.Gui.MainMenuBarAdmi;
-import edu.ucr.rp.clinicadenutricion.Cliente.Gui.MainMenuBarCliente;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.MainMenuBarSuperAdmi;
-import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.EncripMD5;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Logic;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -24,10 +21,9 @@ public class MainMenuBarSesion {
     Entrar entrar = new Entrar();
 
     VBox vBoxWindows, vBoxMain;
-    
 
     Logic l = new Logic();
-
+    LogoApp logo = new LogoApp();
 
     /**
      *
@@ -37,9 +33,9 @@ public class MainMenuBarSesion {
     public Scene getMainScene() {
 
         vBoxMain = new VBox();
-//        vBoxMain.setStyle(("-fx-background-image:url('file:src/image/inicio1.jpg');"
-//                + "-fx-background-repeat : no-repeat;"
-//                + "-fx-background-size: 920 920, 20 20, 20 20, 20 20, auto;"));
+        vBoxMain.setStyle(("-fx-background-image:url('file:src/image/" + logo.NombreLogo + ".jpeg');"
+                + "-fx-background-repeat : no-repeat;"
+                + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
         Scene scene = new Scene(vBoxMain, 900, 700);
         vBoxWindows = new VBox();
@@ -118,8 +114,6 @@ public class MainMenuBarSesion {
 //
 //        PasswordField fieldContraseña = new PasswordField();
 //        fieldContraseña.setPromptText("Ingrese su contraseña");
-        
-
         menuBarMenu.getMenus().addAll(menuSystem, menuCrearUsuario);
         ((VBox) scene.getRoot()).getChildren().addAll(menuBarMenu, vBoxWindows);
 
@@ -151,17 +145,12 @@ public class MainMenuBarSesion {
 //            else{
 //                System.out.println("Usuario no existe");
 //            }
-            
-              //encriptar.encriptar("clinicaSusanaDistancia", fieldContraseña.getText());
-                        //vBoxWindows.getChildren().removeAll(vBoxWindows);
-            
-            //            String cadenaEncriptada = encriptar.encriptar("clinicaSusanaDistancia", fieldContraseña.getText());
+        //encriptar.encriptar("clinicaSusanaDistancia", fieldContraseña.getText());
+        //vBoxWindows.getChildren().removeAll(vBoxWindows);
+        //            String cadenaEncriptada = encriptar.encriptar("clinicaSusanaDistancia", fieldContraseña.getText());
 //            JOptionPane.showMessageDialog(null, "Cadena encriptada: " + cadenaEncriptada);
 //            String cadenaDesencriptada = encriptar.desencriptar("clinicaSusanaDistancia", cadenaEncriptada);
 //            JOptionPane.showMessageDialog(null, "Cadena desencriptada: " + cadenaDesencriptada);
-            
-            
-            
 //            if (l.readProperties(textFieldNombre.getText()).size() != 0){
 //
 //                System.out.println("existo\n");
@@ -201,9 +190,7 @@ public class MainMenuBarSesion {
 //            } else {
 //                System.out.println("no existo");
 //            }
-
-      //  });
-
+        //  });
         return scene;
 
     }//end Scene getMainScene()

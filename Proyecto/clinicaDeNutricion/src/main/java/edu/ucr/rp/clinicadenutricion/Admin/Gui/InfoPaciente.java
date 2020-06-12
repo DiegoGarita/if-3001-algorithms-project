@@ -1,7 +1,7 @@
 package edu.ucr.rp.clinicadenutricion.Admin.Gui;
 
 // en esta clase los admin tendran acceso a info de  los pacientes
-
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -10,23 +10,16 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 
 public class InfoPaciente {
-    
-    
-     
-    
-   // Busqueda busqueda;
 
-  //  File fileURL = new File("jaja.txt");
-
-  //  mantienePaises ma = new mantienePaises("Países.txt");
-  //  cuentaBusquedas cB = new cuentaBusquedas("registroBusqueda.txt");
-
-
+    // Busqueda busqueda;
+    //  File fileURL = new File("jaja.txt");
+    //  mantienePaises ma = new mantienePaises("Países.txt");
+    //  cuentaBusquedas cB = new cuentaBusquedas("registroBusqueda.txt");
+        LogoApp logo = new LogoApp();
     public GridPane infoCliente() {
 
 //        BorderPane bP_acomodarInterfaz = new BorderPane();
 //        bP_acomodarInterfaz.setPrefSize(600, 550);
-
         GridPane gridPaneInfo = new GridPane();
         gridPaneInfo.setMinSize(600, 700);
         // determina el espacio entre columnas (vertical y horizontal)
@@ -34,7 +27,9 @@ public class InfoPaciente {
         gridPaneInfo.setHgap(15);    // espacio
         // alinear el grip
         gridPaneInfo.setAlignment(Pos.CENTER);
-        gridPaneInfo.setStyle("-fx-background-color: dodgerblue");
+        gridPaneInfo.setStyle(("-fx-background-image:url('file:src/image/"+logo.NombreLogo+".jpeg');"
+                + "-fx-background-repeat : no-repeat;"
+                + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
         TextField tF_buscar = new TextField();
         tF_buscar.setPromptText("Nombre de cliente");
@@ -65,7 +60,6 @@ public class InfoPaciente {
         tV_pais.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         //tV_pais.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
 
-
         Button bTN_buscar = new Button("Buscar");
         bTN_buscar.setTextFill(Color.WHITE);//Color de la letra del boton
         bTN_buscar.setStyle("-fx-background-color: BLACK");//Color del fondo
@@ -73,13 +67,11 @@ public class InfoPaciente {
         gridPaneInfo.add(bTN_buscar, 0, 5);
         bTN_buscar.setDisable(false);
 
-
         Button bTN_Cerrar = new Button("Cerrar");
         bTN_Cerrar.setTextFill(Color.WHITE);//Color de la letra del boton
         bTN_Cerrar.setStyle("-fx-background-color: BLACK");//Color del fondo
         bTN_Cerrar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
         gridPaneInfo.add(bTN_Cerrar, 0, 6);
-
 
         bTN_buscar.setOnAction((event) -> {
 
@@ -162,26 +154,21 @@ public class InfoPaciente {
 //            }//end else
 //
         });// end boton
-        
-                //***
+
+        //***
         MainMenuBarAdmi o = new MainMenuBarAdmi();
         //***
-       
+
         bTN_Cerrar.setOnAction(
                 (event) -> {
                     gridPaneInfo.getChildren().clear();
                     gridPaneInfo.setBackground(Background.EMPTY);  //limpia color para que quede el color
                     gridPaneInfo.getChildren().add(o.menuAdmi());
 
-                  
-
                 });
 
-   
-       /// bP_acomodarInterfaz.setTop(gridPaneInfo);
-
-    ///    bP_acomodarInterfaz.setBottom(tV_pais);
-
+        /// bP_acomodarInterfaz.setTop(gridPaneInfo);
+        ///    bP_acomodarInterfaz.setBottom(tV_pais);
         return gridPaneInfo;
     }
 
@@ -202,5 +189,4 @@ public class InfoPaciente {
 //
 //        return oL_ListadoContactos;
 //    }
-    
 }

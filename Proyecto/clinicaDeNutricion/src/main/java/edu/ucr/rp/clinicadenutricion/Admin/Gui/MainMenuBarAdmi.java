@@ -1,5 +1,6 @@
 package edu.ucr.rp.clinicadenutricion.Admin.Gui;
 
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import javafx.application.Platform;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
@@ -12,6 +13,7 @@ public class MainMenuBarAdmi {
     PlanAlimentos planAlimentos = new PlanAlimentos();
     ReservaCita reservarCita = new ReservaCita();
     FormuDoctor formulario = new FormuDoctor();
+        LogoApp logo = new LogoApp();
 
     /**
      *
@@ -23,12 +25,10 @@ public class MainMenuBarAdmi {
         /// File file = new File(fileName);
         GridPane gridPaneAdmi = new GridPane();
         gridPaneAdmi.setMinSize(900, 700);
-        // determina el espacio entre columnas (vertical y horizontal)
-        // gridPaneAdmi.setVgap(15);   //espacio
-        // gridPaneAdmi.setHgap(15);    // espacio
-        // alinear el grip
-        ///gridPaneAdmi.setAlignment(Pos.CENTER);
-        gridPaneAdmi.setStyle("-fx-background-color: dodgerblue");
+
+        gridPaneAdmi.setStyle(("-fx-background-image:url('file:src/image/"+logo.NombreLogo+".jpeg');"
+                + "-fx-background-repeat : no-repeat;"
+                + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
         MenuBar menuBarMenu = new MenuBar();
         //mB_Menu.setStyle("-fx-background-color: #0a5ba0;");

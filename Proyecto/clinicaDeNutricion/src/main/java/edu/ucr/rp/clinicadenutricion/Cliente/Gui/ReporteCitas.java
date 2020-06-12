@@ -5,13 +5,11 @@ import edu.ucr.rp.clinicadenutricion.AVL.AVLArchivo;
 import edu.ucr.rp.clinicadenutricion.Cliente.Logic.ClienteLogic;
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Objetos.Cita;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import edu.ucr.rp.clinicadenutricion.Utilitario.HoraFecha;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.Entrar;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Logic;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Usuario;
-import java.util.ArrayList;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -28,6 +26,7 @@ public class ReporteCitas {
 
     Logic l = new Logic();
     Entrar en;
+    LogoApp logo = new LogoApp();
 
     //ClienteLogic ma = new ClienteLogic("Países.txt");
     public GridPane reporteCita() {
@@ -41,7 +40,9 @@ public class ReporteCitas {
         gridPanehisto.setHgap(15);    // espacio
         // alinear el grip
         gridPanehisto.setAlignment(Pos.CENTER);
-        gridPanehisto.setStyle("-fx-background-color: dodgerblue");
+        gridPanehisto.setStyle(("-fx-background-image:url('file:src/image/" + logo.NombreLogo + ".jpeg');"
+                + "-fx-background-repeat : no-repeat;"
+                + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
         Usuario uwu = l.stringTokenizer(l.readLine(en.ID));
         String tipo = "";
@@ -51,11 +52,11 @@ public class ReporteCitas {
             tipo = "Administración";
         }
 
-       // TextArea t = new TextArea();
-       //// String sal = clienteLogic.readApartaCita();
-       /// System.out.println("sal--->" + sal);
-       // t.setText(sal);
-       // gridPanehisto.add(t, 0, 4);
+        // TextArea t = new TextArea();
+        //// String sal = clienteLogic.readApartaCita();
+        /// System.out.println("sal--->" + sal);
+        // t.setText(sal);
+        // gridPanehisto.add(t, 0, 4);
         TableView<Cita> tV_pais = new TableView<>();
 
         TableColumn tc_continenteColumna = new TableColumn("Cliente");

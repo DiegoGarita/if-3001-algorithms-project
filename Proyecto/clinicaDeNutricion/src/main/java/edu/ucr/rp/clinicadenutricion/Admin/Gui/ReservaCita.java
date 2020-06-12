@@ -1,6 +1,7 @@
 package edu.ucr.rp.clinicadenutricion.Admin.Gui;
 
 //en esta clase el admin podra apartar una cita para su cliente
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import java.util.ArrayList;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -17,6 +18,7 @@ public class ReservaCita {
     TextField textFieldPaciente;
     TextField textFieldDoctora;
     Button botonGuardar;
+    LogoApp logo = new LogoApp();
 
     /**
      *
@@ -30,10 +32,9 @@ public class ReservaCita {
         gridPaneNewCatalogue.setVgap(15);
         gridPaneNewCatalogue.setHgap(15);
         gridPaneNewCatalogue.setAlignment(Pos.CENTER);
-        gridPaneNewCatalogue.setStyle("-fx-background-color: dodgerblue");
-//        gridPaneNewCatalogue.setStyle(("-fx-background-image:url('file:src/image/FCrear.jpg');"
-//                + "-fx-background-repeat : no-repeat;"
-//                + "-fx-background-size: 920 920, 20 20, 20 20, 20 20, auto;"));
+        gridPaneNewCatalogue.setStyle(("-fx-background-image:url('file:src/image/" + logo.NombreLogo + ".jpeg');"
+                + "-fx-background-repeat : no-repeat;"
+                + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
         textFieldPaciente = new TextField();
         textFieldPaciente.setPromptText("Nombre del paciente");
@@ -64,7 +65,6 @@ public class ReservaCita {
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
         gridPaneNewCatalogue.add(textFieldDoctora, 0, 3); /// columna fila
         textFieldDoctora.setFocusTraversable(false);
-
 
         botonGuardar = new Button("Guardar");
         botonGuardar.setTextFill(Color.WHITE);

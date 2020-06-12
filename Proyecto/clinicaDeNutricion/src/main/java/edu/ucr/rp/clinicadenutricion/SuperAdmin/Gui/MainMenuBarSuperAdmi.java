@@ -1,7 +1,6 @@
 package edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui;
 
 import javafx.application.Platform;
-import javafx.geometry.Pos;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -32,10 +31,12 @@ public class MainMenuBarSuperAdmi {
         /// File file = new File(fileName);
         GridPane gridPaneSuperAdmi = new GridPane();
         gridPaneSuperAdmi.setMinSize(900, 700);
-        gridPaneSuperAdmi.setStyle("-fx-background-color: dodgerblue");
+        gridPaneSuperAdmi.setStyle(("-fx-background-image:url('file:src/image/SuperAdmin.gif');"
+                + "-fx-background-repeat : no-repeat;"                                 
+                + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
         MenuBar menuBarMenu = new MenuBar();
-        //mB_Menu.setStyle("-fx-background-color: #0a5ba0;");
+
         menuBarMenu.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"
                 + "-fx-effect: dropshadow(gaussian, red, 50, 0, 0, 0);"
                 + "-fx-background-insets: 50;");
@@ -55,7 +56,7 @@ public class MainMenuBarSuperAdmi {
 
         menuItemHorario.setOnAction((event) -> {
             gridPaneSuperAdmi.getChildren().clear();
-            //   vBoxWindows.getChildren().addAll(about.getGraphicalUserInterfaceAbout());
+              gridPaneSuperAdmi.getChildren().addAll(horarioTiempo.horarioClinica());
         });
 
         menuItemExit.setOnAction((event) -> Platform.exit());
@@ -98,12 +99,11 @@ public class MainMenuBarSuperAdmi {
         MenuItem menuItemSearchCatalogue = new MenuItem("Logo del app", new ImageView(new Image("file:src/image/logo.png")));
         menuItemSearchCatalogue.setAccelerator(KeyCombination.keyCombination("Ctrl+V"));
         MenuItem menuItemModifyCatalogue = new MenuItem("Seleccionar path", new ImageView(new Image("file:src/image/pathS.png")));
-        MenuItem menuItemPropertiesList = new MenuItem("Listado de propiedades por catalogo");
-        MenuItem menuItemCataloguesList = new MenuItem("Listado de catalogos");
+ 
 
         menuItemSearchCatalogue.setOnAction((event) -> {
             gridPaneSuperAdmi.getChildren().clear();
-            // vBoxWindows.getChildren().addAll(catalogSearch.catalogueSearching());
+            gridPaneSuperAdmi.getChildren().addAll(logo.logoClinica());
         });
 
         menuItemModifyCatalogue.setOnAction((event) -> {
@@ -111,15 +111,6 @@ public class MainMenuBarSuperAdmi {
             //  vBoxWindows.getChildren().addAll(modifyCatalog.modifyProperties());
         });
 
-        menuItemPropertiesList.setOnAction((event) -> {
-            gridPaneSuperAdmi.getChildren().clear();
-            //  vBoxWindows.getChildren().addAll(showPropertiesOfElements.showInformationByCatalogue());
-        });
-
-        menuItemCataloguesList.setOnAction((event) -> {
-            gridPaneSuperAdmi.getChildren().clear();
-            //  vBoxWindows.getChildren().addAll(showCatalog.showExistingCatalogues());
-        });
 
         menuOtros.getItems().addAll(menuItemSearchCatalogue, menuItemModifyCatalogue, separator);
         menuBarMenu.setOpacity(0.0);

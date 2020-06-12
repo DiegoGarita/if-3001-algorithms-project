@@ -4,6 +4,7 @@ import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.Entrar;
 
 import edu.ucr.rp.clinicadenutricion.AVL.AVLArchivo;
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import edu.ucr.rp.clinicadenutricion.Utilitario.HoraFecha;
 
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.EncripMD5;
@@ -49,6 +50,8 @@ public class AjustesCliente {
     AVLArchivo histo = new AVLArchivo();
     HoraFecha horaFecha = new HoraFecha();
 
+    LogoApp logo = new LogoApp();
+
     /**
      *
      * @return Nos da la GUI que nos permite crear un nuevo catálogo
@@ -60,7 +63,9 @@ public class AjustesCliente {
         gridPaneAjustes.setVgap(15);   //espacio
         gridPaneAjustes.setHgap(15);    // espacio
         gridPaneAjustes.setAlignment(Pos.CENTER);
-        gridPaneAjustes.setStyle("-fx-background-color: dodgerblue");
+        gridPaneAjustes.setStyle(("-fx-background-image:url('file:src/image/" + logo.NombreLogo + ".jpeg');"
+                + "-fx-background-repeat : no-repeat;"
+                + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
         Usuario uwu = l.stringTokenizer(l.readLine(en.ID));
         String tipo = "";

@@ -1,8 +1,7 @@
 package edu.ucr.rp.clinicadenutricion.Cliente.Gui;
 
-import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.Entrar;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import javafx.application.Platform;
-import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -24,6 +23,8 @@ public class MainMenuBarCliente {
 
     AjustesCliente ajustes = new AjustesCliente();
 
+    LogoApp logo = new LogoApp();
+
     // VBox vBoxWindows, vBoxMain;
     /**
      *
@@ -35,10 +36,12 @@ public class MainMenuBarCliente {
         /// File file = new File(fileName);
         GridPane gridPaneUsuario = new GridPane();
         gridPaneUsuario.setMinSize(900, 700);
-        gridPaneUsuario.setStyle("-fx-background-color: dodgerblue");
+        gridPaneUsuario.setStyle(("-fx-background-image:url('file:src/image/" + logo.NombreLogo + ".jpeg');"
+                + "-fx-background-repeat : no-repeat;"
+                + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
         MenuBar menuBarMenu = new MenuBar();
-        //mB_Menu.setStyle("-fx-background-color: #0a5ba0;");
+
         menuBarMenu.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"
                 + "-fx-effect: dropshadow(gaussian, red, 50, 0, 0, 0);"
                 + "-fx-background-insets: 50;");

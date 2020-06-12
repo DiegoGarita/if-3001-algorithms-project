@@ -2,6 +2,7 @@ package edu.ucr.rp.clinicadenutricion.inicioSesion.Gui;
 
 import edu.ucr.rp.clinicadenutricion.Admin.Gui.MainMenuBarAdmi;
 import edu.ucr.rp.clinicadenutricion.Cliente.Gui.MainMenuBarCliente;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.MainMenuBarSuperAdmi;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.EncripMD5;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Logic;
@@ -26,6 +27,8 @@ public class Entrar {
     ComboBox comboBoxRol = new ComboBox();
     Logic logic = new Logic();
     String fileName;
+        LogoApp logo = new LogoApp();
+
 
     MainMenuBarSuperAdmi mm = new MainMenuBarSuperAdmi();
     MainMenuBarAdmi nn = new MainMenuBarAdmi();
@@ -47,9 +50,9 @@ public class Entrar {
         // alinear el grip
         gridPaneEntrar.setAlignment(Pos.CENTER);
         ///   gridPanecreaUsuario.setStyle("-fx-background-color: dodgerblue");
-//        gridPaneNewCatalogue.setStyle(("-fx-background-image:url('file:src/image/FCrear.jpg');"
-//                + "-fx-background-repeat : no-repeat;"
-//                + "-fx-background-size: 920 920, 20 20, 20 20, 20 20, auto;"));
+        gridPaneEntrar.setStyle(("-fx-background-image:url('file:src/image/" + logo.NombreLogo + ".jpeg');"
+                + "-fx-background-repeat : no-repeat;"
+                + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
         textFieldID = new TextField();
         textFieldID.setPromptText("Ingrese ID del usuario");
@@ -97,6 +100,7 @@ public class Entrar {
                     if (logic.stringTokenizer(logic.readLine(textFieldID.getText())).getId().equals(textFieldID.getText())) {
                         if (logic.stringTokenizer(logic.readLine(textFieldID.getText())).getContraseña().equals(e.encriptar("SusanaDistancia", textFieldContra.getText()))) {
                             ID = textFieldID.getText();
+                            gridPaneEntrar.getChildren().clear();
                             gridPaneEntrar.getChildren().add(0, node);
                             gridPaneEntrar.getChildren().add(zz.menuCliente());
                         }

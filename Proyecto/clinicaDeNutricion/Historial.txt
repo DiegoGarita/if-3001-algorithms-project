@@ -34,3 +34,28 @@ asd & Agendo cita & Wed Jun 10 12:55:21 CST 2020
 asd & Consulto planes/recetas & Wed Jun 10 12:55:27 CST 2020
 asd & Agendo cita & Wed Jun 10 13:11:28 CST 2020
 asas & Agendo cita & Wed Jun 10 13:13:56 CST 2020
+asd & Agendo cita & Wed Jun 10 14:42:05 CST 2020
+asd & Vio su reporte de citas & Thu Jun 11 09:50:44 CST 2020
+asd & Vio su reporte de citas & Thu Jun 11 09:55:49 CST 2020
+asd & Vio su reporte de citas & Thu Jun 11 09:57:08 CST 2020
+asd & Vio su reporte de citas & Thu Jun 11 09:58:00 CST 2020
+asd & Vio su reporte de citas & Thu Jun 11 09:59:08 CST 2020
+asd & Vio su reporte de citas & Thu Jun 11 12:59:22 CST 2020
+asd & Vio su reporte de citas & Thu Jun 11 12:59:59 CST 2020
+asd & Vio su reporte de citas & Thu Jun 11 13:00:34 CST 2020
+asd & Vio su reporte de citas & Thu Jun 11 13:03:17 CST 2020
+asd & Vio su reporte de citas & Thu Jun 11 13:04:01 CST 2020
+asd & Vio su reporte de citas & Thu Jun 11 13:05:04 CST 2020
+asd & Vio su reporte de citas & Thu Jun 11 13:08:39 CST 2020
+asd & Vio su reporte de citas & Thu Jun 11 13:09:16 CST 2020
+asd & Vio su reporte de citas & Thu Jun 11 13:09:39 CST 2020
+asd & Vio su reporte de citas & Thu Jun 11 13:10:12 CST 2020
+asd & Vio su reporte de citas & Thu Jun 11 13:11:05 CST 2020
+asd & Vio su reporte de citas & Thu Jun 11 13:16:17 CST 2020
+asd & Vio su reporte de citas & Thu Jun 11 21:55:58 CST 2020
+asd & Consulto planes/recetas & Thu Jun 11 21:56:17 CST 2020
+asd & Consulto planes/recetas & Thu Jun 11 21:56:19 CST 2020
+asd & Consulto planes/recetas & Thu Jun 11 21:56:20 CST 2020
+asd & Vio su reporte de citas & Thu Jun 11 21:57:13 CST 2020
+asd & Vio su reporte de citas & Thu Jun 11 22:01:50 CST 2020
+asd & Vio su reporte de citas & Fri Jun 12 00:05:16 CST 2020
