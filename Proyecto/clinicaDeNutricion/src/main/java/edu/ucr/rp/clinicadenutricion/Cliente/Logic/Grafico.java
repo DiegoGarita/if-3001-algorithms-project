@@ -1,5 +1,8 @@
 package edu.ucr.rp.clinicadenutricion.Cliente.Logic;
 
+import edu.ucr.rp.clinicadenutricion.Admin.logic.AdminLogic;
+import edu.ucr.rp.clinicadenutricion.Objetos.ReporteMedico;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.Entrar;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
@@ -7,17 +10,19 @@ import org.jfree.data.general.DefaultPieDataset;
 
 public class Grafico {
 
+    AdminLogic adminLogic = new AdminLogic();
+    Entrar en;
+
     //Se recibe 4 parametros para poder crear la grafica
-    public void showGraficMethods(double porAgua, double porMassaMus,
-            double grasa, double grasaVisc) {
+    public void showGraficMethods() {
+        ReporteMedico re = adminLogic.stringTokenizer(adminLogic.getLast(en.ID));
 
         DefaultPieDataset pieDataset = new DefaultPieDataset();
 
-        pieDataset.setValue("% Agua", porAgua);
-        pieDataset.setValue("% Masa muscular", porMassaMus);
-        pieDataset.setValue("Grasa", grasa);
-        pieDataset.setValue("Grasa visceral", grasaVisc);
-
+        pieDataset.setValue("% Agua", Integer.parseInt(re.getPorcenAgua()));
+        pieDataset.setValue("% Masa muscular", Integer.parseInt(re.getPorcenMasaMuscular()));
+        pieDataset.setValue("Grasa", Integer.parseInt(re.getGrasa()));
+        pieDataset.setValue("Grasa visceral", Integer.parseInt(re.getGrasaVisceral()));
 
         JFreeChart chart = ChartFactory.createPieChart(
                 "Informacion actual",

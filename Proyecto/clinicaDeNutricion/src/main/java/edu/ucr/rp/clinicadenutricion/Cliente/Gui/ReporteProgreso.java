@@ -63,7 +63,7 @@ public class ReporteProgreso {
 
         botonGrafico.setOnAction((event) -> {
 
-            grafico.showGraficMethods(66.5, 20.5, 6.5, 6.5); //--> %agua, %masMusc, grasa , grasaVisc
+            grafico.showGraficMethods(); //--> %agua, %masMusc, grasa , grasaVisc
             Acciones acc = new Acciones(uwu.getName(), repoPro, horaFecha.histoFechaHora());
             histo.writeFileCitas(acc);
         });//END BUTTON

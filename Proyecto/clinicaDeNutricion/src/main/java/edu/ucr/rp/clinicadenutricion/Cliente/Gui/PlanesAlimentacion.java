@@ -2,6 +2,7 @@ package edu.ucr.rp.clinicadenutricion.Cliente.Gui;
 
 //en esta clase el usuario pued ver sus planes de alimentacion
 import edu.ucr.rp.clinicadenutricion.AVL.AVLArchivo;
+import edu.ucr.rp.clinicadenutricion.Admin.logic.PlanAlimentosLogic;
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import edu.ucr.rp.clinicadenutricion.Utilitario.HoraFecha;
@@ -17,18 +18,15 @@ import javafx.scene.text.*;
 
 public class PlanesAlimentacion {
 
-    TextField textFieldNombreUsu;
+    ComboBox comboBoxSele = new ComboBox();
     Button buttonDesplegarInfo;
+    Button buttonAceptar;
     TextArea textAreaMostrar = new TextArea();
-    ComboBox comboBoxRol = new ComboBox();
-    String fileName;
-    String consu = "Consulto planes/recetas";
-    AVLArchivo histo = new AVLArchivo();
-    HoraFecha horaFecha = new HoraFecha();
-
-    Logic l = new Logic();
-    Entrar en;
+    ComboBox comboBoxOp = new ComboBox();
     LogoApp logo = new LogoApp();
+    
+    PlanAlimentosLogic planAl = new PlanAlimentosLogic();
+
 
     /**
      *
@@ -47,51 +45,56 @@ public class PlanesAlimentacion {
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
-        Usuario uwu = l.stringTokenizer(l.readLine(en.ID));
-        String tipo = "";
-        if (uwu.getTipo().equals("ä")) {
-            tipo = "Cliente";
-        } else if (uwu.getTipo().equals("ö")) {
-            tipo = "Administración";
-        }
+      comboBoxOp.setValue("Elige una opcion");
+        comboBoxOp.setStyle("-fx-background-color: lightblue");
+        comboBoxOp.getItems().addAll("Planes alimenticios", "Recetas");
+        gridPanePlanAli.add(comboBoxOp, 0, 0);
+        
+        comboBoxSele.setValue("Elige una opcion");
+        comboBoxSele.setVisible(false);
+        comboBoxSele.setStyle("-fx-background-color: lightblue");
+        gridPanePlanAli.add(comboBoxSele, 0, 1);
+        
+        
+       buttonAceptar = new Button("Aceptar");
+        buttonAceptar.setTextFill(Color.WHITE);//Color de la letra del boton
+        buttonAceptar.setStyle("-fx-background-color: BLACK");//Color del fondo
+        buttonAceptar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
+        gridPanePlanAli.add(buttonAceptar, 1, 0);
+        buttonAceptar.setOnAction((event) -> {
+            if (comboBoxOp.getValue().toString().equals("Recetas")) {
+                comboBoxSele.setVisible(true);
+                buttonDesplegarInfo.setVisible(true);
+                for (int i = 0; i < planAl.Cantidad("*", "Recetas", planAl.recetas); i++) {
+                    comboBoxSele.getItems().addAll(planAl.recetas.get(i));
+                }
+            } else if (comboBoxOp.getValue().toString().equals("Planes alimenticios")) {
+                comboBoxSele.setVisible(true);
+                buttonDesplegarInfo.setVisible(true);
+                for (int i = 0; i < planAl.Cantidad("*","Planes", planAl.planes); i++) {
+                    comboBoxSele.getItems().addAll(planAl.planes.get(i));
+                }
+            }
+            
+        });//end setOnAction
 
-        comboBoxRol.setValue("Elige una opcion");
-        comboBoxRol.setStyle("-fx-background-color: lightblue");
-        ObservableList<String> Roles
-                = FXCollections.observableArrayList(
-                        "Mis planes alimenticios",
-                        "Recetas"
-                );
-        comboBoxRol.setItems(Roles);
-        gridPanePlanAli.add(comboBoxRol, 0, 1);
-
-        textFieldNombreUsu = new TextField();
-        textFieldNombreUsu.setPromptText("Especifica");
-        textFieldNombreUsu.setStyle(
-                "-fx-background-color: lightblue; "
-                + "-fx-background-insets: 4; "
-                +// tamano
-                "-fx-background-radius: 4; "
-                +// tamano
-                "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-        gridPanePlanAli.add(textFieldNombreUsu, 0, 2);
-        textFieldNombreUsu.setFocusTraversable(false);
-
-        textAreaMostrar.setText("TODO info aqui");
-        textAreaMostrar.setEditable(false);
-        gridPanePlanAli.add(textAreaMostrar, 0, 3);
-
-        buttonDesplegarInfo = new Button("Desplegar");
+         buttonDesplegarInfo = new Button("Desplegar");
         buttonDesplegarInfo.setTextFill(Color.WHITE);//Color de la letra del boton
+        buttonDesplegarInfo.setVisible(false);
         buttonDesplegarInfo.setStyle("-fx-background-color: BLACK");//Color del fondo
         buttonDesplegarInfo.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
-        gridPanePlanAli.add(buttonDesplegarInfo, 0, 4);
+       gridPanePlanAli.add(buttonDesplegarInfo, 1, 1);
         buttonDesplegarInfo.setOnAction((event) -> {
-
-            Acciones acc = new Acciones(uwu.getName(), consu, horaFecha.histoFechaHora());
-            histo.writeFileCitas(acc);
-
+            if (comboBoxOp.getValue().toString().equals("Recetas")) {
+                textAreaMostrar.setText(planAl.readFile(comboBoxSele.getValue().toString(), "Recetas"));
+            } else if (comboBoxOp.getValue().toString().equals("Planes alimenticios")) {
+                textAreaMostrar.setText(planAl.readFile(comboBoxSele.getValue().toString(), "Planes"));
+            }
+            
         });//end setOnAction
+        
+         textAreaMostrar.setEditable(false);
+        gridPanePlanAli.add(textAreaMostrar, 0, 3);
 
         //***
         MainMenuBarCliente barCliente = new MainMenuBarCliente();
@@ -113,3 +116,5 @@ public class PlanesAlimentacion {
         return gridPanePlanAli;
     }//end GridPane createCatalogue()
 }
+// Acciones acc = new Acciones(uwu.getName(), consu, horaFecha.histoFechaHora());
+//            histo.writeFileCitas(acc);

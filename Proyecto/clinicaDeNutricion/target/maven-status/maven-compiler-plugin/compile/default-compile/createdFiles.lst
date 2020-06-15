@@ -22,6 +22,7 @@ edu\ucr\rp\clinicadenutricion\inicioSesion\Gui\CrearUsuarioNuevo.class
 edu\ucr\rp\clinicadenutricion\inicioSesion\Gui\MainMenuBarSesion.class
 edu\ucr\rp\clinicadenutricion\inicioSesion\logic\CRUD.class
 edu\ucr\rp\clinicadenutricion\SuperAdmin\Logic\ColaImplementacion.class
+edu\ucr\rp\clinicadenutricion\Admin\logic\PlanAlimentosLogic.class
 edu\ucr\rp\clinicadenutricion\SuperAdmin\Gui\RespaldarArchivos.class
 edu\ucr\rp\clinicadenutricion\inicioSesion\logic\Logic.class
 edu\ucr\rp\clinicadenutricion\Utilitario\TableInfo.class
@@ -29,7 +30,6 @@ edu\ucr\rp\clinicadenutricion\Objetos\ReporteMedico.class
 edu\ucr\rp\clinicadenutricion\SuperAdmin\Gui\HorarioTiempoClinica.class
 edu\ucr\rp\clinicadenutricion\Admin\Gui\InfoPaciente.class
 edu\ucr\rp\clinicadenutricion\Cliente\Gui\ReporteProgreso.class
-edu\ucr\rp\clinicadenutricion\Admin\logic\ColaImpl.class
 edu\ucr\rp\clinicadenutricion\Cliente\Logic\PilaImplementacion.class
 edu\ucr\rp\clinicadenutricion\Objetos\Cita.class
 edu\ucr\rp\clinicadenutricion\Cliente\Gui\ApartarCita.class
@@ -37,7 +37,9 @@ edu\ucr\rp\clinicadenutricion\Admin\Gui\MainMenuBarAdmi.class
 edu\ucr\rp\clinicadenutricion\Admin\Gui\PlanAlimentos.class
 edu\ucr\rp\clinicadenutricion\Cliente\Gui\MainMenuBarCliente.class
 edu\ucr\rp\clinicadenutricion\inicioSesion\Gui\Ayuda.class
+edu\ucr\rp\clinicadenutricion\Admin\logic\NodoCola.class
 edu\ucr\rp\clinicadenutricion\Objetos\Acciones.class
+edu\ucr\rp\clinicadenutricion\Admin\logic\NodoCola$Node.class
 edu\ucr\rp\clinicadenutricion\AVL\AVLArchivo.class
 edu\ucr\rp\clinicadenutricion\SuperAdmin\Gui\ResgistrosPaginacion.class
 edu\ucr\rp\clinicadenutricion\inicioSesion\logic\EncripMD5.class
@@ -52,4 +54,3 @@ edu\ucr\rp\clinicadenutricion\inicioSesion\logic\mainLogic.class
 edu\ucr\rp\clinicadenutricion\SuperAdmin\Gui\LogoApp.class
 edu\ucr\rp\clinicadenutricion\Cliente\Logic\Pila.class
 edu\ucr\rp\clinicadenutricion\Utilitario\Alertas.class
-edu\ucr\rp\clinicadenutricion\Admin\logic\ColaImpl$Node.class
