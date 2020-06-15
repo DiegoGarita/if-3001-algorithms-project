@@ -26,7 +26,7 @@ public class InfoPaciente {
         comboBoxTool.setStyle("-fx-background-color: lightblue");
         gridPaneInfo.add(comboBoxTool, 0, 0);
 
-        for (int i = 0; i < adminLogic.CantidadDeClientes(); i++) {
+        for (int i = 0; i < adminLogic.CantidadDeClientes("ä"); i++) {
             comboBoxTool.getItems().addAll(adminLogic.clientesAL.get(i).getId());
         }
 
@@ -43,7 +43,6 @@ public class InfoPaciente {
         bTN_buscar.setDisable(false);
 
         bTN_buscar.setOnAction((event) -> {
-            System.out.println(comboBoxTool.getValue().toString());
             textAreaNotas.setText(adminLogic.readInFile(comboBoxTool.getValue().toString()));
             textAreaNotas.setVisible(true);
 

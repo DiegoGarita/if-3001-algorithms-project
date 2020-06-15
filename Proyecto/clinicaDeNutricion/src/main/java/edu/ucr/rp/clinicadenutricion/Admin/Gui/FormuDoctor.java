@@ -56,7 +56,7 @@ public class FormuDoctor {
         comboBoxTool.setStyle("-fx-background-color: lightblue");
         gridPaneForm.add(comboBoxTool, 0, 0);
 
-        for (int i = 0; i < adminLogic.CantidadDeClientes(); i++) {
+        for (int i = 0; i < adminLogic.CantidadDeClientes("ä"); i++) {
             comboBoxTool.getItems().addAll(adminLogic.clientesAL.get(i).getId());
         }
 

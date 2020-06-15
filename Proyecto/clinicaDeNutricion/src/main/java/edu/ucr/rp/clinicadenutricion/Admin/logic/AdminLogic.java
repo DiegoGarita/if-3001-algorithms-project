@@ -54,8 +54,32 @@ public class AdminLogic {
         }
         return returned;
     }// end readProperties()
+    
+        public String getLast(String file) {
 
-    public int CantidadDeClientes() {
+        File newFile = new File("Solicitud de cita para " + file + ".txt");
+        String returned = "";
+        try {
+            FileInputStream fileInputStream = new FileInputStream(newFile);
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            String currentRegistry = bufferedReader.readLine();
+
+            while (currentRegistry != null) {
+                c.enqueue(stringTokenizer(currentRegistry));
+                returned = currentRegistry;
+
+                currentRegistry = bufferedReader.readLine();
+            }
+
+        } catch (FileNotFoundException fileNotFoundException) {
+        } catch (IOException IOException) {
+            JOptionPane.showMessageDialog(null, IOException + ": Problemas con el archivo");
+        }
+        return returned;
+    }// end readProperties()
+
+    public int CantidadDeClientes(String capta) {
         int cant = 0;
         File newFile = new File("usuarios.txt");
         try {
@@ -65,7 +89,7 @@ public class AdminLogic {
             String currentRegistry = bufferedReader.readLine();
 
             while (currentRegistry != null) {
-                if (currentRegistry.contains("ä")) {
+                if (currentRegistry.contains(capta)) {
                     clientesAL.add(logic.stringTokenizer(currentRegistry));
                     cant++;
                 }

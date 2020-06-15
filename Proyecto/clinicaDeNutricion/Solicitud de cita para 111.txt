@@ -1,1 +1,4 @@
-111|asd|ingresar fecha de cita*|ingresar hora de cita*|14|23|1,60|61|20|31|12|2.3|60%|3h|7h|Datos balanceados
+111|asd|ingresar fecha de cita*|ingresar hora de cita*|14|23|160|61|20|31|12|2|60|3h|7h|Datos balanceados
+111|asd|ingresar fecha de cita*|ingresar hora de cita*|31|11|11|68|25|10|15|32|50|nA|55|aaaaaas
+111|asd|ingresar fecha de cita*|ingresar hora de cita*|31|11|11|68|30|5|15|32|50|nA|55|aaaaaas
+111|asd|ingresar fecha de cita*|ingresar hora de cita*|31|11|11|68|30|5|15|32|50|nA|55|aaaaaas
