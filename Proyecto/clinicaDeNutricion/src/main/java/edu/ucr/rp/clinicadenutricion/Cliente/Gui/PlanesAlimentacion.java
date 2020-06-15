@@ -41,7 +41,8 @@ public class PlanesAlimentacion {
         gridPanePlanAli.setHgap(15);    // espacio
         // alinear el grip
         gridPanePlanAli.setAlignment(Pos.CENTER);
-        gridPanePlanAli.setStyle(("-fx-background-image:url('file:src/image/" + logo.NombreLogo + ".jpeg');"
+        Usuario supAdmConfi = l.stringTokenizer(l.readLine("ë"));
+        gridPanePlanAli.setStyle(("-fx-background-image:url('file:src/image/" + supAdmConfi.getContraseña() + "');"
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 

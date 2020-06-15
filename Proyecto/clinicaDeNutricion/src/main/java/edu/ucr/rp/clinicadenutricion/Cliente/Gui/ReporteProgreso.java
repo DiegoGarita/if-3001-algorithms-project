@@ -40,7 +40,8 @@ public class ReporteProgreso {
         gridPanePorgreso.setVgap(15);
         gridPanePorgreso.setHgap(15);
         gridPanePorgreso.setAlignment(Pos.CENTER);
-        gridPanePorgreso.setStyle(("-fx-background-image:url('file:src/image/" + logo.NombreLogo + ".jpeg');"
+        Usuario supAdmConfi = l.stringTokenizer(l.readLine("ë"));
+        gridPanePorgreso.setStyle(("-fx-background-image:url('file:src/image/" + supAdmConfi.getContraseña() + "');"
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
