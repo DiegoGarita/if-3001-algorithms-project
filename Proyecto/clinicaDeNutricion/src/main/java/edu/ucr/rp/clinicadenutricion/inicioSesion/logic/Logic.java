@@ -23,8 +23,8 @@ public class Logic {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(newFile, true);
             PrintStream printStream = new PrintStream(fileOutputStream);
-            
-            if(newFile.length()==0){
+
+            if (newFile.length() == 0) {
                 printStream.println("ë|Super|1234");
             }
 
@@ -64,7 +64,7 @@ public class Logic {
     }// end readProperties()
 
     public void removeLineFromFile(String idSearched) {
-     CRUD cr = new CRUD();
+        CRUD cr = new CRUD();
         File previousFile = new File("usuarios.txt");
         try {
             FileInputStream fileInputStream = new FileInputStream(previousFile);
@@ -74,8 +74,8 @@ public class Logic {
 
             while (currentRegistry != null) {
                 if (!currentRegistry.contains(idSearched)) {
-                    
-                     cr.add(stringTokenizer(currentRegistry));
+
+                    cr.add(stringTokenizer(currentRegistry));
                 }
                 currentRegistry = bufferedReader.readLine();
             }
@@ -90,7 +90,7 @@ public class Logic {
             FileOutputStream fileOutputStream = new FileOutputStream(fileNew);
             PrintStream printStream = new PrintStream(fileOutputStream);
             for (int i = 0; i < cr.size(); i++) {
-                printStream.println(cr.indexOf(i).getTipo() + "|" + cr.indexOf(i).getId() +"|"+ cr.indexOf(i).getName() + "|" + cr.indexOf(i).getContraseña() + "|" + cr.indexOf(i).getCorreo() + "|" + cr.indexOf(i).getTelefono() + "|" + cr.indexOf(i).getDireccion());
+                printStream.println(cr.indexOf(i).getTipo() + "|" + cr.indexOf(i).getId() + "|" + cr.indexOf(i).getName() + "|" + cr.indexOf(i).getContraseña() + "|" + cr.indexOf(i).getCorreo() + "|" + cr.indexOf(i).getTelefono() + "|" + cr.indexOf(i).getDireccion());
             }
         } catch (FileNotFoundException fileNotFoundException) {
             JOptionPane.showMessageDialog(null, fileNotFoundException + "\nProblemas con el archivo");
@@ -182,6 +182,16 @@ public class Logic {
         crudListas.add(newPassword(usuario, s));
     }
 
+    public void modifiedSuperHoras(Usuario usuario, String abre, String cierra, String inter) {
+        crudListas.remove(usuario);
+        crudListas.add(supereAdminConfiHoras(usuario, abre, cierra, inter));
+    }
+
+    public void modifiedSuperFondo(Usuario usuario, String fondo) {
+        crudListas.remove(usuario);
+        crudListas.add(supereAdminConfiFondo(usuario, fondo));
+    }
+
     public void modidelete(Usuario usuario) {
         crudListas.remove(usuario);
 
@@ -199,9 +209,19 @@ public class Logic {
     public Usuario newPassword(Usuario element, String pass) {
         Usuario u = element;
         Usuario user = new Usuario(u.getTipo(), u.getId(), u.getName(), pass, u.getCorreo(), u.getTelefono(), u.getDireccion());
-
         return user;
+    }
 
+    public Usuario supereAdminConfiHoras(Usuario element, String abre, String cierra, String inter) {
+        Usuario u = element;
+        Usuario user = new Usuario(u.getTipo(), u.getId(), u.getName(), u.getContraseña(), abre, cierra, inter);
+        return user;
+    }
+
+    public Usuario supereAdminConfiFondo(Usuario element, String fondo) {
+        Usuario u = element;
+        Usuario user = new Usuario(u.getTipo(), u.getId(), u.getName(), fondo, u.getCorreo(), u.getTelefono(), u.getDireccion());
+        return user;
     }
 
 //    

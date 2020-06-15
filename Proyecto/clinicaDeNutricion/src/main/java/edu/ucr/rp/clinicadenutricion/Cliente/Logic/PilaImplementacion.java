@@ -1,6 +1,7 @@
 package edu.ucr.rp.clinicadenutricion.Cliente.Logic;
 
 import edu.ucr.rp.clinicadenutricion.Objetos.Cita;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Usuario;
 
 class Node {
 
@@ -86,6 +87,27 @@ public class PilaImplementacion implements Pila {
         }
         return peekNode;
     }
+    
+    
+       // @Override
+    public Object popi(Cita cita) { //quita el ultimo    -->>> Seria este ?????
+        Node aux = start;
+        Node element = null;
+        cita = null; //para devolver el que borra
+        if (aux == null) { //si es nulo retorna -1
+            return -1;
+        }//end if
+        else {
+            do {
+                if (aux.next == null) { //si el siguiente es nulo
+                    element = aux;
+                    cita = aux.element;
+                }
+                aux = aux.next;
+            } while (aux != null);
+        }//end else
+        return cita;
+    }//end popi
 //
 //        if (isEmpty() == false) { //usa el metodo "isEmpty" para saber si está vacío
 //            if (start.equals(end) && element.equals(start.element)) { //si el inicio es igual al final y el elemento es igual al inicio.elemento
@@ -145,6 +167,7 @@ public class PilaImplementacion implements Pila {
         return aux.seeElement();
 
     } //end indexOf
+    
 
 //
 //    @Override

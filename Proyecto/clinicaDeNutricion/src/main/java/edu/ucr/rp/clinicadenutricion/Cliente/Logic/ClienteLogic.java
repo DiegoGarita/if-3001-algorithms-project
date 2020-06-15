@@ -31,7 +31,7 @@ public class ClienteLogic {
 //Citas c = new Citas(fecha, hora, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, actividadFisica);
             //  printStream.println(c.push(Nombre+ " & " +fecha+ " & " +hora+ " & " +doctora));
             // printStream.println(c.push(cita.getNombre()+"&"+ cita.getFecha()+"&"+cita.getHora()+"&"+cita.getDoctora()));
-            printStream.println(cita.getNombre() + " & " + cita.getFecha() + " & " + cita.getHora() + " & " + cita.getDoctora());
+            printStream.println(cita.getIdCita() + " & " + cita.getNombre() + " & " + cita.getFecha() + " & " + cita.getHora() + " & " + cita.getDoctora());
 
         } catch (FileNotFoundException fileNotFoundException) {
             JOptionPane.showMessageDialog(null, fileNotFoundException + "\nProblemas con el archivo");
@@ -53,6 +53,7 @@ public class ClienteLogic {
 
                 StringTokenizer stringTokenizer = new StringTokenizer(currentRegistry, "&");
                 int counterTokens = 0;
+                String idDeCita = "";
                 String name = "";
                 String fecha = "";
                 String hora = "";
@@ -60,22 +61,23 @@ public class ClienteLogic {
 
                 while (stringTokenizer.hasMoreTokens()) {
                     if (counterTokens == 0) {
+                        idDeCita = stringTokenizer.nextToken();
                         name = stringTokenizer.nextToken();
                         fecha = stringTokenizer.nextToken();
                         hora = stringTokenizer.nextToken();
-                        counterTokens++;
-                    } //end if
-                    else if (counterTokens == 1) {
+                     //   counterTokens++;
+                   // } //end if
+                  //  else if (counterTokens == 1) {
                         doc = stringTokenizer.nextToken();
                         counterTokens++;
                     }//end elseif
                 }//end while interno
 
-                Cita cita = new Cita(name, fecha, hora, doc);
+                Cita cita = new Cita(idDeCita, name, fecha, hora, doc);
                 crudPila.push(cita);
 
                 currentRegistry = bufferedReader.readLine();
-                System.out.println(currentRegistry);
+                //System.out.println(currentRegistry);
                 // return currentRegistry;
             }//end while
 
@@ -93,6 +95,7 @@ public class ClienteLogic {
     public void removeLineFromFile(String idSearched) {
         // CRUD cr = new CRUD();
         //  pilaImple
+          PilaImplementacion rett = new PilaImplementacion();
         File previousFile = new File("ApartaCita.txt");
         try {
             FileInputStream fileInputStream = new FileInputStream(previousFile);
@@ -102,9 +105,8 @@ public class ClienteLogic {
 
             while (currentRegistry != null) {
                 if (!currentRegistry.contains(idSearched)) {
-
                     // cr.add(stringTokenizer(currentRegistry));
-                    crudPila.push(stringTokenizer(currentRegistry));
+                    rett.push(stringTokenizer(currentRegistry));
                 }
                 currentRegistry = bufferedReader.readLine();
             }
@@ -119,9 +121,10 @@ public class ClienteLogic {
             FileOutputStream fileOutputStream = new FileOutputStream(fileNew);
             PrintStream printStream = new PrintStream(fileOutputStream);
             //  for (int i = 0; i < cr.size(); i++) {
-            for (int i = 0; i < crudPila.size(); i++) {
-                printStream.println(crudPila.indexOf(i).getNombre() + "&" + crudPila.indexOf(i).getFecha() + "&"
-                        + crudPila.indexOf(i).getHora() + "&" + crudPila.indexOf(i).getDoctora());
+            for (int i = 0; i < rett.size(); i++) {
+                printStream.println(rett.indexOf(i).getIdCita() + "&" + rett.indexOf(i).getNombre()
+                        + "&" + rett.indexOf(i).getFecha() + "&"
+                        + rett.indexOf(i).getHora() + "&" + rett.indexOf(i).getDoctora());
                 // printStream.println(pilaImple.indexOf(i).getTipo() + "|" + cr.indexOf(i).getId() + "|" + cr.indexOf(i).getName() + "|" + cr.indexOf(i).getContraseña() + "|" + cr.indexOf(i).getCorreo() + "|" + cr.indexOf(i).getTelefono() + "|" + cr.indexOf(i).getDireccion());
             }
         } catch (FileNotFoundException fileNotFoundException) {
@@ -133,6 +136,7 @@ public class ClienteLogic {
 
         StringTokenizer stringTokenizer = new StringTokenizer(lines, "&");
         int counterTokens = 0;
+        String idDeCita = "";
         String nombre = "";
         String fecha = "";
         String hora = "";
@@ -141,18 +145,22 @@ public class ClienteLogic {
         while (stringTokenizer.hasMoreTokens()) {
             switch (counterTokens) {
                 case 0:
-                    nombre = stringTokenizer.nextToken();
+                    idDeCita = stringTokenizer.nextToken();
                     counterTokens++;
                     break;
                 case 1:
-                    fecha = stringTokenizer.nextToken();
+                    nombre = stringTokenizer.nextToken();
                     counterTokens++;
                     break;
                 case 2:
-                    hora = stringTokenizer.nextToken();
+                    fecha = stringTokenizer.nextToken();
                     counterTokens++;
                     break;
                 case 3:
+                    hora = stringTokenizer.nextToken();
+                    counterTokens++;
+                    break;
+                case 4:
                     doc = stringTokenizer.nextToken();
                     counterTokens++;
                     break;
@@ -163,7 +171,7 @@ public class ClienteLogic {
         }//end while
 
         //  Usuario u = new Usuario(type, id, name, password, email, phone, direction);
-        Cita cita = new Cita(nombre, fecha, hora, doc);  //--> nombre fecha hota doc
+        Cita cita = new Cita(idDeCita, nombre, fecha, hora, doc);  //--> nombre fecha hota doc
         return cita;
 
     }//end token
@@ -197,7 +205,7 @@ public class ClienteLogic {
 
     public Cita cambioCita(Cita element, String fechaNueva, String horaNueva) {
         Cita cita = element;
-        Cita nuevaCita = new Cita(cita.getNombre(), fechaNueva, horaNueva, cita.getDoctora());
+        Cita nuevaCita = new Cita(cita.getIdCita(), cita.getNombre(), fechaNueva, horaNueva, cita.getDoctora());
 
         return nuevaCita;
     }
@@ -210,7 +218,7 @@ public class ClienteLogic {
 
     public void delete(Cita citas) {
         // crudPila.remove(citas);
-        crudPila.pop();
+        crudPila.popi(citas);
     }
 
 }// end writeFileCitas

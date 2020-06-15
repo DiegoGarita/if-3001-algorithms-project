@@ -21,6 +21,7 @@ import javafx.scene.text.*;
 
 public class ApartarCita {
 
+    TextField textFieldidDeReservacion;
     TextField textFieldDoctora;
     TextField textFieldHora;
     Button botonGuardar;
@@ -47,9 +48,24 @@ public class ApartarCita {
         gridPaneCitaNue.setHgap(15);
         gridPaneCitaNue.setAlignment(Pos.CENTER);
 
-        gridPaneCitaNue.setStyle(("-fx-background-image:url('file:src/image/" + logo.NombreLogo + ".jpeg');"
+        Usuario supAdmConfi = l.stringTokenizer(l.readLine("ë"));
+        comboHora.setValue("Hora de cita");
+
+        gridPaneCitaNue.setStyle(("-fx-background-image:url('file:src/image/" + supAdmConfi.getContraseña() + "');"
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
+
+        textFieldidDeReservacion = new TextField();
+        textFieldidDeReservacion.setPromptText("ID reservacion");
+        textFieldidDeReservacion.setStyle(
+                "-fx-background-color: lightblue; "
+                + "-fx-background-insets: 4; "
+                +// tamano
+                "-fx-background-radius: 4; "
+                +// tamano
+                "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
+        gridPaneCitaNue.add(textFieldidDeReservacion, 0, 1); /// columna fila
+        textFieldidDeReservacion.setFocusTraversable(false);
 
         // Label labelFechHora = new Label("Hacer algo con Hora y fecha");
         //  gridPaneNewCatalogue.add(labelFechHora, 0, 2);
@@ -58,9 +74,8 @@ public class ApartarCita {
         dT_DateFligth.setEditable(false);
         gridPaneCitaNue.add(dT_DateFligth, 1, 2);
 
-        comboHora.setValue("Hora de cita");
         //-->  abre      cierra      intervalo
-        for (int i = ajustahorarios.abre; i < ajustahorarios.cierra; i = i + ajustahorarios.intervalo) {  //--> horario de 9am a 5pm -->>Estos valores (9y17) van a ser variables
+        for (int i = Integer.parseInt(supAdmConfi.getCorreo()); i < Integer.parseInt(supAdmConfi.getTelefono()); i = i + Integer.parseInt(supAdmConfi.getDireccion())) {  //--> horario de 9am a 5pm -->>Estos valores (9y17) van a ser variables
             // que vengan desde superAdmin -->> Consultas cada hora
             comboHora.getItems().addAll(i + ":00");
         }
@@ -105,7 +120,7 @@ public class ApartarCita {
 
         botonGuardar.setOnAction((event) -> {
 
-            Cita cita = new Cita(uwu.getName(), dT_DateFligth.getValue().toString(),
+            Cita cita = new Cita(textFieldidDeReservacion.getText(), uwu.getName(), dT_DateFligth.getValue().toString(),
                     comboHora.getValue().toString(), textFieldDoctora.getText());
             clienteLogic.writeFileApartaCita(cita);
             Acciones acc = new Acciones(uwu.getName(), agendo, horaFecha.histoFechaHora());

@@ -1,6 +1,8 @@
 package edu.ucr.rp.clinicadenutricion.Cliente.Gui;
 
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Logic;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Usuario;
 import javafx.application.Platform;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -24,6 +26,7 @@ public class MainMenuBarCliente {
     AjustesCliente ajustes = new AjustesCliente();
 
     LogoApp logo = new LogoApp();
+    Logic l = new Logic();
 
     // VBox vBoxWindows, vBoxMain;
     /**
@@ -36,7 +39,10 @@ public class MainMenuBarCliente {
         /// File file = new File(fileName);
         GridPane gridPaneUsuario = new GridPane();
         gridPaneUsuario.setMinSize(900, 700);
-        gridPaneUsuario.setStyle(("-fx-background-image:url('file:src/image/" + logo.NombreLogo + ".jpeg');"
+
+        Usuario supAdmConfi = l.stringTokenizer(l.readLine("ë"));
+
+        gridPaneUsuario.setStyle(("-fx-background-image:url('file:src/image/" + supAdmConfi.getContraseña() + "');"
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
@@ -56,8 +62,6 @@ public class MainMenuBarCliente {
         menuItemProgreso.setAccelerator(KeyCombination.keyCombination("Ctrl+A"));
         MenuItem menuItemCitas = new MenuItem("Historial de citas", new ImageView(new Image("file:src/image/histo.png")));
         menuItemCitas.setAccelerator(KeyCombination.keyCombination("Ctrl+C"));
-        MenuItem menuItemExit = new MenuItem("Salir", new ImageView(new Image("file:src/image/salir.png")));
-        menuItemExit.setAccelerator(KeyCombination.keyCombination("Alt+S"));
 
         menuItemCitas.setOnAction((event) -> {
             gridPaneUsuario.getChildren().clear();
@@ -69,9 +73,7 @@ public class MainMenuBarCliente {
             gridPaneUsuario.getChildren().addAll(reporteProgreso.reporAvan());
         });
 
-        menuItemExit.setOnAction((event) -> Platform.exit());
-
-        menuReportes.getItems().addAll(menuItemProgreso, menuItemCitas, menuItemExit);
+        menuReportes.getItems().addAll(menuItemProgreso, menuItemCitas);
 
         Menu menuNuevaCita = new Menu("Citas", new ImageView(new Image("file:src/image/cita.png")));
         menuNuevaCita.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"
@@ -132,12 +134,21 @@ public class MainMenuBarCliente {
         });
         menuMas.getItems().addAll(menuItemMasInfo);
 
+        Menu menuUsuario = new Menu("                                               "
+                + "                                                    Usuario");
+        MenuItem menuItemExit = new MenuItem("Cerrar sesion", new ImageView(new Image("file:src/image/salir.png")));
+        menuItemExit.setAccelerator(KeyCombination.keyCombination("Alt+S"));
+
+        menuItemExit.setOnAction((event) -> Platform.exit());
+
+        menuUsuario.getItems().addAll(menuItemExit);
+
         menuBarMenu.setOpacity(0.0);
         menuBarMenu.setOnMouseMoved((event) -> {
             menuBarMenu.setOpacity(0.9);
         });
 
-        menuBarMenu.getMenus().addAll(menuReportes, menuNuevaCita, menuPlanes, menuAjustes, menuMas);
+        menuBarMenu.getMenus().addAll(menuReportes, menuNuevaCita, menuPlanes, menuAjustes, menuMas, menuUsuario);
         gridPaneUsuario.add(menuBarMenu, 0, 0);
 
         return gridPaneUsuario;

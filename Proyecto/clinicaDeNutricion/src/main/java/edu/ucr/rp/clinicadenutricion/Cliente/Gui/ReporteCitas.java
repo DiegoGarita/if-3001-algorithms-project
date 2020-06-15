@@ -40,7 +40,8 @@ public class ReporteCitas {
         gridPanehisto.setHgap(15);    // espacio
         // alinear el grip
         gridPanehisto.setAlignment(Pos.CENTER);
-        gridPanehisto.setStyle(("-fx-background-image:url('file:src/image/" + logo.NombreLogo + ".jpeg');"
+        Usuario supAdmConfi = l.stringTokenizer(l.readLine("ë"));
+        gridPanehisto.setStyle(("-fx-background-image:url('file:src/image/" + supAdmConfi.getContraseña() + "');"
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 

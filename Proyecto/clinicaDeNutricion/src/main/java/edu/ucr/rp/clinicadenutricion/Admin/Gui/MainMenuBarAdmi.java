@@ -13,7 +13,7 @@ public class MainMenuBarAdmi {
     PlanAlimentos planAlimentos = new PlanAlimentos();
     ReservaCita reservarCita = new ReservaCita();
     FormuDoctor formulario = new FormuDoctor();
-        LogoApp logo = new LogoApp();
+    LogoApp logo = new LogoApp();
 
     /**
      *
@@ -26,7 +26,7 @@ public class MainMenuBarAdmi {
         GridPane gridPaneAdmi = new GridPane();
         gridPaneAdmi.setMinSize(900, 700);
 
-        gridPaneAdmi.setStyle(("-fx-background-image:url('file:src/image/"+logo.NombreLogo+".jpeg');"
+        gridPaneAdmi.setStyle(("-fx-background-image:url('file:src/image/" + logo.NombreLogo + ".jpeg');"
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
@@ -47,8 +47,6 @@ public class MainMenuBarAdmi {
         menuItemInfoPaciente.setAccelerator(KeyCombination.keyCombination("Ctrl+A"));
         MenuItem menuItemForm = new MenuItem("Form nuevo", new ImageView(new Image("file:src/image/formDo.png")));
         menuItemForm.setAccelerator(KeyCombination.keyCombination("Ctrl+F"));
-        MenuItem menuItemExit = new MenuItem("Salir", new ImageView(new Image("file:src/image/salir.png")));
-        menuItemExit.setAccelerator(KeyCombination.keyCombination("Alt+S"));
 
         menuItemInfoPaciente.setOnAction((event) -> {
             gridPaneAdmi.getChildren().clear();
@@ -60,9 +58,7 @@ public class MainMenuBarAdmi {
             gridPaneAdmi.getChildren().addAll(formulario.formulario());
         });
 
-        menuItemExit.setOnAction((event) -> Platform.exit());
-
-        menuPaciente.getItems().addAll(menuItemInfoPaciente,menuItemForm, menuItemExit);//agregados a m_SIstema
+        menuPaciente.getItems().addAll(menuItemInfoPaciente, menuItemForm);
 
         Menu menuCita = new Menu("Citas", new ImageView(new Image("file:src/image/cita.png")));
         menuCita.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"
@@ -90,12 +86,21 @@ public class MainMenuBarAdmi {
         });
         menuAlimentacion.getItems().addAll(menuItemVerPlanes);//agregado a menuMaintenance
 
+        Menu menuUsuario = new Menu("                                                      "
+                + "                                                                                        Usuario");
+        MenuItem menuItemExit = new MenuItem("Cerrar sesion", new ImageView(new Image("file:src/image/salir.png")));
+        menuItemExit.setAccelerator(KeyCombination.keyCombination("Alt+S"));
+
+        menuItemExit.setOnAction((event) -> Platform.exit());
+
+        menuUsuario.getItems().addAll(menuItemExit);
+
         menuBarMenu.setOpacity(0.0);
         menuBarMenu.setOnMouseMoved((event) -> {
             menuBarMenu.setOpacity(0.9);
         });
 
-        menuBarMenu.getMenus().addAll(menuPaciente, menuCita, menuAlimentacion);
+        menuBarMenu.getMenus().addAll(menuPaciente, menuCita, menuAlimentacion , menuUsuario);
         gridPaneAdmi.add(menuBarMenu, 0, 0);
 
         return gridPaneAdmi;

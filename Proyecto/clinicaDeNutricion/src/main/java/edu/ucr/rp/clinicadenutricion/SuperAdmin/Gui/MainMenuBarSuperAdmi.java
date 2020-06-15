@@ -32,7 +32,7 @@ public class MainMenuBarSuperAdmi {
         GridPane gridPaneSuperAdmi = new GridPane();
         gridPaneSuperAdmi.setMinSize(900, 700);
         gridPaneSuperAdmi.setStyle(("-fx-background-image:url('file:src/image/SuperAdmin.gif');"
-                + "-fx-background-repeat : no-repeat;"                                 
+                + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
         MenuBar menuBarMenu = new MenuBar();
@@ -51,17 +51,13 @@ public class MainMenuBarSuperAdmi {
         MenuItem menuItemHorario = new MenuItem("Horario clinica y tiempo de consulta",
                 new ImageView(new Image("file:src/image/tiempo.png")));
         menuItemHorario.setAccelerator(KeyCombination.keyCombination("Ctrl+A"));
-        MenuItem menuItemExit = new MenuItem("Salir", new ImageView(new Image("file:src/image/salir.png")));
-        menuItemExit.setAccelerator(KeyCombination.keyCombination("Alt+S"));
 
         menuItemHorario.setOnAction((event) -> {
             gridPaneSuperAdmi.getChildren().clear();
-              gridPaneSuperAdmi.getChildren().addAll(horarioTiempo.horarioClinica());
+            gridPaneSuperAdmi.getChildren().addAll(horarioTiempo.horarioClinica());
         });
-
-        menuItemExit.setOnAction((event) -> Platform.exit());
-
-        menuAjustes.getItems().addAll(menuItemHorario, menuItemExit);
+        
+        menuAjustes.getItems().addAll(menuItemHorario);
 
         Menu menuRegistros = new Menu("Registros", new ImageView(new Image("file:src/image/reporte.png")));
         menuRegistros.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"
@@ -99,7 +95,6 @@ public class MainMenuBarSuperAdmi {
         MenuItem menuItemSearchCatalogue = new MenuItem("Logo del app", new ImageView(new Image("file:src/image/logo.png")));
         menuItemSearchCatalogue.setAccelerator(KeyCombination.keyCombination("Ctrl+V"));
         MenuItem menuItemModifyCatalogue = new MenuItem("Seleccionar path", new ImageView(new Image("file:src/image/pathS.png")));
- 
 
         menuItemSearchCatalogue.setOnAction((event) -> {
             gridPaneSuperAdmi.getChildren().clear();
@@ -111,13 +106,22 @@ public class MainMenuBarSuperAdmi {
             //  vBoxWindows.getChildren().addAll(modifyCatalog.modifyProperties());
         });
 
-
         menuOtros.getItems().addAll(menuItemSearchCatalogue, menuItemModifyCatalogue, separator);
+
+        Menu menuUsuario = new Menu("                                                      "
+                + "                                                                                                      Usuario");
+        MenuItem menuItemExit = new MenuItem("Cerrar sesion", new ImageView(new Image("file:src/image/salir.png")));
+        menuItemExit.setAccelerator(KeyCombination.keyCombination("Alt+S"));
+
+        menuItemExit.setOnAction((event) -> Platform.exit());
+
+        menuUsuario.getItems().addAll(menuItemExit);
+
         menuBarMenu.setOpacity(0.0);
         menuBarMenu.setOnMouseMoved((event) -> {
             menuBarMenu.setOpacity(0.9);
         });
-        menuBarMenu.getMenus().addAll(menuAjustes, menuRegistros, menuOtros);
+        menuBarMenu.getMenus().addAll(menuAjustes, menuRegistros, menuOtros, menuUsuario);
         gridPaneSuperAdmi.add(menuBarMenu, 0, 0);
 
         return gridPaneSuperAdmi;
