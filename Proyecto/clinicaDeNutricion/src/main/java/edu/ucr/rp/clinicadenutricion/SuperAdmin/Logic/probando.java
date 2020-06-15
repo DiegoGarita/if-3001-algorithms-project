@@ -12,7 +12,7 @@ public class probando {
 //        ///   cita.setAltura(1.70);
         TextArea t = new TextArea();
         t.setText("hjbd");
-        cita = new ReporteMedico("fsd", "edf", "nula", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, t);
+        //cita = new ReporteMedico("fsd", "edf", "nula", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, t);
 //        //ColaImplementacion cola = new ColaImplementacion();
 //        // cola.insertarNodo(cita);
 //        // cola.desplegarCola(cita);

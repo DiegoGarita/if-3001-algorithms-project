@@ -1,8 +1,10 @@
 package edu.ucr.rp.clinicadenutricion.Admin.Gui;
 
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
+import edu.ucr.rp.clinicadenutricion.Admin.logic.AdminLogic;
+import edu.ucr.rp.clinicadenutricion.Objetos.ReporteMedico;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
@@ -12,136 +14,144 @@ import javafx.scene.text.*;
 
 public class FormuDoctor {
 
-    TextField textFieldPorAgua;        //--> %Agua
-    TextField textFieldPormasaMuscular;
+    ComboBox comboBoxTool = new ComboBox();
+
+    TextField textFieldID;
+    TextField textFieldNombre;
+    TextField textFieldFecha;
+    TextField textFieldHora;
+    TextField textFieldEdad;
+    TextField textFieldEdadMetabolica;
+    TextField textFieldAltura;
+    TextField textFieldPeso;
+    TextField textFieldPorcentajeMasaMuscular;
     TextField textFieldGrasa;
     TextField textFieldGrasaVisceral;
-
     TextField textFieldHueso;
-    TextField textFieldPeso;
-    TextField textFieldEdadMetab;
-    TextField textFieldEdad;
-
-    TextField textFieldAltura;
-    TextField textFieldHorasDescanso;
+    TextField textFieldPorcentajeAgua;
     TextField textFieldActividadFisica;
+    TextField textFieldHorasDescanso;
 
     TextArea textAreaNotas = new TextArea();
 
     Button buttonAceptar;
-    String fileName;
-    LogoApp logo = new LogoApp();
+    Button buttonIngresar;
 
-//////////    public CrearUsuarioNuevo(String fileName) {
-//////////        this.fileName = fileName;
-//////////    }
+    AdminLogic adminLogic = new AdminLogic();
+
     /**
      *
      * @return Nos da la GUI que nos permite crear un nuevo catálogo
      */
     public GridPane formulario() {
 
-        /// File file = new File(fileName);
         GridPane gridPaneForm = new GridPane();
         gridPaneForm.setMinSize(600, 700);
-        // determina el espacio entre columnas (vertical y horizontal)
-        gridPaneForm.setVgap(15);   //espacio
-        gridPaneForm.setHgap(15);    // espacio
-        // alinear el grip
+        gridPaneForm.setVgap(15);
+        gridPaneForm.setHgap(15);
         gridPaneForm.setAlignment(Pos.CENTER);
+        gridPaneForm.setStyle("-fx-background-color: dodgerblue");
 
-        gridPaneForm.setStyle(("-fx-background-image:url('file:src/image/"+logo.NombreLogo+".jpeg');"
-                + "-fx-background-repeat : no-repeat;"
-                + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
+        comboBoxTool.setValue("Clientes");
+        comboBoxTool.setStyle("-fx-background-color: lightblue");
+        gridPaneForm.add(comboBoxTool, 0, 0);
 
-        textFieldPorAgua = new TextField();
-        textFieldPorAgua.setPromptText("% de agua");
-        textFieldPorAgua.setStyle(
+        for (int i = 0; i < adminLogic.CantidadDeClientes("ä"); i++) {
+            comboBoxTool.getItems().addAll(adminLogic.clientesAL.get(i).getId());
+        }
+
+        buttonIngresar = new Button("Ingresar");
+        buttonIngresar.setTextFill(Color.WHITE);
+        buttonIngresar.setStyle("-fx-background-color: BLACK");
+        buttonIngresar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        gridPaneForm.add(buttonIngresar, 1, 0);
+        buttonIngresar.setOnAction((event) -> {
+
+            if (!comboBoxTool.getValue().toString().equals("")) {
+                textFieldID.setVisible(true);
+                textFieldNombre.setVisible(true);
+                textFieldFecha.setVisible(true);
+                textFieldHora.setVisible(true);
+                textFieldEdad.setVisible(true);
+                textFieldEdadMetabolica.setVisible(true);
+                textFieldAltura.setVisible(true);
+                textFieldPeso.setVisible(true);
+                textFieldPorcentajeMasaMuscular.setVisible(true);
+                textFieldGrasa.setVisible(true);
+                textFieldGrasaVisceral.setVisible(true);
+                textFieldHueso.setVisible(true);
+                textFieldPorcentajeAgua.setVisible(true);
+                textFieldActividadFisica.setVisible(true);
+                textFieldHorasDescanso.setVisible(true);
+
+                textAreaNotas.setVisible(true);
+
+                buttonAceptar.setVisible(true);
+
+                textFieldID.setText(adminLogic.getUsuario(comboBoxTool.getValue().toString()).getId());
+                textFieldNombre.setText(adminLogic.getUsuario(comboBoxTool.getValue().toString()).getName());
+                textFieldFecha.setText("ingresar fecha de cita*");
+                textFieldHora.setText("ingresar hora de cita*");
+
+            }
+
+        });//end setOnAction
+
+        textFieldID = new TextField();
+        textFieldID.setDisable(true);
+        textFieldID.setVisible(false);
+        textFieldID.setStyle(
                 "-fx-background-color: lightblue; "
                 + "-fx-background-insets: 4; "
                 +// tamano
                 "-fx-background-radius: 4; "
                 +// tamano
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
+        gridPaneForm.add(textFieldID, 0, 1);
+        textFieldID.setFocusTraversable(false);
 
-        gridPaneForm.add(textFieldPorAgua, 0, 1);
-        GridPane.setColumnSpan(textAreaNotas, Integer.BYTES);
-        textFieldPorAgua.setFocusTraversable(false);
-
-        textFieldPormasaMuscular = new TextField();
-        textFieldPormasaMuscular.setPromptText("% masa musc");
-        textFieldPormasaMuscular.setStyle(
+        textFieldNombre = new TextField();
+        textFieldNombre.setDisable(true);
+        textFieldNombre.setVisible(false);
+        textFieldNombre.setStyle(
                 "-fx-background-color: lightblue; "
                 + "-fx-background-insets: 4; "
                 +// tamano
                 "-fx-background-radius: 4; "
                 +// tamano
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-        gridPaneForm.add(textFieldPormasaMuscular, 1, 1);
-        textFieldPormasaMuscular.setFocusTraversable(false);
+        gridPaneForm.add(textFieldNombre, 1, 1);
+        textFieldNombre.setFocusTraversable(false);
 
-        textFieldGrasa = new TextField();
-        textFieldGrasa.setPromptText("Grasa");
-        textFieldGrasa.setStyle(
+        textFieldFecha = new TextField();
+        textFieldFecha.setDisable(true);
+        textFieldFecha.setVisible(false);
+        textFieldFecha.setStyle(
                 "-fx-background-color: lightblue; "
                 + "-fx-background-insets: 4; "
                 +// tamano
                 "-fx-background-radius: 4; "
                 +// tamano
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-        gridPaneForm.add(textFieldGrasa, 2, 1);
-        textFieldGrasa.setFocusTraversable(false);
+        gridPaneForm.add(textFieldFecha, 2, 1);
+        textFieldFecha.setFocusTraversable(false);
 
-        textFieldGrasaVisceral = new TextField();
-        textFieldGrasaVisceral.setPromptText("Grasa Visceral");
-        textFieldGrasaVisceral.setStyle(
+        textFieldHora = new TextField();
+        textFieldHora.setDisable(true);
+        textFieldHora.setVisible(false);
+        textFieldHora.setStyle(
                 "-fx-background-color: lightblue; "
                 + "-fx-background-insets: 4; "
                 +// tamano
                 "-fx-background-radius: 4; "
                 +// tamano
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-        gridPaneForm.add(textFieldGrasaVisceral, 3, 1);
-        textFieldGrasaVisceral.setFocusTraversable(false);
-
-        textFieldHueso = new TextField();
-        textFieldHueso.setPromptText("Hueso");
-        textFieldHueso.setStyle(
-                "-fx-background-color: lightblue; "
-                + "-fx-background-insets: 4; "
-                +// tamano
-                "-fx-background-radius: 4; "
-                +// tamano
-                "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-        gridPaneForm.add(textFieldHueso, 0, 2);
-        textFieldHueso.setFocusTraversable(false);
-
-        textFieldPeso = new TextField();
-        textFieldPeso.setPromptText("Peso");
-        textFieldPeso.setStyle(
-                "-fx-background-color: lightblue; "
-                + "-fx-background-insets: 4; "
-                +// tamano
-                "-fx-background-radius: 4; "
-                +// tamano
-                "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-        gridPaneForm.add(textFieldPeso, 1, 2);
-        textFieldPeso.setFocusTraversable(false);
-
-        textFieldEdadMetab = new TextField();
-        textFieldEdadMetab.setPromptText("Edad metabolica");
-        textFieldEdadMetab.setStyle(
-                "-fx-background-color: lightblue; "
-                + "-fx-background-insets: 4; "
-                +// tamano
-                "-fx-background-radius: 4; "
-                +// tamano
-                "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-        gridPaneForm.add(textFieldEdadMetab, 2, 2);
-        textFieldEdadMetab.setFocusTraversable(false);
+        gridPaneForm.add(textFieldHora, 3, 1);
+        textFieldHora.setFocusTraversable(false);
 
         textFieldEdad = new TextField();
         textFieldEdad.setPromptText("Edad");
+        textFieldEdad.setVisible(false);
         textFieldEdad.setStyle(
                 "-fx-background-color: lightblue; "
                 + "-fx-background-insets: 4; "
@@ -149,11 +159,25 @@ public class FormuDoctor {
                 "-fx-background-radius: 4; "
                 +// tamano
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-        gridPaneForm.add(textFieldEdad, 3, 2);
+        gridPaneForm.add(textFieldEdad, 0, 2);
         textFieldEdad.setFocusTraversable(false);
+
+        textFieldEdadMetabolica = new TextField();
+        textFieldEdadMetabolica.setPromptText("Edad metabolica");
+        textFieldEdadMetabolica.setVisible(false);
+        textFieldEdadMetabolica.setStyle(
+                "-fx-background-color: lightblue; "
+                + "-fx-background-insets: 4; "
+                +// tamano
+                "-fx-background-radius: 4; "
+                +// tamano
+                "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
+        gridPaneForm.add(textFieldEdadMetabolica, 1, 2);
+        textFieldEdadMetabolica.setFocusTraversable(false);
 
         textFieldAltura = new TextField();
         textFieldAltura.setPromptText("Altura");
+        textFieldAltura.setVisible(false);
         textFieldAltura.setStyle(
                 "-fx-background-color: lightblue; "
                 + "-fx-background-insets: 4; "
@@ -161,23 +185,91 @@ public class FormuDoctor {
                 "-fx-background-radius: 4; "
                 +// tamano
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-        gridPaneForm.add(textFieldAltura, 0, 3);
+        gridPaneForm.add(textFieldAltura, 2, 2);
         textFieldAltura.setFocusTraversable(false);
 
-        textFieldHorasDescanso = new TextField();
-        textFieldHorasDescanso.setPromptText("Horas de descanso");
-        textFieldHorasDescanso.setStyle(
+        textFieldPeso = new TextField();
+        textFieldPeso.setPromptText("Peso");
+        textFieldPeso.setVisible(false);
+        textFieldPeso.setStyle(
                 "-fx-background-color: lightblue; "
                 + "-fx-background-insets: 4; "
                 +// tamano
                 "-fx-background-radius: 4; "
                 +// tamano
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-        gridPaneForm.add(textFieldHorasDescanso, 1, 3);
-        textFieldHorasDescanso.setFocusTraversable(false);
+        gridPaneForm.add(textFieldPeso, 3, 2);
+        textFieldPeso.setFocusTraversable(false);
+        
+        textFieldPorcentajeMasaMuscular = new TextField();
+        textFieldPorcentajeMasaMuscular.setPromptText("% masa muscular");
+        textFieldPorcentajeMasaMuscular.setVisible(false);
+        textFieldPorcentajeMasaMuscular.setStyle(
+                "-fx-background-color: lightblue; "
+                + "-fx-background-insets: 4; "
+                +// tamano
+                "-fx-background-radius: 4; "
+                +// tamano
+                "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
+        gridPaneForm.add(textFieldPorcentajeMasaMuscular, 0, 3);
+        textFieldPorcentajeMasaMuscular.setFocusTraversable(false);
+
+        textFieldGrasa = new TextField();
+        textFieldGrasa.setPromptText("Grasa");
+        textFieldGrasa.setVisible(false);
+        textFieldGrasa.setStyle(
+                "-fx-background-color: lightblue; "
+                + "-fx-background-insets: 4; "
+                +// tamano
+                "-fx-background-radius: 4; "
+                +// tamano
+                "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
+        gridPaneForm.add(textFieldGrasa, 1, 3);
+        textFieldGrasa.setFocusTraversable(false);
+
+        textFieldGrasaVisceral = new TextField();
+        textFieldGrasaVisceral.setPromptText("Grasa Visceral");
+        textFieldGrasaVisceral.setVisible(false);
+
+        textFieldGrasaVisceral.setStyle(
+                "-fx-background-color: lightblue; "
+                + "-fx-background-insets: 4; "
+                +// tamano
+                "-fx-background-radius: 4; "
+                +// tamano
+                "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
+        gridPaneForm.add(textFieldGrasaVisceral, 2, 3);
+        textFieldGrasaVisceral.setFocusTraversable(false);
+
+        textFieldHueso = new TextField();
+        textFieldHueso.setPromptText("Hueso");
+        textFieldHueso.setVisible(false);
+        textFieldHueso.setStyle(
+                "-fx-background-color: lightblue; "
+                + "-fx-background-insets: 4; "
+                +// tamano
+                "-fx-background-radius: 4; "
+                +// tamano
+                "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
+        gridPaneForm.add(textFieldHueso, 3, 3);
+        textFieldHueso.setFocusTraversable(false);
+
+        textFieldPorcentajeAgua = new TextField();
+        textFieldPorcentajeAgua.setPromptText("% de agua");
+        textFieldPorcentajeAgua.setVisible(false);
+        textFieldPorcentajeAgua.setStyle(
+                "-fx-background-color: lightblue; "
+                + "-fx-background-insets: 4; "
+                +// tamano
+                "-fx-background-radius: 4; "
+                +// tamano
+                "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
+        gridPaneForm.add(textFieldPorcentajeAgua, 0, 4);
+        textFieldPorcentajeAgua.setFocusTraversable(false);
 
         textFieldActividadFisica = new TextField();
         textFieldActividadFisica.setPromptText("Actividad fisica");
+        textFieldActividadFisica.setVisible(false);
         textFieldActividadFisica.setStyle(
                 "-fx-background-color: lightblue; "
                 + "-fx-background-insets: 4; "
@@ -185,19 +277,41 @@ public class FormuDoctor {
                 "-fx-background-radius: 4; "
                 +// tamano
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-        gridPaneForm.add(textFieldActividadFisica, 2, 3);
+        gridPaneForm.add(textFieldActividadFisica, 1, 4);
         textFieldActividadFisica.setFocusTraversable(false);
 
-        textAreaNotas.setText("TODO Notas here");
+        textFieldHorasDescanso = new TextField();
+        textFieldHorasDescanso.setPromptText("Horas de descanso");
+        textFieldHorasDescanso.setVisible(false);
+        textFieldHorasDescanso.setStyle(
+                "-fx-background-color: lightblue; "
+                + "-fx-background-insets: 4; "
+                +// tamano
+                "-fx-background-radius: 4; "
+                +// tamano
+                "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
+        gridPaneForm.add(textFieldHorasDescanso, 2, 4);
+        textFieldHorasDescanso.setFocusTraversable(false);
+
+        GridPane.setColumnSpan(textAreaNotas, Integer.BYTES);
+        textAreaNotas.setVisible(false);
         textAreaNotas.setMinSize(650, 75);
-        gridPaneForm.add(textAreaNotas, 0, 4);
+        gridPaneForm.add(textAreaNotas, 0, 5);
 
         buttonAceptar = new Button("Aceptar");
+        buttonAceptar.setVisible(false);
         buttonAceptar.setTextFill(Color.WHITE);//Color de la letra del boton
         buttonAceptar.setStyle("-fx-background-color: BLACK");//Color del fondo
         buttonAceptar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
-        gridPaneForm.add(buttonAceptar, 0, 5);
+        gridPaneForm.add(buttonAceptar, 0, 6);
         buttonAceptar.setOnAction((event) -> {
+
+            ReporteMedico reporteMedico = new ReporteMedico(textFieldID.getText(),textFieldNombre.getText(), 
+            textFieldFecha.getText(), textFieldHora.getText(), textFieldEdad.getText(), textFieldEdadMetabolica.getText(),
+            textFieldAltura.getText(), textFieldPeso.getText(), textFieldPorcentajeMasaMuscular.getText(), textFieldGrasa.getText(),
+            textFieldGrasaVisceral.getText(), textFieldHueso.getText(), textFieldPorcentajeAgua.getText(), textFieldActividadFisica.getText(),
+            textFieldHorasDescanso.getText(), textAreaNotas.getText());
+            adminLogic.writeFileCitas(reporteMedico);
 
         });//end setOnAction
 
@@ -207,9 +321,9 @@ public class FormuDoctor {
         buttonClose.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
         gridPaneForm.add(buttonClose, 0, 8);
         MainMenuBarAdmi n = new MainMenuBarAdmi();
-        //***
+
         MainMenuBarAdmi o = new MainMenuBarAdmi();
-        //***
+
         buttonClose.setOnAction((event) -> {
 
             gridPaneForm.getChildren().clear();

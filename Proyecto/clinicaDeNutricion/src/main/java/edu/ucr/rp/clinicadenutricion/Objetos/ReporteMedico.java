@@ -1,42 +1,57 @@
 package edu.ucr.rp.clinicadenutricion.Objetos;
 
-import javafx.scene.control.TextArea;
-
 public class ReporteMedico {
 
-    private String fecha ;
-    private String hora ;  
+    private String ID;
+    private String nombre;
+    private String fecha;
+    private String hora;
+    private String edad;
+    private String edadMetabolica;
+    private String altura;
+    private String peso;
+    private String porcenMasaMuscular;
+    private String grasa;
+    private String grasaVisceral;
+    private String hueso;
+    private String porcenAgua;
     private String actividadFisica;
-    private double porcenAgua;
-    private double porcenMasaMuscular;
-    private double grasa;
-    private double grasaVisceral;
-    private double hueso;
-    private double edadMetabolica;
-    private double peso;  
-    private double altura;     
-    private int horasDeSueño;
-    private int edad;    
-    private TextArea textAreaNotas;
+    private String horasDeSueño;
+    private String textAreaNotas;
 
-    public ReporteMedico(String fecha, String hora, String actividadFisica,
-            double porcenAgua, double porcenMasaMuscular, double grasa,
-            double grasaVisceral, double hueso, double edadMetabolica,
-            double peso, double altura, int horasDeSueño, int edad, TextArea textAreaNotas) {
+    public ReporteMedico(String ID, String nombre, String fecha, String hora, String edad, String edadMetabolica, String altura, String peso, String porcenMasaMuscular, String grasa, String grasaVisceral, String hueso, String porcenAgua, String actividadFisica, String horasDeSueño, String textAreaNotas) {
+        this.ID = ID;
+        this.nombre = nombre;
         this.fecha = fecha;
         this.hora = hora;
-        this.actividadFisica = actividadFisica;
-        this.porcenAgua = porcenAgua;
+        this.edad = edad;
+        this.edadMetabolica = edadMetabolica;
+        this.altura = altura;
+        this.peso = peso;
         this.porcenMasaMuscular = porcenMasaMuscular;
         this.grasa = grasa;
         this.grasaVisceral = grasaVisceral;
         this.hueso = hueso;
-        this.edadMetabolica = edadMetabolica;
-        this.peso = peso;
-        this.altura = altura;
+        this.porcenAgua = porcenAgua;
+        this.actividadFisica = actividadFisica;
         this.horasDeSueño = horasDeSueño;
-        this.edad = edad;
         this.textAreaNotas = textAreaNotas;
+    }
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getFecha() {
@@ -55,6 +70,78 @@ public class ReporteMedico {
         this.hora = hora;
     }
 
+    public String getEdad() {
+        return edad;
+    }
+
+    public void setEdad(String edad) {
+        this.edad = edad;
+    }
+
+    public String getEdadMetabolica() {
+        return edadMetabolica;
+    }
+
+    public void setEdadMetabolica(String edadMetabolica) {
+        this.edadMetabolica = edadMetabolica;
+    }
+
+    public String getAltura() {
+        return altura;
+    }
+
+    public void setAltura(String altura) {
+        this.altura = altura;
+    }
+
+    public String getPeso() {
+        return peso;
+    }
+
+    public void setPeso(String peso) {
+        this.peso = peso;
+    }
+
+    public String getPorcenMasaMuscular() {
+        return porcenMasaMuscular;
+    }
+
+    public void setPorcenMasaMuscular(String porcenMasaMuscular) {
+        this.porcenMasaMuscular = porcenMasaMuscular;
+    }
+
+    public String getGrasa() {
+        return grasa;
+    }
+
+    public void setGrasa(String grasa) {
+        this.grasa = grasa;
+    }
+
+    public String getGrasaVisceral() {
+        return grasaVisceral;
+    }
+
+    public void setGrasaVisceral(String grasaVisceral) {
+        this.grasaVisceral = grasaVisceral;
+    }
+
+    public String getHueso() {
+        return hueso;
+    }
+
+    public void setHueso(String hueso) {
+        this.hueso = hueso;
+    }
+
+    public String getPorcenAgua() {
+        return porcenAgua;
+    }
+
+    public void setPorcenAgua(String porcenAgua) {
+        this.porcenAgua = porcenAgua;
+    }
+
     public String getActividadFisica() {
         return actividadFisica;
     }
@@ -63,93 +150,20 @@ public class ReporteMedico {
         this.actividadFisica = actividadFisica;
     }
 
-    public double getPorcenAgua() {
-        return porcenAgua;
-    }
-
-    public void setPorcenAgua(double porcenAgua) {
-        this.porcenAgua = porcenAgua;
-    }
-
-    public double getPorcenMasaMuscular() {
-        return porcenMasaMuscular;
-    }
-
-    public void setPorcenMasaMuscular(double porcenMasaMuscular) {
-        this.porcenMasaMuscular = porcenMasaMuscular;
-    }
-
-    public double getGrasa() {
-        return grasa;
-    }
-
-    public void setGrasa(double grasa) {
-        this.grasa = grasa;
-    }
-
-    public double getGrasaVisceral() {
-        return grasaVisceral;
-    }
-
-    public void setGrasaVisceral(double grasaVisceral) {
-        this.grasaVisceral = grasaVisceral;
-    }
-
-    public double getHueso() {
-        return hueso;
-    }
-
-    public void setHueso(double hueso) {
-        this.hueso = hueso;
-    }
-
-    public double getEdadMetabolica() {
-        return edadMetabolica;
-    }
-
-    public void setEdadMetabolica(double edadMetabolica) {
-        this.edadMetabolica = edadMetabolica;
-    }
-
-    public double getPeso() {
-        return peso;
-    }
-
-    public void setPeso(double peso) {
-        this.peso = peso;
-    }
-
-    public double getAltura() {
-        return altura;
-    }
-
-    public void setAltura(double altura) {
-        this.altura = altura;
-    }
-
-    public int getHorasDeSueño() {
+    public String getHorasDeSueño() {
         return horasDeSueño;
     }
 
-    public void setHorasDeSueño(int horasDeSueño) {
+    public void setHorasDeSueño(String horasDeSueño) {
         this.horasDeSueño = horasDeSueño;
     }
 
-    public int getEdad() {
-        return edad;
-    }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
-    }
-
-    public TextArea getTextAreaNotas() {
+    public String getTextAreaNotas() {
         return textAreaNotas;
     }
 
-    public void setTextAreaNotas(TextArea textAreaNotas) {
+    public void setTextAreaNotas(String textAreaNotas) {
         this.textAreaNotas = textAreaNotas;
     }
-  
 
 }//end citas
