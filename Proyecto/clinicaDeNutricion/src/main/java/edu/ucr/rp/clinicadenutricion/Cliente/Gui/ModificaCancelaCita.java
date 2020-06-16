@@ -1,15 +1,14 @@
 package edu.ucr.rp.clinicadenutricion.Cliente.Gui;
 
-//clase para que el cliente modifique o cancel su cita
-import edu.ucr.rp.clinicadenutricion.AVL.AVLArchivo;
-import edu.ucr.rp.clinicadenutricion.Cliente.Logic.ClienteLogic;
+import edu.ucr.rp.clinicadenutricion.AVL.LogicaAVL;
+import edu.ucr.rp.clinicadenutricion.Cliente.Logic.LogicaPila;
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Objetos.Cita;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
-import edu.ucr.rp.clinicadenutricion.Utilitario.HoraFecha;
-import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.Entrar;
-import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Logic;
-import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Usuario;
+import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.IniciarSesion;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
+import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
 import java.time.LocalDate;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -20,125 +19,109 @@ import javafx.scene.text.*;
 public class ModificaCancelaCita {
 
     
-    TextField textFieldNombreUsu;
+    TextField textFieldNombre;
     Button buttonDesplegar;
-    Button buttonModiCita;
-    Button buttonCanceCita;
+    Button buttonModificar;
+    Button buttonCancelarCita;
     TextArea textAreaMostrar = new TextArea();
-    ComboBox comboHora = new ComboBox();
+    ComboBox comboBoxHora = new ComboBox();
     String modiCita = "Modifico cita";
     String cancelCita = "Cancelo cita";
-    AVLArchivo histo = new AVLArchivo();
-    HoraFecha horaFecha = new HoraFecha();
+    LogicaAVL logicaAVL = new LogicaAVL();
+    FechaHora fechaHora = new FechaHora();
 
-    Logic l = new Logic();
-    Entrar en;
+    LogicaListas logica = new LogicaListas();
+    IniciarSesion iniciarSesion;
     LogoApp logo = new LogoApp();
-    ClienteLogic archivoPila = new ClienteLogic();
+    LogicaPila logicaCliente = new LogicaPila();
 
-    /**
-     *
-     * @return Nos da la GUI que nos permite crear un nuevo catálogo
-     */
-    public GridPane modiCancel() {
-        /// File file = new File(fileName);
-        GridPane gridPaneModiCan = new GridPane();
-        gridPaneModiCan.setMinSize(600, 700);
-        // determina el espacio entre columnas (vertical y horizontal)
-        gridPaneModiCan.setVgap(15);   //espacio
-        gridPaneModiCan.setHgap(15);    // espacio
-        // alinear el grip
-        gridPaneModiCan.setAlignment(Pos.CENTER);
-        Usuario supAdmConfi = l.stringTokenizer(l.readLine("ë"));
+    public GridPane modificaCancelaCita() {
+        GridPane gridPaneModificaCancela = new GridPane();
+        gridPaneModificaCancela.setMinSize(600, 700);
+        gridPaneModificaCancela.setVgap(15);
+        gridPaneModificaCancela.setHgap(15);
+        gridPaneModificaCancela.setAlignment(Pos.CENTER);
+        Usuario usuarioTemp = logica.stringTokenizer(logica.leeLinea("ë"));
 
-        gridPaneModiCan.setStyle(("-fx-background-image:url('file:src/image/" + supAdmConfi.getContraseña() + "');"
+        gridPaneModificaCancela.setStyle(("-fx-background-image:url('file:src/image/" + usuarioTemp.getContraseña() + "');"
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
-        Usuario uwu = l.stringTokenizer(l.readLine(en.ID));
+        Usuario usuario = logica.stringTokenizer(logica.leeLinea(iniciarSesion.ID));
         String tipo = "";
-        if (uwu.getTipo().equals("ä")) {
+        if (usuario.getTipo().equals("ä")) {
             tipo = "Cliente";
-        } else if (uwu.getTipo().equals("ö")) {
+        } else if (usuario.getTipo().equals("ö")) {
             tipo = "Administración";
         }
-////////        
-        Cita citaTrae = archivoPila.stringTokenizer(archivoPila.readLine(""));
 
-        gridPaneModiCan.add(new Label("Fecha de cita"), 0, 2);
-        DatePicker dT_DateFligth = new DatePicker(LocalDate.now());
-        dT_DateFligth.setEditable(false);
-        gridPaneModiCan.add(dT_DateFligth, 1, 2);
+        gridPaneModificaCancela.add(new Label("Fecha de cita"), 0, 2);
+        DatePicker datePicker = new DatePicker(LocalDate.now());
+        datePicker.setEditable(false);
+        gridPaneModificaCancela.add(datePicker, 1, 2);
 
-        //-->  abre      cierra      intervalo
-        for (int i = Integer.parseInt(supAdmConfi.getCorreo()); i < Integer.parseInt(supAdmConfi.getTelefono()); i = i + Integer.parseInt(supAdmConfi.getDireccion())) {  //--> horario de 9am a 5pm -->>Estos valores (9y17) van a ser variables
-            // que vengan desde superAdmin -->> Consultas cada hora
-            comboHora.getItems().addAll(i + ":00");
+        for (int i = Integer.parseInt(usuarioTemp.getCorreo()); i < Integer.parseInt(usuarioTemp.getTelefono()); i = i + Integer.parseInt(usuarioTemp.getDireccion())) {  //--> horario de 9am a 5pm -->>Estos valores (9y17) van a ser variables
+            comboBoxHora.getItems().addAll(i + ":00");
         }
-        gridPaneModiCan.add(comboHora, 0, 3);
+        gridPaneModificaCancela.add(comboBoxHora, 0, 3);
         
-        TextField g = new TextField();
-        gridPaneModiCan.add(g, 3, 3);
+        TextField textField = new TextField();
+        gridPaneModificaCancela.add(textField, 3, 3);
 
-        buttonModiCita = new Button("Modificar");
-        buttonModiCita.setTextFill(Color.WHITE);//Color de la letra del boton
-        buttonModiCita.setStyle("-fx-background-color: BLACK");//Color del fondo
-        buttonModiCita.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
-        gridPaneModiCan.add(buttonModiCita, 1, 5);
-        buttonModiCita.setOnAction((event) -> {
+        buttonModificar = new Button("Modificar");
+        buttonModificar.setTextFill(Color.WHITE);
+        buttonModificar.setStyle("-fx-background-color: BLACK");
+        buttonModificar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        gridPaneModificaCancela.add(buttonModificar, 1, 5);
+        buttonModificar.setOnAction((event) -> {
 
-            Cita cita = archivoPila.stringTokenizer(archivoPila.readLine(g.getText()));
-            Cita citaAux = new Cita(g.getText(), citaTrae.getNombre(),
-                    dT_DateFligth.getValue().toString(), comboHora.getValue().toString(), cita.getDoctora());
+            Cita cita = logicaCliente.stringTokenizer(logicaCliente.leeLinea(textField.getText()));
+            Cita citaAux = new Cita(textField.getText(), cita.getNombre(),
+                    datePicker.getValue().toString(), comboBoxHora.getValue().toString(), cita.getDoctora());
 
-            archivoPila.readApartaCita();
-            ///logic.modified(usuario, textFieldAbre.getText());
-            //logic.modifiedSuperHoras(usuario, textFieldAbre.getText(), textFieldCierra.getText(), textFieldIntervalo.getText());
-            archivoPila.removeLineFromFile(cita.getIdCita());
-            archivoPila.writeFileApartaCita(citaAux);
+            logicaCliente.leeArchivoSolicitudCita();
+            logicaCliente.remueveLineaDelArchivo(cita.getIDCita());
+            logicaCliente.EscribeArchivoSolicitudCita(citaAux);
 
-            Acciones acc = new Acciones(uwu.getName(), modiCita, horaFecha.histoFechaHora());
-            histo.writeFileCitas(acc);
+            Acciones acciones = new Acciones(usuario.getName(), modiCita, fechaHora.histoFechaHora());
+            logicaAVL.escribeHistorial(acciones);
 
         });//end setOnAction
 
-        buttonCanceCita = new Button("Cancelar cita");
-        buttonCanceCita.setTextFill(Color.WHITE);//Color de la letra del boton
-        buttonCanceCita.setStyle("-fx-background-color: BLACK");//Color del fondo
-        buttonCanceCita.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
-        gridPaneModiCan.add(buttonCanceCita, 2, 5);
-        buttonCanceCita.setOnAction((event) -> {
+        buttonCancelarCita = new Button("Cancelar cita");
+        buttonCancelarCita.setTextFill(Color.WHITE);
+        buttonCancelarCita.setStyle("-fx-background-color: BLACK");
+        buttonCancelarCita.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        gridPaneModificaCancela.add(buttonCancelarCita, 2, 5);
+        buttonCancelarCita.setOnAction((event) -> {
 
-            // Usuario usuario = archivoPila.stringTokenizer(archivoPila.readLine(textFieldID.getText()));
-            Cita cita = archivoPila.stringTokenizer(archivoPila.readLine(g.getText()));
-            archivoPila.readApartaCita();   // ------------>>> Linea cerda del problema -805306369
-            archivoPila.delete(cita);
-            archivoPila.removeLineFromFile(cita.getIdCita()); //----->> Linea que me duplica
+            Cita cita = logicaCliente.stringTokenizer(logicaCliente.leeLinea(textField.getText()));
+            logicaCliente.leeArchivoSolicitudCita();   // ------------>>> Linea cerda del problema -805306369
+            logicaCliente.elimina(cita);
+            logicaCliente.remueveLineaDelArchivo(cita.getIDCita()); //----->> Linea que me duplica
 
-            Acciones acc = new Acciones(uwu.getName(), cancelCita, horaFecha.histoFechaHora());
-            histo.writeFileCitas(acc);
+            Acciones acc = new Acciones(usuario.getName(), cancelCita, fechaHora.histoFechaHora());
+            logicaAVL.escribeHistorial(acc);
 
             System.out.println("Hola me precionaste");
 
         });//end setOnAction
 
-        //***
-        MainMenuBarCliente barCliente = new MainMenuBarCliente();
-        //***
+        MainMenuBarCliente mainMenuBarCliente = new MainMenuBarCliente();
 
-        Button buttonClose = new Button("Cerrar");
-        buttonClose.setTextFill(Color.WHITE);//Color de la letra del boton
-        buttonClose.setStyle("-fx-background-color: BLACK");//Color del fondo
-        buttonClose.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
-        gridPaneModiCan.add(buttonClose, 0, 8);
-        buttonClose.setOnAction((event) -> {
+        Button buttonCerrar = new Button("Cerrar");
+        buttonCerrar.setTextFill(Color.WHITE);
+        buttonCerrar.setStyle("-fx-background-color: BLACK");
+        buttonCerrar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        gridPaneModificaCancela.add(buttonCerrar, 0, 8);
+        buttonCerrar.setOnAction((event) -> {
 
-            gridPaneModiCan.getChildren().clear();
-            gridPaneModiCan.setBackground(Background.EMPTY);
-            gridPaneModiCan.getChildren().add(barCliente.menuCliente());
+            gridPaneModificaCancela.getChildren().clear();
+            gridPaneModificaCancela.setBackground(Background.EMPTY);
+            gridPaneModificaCancela.getChildren().add(mainMenuBarCliente.menuCliente());
 
-        });//end btn cerrar
+        });
 
-        return gridPaneModiCan;
+        return gridPaneModificaCancela;
     }//end GridPane createCatalogue()
 }

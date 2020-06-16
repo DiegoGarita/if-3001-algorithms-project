@@ -1,8 +1,8 @@
 package edu.ucr.rp.clinicadenutricion.Cliente.Gui;
 
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
-import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Logic;
-import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Usuario;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
+import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
 import javafx.application.Platform;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -18,31 +18,25 @@ public class MainMenuBarCliente {
     ReporteCitas reporteCitas = new ReporteCitas();
     ReporteProgreso reporteProgreso = new ReporteProgreso();
 
-    ApartarCita apartarCita = new ApartarCita();
-    ModificaCancelaCita modifCancela = new ModificaCancelaCita();
+    SolicitaCita solicitaCita = new SolicitaCita();
+    ModificaCancelaCita modificaCancelaCita = new ModificaCancelaCita();
 
-    PlanesAlimentacion planAlimentos = new PlanesAlimentacion();
+    PlanesAlimenticios planesAlimenticios = new PlanesAlimenticios();
 
-    AjustesCliente ajustes = new AjustesCliente();
+    AjustesCliente ajustesCliente = new AjustesCliente();
 
     LogoApp logo = new LogoApp();
-    Logic l = new Logic();
+    LogicaListas logic = new LogicaListas();
 
-    // VBox vBoxWindows, vBoxMain;
-    /**
-     *
-     * @return Nos da la GUI que contiene todos los elementos por mostrar en la
-     * barra de menú
-     */
+
     public GridPane menuCliente() {
 
-        /// File file = new File(fileName);
         GridPane gridPaneUsuario = new GridPane();
         gridPaneUsuario.setMinSize(900, 700);
 
-        Usuario supAdmConfi = l.stringTokenizer(l.readLine("ë"));
+        Usuario usuarioTemp = logic.stringTokenizer(logic.leeLinea("ë"));
 
-        gridPaneUsuario.setStyle(("-fx-background-image:url('file:src/image/" + supAdmConfi.getContraseña() + "');"
+        gridPaneUsuario.setStyle(("-fx-background-image:url('file:src/image/" + usuarioTemp.getContraseña() + "');"
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
@@ -57,7 +51,6 @@ public class MainMenuBarCliente {
         menuReportes.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"
                 + "-fx-effect: dropshadow(gaussian, red, 50, 0, 0, 0);"
                 + "-fx-background-insets: 50;");
-        //SubMenu de Sistema
         MenuItem menuItemProgreso = new MenuItem("Progreso", new ImageView(new Image("file:src/image/progre.png")));
         menuItemProgreso.setAccelerator(KeyCombination.keyCombination("Ctrl+A"));
         MenuItem menuItemCitas = new MenuItem("Historial de citas", new ImageView(new Image("file:src/image/histo.png")));
@@ -70,7 +63,7 @@ public class MainMenuBarCliente {
 
         menuItemProgreso.setOnAction((event) -> {
             gridPaneUsuario.getChildren().clear();
-            gridPaneUsuario.getChildren().addAll(reporteProgreso.reporAvan());
+            gridPaneUsuario.getChildren().addAll(reporteProgreso.reporteProgreso());
         });
 
         menuReportes.getItems().addAll(menuItemProgreso, menuItemCitas);
@@ -85,26 +78,25 @@ public class MainMenuBarCliente {
 
         menuItemSolicitaCita.setOnAction((event) -> {
             gridPaneUsuario.getChildren().clear();
-            gridPaneUsuario.getChildren().addAll(apartarCita.reservar());
+            gridPaneUsuario.getChildren().addAll(solicitaCita.solicitaCita());
         });
         menuItemModiCancela.setOnAction((event) -> {
             gridPaneUsuario.getChildren().clear();
-            gridPaneUsuario.getChildren().addAll(modifCancela.modiCancel());
+            gridPaneUsuario.getChildren().addAll(modificaCancelaCita.modificaCancelaCita());
 
         });
-        menuNuevaCita.getItems().addAll(menuItemSolicitaCita, menuItemModiCancela);//agregados a m_Paises
+        menuNuevaCita.getItems().addAll(menuItemSolicitaCita, menuItemModiCancela);
 
         Menu menuPlanes = new Menu("Planes alimentarios", new ImageView(new Image("file:src/image/planAli.png")));
         menuPlanes.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"
                 + "-fx-effect: dropshadow(gaussian, red, 50, 0, 0, 0);"
                 + "-fx-background-insets: 50;");
         MenuItem menuItemPalnes = new MenuItem("Ver planes", new ImageView(new Image("file:src/image/verPlan.png")));
-        //Funcionamiento
         menuItemPalnes.setOnAction((event) -> {
             gridPaneUsuario.getChildren().clear();
-            gridPaneUsuario.getChildren().addAll(planAlimentos.misPlanesAlimentos());
+            gridPaneUsuario.getChildren().addAll(planesAlimenticios.misPlanesAlimentos());
         });
-        menuPlanes.getItems().addAll(menuItemPalnes);//agregado a menuMaintenance
+        menuPlanes.getItems().addAll(menuItemPalnes);
 
         Menu menuAjustes = new Menu("Ajustes", new ImageView(new Image("file:src/image/ajus.png")));
         menuAjustes.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"
@@ -116,7 +108,7 @@ public class MainMenuBarCliente {
 
         menuItemCuenta.setOnAction((event) -> {
             gridPaneUsuario.getChildren().clear();
-            gridPaneUsuario.getChildren().addAll(ajustes.ajustes());
+            gridPaneUsuario.getChildren().addAll(ajustesCliente.ajustesCliente());
         });
         menuAjustes.getItems().addAll(menuItemCuenta, separator);
 
@@ -130,7 +122,6 @@ public class MainMenuBarCliente {
 
         menuItemMasInfo.setOnAction((event) -> {
             gridPaneUsuario.getChildren().clear();
-            // vBoxWindows.getChildren().addAll(catalogSearch.catalogueSearching());
         });
         menuMas.getItems().addAll(menuItemMasInfo);
 

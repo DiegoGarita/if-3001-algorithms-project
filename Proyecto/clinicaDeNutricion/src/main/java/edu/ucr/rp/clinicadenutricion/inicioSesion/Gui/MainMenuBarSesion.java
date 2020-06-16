@@ -1,8 +1,7 @@
 package edu.ucr.rp.clinicadenutricion.inicioSesion.Gui;
 
-//import edu.ucr.rp.clinicadenutricion.Cliente.Gui.ClienteGui;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
-import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Logic;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -18,18 +17,14 @@ public class MainMenuBarSesion {
     Creditos creditos = new Creditos();
 
     CrearUsuarioNuevo crearUsuarionuevo = new CrearUsuarioNuevo();
-    Entrar entrar = new Entrar();
+    IniciarSesion entrar = new IniciarSesion();
 
     VBox vBoxWindows, vBoxMain;
 
-    Logic l = new Logic();
+    LogicaListas logicaListas = new LogicaListas();
     LogoApp logo = new LogoApp();
 
-    /**
-     *
-     * @return Nos da la GUI que contiene todos los elementos por mostrar en la
-     * barra de menú
-     */
+
     public Scene getMainScene() {
 
         vBoxMain = new VBox();
@@ -45,13 +40,11 @@ public class MainMenuBarSesion {
                 + "-fx-effect: dropshadow(gaussian, red, 50, 0, 0, 0);"
                 + "-fx-background-insets: 50;");
 
-        SeparatorMenuItem separator = new SeparatorMenuItem();
-        //Menu Sistema
         Menu menuSystem = new Menu("Sistema", new ImageView(new Image("file:src/image/sistema.png")));
         menuSystem.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"
                 + "-fx-effect: dropshadow(gaussian, red, 50, 0, 0, 0);"
                 + "-fx-background-insets: 50;");
-        //SubMenu de Sistema
+        
         MenuItem menuItemAbout = new MenuItem("Acerca de", new ImageView(new Image("file:src/image/aD.png")));
         menuItemAbout.setAccelerator(KeyCombination.keyCombination("Ctrl+A"));
         MenuItem menuItemCredits = new MenuItem("Créditos", new ImageView(new Image("file:src/image/credi.png")));
@@ -62,17 +55,17 @@ public class MainMenuBarSesion {
 
         menuItemCredits.setOnAction((event) -> {
             vBoxWindows.getChildren().clear();
-            vBoxWindows.getChildren().addAll(creditos.getGraphicalUserInterfaceCredits());
+            vBoxWindows.getChildren().addAll(creditos.getGraphicalUserInterfaceCreditos());
         });
 
         menuItemAbout.setOnAction((event) -> {
             vBoxWindows.getChildren().clear();
-            vBoxWindows.getChildren().addAll(acercaDe.getGraphicalUserInterfaceAbout());
+            vBoxWindows.getChildren().addAll(acercaDe.getGraphicalUserInterfaceAcercaDe());
         });
 
         menuItemPerformance.setOnAction((event) -> {
             vBoxWindows.getChildren().clear();
-            vBoxWindows.getChildren().addAll(ayuda.getGraphicalUserInterfaceHelper());
+            vBoxWindows.getChildren().addAll(ayuda.getGraphicalUserInterfaceAyuda());
         });
 
         menuItemExit.setOnAction((event) -> Platform.exit());
@@ -96,7 +89,7 @@ public class MainMenuBarSesion {
 
         menuItemIngresar.setOnAction((event) -> {
             vBoxWindows.getChildren().clear();
-            vBoxWindows.getChildren().addAll(entrar.ingresaCuenta());
+            vBoxWindows.getChildren().addAll(entrar.iniciarSesion());
         });
 
         menuCrearUsuario.getItems().addAll(menuItemCreaCuenta, menuItemIngresar);
@@ -106,91 +99,10 @@ public class MainMenuBarSesion {
             menuBarMenu.setOpacity(0.9);
         });
 
-//
-//        Button botonAceptar = new Button("Aceptar");
-//        TextField textFieldNombre = new TextField();
-//        textFieldNombre.setPromptText("Ingrese su nombre de usuario");
-//        
-//
-//        PasswordField fieldContraseña = new PasswordField();
-//        fieldContraseña.setPromptText("Ingrese su contraseña");
+
         menuBarMenu.getMenus().addAll(menuSystem, menuCrearUsuario);
         ((VBox) scene.getRoot()).getChildren().addAll(menuBarMenu, vBoxWindows);
 
-//
-//        MainMenuBarCliente zz = new MainMenuBarCliente();
-//        MainMenuBarSuperAdmi mm = new MainMenuBarSuperAdmi();
-//        MainMenuBarAdmi nn = new MainMenuBarAdmi();
-//
-//        botonAceptar.setOnAction((event) -> {
-//            
-//            l.readInFile();
-//          
-//            if(l.search(textFieldNombre.getText())&&l.search(fieldContraseña.getText())){
-//                
-//            vBoxWindows.getChildren().clear();
-//             menuBarMenu.setVisible(false);
-//             
-//             if(l.readLine(textFieldNombre.getText()+"|"+fieldContraseña.getText()).equals("-")){
-//              vBoxWindows.getChildren().add(zz.menuCliente());
-//             }
-//             else if(l.readLine(textFieldNombre.getText()+"|"+fieldContraseña.getText()).equals("+")){
-//                 vBoxWindows.getChildren().add(nn.menuAdmi());
-//             }
-//             else if(l.readLine(textFieldNombre.getText()+"|"+fieldContraseña.getText()).equals("*")){
-//                     vBoxWindows.getChildren().add(mm.menuSuperAdmi());
-//             }
-//                
-//            }
-//            else{
-//                System.out.println("Usuario no existe");
-//            }
-        //encriptar.encriptar("clinicaSusanaDistancia", fieldContraseña.getText());
-        //vBoxWindows.getChildren().removeAll(vBoxWindows);
-        //            String cadenaEncriptada = encriptar.encriptar("clinicaSusanaDistancia", fieldContraseña.getText());
-//            JOptionPane.showMessageDialog(null, "Cadena encriptada: " + cadenaEncriptada);
-//            String cadenaDesencriptada = encriptar.desencriptar("clinicaSusanaDistancia", cadenaEncriptada);
-//            JOptionPane.showMessageDialog(null, "Cadena desencriptada: " + cadenaDesencriptada);
-//            if (l.readProperties(textFieldNombre.getText()).size() != 0){
-//
-//                System.out.println("existo\n");
-//                System.out.println(l.readProperties(textFieldNombre.getText()).get(0));
-//                String password="";
-//
-//                if (l.readProperties(textFieldNombre.getText()).get(0).contains("-")) {
-//                   password = l.readProperties(textFieldNombre.getText()).get(1);
-//                    System.out.println(password);
-//                    System.out.println(encriptar.encriptar("clinicaSusanaDistancia", textFieldContraseña.getText()));
-//                    if (password.equals(encriptar.encriptar("clinicaSusanaDistancia", textFieldContraseña.getText()))) {
-//                        System.out.println("Contraseña correcta, entró");
-//                    } else {
-//                        System.out.println("Contraseña incorrecta");
-//                    }
-//
-//                } else if (l.readProperties(textFieldNombre.getText()).get(0).contains("+")) {
-//                    password = l.readProperties(textFieldNombre.getText()).get(1);
-//                    System.out.println(password);
-//                    if (password.equals(encriptar.encriptar("SusanaDistancia", textFieldContraseña.getText()))) {
-//                        System.out.println("Contraseña correcta, entró");
-//                    } else {
-//                        System.out.println("Contraseña incorrecta");
-//                    }
-//
-//                } else if (l.readProperties(textFieldNombre.getText()).get(0).contains("*")) {
-//                    password = l.readProperties(textFieldNombre.getText()).get(1);
-//                    System.out.println(password);
-//                    if (password.equals(encriptar.encriptar("SusanaDistancia", textFieldContraseña.getText()))) {
-//                        System.out.println("Contraseña correcta, entró");
-//                    } else {
-//                        System.out.println("Contraseña incorrecta");
-//                    }
-//
-//                }
-//
-//            } else {
-//                System.out.println("no existo");
-//            }
-        //  });
         return scene;
 
     }//end Scene getMainScene()

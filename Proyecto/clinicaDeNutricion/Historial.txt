@@ -100,3 +100,8 @@ asd & Cancelo cita & Mon Jun 15 11:37:54 CST 2020
 asd & Cancelo cita & Mon Jun 15 11:40:45 CST 2020
 asd & Agendo cita & Mon Jun 15 11:43:55 CST 2020
 asd & Modifico cita & Mon Jun 15 11:45:28 CST 2020
+asd & Vio su reporte de citas & Mon Jun 15 22:10:22 CST 2020
+asd & Vio su progreso & Mon Jun 15 22:10:35 CST 2020
+asd & Vio su reporte de citas & Mon Jun 15 22:11:03 CST 2020
+asd & Modifico su usuario & Mon Jun 15 22:12:10 CST 2020
+asd & Vio su progreso & Mon Jun 15 22:12:36 CST 2020

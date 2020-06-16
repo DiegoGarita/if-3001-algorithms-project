@@ -36,6 +36,4 @@ public class Acciones {
         this.fechaHoraAccion = fechaHoraAccion;
     }
 
-  
-
-}// acciones
+}// Acciones

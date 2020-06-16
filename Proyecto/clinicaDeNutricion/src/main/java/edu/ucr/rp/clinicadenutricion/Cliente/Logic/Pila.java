@@ -4,15 +4,12 @@ import edu.ucr.rp.clinicadenutricion.Objetos.Cita;
 
 public interface Pila {
 
-    public void push(Cita infoCita);
+    public void push(Cita cita);
 
     public Object peek();
 
-    public Object pop();
-//
+    public Object pop(Cita cita);
+
     public int size();
-//
-//    public boolean isEmpty();
-//
-//    public boolean isFull();
+
 }

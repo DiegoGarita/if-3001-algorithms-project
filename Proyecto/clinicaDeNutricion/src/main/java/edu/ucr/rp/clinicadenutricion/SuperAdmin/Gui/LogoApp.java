@@ -1,9 +1,7 @@
 package edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui;
 
-// en esta clase se colocara para poder realizar un cambio de logo del app
-import edu.ucr.rp.clinicadenutricion.Cliente.Gui.MainMenuBarCliente;
-import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Logic;
-import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Usuario;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
+import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
 import java.io.File;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -14,66 +12,62 @@ import javafx.stage.FileChooser;
 
 public class LogoApp {
 
-    TextField textFieldContra;
-    Button botonGuardar;
-    Button botonLogo;
-    Button buttonModiUsu;
+    TextField textFieldContraseña;
+    Button buttonGuardar;
+    Button buttonLogo;
+    Button buttonModifica;
     public String NombreLogo = "3";
-    Logic logic = new Logic();
+    LogicaListas logic = new LogicaListas();
 
-    /**
-     *
-     * @return Nos da la GUI que nos permite crear un nuevo catálogo
-     */
-    public GridPane logoClinica() {
+    public GridPane logoApp() {
 
-        GridPane gridPaneCitaNue = new GridPane();
-        gridPaneCitaNue.setMinSize(600, 700);
-        gridPaneCitaNue.setVgap(15);
-        gridPaneCitaNue.setHgap(15);
-        gridPaneCitaNue.setAlignment(Pos.CENTER);
+        GridPane gridPaneLogoApp = new GridPane();
+        gridPaneLogoApp.setMinSize(600, 700);
+        gridPaneLogoApp.setVgap(15);
+        gridPaneLogoApp.setHgap(15);
+        gridPaneLogoApp.setAlignment(Pos.CENTER);
 
-        gridPaneCitaNue.setStyle(("-fx-background-image:url('file:src/image/SuperAdmin.gif');"
+        gridPaneLogoApp.setStyle(("-fx-background-image:url('file:src/image/SuperAdmin.gif');"
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
-        Usuario uwu = logic.stringTokenizer(logic.readLine("ë"));
+        Usuario usuarioTemp = logic.stringTokenizer(logic.leeLinea("ë"));
 
-        textFieldContra = new TextField();
-        textFieldContra.setPromptText("Contraseña");
-        textFieldContra.setStyle(
+        textFieldContraseña = new TextField();
+        textFieldContraseña.setPromptText("Contraseña");
+        textFieldContraseña.setStyle(
                 "-fx-background-color: lightblue; "
                 + "-fx-background-insets: 4; "
                 +// tamano
                 "-fx-background-radius: 4; "
                 +// tamano
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-        gridPaneCitaNue.add(textFieldContra, 0, 1); /// columna fila
-        textFieldContra.setFocusTraversable(false);
+        gridPaneLogoApp.add(textFieldContraseña, 0, 1);
+        textFieldContraseña.setFocusTraversable(false);
 
-        buttonModiUsu = new Button("Modificar logo");
-        buttonModiUsu.setTextFill(Color.WHITE);//Color de la letra del boton
-        buttonModiUsu.setStyle("-fx-background-color: BLACK");//Color del fondo
-        buttonModiUsu.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
-        gridPaneCitaNue.add(buttonModiUsu, 1, 1);
-        buttonModiUsu.setOnAction((event) -> {
+        buttonModifica = new Button("Modificar logo");
+        buttonModifica.setTextFill(Color.WHITE);
+        buttonModifica.setStyle("-fx-background-color: BLACK");
+        buttonModifica.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        gridPaneLogoApp.add(buttonModifica, 1, 1);
+        buttonModifica.setOnAction((event) -> {
 
-            if (textFieldContra.getText().equals(uwu.getName())) {
-                botonLogo.setVisible(true);
-                botonGuardar.setVisible(true);
-                buttonModiUsu.setDisable(true);
+            if (textFieldContraseña.getText().equals(usuarioTemp.getName())) {
+                buttonLogo.setVisible(true);
+                buttonGuardar.setVisible(true);
+                buttonModifica.setDisable(true);
             }
 
         });//end setOnAction
 
         Label label = new Label("no files selected");
-        botonLogo = new Button("Elegir logo");
-        botonLogo.setTextFill(Color.WHITE);//Color de la letra del boton
-        botonLogo.setStyle("-fx-background-color: BLACK");//Color del fondo
-        botonLogo.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
-        gridPaneCitaNue.add(botonLogo, 0, 6);
-        botonLogo.setVisible(false);
-        botonLogo.setOnAction((event) -> {
+        buttonLogo = new Button("Elegir logo");
+        buttonLogo.setTextFill(Color.WHITE);
+        buttonLogo.setStyle("-fx-background-color: BLACK");
+        buttonLogo.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        gridPaneLogoApp.add(buttonLogo, 0, 6);
+        buttonLogo.setVisible(false);
+        buttonLogo.setOnAction((event) -> {
             File file1 = setFileChooser().showOpenDialog(null);
             if (file1 != null) {
 
@@ -81,43 +75,38 @@ public class LogoApp {
             }
         });//END BUTTON
 
-        ////// file1.getName()  *************************************************////////////////*******************//////////////////
-        botonGuardar = new Button("Guardar");
-        botonGuardar.setTextFill(Color.WHITE);//Color de la letra del boton
-        botonGuardar.setStyle("-fx-background-color: BLACK");//Color del fondo
-        botonGuardar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
-        gridPaneCitaNue.add(botonGuardar, 0, 7);
-         botonGuardar.setVisible(false);
-        botonGuardar.setOnAction((event) -> {
+        buttonGuardar = new Button("Guardar");
+        buttonGuardar.setTextFill(Color.WHITE);
+        buttonGuardar.setStyle("-fx-background-color: BLACK");
+        buttonGuardar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        gridPaneLogoApp.add(buttonGuardar, 0, 7);
+        buttonGuardar.setVisible(false);
+        buttonGuardar.setOnAction((event) -> {
 
-            Usuario usuario = logic.stringTokenizer(logic.readLine("ë"));
-            Usuario usuario1 = new Usuario(uwu.getTipo(), uwu.getId(), uwu.getName(), label.getText(), uwu.getCorreo(),
-                    uwu.getTelefono(), uwu.getDireccion());
+            Usuario usuario = logic.stringTokenizer(logic.leeLinea("ë"));
+            Usuario usuario1 = new Usuario(usuarioTemp.getTipo(), usuarioTemp.getId(), usuarioTemp.getName(), label.getText(), usuarioTemp.getCorreo(),
+                    usuarioTemp.getTelefono(), usuarioTemp.getDireccion());
 
-            logic.readInFile();
-            ///logic.modified(usuario, textFieldAbre.getText());
-           // logic.modifiedSuperFondo(usuario, label.getText());
-            logic.removeLineFromFile(usuario.getTipo());
-            logic.writeInFile(usuario1);
+            logic.leerArchivo();
+            logic.remueveLineaDeArchivo(usuario.getTipo());
+            logic.escribirArchivo(usuario1);
         });//END BUTTON
 
-        //***
-        MainMenuBarSuperAdmi barSuper = new MainMenuBarSuperAdmi();
-        //***
+        MainMenuBarSuperAdmi mainMenuBarSuperAdmi = new MainMenuBarSuperAdmi();
         Button botonCerrar = new Button("Cerrar");
-        botonCerrar.setTextFill(Color.WHITE);//Color de la letra del boton
-        botonCerrar.setStyle("-fx-background-color: BLACK");//Color del fondo
-        botonCerrar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
-        gridPaneCitaNue.add(botonCerrar, 0, 8);
+        botonCerrar.setTextFill(Color.WHITE);
+        botonCerrar.setStyle("-fx-background-color: BLACK");
+        botonCerrar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        gridPaneLogoApp.add(botonCerrar, 0, 8);
         botonCerrar.setOnAction((event) -> {
 
-            gridPaneCitaNue.getChildren().clear();
-            gridPaneCitaNue.setBackground(Background.EMPTY);
-            gridPaneCitaNue.getChildren().add(barSuper.menuSuperAdmi());
+            gridPaneLogoApp.getChildren().clear();
+            gridPaneLogoApp.setBackground(Background.EMPTY);
+            gridPaneLogoApp.getChildren().add(mainMenuBarSuperAdmi.menuSuperAdmi());
 
         });//end btn cerrar
 
-        return gridPaneCitaNue;
+        return gridPaneLogoApp;
     }//end GridPane createCatalogue()
 
     public FileChooser setFileChooser() {

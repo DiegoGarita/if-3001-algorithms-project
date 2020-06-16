@@ -12,23 +12,17 @@ import javafx.scene.layout.GridPane;
 
 public class MainMenuBarSuperAdmi {
 
-    HorarioTiempoClinica horarioTiempo = new HorarioTiempoClinica();
+    HorarioTiempoClinica horarioTiempoClinica = new HorarioTiempoClinica();
 
     LogoApp logo = new LogoApp();
     IndicarPath indicadorPath = new IndicarPath();
 
     ReportesAcciones reportesAcciones = new ReportesAcciones();
     RespaldarArchivos respaldarArchivos = new RespaldarArchivos();
-    ResgistrosPaginacion registrosPag = new ResgistrosPaginacion();
+    ResgistrosPaginacion registrosPaginacion = new ResgistrosPaginacion();
 
-    /**
-     *
-     * @return Nos da la GUI que contiene todos los elementos por mostrar en la
-     * barra de menú
-     */
     public GridPane menuSuperAdmi() {
 
-        /// File file = new File(fileName);
         GridPane gridPaneSuperAdmi = new GridPane();
         gridPaneSuperAdmi.setMinSize(900, 700);
         gridPaneSuperAdmi.setStyle(("-fx-background-image:url('file:src/image/SuperAdmin.gif');"
@@ -42,19 +36,19 @@ public class MainMenuBarSuperAdmi {
                 + "-fx-background-insets: 50;");
 
         SeparatorMenuItem separator = new SeparatorMenuItem();
-        //Menu Sistema
+        
         Menu menuAjustes = new Menu("Ajustes", new ImageView(new Image("file:src/image/ajus.png")));
         menuAjustes.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"
                 + "-fx-effect: dropshadow(gaussian, red, 50, 0, 0, 0);"
                 + "-fx-background-insets: 50;");
-        //SubMenu de Sistema
+        
         MenuItem menuItemHorario = new MenuItem("Horario clinica y tiempo de consulta",
                 new ImageView(new Image("file:src/image/tiempo.png")));
         menuItemHorario.setAccelerator(KeyCombination.keyCombination("Ctrl+A"));
 
         menuItemHorario.setOnAction((event) -> {
             gridPaneSuperAdmi.getChildren().clear();
-            gridPaneSuperAdmi.getChildren().addAll(horarioTiempo.horarioClinica());
+            gridPaneSuperAdmi.getChildren().addAll(horarioTiempoClinica.horarioClinica());
         });
         
         menuAjustes.getItems().addAll(menuItemHorario);
@@ -70,19 +64,13 @@ public class MainMenuBarSuperAdmi {
 
         menuItemReporAcciones.setOnAction((event) -> {
             gridPaneSuperAdmi.getChildren().clear();
-            // vBoxWindows.getChildren().addAll(createNewCatalog.createCatalogue());
         });
         menuItemRespaldar.setOnAction((event) -> {
             gridPaneSuperAdmi.getChildren().clear();
-//            try {
-//                vBoxWindows.getChildren().addAll(defineProperties.defineProperties());
-//            } catch (IOException ex) {
-//                Logger.getLogger(MainMenuBarSuperAdmi.class.getName()).log(Level.SEVERE, null, ex);
-//            }
+
         });
         menuItemNumPag.setOnAction((event) -> {
             gridPaneSuperAdmi.getChildren().clear();
-            // vBoxWindows.getChildren().addAll(createNewCatalog.createCatalogue());
         });
 
         menuRegistros.getItems().addAll(menuItemReporAcciones, menuItemRespaldar, menuItemNumPag);
@@ -98,12 +86,11 @@ public class MainMenuBarSuperAdmi {
 
         menuItemSearchCatalogue.setOnAction((event) -> {
             gridPaneSuperAdmi.getChildren().clear();
-            gridPaneSuperAdmi.getChildren().addAll(logo.logoClinica());
+            gridPaneSuperAdmi.getChildren().addAll(logo.logoApp());
         });
 
         menuItemModifyCatalogue.setOnAction((event) -> {
             gridPaneSuperAdmi.getChildren().clear();
-            //  vBoxWindows.getChildren().addAll(modifyCatalog.modifyProperties());
         });
 
         menuOtros.getItems().addAll(menuItemSearchCatalogue, menuItemModifyCatalogue, separator);
