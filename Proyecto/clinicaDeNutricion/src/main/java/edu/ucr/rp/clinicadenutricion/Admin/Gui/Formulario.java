@@ -1,7 +1,11 @@
 package edu.ucr.rp.clinicadenutricion.Admin.Gui;
 
+import edu.ucr.rp.clinicadenutricion.AVL.LogicaAVL;
 import edu.ucr.rp.clinicadenutricion.Admin.logic.LogicaCola;
+import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Objetos.ReporteMedico;
+import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.IniciarSesion;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -12,7 +16,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 
-public class Formulario {
+public class Formulario{
 
     ComboBox comboBoxClientes = new ComboBox();
 
@@ -38,6 +42,12 @@ public class Formulario {
     Button buttonIngresar;
 
     LogicaCola adminLogic = new LogicaCola();
+     LogicaAVL logicaAVL = new LogicaAVL();
+    FechaHora fechaHora = new FechaHora();
+
+   IniciarSesion iniciarSesion;
+    
+            
 
     /**
      *
@@ -300,9 +310,9 @@ public class Formulario {
 
         buttonAceptar = new Button("Aceptar");
         buttonAceptar.setVisible(false);
-        buttonAceptar.setTextFill(Color.WHITE);//Color de la letra del boton
-        buttonAceptar.setStyle("-fx-background-color: BLACK");//Color del fondo
-        buttonAceptar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
+        buttonAceptar.setTextFill(Color.WHITE);
+        buttonAceptar.setStyle("-fx-background-color: BLACK");
+        buttonAceptar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         gridPaneFormulario.add(buttonAceptar, 0, 6);
         buttonAceptar.setOnAction((event) -> {
 
@@ -312,13 +322,16 @@ public class Formulario {
                     textFieldGrasaVisceral.getText(), textFieldHueso.getText(), textFieldPorcentajeAgua.getText(), textFieldActividadFisica.getText(),
                     textFieldHorasDescanso.getText(), textAreaNotas.getText());
             adminLogic.escribeCitas(reporteMedico);
-
+            
+             Acciones acciones = new Acciones(iniciarSesion.ID, "Ingresó nuevo formulario para un paciente", fechaHora.histoFechaHora());
+            logicaAVL.escribeHistorial(acciones);
+            
         });//end setOnAction
 
         Button buttonCerrar = new Button("Cerrar");
-        buttonCerrar.setTextFill(Color.WHITE);//Color de la letra del boton
-        buttonCerrar.setStyle("-fx-background-color: BLACK");//Color del fondo
-        buttonCerrar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
+        buttonCerrar.setTextFill(Color.WHITE);
+        buttonCerrar.setStyle("-fx-background-color: BLACK");
+        buttonCerrar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         gridPaneFormulario.add(buttonCerrar, 0, 8);
         MainMenuBarAdministrador n = new MainMenuBarAdministrador();
 

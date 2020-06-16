@@ -1,10 +1,13 @@
 package edu.ucr.rp.clinicadenutricion.inicioSesion.Gui;
 
+import edu.ucr.rp.clinicadenutricion.AVL.LogicaAVL;
 import edu.ucr.rp.clinicadenutricion.Admin.Gui.MainMenuBarAdministrador;
 import edu.ucr.rp.clinicadenutricion.Cliente.Gui.MainMenuBarCliente;
+import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.MainMenuBarSuperAdmi;
 import edu.ucr.rp.clinicadenutricion.Utilitario.EncryptMD5;
+import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -25,7 +28,8 @@ public class IniciarSesion {
     Button buttonCreaUsuario;
     LogicaListas logic = new LogicaListas();
     LogoApp logo = new LogoApp();
-
+    LogicaAVL logicaAVL = new LogicaAVL();
+    FechaHora fechaHora = new FechaHora();
 
     MainMenuBarSuperAdmi mainMenuBarSuperAdmi = new MainMenuBarSuperAdmi();
     MainMenuBarAdministrador mainMenuBarAdministrador = new MainMenuBarAdministrador();
@@ -88,18 +92,32 @@ public class IniciarSesion {
                 if (logic.leeLinea(textFieldID.getText()).substring(0, 1).equals("ä")) {
                     if (logic.stringTokenizer(logic.leeLinea(textFieldID.getText())).getId().equals(textFieldID.getText())) {
                         if (logic.stringTokenizer(logic.leeLinea(textFieldID.getText())).getContraseña().equals(encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()))) {
+
                             ID = textFieldID.getText();
+                            Acciones acciones = new Acciones(ID, "Inició sesión como cliente", fechaHora.histoFechaHora());
+                            logicaAVL.escribeHistorial(acciones);
+                            logicaAVL.leerHistorial();
                             gridPaneIniciarSesion.getChildren().clear();
                             gridPaneIniciarSesion.getChildren().add(0, node);
                             gridPaneIniciarSesion.getChildren().add(mainMenuBarCliente.menuCliente());
+                        } else {
+                            Acciones acciones = new Acciones(textFieldID.getText(), "Intentó iniciar sesión pero falló la contraseña", fechaHora.histoFechaHora());
+                            logicaAVL.escribeHistorial(acciones);
+
                         }
                     }
                 } else if (logic.leeLinea(textFieldID.getText()).substring(0, 1).equals("ö")) {
                     if (logic.stringTokenizer(logic.leeLinea(textFieldID.getText())).getId().equals(textFieldID.getText())) {
                         if (logic.stringTokenizer(logic.leeLinea(textFieldID.getText())).getContraseña().equals(encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()))) {
                             ID = textFieldID.getText();
+                            Acciones acciones = new Acciones(ID, "Inició sesión como admistrador", fechaHora.histoFechaHora());
+                            logicaAVL.escribeHistorial(acciones);
                             gridPaneIniciarSesion.getChildren().add(0, node);
                             gridPaneIniciarSesion.getChildren().add(mainMenuBarAdministrador.menuAdministrador());
+
+                        } else {
+                            Acciones acciones = new Acciones(textFieldID.getText(), "Intentó iniciar sesión pero falló la contraseña", fechaHora.histoFechaHora());
+                            logicaAVL.escribeHistorial(acciones);
 
                         }
                     }
@@ -107,6 +125,8 @@ public class IniciarSesion {
                 }
 
             } else {
+                Acciones acciones = new Acciones(textFieldID.getText(), ", usuario no registrado intentó iniciar sesión", fechaHora.histoFechaHora());
+                logicaAVL.escribeHistorial(acciones);
                 JOptionPane.showMessageDialog(null, "El usuario no existe");
 
             }

@@ -112,8 +112,6 @@ public class ReservaCita {
         buttonAceptar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         gridPaneReservarCita.add(buttonAceptar, 1, 8);
         buttonAceptar.setOnAction((event) -> {
-//            Cita cita = new Cita(textFieldID.getText(), textNombre.getText(), textFieldFecha.getText(), textFieldHora.getText(), textFieldDoc.getText());
-//            adminLogic.escribeCitas();
 
         });//end setOnAction
 

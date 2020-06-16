@@ -24,13 +24,13 @@ public class SolicitaCita {
     Button botonGuardar;
     ComboBox comboBoxHora = new ComboBox();
     LogicaPila LogicaCliente = new LogicaPila();
-    LogicaAVL LogicaAVL = new LogicaAVL();
-    FechaHora fechaHora = new FechaHora();
     HorarioTiempoClinica horarioTiempoClinica = new HorarioTiempoClinica();
     LogicaListas logic = new LogicaListas();
     IniciarSesion inicioSesion;
     LogoApp logo = new LogoApp();
-    
+    LogicaAVL logicaAVL = new LogicaAVL();
+    FechaHora fechaHora = new FechaHora();
+
     String agendo = "Agendo cita";
 
     public GridPane solicitaCita() {
@@ -48,7 +48,8 @@ public class SolicitaCita {
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
-        textFieldIDReservacion = new TextField();
+        textFieldIDReservacion = new TextField(inicioSesion.ID);
+        textFieldIDReservacion.setDisable(true);
         textFieldIDReservacion.setPromptText("ID reservacion");
         textFieldIDReservacion.setStyle(
                 "-fx-background-color: lightblue; "
@@ -103,13 +104,14 @@ public class SolicitaCita {
             Cita cita = new Cita(textFieldIDReservacion.getText(), usuario.getName(), dT_DateFligth.getValue().toString(),
                     comboBoxHora.getValue().toString(), textFieldDoctora.getText());
             LogicaCliente.EscribeArchivoSolicitudCita(cita);
-            Acciones acc = new Acciones(usuario.getName(), agendo, fechaHora.histoFechaHora());
-            LogicaAVL.escribeHistorial(acc);
+
+            Acciones acciones = new Acciones(inicioSesion.ID, "Solicitó una cita", fechaHora.histoFechaHora());
+            logicaAVL.escribeHistorial(acciones);
 
         });
 
         MainMenuBarCliente mainMenuBarCliente = new MainMenuBarCliente();
-        
+
         Button botonCerrar = new Button("Cerrar");
         botonCerrar.setTextFill(Color.WHITE);
         botonCerrar.setStyle("-fx-background-color: BLACK");

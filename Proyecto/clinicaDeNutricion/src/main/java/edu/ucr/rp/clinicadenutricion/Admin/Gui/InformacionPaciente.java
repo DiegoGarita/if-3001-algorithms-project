@@ -1,6 +1,10 @@
 package edu.ucr.rp.clinicadenutricion.Admin.Gui;
 
+import edu.ucr.rp.clinicadenutricion.AVL.LogicaAVL;
 import edu.ucr.rp.clinicadenutricion.Admin.logic.LogicaCola;
+import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
+import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.IniciarSesion;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -12,6 +16,10 @@ public class InformacionPaciente {
     TextArea textAreaNotas = new TextArea();
     LogicaCola adminLogic = new LogicaCola();
     ComboBox comboBoxClientes = new ComboBox();
+      IniciarSesion iniciarSesion;
+
+    LogicaAVL logicaAVL = new LogicaAVL();
+    FechaHora fechaHora = new FechaHora();
 
     public GridPane informacionPaciente() {
 
@@ -43,6 +51,10 @@ public class InformacionPaciente {
         buttonBuscar.setDisable(false);
 
         buttonBuscar.setOnAction((event) -> {
+            
+            Acciones acciones = new Acciones(iniciarSesion.ID, "Solicitó información de pacientes", fechaHora.histoFechaHora());
+            logicaAVL.escribeHistorial(acciones);
+            
             textAreaNotas.setText(adminLogic.leeArchivo(comboBoxClientes.getValue().toString()));
             textAreaNotas.setVisible(true);
 

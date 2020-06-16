@@ -1,8 +1,11 @@
 package edu.ucr.rp.clinicadenutricion.inicioSesion.Gui;
 
+import edu.ucr.rp.clinicadenutricion.AVL.LogicaAVL;
+import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Utilitario.EncryptMD5;
 import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
+import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.*;
 import javafx.collections.*;
 import javafx.geometry.Pos;
@@ -24,6 +27,8 @@ public class CrearUsuarioNuevo {
     ComboBox comboBoxRol = new ComboBox();
     LogicaListas logic = new LogicaListas();
     EncryptMD5 encrypt = new EncryptMD5();
+    LogicaAVL logicaAVL = new LogicaAVL();
+    FechaHora fechaHora = new FechaHora();
 
     public GridPane creaUsuario() {
 
@@ -135,8 +140,13 @@ public class CrearUsuarioNuevo {
                         textFieldNombre.getText(), encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()),
                         textFieldCorreo.getText(), textFieldTelefono.getText(), textFieldDireccion.getText());
                 logic.escribirArchivo(usuario);
+                 Acciones acciones = new Acciones(textFieldID.getText(), "Se registró como nuevo usuario", fechaHora.histoFechaHora());
+                 logicaAVL.escribeHistorial(acciones);
+
             } else {
                 System.out.println("Ya existe alguien con este ID");
+                Acciones acciones = new Acciones(textFieldID.getText(), "Intentó registrarse cuando ya estaba registrado", fechaHora.histoFechaHora());
+                 logicaAVL.escribeHistorial(acciones);
             }
 
         });//end setOnAction
