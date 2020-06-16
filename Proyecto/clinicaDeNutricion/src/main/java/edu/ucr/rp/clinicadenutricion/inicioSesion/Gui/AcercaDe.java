@@ -12,19 +12,17 @@ import javafx.scene.text.*;
 public class AcercaDe {
     
         LogoApp logo = new LogoApp();
-
-
     /**
      * 
      * @return Nos da la GUI que contiene información básica del app
      */
-    public GridPane getGraphicalUserInterfaceAbout() {
-        GridPane about = new GridPane();
-        about.setMinSize(600, 700);
-        about.setVgap(15); 
-        about.setHgap(15);
-        about.setAlignment(Pos.TOP_LEFT);
-        about.setStyle(("-fx-background-image:url('file:src/image/" + logo.NombreLogo + ".jpeg');"
+    public GridPane getGraphicalUserInterfaceAcercaDe() {
+        GridPane acercaDe = new GridPane();
+        acercaDe.setMinSize(600, 700);
+        acercaDe.setVgap(15); 
+        acercaDe.setHgap(15);
+        acercaDe.setAlignment(Pos.TOP_LEFT);
+        acercaDe.setStyle(("-fx-background-image:url('file:src/image/" + logo.NombreLogo + ".jpeg');"
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
@@ -34,24 +32,24 @@ public class AcercaDe {
         title.setOnMouseMoved(e -> {
             title.setFill(Color.color(Math.random(), Math.random(), Math.random()));
         });
-        about.add(title, 0, 0);
+        acercaDe.add(title, 0, 0);
 
-        Label lBAbout = new Label("Aplicación control de inventarios 2020 \n"
+        Label labelAcercaDe = new Label("Aplicación control de inventarios 2020 \n"
                 + " Desarrollado en: Apache NetBeans IDE 11.3 \n Lenguaje Java, version 14 \n 2020");
-        lBAbout.setFont(Font.font("Rockwell", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 20));
-        lBAbout.setTextFill(Color.DEEPSKYBLUE);
-        about.add(lBAbout, 0, 1);
-        lBAbout.setVisible(true);
+        labelAcercaDe.setFont(Font.font("Rockwell", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 20));
+        labelAcercaDe.setTextFill(Color.DEEPSKYBLUE);
+        acercaDe.add(labelAcercaDe, 0, 1);
+        labelAcercaDe.setVisible(true);
 
-        Button buttonClose = new Button("Cerrar");
-        buttonClose.setTextFill(Color.WHITE);
-        buttonClose.setStyle("-fx-background-color: BLACK");
-        buttonClose.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
-        about.add(buttonClose, 0, 2);
-        buttonClose.setOnAction((event) -> {
-            about.getChildren().clear();
-            about.setBackground(Background.EMPTY);
+        Button buttonCerrar = new Button("Cerrar");
+        buttonCerrar.setTextFill(Color.WHITE);
+        buttonCerrar.setStyle("-fx-background-color: BLACK");
+        buttonCerrar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        acercaDe.add(buttonCerrar, 0, 2);
+        buttonCerrar.setOnAction((event) -> {
+            acercaDe.getChildren().clear();
+            acercaDe.setBackground(Background.EMPTY);
         });
-        return about;
+        return acercaDe;
     }//end method acercaDe
-}//end about
+}//end acercaDe

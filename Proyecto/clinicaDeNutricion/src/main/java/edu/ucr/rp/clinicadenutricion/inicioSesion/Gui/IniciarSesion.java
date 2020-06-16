@@ -1,0 +1,130 @@
+package edu.ucr.rp.clinicadenutricion.inicioSesion.Gui;
+
+import edu.ucr.rp.clinicadenutricion.Admin.Gui.MainMenuBarAdministrador;
+import edu.ucr.rp.clinicadenutricion.Cliente.Gui.MainMenuBarCliente;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.MainMenuBarSuperAdmi;
+import edu.ucr.rp.clinicadenutricion.Utilitario.EncryptMD5;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.control.*;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.*;
+import javax.swing.JOptionPane;
+
+public class IniciarSesion {
+
+    public static String ID;
+
+    TextField textFieldID;
+    public TextField textFieldNombre;
+    PasswordField textFieldContraseña;
+    Button buttonCreaUsuario;
+    LogicaListas logic = new LogicaListas();
+    LogoApp logo = new LogoApp();
+
+
+    MainMenuBarSuperAdmi mainMenuBarSuperAdmi = new MainMenuBarSuperAdmi();
+    MainMenuBarAdministrador mainMenuBarAdministrador = new MainMenuBarAdministrador();
+    MainMenuBarCliente mainMenuBarCliente = new MainMenuBarCliente();
+    EncryptMD5 encrypt = new EncryptMD5();
+
+    public GridPane iniciarSesion() {
+
+        GridPane gridPaneIniciarSesion = new GridPane();
+        gridPaneIniciarSesion.setMinSize(600, 700);
+        gridPaneIniciarSesion.setVgap(15);
+        gridPaneIniciarSesion.setHgap(15);
+        gridPaneIniciarSesion.setAlignment(Pos.CENTER);
+        gridPaneIniciarSesion.setStyle(("-fx-background-image:url('file:src/image/" + logo.NombreLogo + ".jpeg');"
+                + "-fx-background-repeat : no-repeat;"
+                + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
+
+        textFieldID = new TextField();
+        textFieldID.setPromptText("Ingrese ID del usuario");
+        textFieldID.setStyle(
+                "-fx-background-color: lightblue; "
+                + "-fx-background-insets: 4; "
+                +// tamano
+                "-fx-background-radius: 4; "
+                +// tamano
+                "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
+        gridPaneIniciarSesion.add(textFieldID, 0, 2);
+        textFieldID.setFocusTraversable(false);
+
+        textFieldContraseña = new PasswordField();
+        textFieldContraseña.setPromptText("Contraseña");
+        textFieldContraseña.setStyle(
+                "-fx-background-color: lightblue; "
+                + "-fx-background-insets: 4; "
+                +// tamano
+                "-fx-background-radius: 4; "
+                +// tamano
+                "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
+        gridPaneIniciarSesion.add(textFieldContraseña, 0, 3);
+        textFieldContraseña.setFocusTraversable(false);
+
+        buttonCreaUsuario = new Button("Aceptar");
+        buttonCreaUsuario.setTextFill(Color.WHITE);
+        buttonCreaUsuario.setStyle("-fx-background-color: BLACK");
+        buttonCreaUsuario.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        gridPaneIniciarSesion.add(buttonCreaUsuario, 0, 4);
+        buttonCreaUsuario.setOnAction((event) -> {
+            Node node = gridPaneIniciarSesion.getChildren().get(2);
+            logic.leerArchivo();
+
+            if (textFieldID.getText().equals("Super") && textFieldContraseña.getText().equals("1234")) {
+
+                gridPaneIniciarSesion.getChildren().clear();
+                gridPaneIniciarSesion.getChildren().add(0, node);
+                gridPaneIniciarSesion.getChildren().add(mainMenuBarSuperAdmi.menuSuperAdmi());
+            } else if (logic.busca(textFieldID.getText())) {
+
+                gridPaneIniciarSesion.getChildren().clear();
+
+                if (logic.leeLinea(textFieldID.getText()).substring(0, 1).equals("ä")) {
+                    if (logic.stringTokenizer(logic.leeLinea(textFieldID.getText())).getId().equals(textFieldID.getText())) {
+                        if (logic.stringTokenizer(logic.leeLinea(textFieldID.getText())).getContraseña().equals(encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()))) {
+                            ID = textFieldID.getText();
+                            gridPaneIniciarSesion.getChildren().clear();
+                            gridPaneIniciarSesion.getChildren().add(0, node);
+                            gridPaneIniciarSesion.getChildren().add(mainMenuBarCliente.menuCliente());
+                        }
+                    }
+                } else if (logic.leeLinea(textFieldID.getText()).substring(0, 1).equals("ö")) {
+                    if (logic.stringTokenizer(logic.leeLinea(textFieldID.getText())).getId().equals(textFieldID.getText())) {
+                        if (logic.stringTokenizer(logic.leeLinea(textFieldID.getText())).getContraseña().equals(encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()))) {
+                            ID = textFieldID.getText();
+                            gridPaneIniciarSesion.getChildren().add(0, node);
+                            gridPaneIniciarSesion.getChildren().add(mainMenuBarAdministrador.menuAdministrador());
+
+                        }
+                    }
+
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "El usuario no existe");
+
+            }
+
+        });
+
+        Button buttonCerrar = new Button("Cerrar");
+        buttonCerrar.setTextFill(Color.WHITE);
+        buttonCerrar.setStyle("-fx-background-color: BLACK");
+        buttonCerrar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        gridPaneIniciarSesion.add(buttonCerrar, 2, 8);
+        buttonCerrar.setOnAction((event) -> {
+
+            gridPaneIniciarSesion.getChildren().clear();
+            gridPaneIniciarSesion.setBackground(Background.EMPTY);
+
+        });
+
+        return gridPaneIniciarSesion;
+    }//end GridPane createCatalogue()
+}

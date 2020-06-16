@@ -1,13 +1,13 @@
 package edu.ucr.rp.clinicadenutricion.Cliente.Gui;
 
-import edu.ucr.rp.clinicadenutricion.AVL.AVLArchivo;
-import edu.ucr.rp.clinicadenutricion.Cliente.Logic.Grafico;
+import edu.ucr.rp.clinicadenutricion.AVL.LogicaAVL;
+import edu.ucr.rp.clinicadenutricion.Utilitario.Grafico;
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
-import edu.ucr.rp.clinicadenutricion.Utilitario.HoraFecha;
-import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.Entrar;
-import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Logic;
-import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.Usuario;
+import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.IniciarSesion;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
+import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -17,74 +17,68 @@ import javafx.scene.text.*;
 //en esta clase el cliente podra ver su avance
 public class ReporteProgreso {
 
-    TextField textFieldDoctora;
-    TextField textFieldHora;
-    Button botonGrafico;
+    Button buttonGrafico;
     String repoPro = "Vio su progreso";
     Grafico grafico = new Grafico();
-    AVLArchivo histo = new AVLArchivo();
-    HoraFecha horaFecha = new HoraFecha();
+    LogicaAVL logicaAVL = new LogicaAVL();
+    FechaHora fechaHora = new FechaHora();
 
-    Logic l = new Logic();
-    Entrar en;
+    LogicaListas logicaListas = new LogicaListas();
+    IniciarSesion iniciarSesion;
     LogoApp logo = new LogoApp();
 
-    /**
-     *
-     * @return Nos da la GUI que nos permite crear un nuevo catálogo
-     */
-    public GridPane reporAvan() {
 
-        GridPane gridPanePorgreso = new GridPane();
-        gridPanePorgreso.setMinSize(600, 700);
-        gridPanePorgreso.setVgap(15);
-        gridPanePorgreso.setHgap(15);
-        gridPanePorgreso.setAlignment(Pos.CENTER);
-        Usuario supAdmConfi = l.stringTokenizer(l.readLine("ë"));
-        gridPanePorgreso.setStyle(("-fx-background-image:url('file:src/image/" + supAdmConfi.getContraseña() + "');"
+    public GridPane reporteProgreso() {
+
+        GridPane gridPaneReportePorgreso = new GridPane();
+        gridPaneReportePorgreso.setMinSize(600, 700);
+        gridPaneReportePorgreso.setVgap(15);
+        gridPaneReportePorgreso.setHgap(15);
+        gridPaneReportePorgreso.setAlignment(Pos.CENTER);
+        Usuario usuarioTemp = logicaListas.stringTokenizer(logicaListas.leeLinea("ë"));
+        gridPaneReportePorgreso.setStyle(("-fx-background-image:url('file:src/image/" + usuarioTemp.getContraseña() + "');"
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
-        Usuario uwu = l.stringTokenizer(l.readLine(en.ID));
+        Usuario usuario = logicaListas.stringTokenizer(logicaListas.leeLinea(iniciarSesion.ID));
         String tipo = "";
-        if (uwu.getTipo().equals("ä")) {
+        if (usuario.getTipo().equals("ä")) {
             tipo = "Cliente";
-        } else if (uwu.getTipo().equals("ö")) {
+        } else if (usuario.getTipo().equals("ö")) {
             tipo = "Administración";
         }
 
-        Label labelFechHora = new Label("TODO TRAER INFO DEL MAN EN LABEL'S");
-        gridPanePorgreso.add(labelFechHora, 0, 2);
+        Label labelFechaHora = new Label("TODO TRAER INFO DEL MAN EN LABEL'S");
+        gridPaneReportePorgreso.add(labelFechaHora, 0, 2);
 
-        botonGrafico = new Button("Ver grafica");
-        botonGrafico.setTextFill(Color.WHITE);//Color de la letra del boton
-        botonGrafico.setStyle("-fx-background-color: BLACK");//Color del fondo
-        botonGrafico.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
-        gridPanePorgreso.add(botonGrafico, 0, 7);
+        buttonGrafico = new Button("Ver grafica");
+        buttonGrafico.setTextFill(Color.WHITE);
+        buttonGrafico.setStyle("-fx-background-color: BLACK");
+        buttonGrafico.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        gridPaneReportePorgreso.add(buttonGrafico, 0, 7);
 
-        botonGrafico.setOnAction((event) -> {
+        buttonGrafico.setOnAction((event) -> {
 
-            grafico.showGraficMethods(); //--> %agua, %masMusc, grasa , grasaVisc
-            Acciones acc = new Acciones(uwu.getName(), repoPro, horaFecha.histoFechaHora());
-            histo.writeFileCitas(acc);
+            grafico.MuestraGrafico(); //--> %agua, %masMusc, grasa , grasaVisc
+            Acciones acc = new Acciones(usuario.getName(), repoPro, fechaHora.histoFechaHora());
+            logicaAVL.escribeHistorial(acc);
         });//END BUTTON
 
-        //***
-        MainMenuBarCliente barCliente = new MainMenuBarCliente();
-        //***
+        MainMenuBarCliente mainMenuBarCliente = new MainMenuBarCliente();
+        
         Button botonCerrar = new Button("Cerrar");
-        botonCerrar.setTextFill(Color.WHITE);//Color de la letra del boton
-        botonCerrar.setStyle("-fx-background-color: BLACK");//Color del fondo
-        botonCerrar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
-        gridPanePorgreso.add(botonCerrar, 0, 8);
+        botonCerrar.setTextFill(Color.WHITE);
+        botonCerrar.setStyle("-fx-background-color: BLACK");
+        botonCerrar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        gridPaneReportePorgreso.add(botonCerrar, 0, 8);
         botonCerrar.setOnAction((event) -> {
 
-            gridPanePorgreso.getChildren().clear();
-            gridPanePorgreso.setBackground(Background.EMPTY);
-            gridPanePorgreso.getChildren().add(barCliente.menuCliente());
+            gridPaneReportePorgreso.getChildren().clear();
+            gridPaneReportePorgreso.setBackground(Background.EMPTY);
+            gridPaneReportePorgreso.getChildren().add(mainMenuBarCliente.menuCliente());
 
-        });//end btn cerrar
+        });
 
-        return gridPanePorgreso;
+        return gridPaneReportePorgreso;
     }//end GridPane createCatalogue()
 }

@@ -2,26 +2,26 @@ package edu.ucr.rp.clinicadenutricion.Objetos;
 
 public class Cita {
  
-    private String idCita;
+    private String IDCita;
     private String Nombre;
     private String fecha;
     private String hora;
     private String doctora;
 
     public Cita(String idCita, String Nombre, String fecha, String hora, String doctora) {
-        this.idCita = idCita;
+        this.IDCita = idCita;
         this.Nombre = Nombre;
         this.fecha = fecha;
         this.hora = hora;
         this.doctora = doctora;
     }
 
-    public String getIdCita() {
-        return idCita;
+    public String getIDCita() {
+        return IDCita;
     }
 
-    public void setIdCita(String idCita) {
-        this.idCita = idCita;
+    public void setIDCita(String IDCita) {
+        this.IDCita = IDCita;
     }
 
     public String getNombre() {
