@@ -1,7 +1,11 @@
 package edu.ucr.rp.clinicadenutricion.Cliente.Gui;
 
+import edu.ucr.rp.clinicadenutricion.AVL.LogicaAVL;
 import edu.ucr.rp.clinicadenutricion.Admin.logic.PlanesAlimenticiosLogica;
+import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
+import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.IniciarSesion;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -16,6 +20,9 @@ public class PlanesAlimenticios {
     TextArea textAreaMostrar = new TextArea();
     ComboBox comboBoxOpciones = new ComboBox();
     LogoApp logo = new LogoApp();
+    LogicaAVL logicaAVL = new LogicaAVL();
+    FechaHora fechaHora = new FechaHora();
+    IniciarSesion inicioSesion;
 
     PlanesAlimenticiosLogica planesAlimenticiosLogica = new PlanesAlimenticiosLogica();
 
@@ -71,7 +78,11 @@ public class PlanesAlimenticios {
         buttonDesplegarInformacion.setOnAction((event) -> {
             if (comboBoxOpciones.getValue().toString().equals("Recetas")) {
                 textAreaMostrar.setText(planesAlimenticiosLogica.leeArchivo(comboBoxSeleccion.getValue().toString(), "Recetas"));
+                Acciones acciones = new Acciones(inicioSesion.ID, "Solicitó información sobre recetas", fechaHora.histoFechaHora());
+                logicaAVL.escribeHistorial(acciones);
             } else if (comboBoxOpciones.getValue().toString().equals("Planes alimenticios")) {
+                Acciones acciones = new Acciones(inicioSesion.ID, "Solicitó información sobre planes alimenticios", fechaHora.histoFechaHora());
+                logicaAVL.escribeHistorial(acciones);
                 textAreaMostrar.setText(planesAlimenticiosLogica.leeArchivo(comboBoxSeleccion.getValue().toString(), "Planes"));
             }
 

@@ -5,8 +5,8 @@ import edu.ucr.rp.clinicadenutricion.Utilitario.Grafico;
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
-import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.IniciarSesion;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.IniciarSesion;
 import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -17,16 +17,14 @@ import javafx.scene.text.*;
 //en esta clase el cliente podra ver su avance
 public class ReporteProgreso {
 
+    IniciarSesion iniciarSesion;
     Button buttonGrafico;
     String repoPro = "Vio su progreso";
     Grafico grafico = new Grafico();
+    LogicaListas logicaListas = new LogicaListas();
+    LogoApp logo = new LogoApp();
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
-
-    LogicaListas logicaListas = new LogicaListas();
-    IniciarSesion iniciarSesion;
-    LogoApp logo = new LogoApp();
-
 
     public GridPane reporteProgreso() {
 
@@ -48,9 +46,6 @@ public class ReporteProgreso {
             tipo = "Administración";
         }
 
-        Label labelFechaHora = new Label("TODO TRAER INFO DEL MAN EN LABEL'S");
-        gridPaneReportePorgreso.add(labelFechaHora, 0, 2);
-
         buttonGrafico = new Button("Ver grafica");
         buttonGrafico.setTextFill(Color.WHITE);
         buttonGrafico.setStyle("-fx-background-color: BLACK");
@@ -60,12 +55,12 @@ public class ReporteProgreso {
         buttonGrafico.setOnAction((event) -> {
 
             grafico.MuestraGrafico(); //--> %agua, %masMusc, grasa , grasaVisc
-            Acciones acc = new Acciones(usuario.getName(), repoPro, fechaHora.histoFechaHora());
-            logicaAVL.escribeHistorial(acc);
+            Acciones acciones = new Acciones(iniciarSesion.ID, "Revisó su progreso graficamente", fechaHora.histoFechaHora());
+            logicaAVL.escribeHistorial(acciones);
         });//END BUTTON
 
         MainMenuBarCliente mainMenuBarCliente = new MainMenuBarCliente();
-        
+
         Button botonCerrar = new Button("Cerrar");
         botonCerrar.setTextFill(Color.WHITE);
         botonCerrar.setStyle("-fx-background-color: BLACK");

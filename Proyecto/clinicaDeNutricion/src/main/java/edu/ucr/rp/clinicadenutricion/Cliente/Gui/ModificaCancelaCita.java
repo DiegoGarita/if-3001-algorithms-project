@@ -18,7 +18,6 @@ import javafx.scene.text.*;
 
 public class ModificaCancelaCita {
 
-    
     TextField textFieldNombre;
     Button buttonDesplegar;
     Button buttonModificar;
@@ -27,13 +26,14 @@ public class ModificaCancelaCita {
     ComboBox comboBoxHora = new ComboBox();
     String modiCita = "Modifico cita";
     String cancelCita = "Cancelo cita";
-    LogicaAVL logicaAVL = new LogicaAVL();
-    FechaHora fechaHora = new FechaHora();
 
     LogicaListas logica = new LogicaListas();
     IniciarSesion iniciarSesion;
     LogoApp logo = new LogoApp();
     LogicaPila logicaCliente = new LogicaPila();
+
+    LogicaAVL logicaAVL = new LogicaAVL();
+    FechaHora fechaHora = new FechaHora();
 
     public GridPane modificaCancelaCita() {
         GridPane gridPaneModificaCancela = new GridPane();
@@ -64,7 +64,7 @@ public class ModificaCancelaCita {
             comboBoxHora.getItems().addAll(i + ":00");
         }
         gridPaneModificaCancela.add(comboBoxHora, 0, 3);
-        
+
         TextField textField = new TextField();
         gridPaneModificaCancela.add(textField, 3, 3);
 
@@ -83,7 +83,7 @@ public class ModificaCancelaCita {
             logicaCliente.remueveLineaDelArchivo(cita.getIDCita());
             logicaCliente.EscribeArchivoSolicitudCita(citaAux);
 
-            Acciones acciones = new Acciones(usuario.getName(), modiCita, fechaHora.histoFechaHora());
+            Acciones acciones = new Acciones(iniciarSesion.ID, "Modificó su cita", fechaHora.histoFechaHora());
             logicaAVL.escribeHistorial(acciones);
 
         });//end setOnAction
@@ -100,10 +100,8 @@ public class ModificaCancelaCita {
             logicaCliente.elimina(cita);
             logicaCliente.remueveLineaDelArchivo(cita.getIDCita()); //----->> Linea que me duplica
 
-            Acciones acc = new Acciones(usuario.getName(), cancelCita, fechaHora.histoFechaHora());
-            logicaAVL.escribeHistorial(acc);
-
-            System.out.println("Hola me precionaste");
+            Acciones acciones = new Acciones(iniciarSesion.ID, "Eliminó su cita", fechaHora.histoFechaHora());
+            logicaAVL.escribeHistorial(acciones);
 
         });//end setOnAction
 

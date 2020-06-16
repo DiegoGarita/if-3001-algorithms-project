@@ -94,7 +94,6 @@ public class ImplementacionAVL {
 
             node = new Node(acciones);
         } else {
-            System.out.println(Integer.parseInt(acciones.getFechaHoraAccion().substring(8, 19).replaceAll(":", "").replaceAll(" ", "")));
             if (Integer.parseInt(acciones.getFechaHoraAccion().substring(8, 19).replaceAll(":", "").replaceAll(" ", "")) < Integer.parseInt(root.acciones.getFechaHoraAccion().substring(8, 19).replaceAll(":", "").replaceAll(" ", ""))) {
 
                 node.left = InsertarNodo(node.left, acciones);

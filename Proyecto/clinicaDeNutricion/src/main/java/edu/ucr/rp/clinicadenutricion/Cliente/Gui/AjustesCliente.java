@@ -15,7 +15,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 
-public class AjustesCliente {
+public class AjustesCliente{
 
     TextField textFieldTipo;
     TextField textFieldID;
@@ -196,6 +196,9 @@ public class AjustesCliente {
         buttonModificar.setDisable(true);
         buttonModificar.setOnAction((event) -> {
 
+            Acciones acciones = new Acciones(iniciarSesion.ID, "Modificó su perfil", fechaHora.histoFechaHora());
+            logicaAVL.escribeHistorial(acciones);
+
             if (usuarioTemp.getContraseña().equals(encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()))) {
                 textFieldCorreo.setVisible(true);
                 textFieldDireccion.setVisible(true);
@@ -215,8 +218,8 @@ public class AjustesCliente {
         buttonEliminar.setDisable(true);
         buttonEliminar.setOnAction((event) -> {
 
-            Acciones acc = new Acciones(usuarioTemp.getName(), accionBorra, fechaHora.histoFechaHora());
-            logicaAVL.escribeHistorial(acc);
+            Acciones acciones = new Acciones(iniciarSesion.ID, "Eliminó su perfil", fechaHora.histoFechaHora());
+            logicaAVL.escribeHistorial(acciones);
 
             if (usuarioTemp.getContraseña().equals(encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()))) {
                 Usuario usuario = logicaLista.stringTokenizer(logicaLista.leeLinea(textFieldID.getText()));
@@ -243,9 +246,6 @@ public class AjustesCliente {
             logicaLista.remueveLineaDeArchivo(usuario.getId());
             logicaLista.escribirArchivo(usuario1);
 
-            Acciones acc = new Acciones(usuario.getName(), accionModi, fechaHora.histoFechaHora());
-            logicaAVL.escribeHistorial(acc);
-
             textFieldDireccion.setDisable(true);
             textFieldCorreo.setDisable(true);
             textFieldTelefono.setDisable(true);
@@ -255,12 +255,12 @@ public class AjustesCliente {
 
         MainMenuBarCliente barCliente = new MainMenuBarCliente();
 
-        Button buttonClose = new Button("Cerrar");
-        buttonClose.setTextFill(Color.WHITE);
-        buttonClose.setStyle("-fx-background-color: BLACK");
-        buttonClose.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
-        gridPaneAjustesCliente.add(buttonClose, 1, 9);
-        buttonClose.setOnAction((event) -> {
+        Button buttonCerrar = new Button("Cerrar");
+        buttonCerrar.setTextFill(Color.WHITE);
+        buttonCerrar.setStyle("-fx-background-color: BLACK");
+        buttonCerrar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        gridPaneAjustesCliente.add(buttonCerrar, 1, 9);
+        buttonCerrar.setOnAction((event) -> {
 
             gridPaneAjustesCliente.getChildren().clear();
             gridPaneAjustesCliente.setBackground(Background.EMPTY);

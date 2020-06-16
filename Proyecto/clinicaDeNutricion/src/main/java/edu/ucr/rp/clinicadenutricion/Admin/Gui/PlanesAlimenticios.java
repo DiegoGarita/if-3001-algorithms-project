@@ -1,7 +1,11 @@
 package edu.ucr.rp.clinicadenutricion.Admin.Gui;
 
+import edu.ucr.rp.clinicadenutricion.AVL.LogicaAVL;
 import edu.ucr.rp.clinicadenutricion.Admin.logic.PlanesAlimenticiosLogica;
+import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
+import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
+import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.IniciarSesion;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -16,6 +20,10 @@ public class PlanesAlimenticios {
     TextArea textAreaMostrar = new TextArea();
     ComboBox comboBoxOp = new ComboBox();
     LogoApp logo = new LogoApp();
+    IniciarSesion iniciarSesion;
+
+    LogicaAVL logicaAVL = new LogicaAVL();
+    FechaHora fechaHora = new FechaHora();
 
     PlanesAlimenticiosLogica planAl = new PlanesAlimenticiosLogica();
 
@@ -71,8 +79,12 @@ public class PlanesAlimenticios {
         buttonDesplegarInfo.setOnAction((event) -> {
             if (comboBoxOp.getValue().toString().equals("Recetas")) {
                 textAreaMostrar.setText(planAl.leeArchivo(comboBoxSele.getValue().toString(), "Recetas"));
+                    Acciones acciones = new Acciones(iniciarSesion.ID, "Solicitó la lista de Recetas", fechaHora.histoFechaHora());
+                logicaAVL.escribeHistorial(acciones);
             } else if (comboBoxOp.getValue().toString().equals("Planes alimenticios")) {
                 textAreaMostrar.setText(planAl.leeArchivo(comboBoxSele.getValue().toString(), "Planes"));
+                Acciones acciones = new Acciones(iniciarSesion.ID, "Solicitó la lista de planes alimenticios", fechaHora.histoFechaHora());
+                logicaAVL.escribeHistorial(acciones);
             }
 
         });//end setOnAction
@@ -81,7 +93,7 @@ public class PlanesAlimenticios {
         gridPanePlanesAlimenticios.add(textAreaMostrar, 0, 3);
 
         MainMenuBarAdministrador o = new MainMenuBarAdministrador();
-        
+
         Button buttonClose = new Button("Cerrar");
         buttonClose.setTextFill(Color.WHITE);
         buttonClose.setStyle("-fx-background-color: BLACK");
