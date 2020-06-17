@@ -51,8 +51,8 @@ public class SolicitaCita {
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
-        textFieldIDReservacion = new TextField(inicioSesion.ID);
-        textFieldIDReservacion.setDisable(true);
+        textFieldIDReservacion = new TextField(); //--->> Buscar forma de que sea unico para cada cita reservada
+        //textFieldIDReservacion.setDisable(true);
         textFieldIDReservacion.setPromptText("ID reservacion");
         textFieldIDReservacion.setStyle(
                 "-fx-background-color: lightblue; "
@@ -106,7 +106,7 @@ public class SolicitaCita {
 
         botonGuardar.setOnAction((event) -> {
 
-            Cita cita = new Cita(textFieldIDReservacion.getText(), usuario.getName(), dT_DateFligth.getValue().toString(),
+            Cita cita = new Cita(textFieldIDReservacion.getText(), usuario.getId(), dT_DateFligth.getValue().toString(),
                     comboBoxHora.getValue().toString(), textFieldDoctora.getText());
             LogicaCliente.EscribeArchivoSolicitudCita(cita);
 

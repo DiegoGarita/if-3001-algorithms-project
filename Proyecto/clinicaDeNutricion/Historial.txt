@@ -43,3 +43,25 @@ asd & Vio su reporte de citas & Wed Jun 17 11:45:55 CST 2020
 666 & Inició sesión como admistrador & Wed Jun 17 11:47:29 CST 2020
 666 & Solicitó información de pacientes & Wed Jun 17 11:47:37 CST 2020
 666 & Ingresó nuevo formulario para un paciente & Wed Jun 17 11:49:33 CST 2020
+111 & Inició sesión como cliente & Wed Jun 17 12:46:02 CST 2020
+111 & Revisó su progreso graficamente & Wed Jun 17 12:46:16 CST 2020
+asd & Vio su reporte de citas & Wed Jun 17 12:46:25 CST 2020
+asd & Vio su reporte de citas & Wed Jun 17 12:47:20 CST 2020
+666 & Inició sesión como admistrador & Wed Jun 17 12:47:47 CST 2020
+111 & Inició sesión como cliente & Wed Jun 17 12:50:14 CST 2020
+111 & Inició sesión como cliente & Wed Jun 17 12:56:10 CST 2020
+111 & Solicitó una cita & Wed Jun 17 12:56:36 CST 2020
+111 & Solicitó una cita & Wed Jun 17 12:57:06 CST 2020
+111 & Modificó su cita & Wed Jun 17 12:57:32 CST 2020
+111 & Inició sesión como cliente & Wed Jun 17 13:06:50 CST 2020
+111 & Solicitó una cita & Wed Jun 17 13:07:11 CST 2020
+111 & Inició sesión como cliente & Wed Jun 17 13:08:08 CST 2020
+666 & Inició sesión como admistrador & Wed Jun 17 13:14:16 CST 2020
+666 & Inició sesión como admistrador & Wed Jun 17 13:21:21 CST 2020
+666 & Solicitó una cita & Wed Jun 17 13:22:50 CST 2020
+111 & Inició sesión como cliente & Wed Jun 17 13:27:31 CST 2020
+111 & Solicitó una cita & Wed Jun 17 13:28:02 CST 2020
+111 & Inició sesión como cliente & Wed Jun 17 13:28:58 CST 2020
+111 & Modificó su cita & Wed Jun 17 13:31:59 CST 2020
+111 & Intentó iniciar sesión pero falló la contraseña & Wed Jun 17 14:29:21 CST 2020
+111 & Inició sesión como cliente & Wed Jun 17 14:29:26 CST 2020
