@@ -13,8 +13,8 @@ public class Grafico {
     LogicaCola logicaCola = new LogicaCola();
     IniciarSesion iniciarSesion;
 
-    public void MuestraGrafico() {
-        ReporteMedico reporteMedico = logicaCola.stringTokenizer(logicaCola.obtieneUltimo(iniciarSesion.ID));
+    public void MuestraGraficoActual() {
+        ReporteMedico reporteMedico = logicaCola.stringTokenizer(logicaCola.obtieneLineaEspecifica(iniciarSesion.ID, true));
 
         DefaultPieDataset pieDataset = new DefaultPieDataset();
 
@@ -24,7 +24,32 @@ public class Grafico {
         pieDataset.setValue("Grasa visceral", Integer.parseInt(reporteMedico.getGrasaVisceral()));
 
         JFreeChart chart = ChartFactory.createPieChart(
-                "Informacion actual",
+                "Reporte reciente (" + reporteMedico.getFecha() + "",
+                pieDataset,
+                true,
+                true,
+                false
+        );
+
+        ChartFrame frame = new ChartFrame("Reporte de estado", chart);
+
+        frame.pack();
+        frame.setVisible(true);
+
+    }// end public void MuestraGraficoInicial()
+
+    public void MuestraGraficoInicial() {
+        ReporteMedico reporteMedico = logicaCola.stringTokenizer(logicaCola.obtieneLineaEspecifica(iniciarSesion.ID, false));
+
+        DefaultPieDataset pieDataset = new DefaultPieDataset();
+
+        pieDataset.setValue("% Agua", Integer.parseInt(reporteMedico.getPorcenAgua()));
+        pieDataset.setValue("% Masa muscular", Integer.parseInt(reporteMedico.getPorcenMasaMuscular()));
+        pieDataset.setValue("Grasa", Integer.parseInt(reporteMedico.getGrasa()));
+        pieDataset.setValue("Grasa visceral", Integer.parseInt(reporteMedico.getGrasaVisceral()));
+
+        JFreeChart chart = ChartFactory.createPieChart(
+                "Reporte inicial (" + reporteMedico.getFecha() + ")",
                 pieDataset,
                 true,
                 true,
@@ -35,6 +60,6 @@ public class Grafico {
         frame.pack();
         frame.setVisible(true);
 
-    }// end public void MuestraGrafico()
+    }// end public void MuestraGraficoInicial()
 
 }// end grafico

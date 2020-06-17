@@ -62,7 +62,7 @@ public class LogicaCola {
         return returned;
     }// end readProperties()
 
-    public String obtieneUltimo(String file) {
+    public String obtieneLineaEspecifica(String file, boolean identificador) {
 
         File newFile = new File("Solicitud de cita para " + file + ".txt");
         String returned = "";
@@ -71,12 +71,18 @@ public class LogicaCola {
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
             String currentRegistry = bufferedReader.readLine();
+            
+            if(identificador==true){
 
             while (currentRegistry != null) {
                 implementacionCola.enqueue(stringTokenizer(currentRegistry));
                 returned = currentRegistry;
 
                 currentRegistry = bufferedReader.readLine();
+            }
+            }
+            else{
+            return currentRegistry;
             }
 
         } catch (FileNotFoundException fileNotFoundException) {
@@ -236,5 +242,7 @@ public class LogicaCola {
         return reporteMedico;
 
     }
+    
+    
 
 }

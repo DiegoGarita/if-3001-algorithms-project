@@ -106,8 +106,8 @@ public class Formulario{
 
                 textFieldID.setText(adminLogic.obtieneUsuario(comboBoxClientes.getValue().toString()).getId());
                 textFieldNombre.setText(adminLogic.obtieneUsuario(comboBoxClientes.getValue().toString()).getName());
-                textFieldFecha.setText("Ingresar fecha de cita*");
-                textFieldHora.setText("Ingresar hora de cita*");
+                textFieldFecha.setText(fechaHora.histoFechaHora().substring(0, 10));
+                textFieldHora.setText(fechaHora.histoFechaHora().substring(11, 19));
 
             }
 
