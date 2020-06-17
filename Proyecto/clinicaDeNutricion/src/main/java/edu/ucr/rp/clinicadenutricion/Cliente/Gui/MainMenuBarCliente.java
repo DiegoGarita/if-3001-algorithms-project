@@ -129,7 +129,7 @@ public class MainMenuBarCliente {
         menuMas.getItems().addAll(menuItemMasInfo);
 
         Menu menuUsuario = new Menu("                                               "
-                + "                                                    Usuario");
+                + "                                                Usuario");
         MenuItem menuItemExit = new MenuItem("Cerrar sesion", new ImageView(new Image("file:src/image/salir.png")));
         menuItemExit.setAccelerator(KeyCombination.keyCombination("Alt+S"));
 
