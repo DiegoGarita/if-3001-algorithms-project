@@ -31,7 +31,7 @@ public class LogicaCola {
         }
     }//end writeFileCatalogue()
 
-    public String leeArchivo(String file) {
+    public String leeArchivo(String file, int identificador) {
 
         File newFile = new File("Solicitud de cita para " + file + ".txt");
         String returned = "";
@@ -40,11 +40,14 @@ public class LogicaCola {
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
             String currentRegistry = bufferedReader.readLine();
-
+            int contador=0;
             while (currentRegistry != null) {
+                if(contador==identificador){
                 implementacionCola.enqueue(stringTokenizer(currentRegistry));
-                returned += currentRegistry + "\n";
-
+                returned += currentRegistry;
+                contador++;
+                }
+                contador++;
                 currentRegistry = bufferedReader.readLine();
             }
 
@@ -93,6 +96,30 @@ public class LogicaCola {
                     arrayListClientes.add(logic.stringTokenizer(currentRegistry));
                     cantidad++;
                 }
+                currentRegistry = bufferedReader.readLine();
+            }
+
+        } catch (FileNotFoundException fileNotFoundException) {
+        } catch (IOException IOException) {
+            JOptionPane.showMessageDialog(null, IOException + ": Problemas con el archivo");
+        }
+        return cantidad;
+    }// end readProperties()
+    
+       public int cantidadDeLineas(String file) {
+        int cantidad = 0;
+        File newFile = new File("Solicitud de cita para " + file + ".txt");
+        try {
+            FileInputStream fileInputStream = new FileInputStream(newFile);
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            String currentRegistry = bufferedReader.readLine();
+
+            while (currentRegistry != null) {
+
+                    //arrayListClientes.add(logic.stringTokenizer(currentRegistry));
+                    cantidad++;
+                
                 currentRegistry = bufferedReader.readLine();
             }
 
