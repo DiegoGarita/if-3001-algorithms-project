@@ -19,7 +19,6 @@ import javafx.scene.text.*;
 
 public class InformacionPaciente {
 
-    TextArea textAreaNotas = new TextArea();
     LogicaCola logicaCola = new LogicaCola();
     ComboBox comboBoxClientes = new ComboBox();
     IniciarSesion iniciarSesion;
@@ -35,7 +34,7 @@ public class InformacionPaciente {
         gridPaneInformacionPaciente.setVgap(15);
         gridPaneInformacionPaciente.setHgap(15);
         gridPaneInformacionPaciente.setAlignment(Pos.CENTER);
-       SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+        SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
         gridPaneInformacionPaciente.setStyle(("-fx-background-image:url('file:src/image/" + configuracion.getNombreLogo() + "');"
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
@@ -48,11 +47,6 @@ public class InformacionPaciente {
             comboBoxClientes.getItems().addAll(logicaCola.arrayListClientes.get(i).getId());
         }
 
-        GridPane.setColumnSpan(textAreaNotas, Integer.BYTES);
-        textAreaNotas.setVisible(false);
-        textAreaNotas.setMinSize(650, 75);
-        gridPaneInformacionPaciente.add(textAreaNotas, 0, 5);
-        
         tableViewReporteMedico = new TableView<>();
 
         TableColumn<ReporteMedico, String> idColunm = new TableColumn<>("ID");
@@ -131,14 +125,10 @@ public class InformacionPaciente {
             Acciones acciones = new Acciones(iniciarSesion.ID, "Solicitó información de pacientes", fechaHora.histoFechaHora());
             logicaAVL.escribeHistorial(acciones);
 
-            //textAreaNotas.setText(logicaCola.leeArchivo(comboBoxClientes.getValue().toString()));
-            //textAreaNotas.setVisible(true);
-            
-            
             gridPaneInformacionPaciente.add(tableViewReporteMedico, 0, 4);
+             GridPane.setColumnSpan(tableViewReporteMedico, Integer.BYTES);
             tableViewReporteMedico.setItems(obtieneReporteMedico(comboBoxClientes.getValue().toString()));
             tableViewReporteMedico.getColumns().addAll(idColunm, nombreColunm, fechaColunm, horaColunm, edadColunm, edadMetabolicaColunm, alturaColunm, pesoColunm, porcenMasaMuscularColunm, grasaColunm, grasaVisceralColunm, huesoColunm, porcenAguaColunm, actividadFisicaColunm, horasDeSueñoColunm, textAreaNotasColunm);
-            
 
         });// end boton
 
