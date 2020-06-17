@@ -10,6 +10,7 @@ edu\ucr\rp\clinicadenutricion\SuperAdmin\Logic\Cola.class
 edu\ucr\rp\clinicadenutricion\SuperAdmin\Gui\MainMenuBarSuperAdmi.class
 edu\ucr\rp\clinicadenutricion\Admin\Gui\PlanesAlimenticios.class
 edu\ucr\rp\clinicadenutricion\Admin\logic\LogicaCola.class
+edu\ucr\rp\clinicadenutricion\AVL\Proebas$1.class
 edu\ucr\rp\clinicadenutricion\Cliente\Gui\ReporteCitas.class
 edu\ucr\rp\clinicadenutricion\Cliente\Logic\LogicaPila.class
 edu\ucr\rp\clinicadenutricion\Cliente\Logic\Node.class
