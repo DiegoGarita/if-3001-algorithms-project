@@ -1,5 +1,6 @@
 package edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic;
 
+import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
 import java.io.*;
 import java.util.StringTokenizer;
@@ -169,5 +170,89 @@ public class ArchSupAdmin {
         }
         return null;
     }// end readProperties()
+    
+       public int cantidadDeLineas() {
+        int cantidad = 0;
+        File newFile = new File("Historial.txt");
+        try {
+            FileInputStream fileInputStream = new FileInputStream(newFile);
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            String currentRegistry = bufferedReader.readLine();
+
+            while (currentRegistry != null) {
+
+                    //arrayListClientes.add(logic.stringTokenizer(currentRegistry));
+                    cantidad++;
+                
+                currentRegistry = bufferedReader.readLine();
+            }
+
+        } catch (FileNotFoundException fileNotFoundException) {
+        } catch (IOException IOException) {
+            JOptionPane.showMessageDialog(null, IOException + ": Problemas con el archivo");
+        }
+        return cantidad;
+    }// end readProperties()
+       
+         public String leeArchivo(int identificador) {
+
+        File newFile = new File("Historial.txt");
+        String returned = "";
+        try {
+            FileInputStream fileInputStream = new FileInputStream(newFile);
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            String currentRegistry = bufferedReader.readLine();
+            int contador=0;
+            while (currentRegistry != null) {
+                if(contador==identificador){
+                returned += currentRegistry;
+                contador++;
+                }
+                contador++;
+                currentRegistry = bufferedReader.readLine();
+            }
+
+        } catch (FileNotFoundException fileNotFoundException) {
+        } catch (IOException IOException) {
+            JOptionPane.showMessageDialog(null, IOException + ": Problemas con el archivo");
+        }
+        return returned;
+    }// end readProperties()
+         
+         public Acciones stringTokenizerHistorial(String lines) {
+
+        StringTokenizer stringTokenizer = new StringTokenizer(lines, "&");
+        int counterTokens = 0;
+        String Accionador = "";
+        String accion = "";
+        String fechaHoraAccion = "";
+
+        while (stringTokenizer.hasMoreTokens()) {
+            switch (counterTokens) {
+                case 0:
+                    Accionador = stringTokenizer.nextToken();
+                    counterTokens++;
+                    break;
+                case 1:
+                    accion = stringTokenizer.nextToken();
+                    counterTokens++;
+                    break;
+                case 2:
+                    fechaHoraAccion = stringTokenizer.nextToken();
+                    counterTokens++;
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
+        Acciones acciones = new Acciones(Accionador, accion, fechaHoraAccion);
+        return acciones;
+
+    }
+    
 
 }//end archSupAdmin
