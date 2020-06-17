@@ -32,6 +32,7 @@ public class CrearUsuarioNuevo {
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
     ArchSupAdmin logiSuper = new ArchSupAdmin();
+    ImplementacionListas i = new ImplementacionListas();
 
     public GridPane creaUsuario() {
 
@@ -138,11 +139,11 @@ public class CrearUsuarioNuevo {
         buttonCreaUsuario.setOnAction((event) -> {
 
             logic.leerArchivo();
-
             if (logic.busca(textFieldID.getText()) == false) {
                 Usuario usuario = new Usuario(comboBoxRol.getValue().toString(), textFieldID.getText(),
                         textFieldNombre.getText(), encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()),
                         textFieldCorreo.getText(), textFieldTelefono.getText(), textFieldDireccion.getText());
+
                 logic.escribirArchivo(usuario);
                 Acciones acciones = new Acciones(textFieldID.getText(), "Se registró como nuevo usuario", fechaHora.histoFechaHora());
                 logicaAVL.escribeHistorial(acciones);
@@ -152,7 +153,6 @@ public class CrearUsuarioNuevo {
                 Acciones acciones = new Acciones(textFieldID.getText(), "Intentó registrarse cuando ya estaba registrado", fechaHora.histoFechaHora());
                 logicaAVL.escribeHistorial(acciones);
             }
-
         });//end setOnAction
 
         Button buttonCerrar = new Button("Cerrar");
@@ -161,7 +161,6 @@ public class CrearUsuarioNuevo {
         buttonCerrar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         gridPaneCreaUsuario.add(buttonCerrar, 2, 8);
         buttonCerrar.setOnAction((event) -> {
-
             gridPaneCreaUsuario.getChildren().clear();
             gridPaneCreaUsuario.setBackground(Background.EMPTY);
 

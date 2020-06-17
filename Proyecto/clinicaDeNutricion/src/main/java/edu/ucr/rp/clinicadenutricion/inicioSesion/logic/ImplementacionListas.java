@@ -98,8 +98,7 @@ public class ImplementacionListas {
             return empty;
 
         } // end else
-    } 
-
+    }
 
     public void display() {
         Node current = inicio;
@@ -117,9 +116,9 @@ public class ImplementacionListas {
     }
 
     public boolean search(String aBuscar) {
-        Node current = inicio;   
+        Node current = inicio;
         while (current != null) {
-        
+
             if (current.element.getName().equals(aBuscar) || current.element.getId().equals(aBuscar)) {
                 return true;
             }
@@ -134,7 +133,7 @@ public class ImplementacionListas {
 
         for (int i = -1; i < index - 1; i++) {
 
-            aux = aux.seeNext(); 
+            aux = aux.seeNext();
         } // end for
 
         return aux.seeElement();

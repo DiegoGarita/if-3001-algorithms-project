@@ -1,2 +1,3 @@
 444|asas|Ingresar fecha de cita*|Ingresar hora de cita*|2|34|167|59|52|28|14|36|23|4h|7h|más descansos
 
+444|asas|Ingresar fecha de cita*|Ingresar hora de cita*|200|500|3000|85000|0|100|98520|3|2|nula|0.30|jaja

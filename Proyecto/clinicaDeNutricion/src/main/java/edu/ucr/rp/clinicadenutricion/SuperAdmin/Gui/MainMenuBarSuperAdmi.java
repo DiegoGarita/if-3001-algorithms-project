@@ -64,9 +64,11 @@ public class MainMenuBarSuperAdmi {
 
         menuItemReporAcciones.setOnAction((event) -> {
             gridPaneSuperAdmi.getChildren().clear();
+            gridPaneSuperAdmi.getChildren().addAll(reportesAcciones.historial());
         });
         menuItemRespaldar.setOnAction((event) -> {
             gridPaneSuperAdmi.getChildren().clear();
+            gridPaneSuperAdmi.getChildren().addAll(respaldarArchivos.respaldo());
 
         });
         menuItemNumPag.setOnAction((event) -> {
@@ -91,6 +93,7 @@ public class MainMenuBarSuperAdmi {
 
         menuItemModifyCatalogue.setOnAction((event) -> {
             gridPaneSuperAdmi.getChildren().clear();
+            gridPaneSuperAdmi.getChildren().addAll(indicadorPath.path());
         });
 
         menuOtros.getItems().addAll(menuItemSearchCatalogue, menuItemModifyCatalogue, separator);
