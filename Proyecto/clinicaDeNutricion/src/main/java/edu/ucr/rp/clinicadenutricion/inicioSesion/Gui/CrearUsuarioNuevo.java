@@ -32,7 +32,6 @@ public class CrearUsuarioNuevo {
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
     ArchSupAdmin logiSuper = new ArchSupAdmin();
-    ImplementacionListas i = new ImplementacionListas();
 
     public GridPane creaUsuario() {
 

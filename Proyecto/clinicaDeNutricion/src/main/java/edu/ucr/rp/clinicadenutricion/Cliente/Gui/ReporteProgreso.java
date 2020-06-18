@@ -20,11 +20,10 @@ import javafx.scene.text.*;
 public class ReporteProgreso {
 
     IniciarSesion iniciarSesion;
-    Button buttonGrafico;
-    String repoPro = "Vio su progreso";
+    Button buttonGraficoActual;
+    Button buttonGraficoInicial;
     Grafico grafico = new Grafico();
     LogicaListas logicaListas = new LogicaListas();
-    LogoApp logo = new LogoApp();
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
     ArchSupAdmin logiSuper = new ArchSupAdmin();
@@ -48,17 +47,29 @@ public class ReporteProgreso {
             tipo = "Administración";
         }
 
-        buttonGrafico = new Button("Ver grafica");
-        buttonGrafico.setTextFill(Color.WHITE);
-        buttonGrafico.setStyle("-fx-background-color: BLACK");
-        buttonGrafico.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
-        gridPaneReportePorgreso.add(buttonGrafico, 0, 7);
+        buttonGraficoActual = new Button("Ver datos recientes");
+        buttonGraficoActual.setTextFill(Color.WHITE);
+        buttonGraficoActual.setStyle("-fx-background-color: BLACK");
+        buttonGraficoActual.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        gridPaneReportePorgreso.add(buttonGraficoActual, 3, 1);
 
-        buttonGrafico.setOnAction((event) -> {
+        buttonGraficoActual.setOnAction((event) -> {
 
-            grafico.MuestraGrafico(); //--> %agua, %masMusc, grasa , grasaVisc
+            grafico.MuestraGraficoActual(); //--> %agua, %masMusc, grasa , grasaVisc
             Acciones acciones = new Acciones(iniciarSesion.ID, "Revisó su progreso graficamente", fechaHora.histoFechaHora());
             logicaAVL.escribeHistorial(acciones);
+        });//END BUTTON
+
+        buttonGraficoInicial = new Button("Ver datos iniciales");
+        buttonGraficoInicial.setTextFill(Color.WHITE);
+        buttonGraficoInicial.setStyle("-fx-background-color: BLACK");
+        buttonGraficoInicial.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        gridPaneReportePorgreso.add(buttonGraficoInicial, 1, 1);
+
+        buttonGraficoInicial.setOnAction((event) -> {
+
+            grafico.MuestraGraficoInicial(); //--> %agua, %masMusc, grasa , grasaVisc
+
         });//END BUTTON
 
         MainMenuBarCliente mainMenuBarCliente = new MainMenuBarCliente();

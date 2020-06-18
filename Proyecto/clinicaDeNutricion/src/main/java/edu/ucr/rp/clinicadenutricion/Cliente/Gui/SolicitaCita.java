@@ -5,8 +5,6 @@ import edu.ucr.rp.clinicadenutricion.Cliente.Logic.LogicaPila;
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Objetos.Cita;
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.HorarioTiempoClinica;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.IniciarSesion;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
@@ -26,10 +24,8 @@ public class SolicitaCita {
     Button botonGuardar;
     ComboBox comboBoxHora = new ComboBox();
     LogicaPila LogicaCliente = new LogicaPila();
-    HorarioTiempoClinica horarioTiempoClinica = new HorarioTiempoClinica();
     LogicaListas logic = new LogicaListas();
     IniciarSesion inicioSesion;
-    LogoApp logo = new LogoApp();
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
     ArchSupAdmin logiSuper = new ArchSupAdmin();
@@ -44,7 +40,6 @@ public class SolicitaCita {
 
         SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
 
-        Usuario usuarioTemp = logic.stringTokenizer(logic.leeLinea("ë"));
         comboBoxHora.setValue("Hora de cita");
 
         gridPaneSolicitaCita.setStyle(("-fx-background-image:url('file:src/image/" + configuracion.getNombreLogo() + "');"
@@ -52,7 +47,6 @@ public class SolicitaCita {
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
         textFieldIDReservacion = new TextField(); //--->> Buscar forma de que sea unico para cada cita reservada
-        //textFieldIDReservacion.setDisable(true);
         textFieldIDReservacion.setPromptText("ID reservacion");
         textFieldIDReservacion.setStyle(
                 "-fx-background-color: lightblue; "
@@ -76,11 +70,10 @@ public class SolicitaCita {
         });
         gridPaneSolicitaCita.add(dT_DateFligth, 0, 2);
 
-        //-->  abre      cierra      intervalo
-        for (int i = Integer.parseInt(configuracion.getAbreClinica());
+     for (int i = Integer.parseInt(configuracion.getAbreClinica());
+
                 i < Integer.parseInt(configuracion.getCierreClinica());
                 i = i + Integer.parseInt(configuracion.getTiempoConsulta())) {  //--> horario de 9am a 5pm -->>Estos valores (9y17) van a ser variables
-            // que vengan desde superAdmin -->> Consultas cada hora
             comboBoxHora.getItems().addAll(i + ":00");
         }
         gridPaneSolicitaCita.add(comboBoxHora, 0, 3);

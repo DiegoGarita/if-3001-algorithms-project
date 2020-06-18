@@ -10,7 +10,6 @@ edu\ucr\rp\clinicadenutricion\SuperAdmin\Logic\Cola.class
 edu\ucr\rp\clinicadenutricion\SuperAdmin\Gui\MainMenuBarSuperAdmi.class
 edu\ucr\rp\clinicadenutricion\Admin\Gui\PlanesAlimenticios.class
 edu\ucr\rp\clinicadenutricion\Admin\logic\LogicaCola.class
-edu\ucr\rp\clinicadenutricion\SuperAdmin\Logic\SuperAdminLogic.class
 edu\ucr\rp\clinicadenutricion\Cliente\Gui\ReporteCitas.class
 edu\ucr\rp\clinicadenutricion\Cliente\Logic\LogicaPila.class
 edu\ucr\rp\clinicadenutricion\Cliente\Logic\Node.class
@@ -32,7 +31,6 @@ edu\ucr\rp\clinicadenutricion\SuperAdmin\Logic\ColaImplementacion.class
 edu\ucr\rp\clinicadenutricion\SuperAdmin\Gui\RespaldarArchivos.class
 edu\ucr\rp\clinicadenutricion\Admin\Gui\InformacionPaciente.class
 edu\ucr\rp\clinicadenutricion\AVL\ImplementacionAVL.class
-edu\ucr\rp\clinicadenutricion\Utilitario\TableInfo.class
 edu\ucr\rp\clinicadenutricion\Objetos\ReporteMedico.class
 edu\ucr\rp\clinicadenutricion\SuperAdmin\Gui\HorarioTiempoClinica.class
 edu\ucr\rp\clinicadenutricion\Admin\Gui\Formulario.class
@@ -49,7 +47,6 @@ edu\ucr\rp\clinicadenutricion\Start.class
 edu\ucr\rp\clinicadenutricion\Objetos\Acciones.class
 edu\ucr\rp\clinicadenutricion\Cliente\Gui\PlanesAlimenticios.class
 edu\ucr\rp\clinicadenutricion\SuperAdmin\Gui\ResgistrosPaginacion.class
-edu\ucr\rp\clinicadenutricion\SuperAdmin\Logic\probando.class
 edu\ucr\rp\clinicadenutricion\inicioSesion\logic\Node.class
 edu\ucr\rp\clinicadenutricion\inicioSesion\Gui\Creditos.class
 edu\ucr\rp\clinicadenutricion\SuperAdmin\Logic\Respaldo.class

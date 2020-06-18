@@ -3,11 +3,12 @@ package edu.ucr.rp.clinicadenutricion.Cliente.Gui;
 import edu.ucr.rp.clinicadenutricion.AVL.LogicaAVL;
 import edu.ucr.rp.clinicadenutricion.Admin.logic.LogicaCola;
 import edu.ucr.rp.clinicadenutricion.Cliente.Logic.LogicaPila;
+
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Objetos.Cita;
 import edu.ucr.rp.clinicadenutricion.Objetos.ReporteMedico;
+
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
 import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.IniciarSesion;
@@ -24,10 +25,10 @@ import javafx.scene.text.*;
 
 public class ReporteCitas {
 
-    String repoCita = "Vio su reporte de citas";
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
     LogicaPila logicaCliente = new LogicaPila();
+
 
     TableView<ReporteMedico> tableViewReporteMedico;
     LogicaCola logicaCola = new LogicaCola();
@@ -35,7 +36,6 @@ public class ReporteCitas {
 
     LogicaListas logicaListas = new LogicaListas();
     IniciarSesion iniciarSesion;
-    LogoApp logo = new LogoApp();
     ArchSupAdmin logiSuper = new ArchSupAdmin();
 
     public GridPane reporteCita() {
@@ -106,6 +106,7 @@ public class ReporteCitas {
         TableColumn<ReporteMedico, String> grasaVisceralColunm = new TableColumn<>("grasaVisceral");
         grasaVisceralColunm.setMaxWidth(200);
         grasaVisceralColunm.setCellValueFactory(new PropertyValueFactory<>("grasaVisceral"));
+
 
         TableColumn<ReporteMedico, String> huesoColunm = new TableColumn<>("hueso");
         huesoColunm.setMaxWidth(200);

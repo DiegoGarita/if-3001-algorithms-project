@@ -2,7 +2,6 @@ package edu.ucr.rp.clinicadenutricion.inicioSesion.Gui;
 
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -16,24 +15,19 @@ public class MainMenuBarSesion {
     AcercaDe acercaDe = new AcercaDe();
     Ayuda ayuda = new Ayuda();
     Creditos creditos = new Creditos();
-
     CrearUsuarioNuevo crearUsuarionuevo = new CrearUsuarioNuevo();
     IniciarSesion entrar = new IniciarSesion();
-
     VBox vBoxWindows, vBoxMain;
-
-    LogoApp logo = new LogoApp();
-     ArchSupAdmin logiSuper = new ArchSupAdmin();
-
+    ArchSupAdmin logiSuper = new ArchSupAdmin();
 
     public Scene getMainScene() {
 
         vBoxMain = new VBox();
         SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
-       vBoxMain.setStyle(("-fx-background-image:url('file:src/image/" + configuracion.getNombreLogo() + "');"
+        vBoxMain.setStyle(("-fx-background-image:url('file:src/image/" + configuracion.getNombreLogo() + "');"
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
-       
+
         Scene scene = new Scene(vBoxMain, 900, 700);
         vBoxWindows = new VBox();
 
@@ -46,7 +40,7 @@ public class MainMenuBarSesion {
         menuSystem.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"
                 + "-fx-effect: dropshadow(gaussian, red, 50, 0, 0, 0);"
                 + "-fx-background-insets: 50;");
-        
+
         MenuItem menuItemAbout = new MenuItem("Acerca de", new ImageView(new Image("file:src/image/aD.png")));
         menuItemAbout.setAccelerator(KeyCombination.keyCombination("Ctrl+A"));
         MenuItem menuItemCredits = new MenuItem("Créditos", new ImageView(new Image("file:src/image/credi.png")));
@@ -100,7 +94,6 @@ public class MainMenuBarSesion {
         menuBarMenu.setOnMouseMoved((event) -> {
             menuBarMenu.setOpacity(0.9);
         });
-
 
         menuBarMenu.getMenus().addAll(menuSystem, menuCrearUsuario);
         ((VBox) scene.getRoot()).getChildren().addAll(menuBarMenu, vBoxWindows);

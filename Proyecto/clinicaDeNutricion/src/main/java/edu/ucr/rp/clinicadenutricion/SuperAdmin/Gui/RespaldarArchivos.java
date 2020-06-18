@@ -21,10 +21,6 @@ public class RespaldarArchivos {
     LogicaListas logic = new LogicaListas();
     Usuario uwu = logic.stringTokenizer(logic.leeLinea("ë"));
 
-    /**
-     *
-     * @return Nos da la GUI que nos permite crear un nuevo catálogo
-     */
     public GridPane respaldo() {
 
         GridPane gridPaneCitaNue = new GridPane();

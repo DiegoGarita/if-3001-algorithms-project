@@ -8,7 +8,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 
-//en esta clase se colocara lo que respecte a los creadores
 public class Creditos {
     
         ArchSupAdmin logiSuper = new ArchSupAdmin();

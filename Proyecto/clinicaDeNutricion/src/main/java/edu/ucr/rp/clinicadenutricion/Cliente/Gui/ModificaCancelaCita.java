@@ -6,7 +6,6 @@ import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
 import edu.ucr.rp.clinicadenutricion.Cliente.Logic.LogicaPila;
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Objetos.Cita;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.IniciarSesion;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
@@ -20,24 +19,19 @@ import javafx.scene.text.*;
 
 public class ModificaCancelaCita {
 
-    TextField textFieldNombre;
-    Button buttonDesplegar;
-    TextField textFieldId;
 
+
+
+    TextField textFieldId;
     Button buttonModificar;
     Button buttonCancelarCita;
     Button buttonAceparModifi;
     Button buttonAcepId;
-    TextArea textAreaMostrar = new TextArea();
-    ComboBox comboBoxHora = new ComboBox();
-    String modiCita = "Modifico cita";
-    String cancelCita = "Cancelo cita";
 
+    ComboBox comboBoxHora = new ComboBox();
     LogicaListas logica = new LogicaListas();
     IniciarSesion iniciarSesion;
-    LogoApp logo = new LogoApp();
     LogicaPila logicaCliente = new LogicaPila();
-
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
     ArchSupAdmin logiSuper = new ArchSupAdmin();
@@ -49,7 +43,6 @@ public class ModificaCancelaCita {
         gridPaneModificaCancela.setVgap(15);
         gridPaneModificaCancela.setHgap(15);
         gridPaneModificaCancela.setAlignment(Pos.CENTER);
-        Usuario usuarioTemp = logica.stringTokenizer(logica.leeLinea("ë"));
 
         gridPaneModificaCancela.setStyle(("-fx-background-image:url('file:src/image/" + configuracion.getNombreLogo() + "');"
                 + "-fx-background-repeat : no-repeat;"
@@ -63,11 +56,13 @@ public class ModificaCancelaCita {
             tipo = "Administración";
         }
 
+
         Cita citaTrae = logicaCliente.stringTokenizer(logicaCliente.leeLinea(""));
 
         textFieldId = new TextField();
         textFieldId.setPromptText("Id de cita");
         gridPaneModificaCancela.add(textFieldId, 0, 0);
+
 
         DatePicker datePicker = new DatePicker(LocalDate.now());
         datePicker.setEditable(false);
@@ -80,8 +75,10 @@ public class ModificaCancelaCita {
             // que vengan desde superAdmin -->> Consultas cada hora
             comboBoxHora.getItems().addAll(i + ":00");
         }
+
         comboBoxHora.setDisable(true);
         gridPaneModificaCancela.add(comboBoxHora, 1, 2);
+
 
         buttonModificar = new Button("Modificar");
         buttonModificar.setTextFill(Color.WHITE);
@@ -105,10 +102,12 @@ public class ModificaCancelaCita {
         buttonCancelarCita.setDisable(true);
         buttonCancelarCita.setOnAction((event) -> {
 
-            Cita cita = logicaCliente.stringTokenizer(logicaCliente.leeLinea(textFieldId.getText()));
-            logicaCliente.leeArchivoSolicitudCita();   // ------------>>> Linea cerda del problema -805306369
+
+            Cita cita = logicaCliente.stringTokenizer(logicaCliente.leeLinea(textField.getText()));
+            logicaCliente.leeArchivoSolicitudCita();  
+
             logicaCliente.elimina(cita);
-            logicaCliente.remueveLineaDelArchivo(cita.getIDCita()); //----->> Linea que me duplica
+            logicaCliente.remueveLineaDelArchivo(cita.getIDCita());
 
             Acciones acciones = new Acciones(iniciarSesion.ID, "Eliminó su cita", fechaHora.histoFechaHora());
             logicaAVL.escribeHistorial(acciones);

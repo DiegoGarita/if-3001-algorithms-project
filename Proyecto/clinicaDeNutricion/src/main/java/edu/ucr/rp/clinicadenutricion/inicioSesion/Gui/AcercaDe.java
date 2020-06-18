@@ -1,8 +1,6 @@
 package edu.ucr.rp.clinicadenutricion.inicioSesion.Gui;
 
-//En esta clase se colocara informacion basica del app
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -11,21 +9,17 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 
 public class AcercaDe {
-    
-        LogoApp logo = new LogoApp();
-        ArchSupAdmin logiSuper = new ArchSupAdmin();
-    /**
-     * 
-     * @return Nos da la GUI que contiene información básica del app
-     */
+
+    ArchSupAdmin logiSuper = new ArchSupAdmin();
+
     public GridPane getGraphicalUserInterfaceAcercaDe() {
         GridPane acercaDe = new GridPane();
         acercaDe.setMinSize(600, 700);
-         SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
-        acercaDe.setVgap(15); 
+        SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+        acercaDe.setVgap(15);
         acercaDe.setHgap(15);
         acercaDe.setAlignment(Pos.TOP_LEFT);
-        acercaDe.setStyle(("-fx-background-image:url('file:src/image/" +configuracion.getNombreLogo() + "');"
+        acercaDe.setStyle(("-fx-background-image:url('file:src/image/" + configuracion.getNombreLogo() + "');"
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 

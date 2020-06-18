@@ -1,7 +1,6 @@
 package edu.ucr.rp.clinicadenutricion.inicioSesion.Gui;
 
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -19,8 +18,10 @@ public class Ayuda {
     Button buttonMantenimiento;
     Button buttonReportes;
 
-    LogoApp logo = new LogoApp();
+
     ArchSupAdmin logiSuper = new ArchSupAdmin();
+        ArchSupAdmin logiSuper = new ArchSupAdmin();
+
 
     public GridPane getGraphicalUserInterfaceAyuda() {
         GridPane gridPaneAyuda = new GridPane();
