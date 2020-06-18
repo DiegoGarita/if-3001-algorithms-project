@@ -20,7 +20,7 @@ public class Ayuda {
 
 
     ArchSupAdmin logiSuper = new ArchSupAdmin();
-        ArchSupAdmin logiSuper = new ArchSupAdmin();
+
 
 
     public GridPane getGraphicalUserInterfaceAyuda() {

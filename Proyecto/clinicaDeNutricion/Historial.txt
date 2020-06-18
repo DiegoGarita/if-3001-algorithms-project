@@ -139,3 +139,6 @@ asd & Vio su reporte de citas & Wed Jun 17 12:47:20 CST 2020
 111 & Inici√≥ sesi√≥n como cliente & Wed Jun 17 16:57:11 CST 2020
 111 & Inici√≥ sesi√≥n como cliente & Wed Jun 17 17:00:21 CST 2020
 111 & Inici√≥ sesi√≥n como cliente & Wed Jun 17 21:06:55 CST 2020
+111 & IniciÛ sesiÛn como cliente & Wed Jun 17 21:30:59 CST 2020
+111 & IniciÛ sesiÛn como cliente & Wed Jun 17 22:46:17 CST 2020
+111 & consulto su reporte de citas & Wed Jun 17 22:46:20 CST 2020

@@ -10,6 +10,7 @@ edu\ucr\rp\clinicadenutricion\SuperAdmin\Logic\Cola.class
 edu\ucr\rp\clinicadenutricion\SuperAdmin\Gui\MainMenuBarSuperAdmi.class
 edu\ucr\rp\clinicadenutricion\Admin\Gui\PlanesAlimenticios.class
 edu\ucr\rp\clinicadenutricion\Admin\logic\LogicaCola.class
+edu\ucr\rp\clinicadenutricion\Cliente\Logic\ImplementacionArbol.class
 edu\ucr\rp\clinicadenutricion\Cliente\Gui\ReporteCitas.class
 edu\ucr\rp\clinicadenutricion\Cliente\Logic\LogicaPila.class
 edu\ucr\rp\clinicadenutricion\Cliente\Logic\Node.class
@@ -37,6 +38,7 @@ edu\ucr\rp\clinicadenutricion\Admin\Gui\Formulario.class
 edu\ucr\rp\clinicadenutricion\Cliente\Gui\ReporteProgreso.class
 edu\ucr\rp\clinicadenutricion\inicioSesion\logic\LogicaListas.class
 edu\ucr\rp\clinicadenutricion\Objetos\Cita.class
+edu\ucr\rp\clinicadenutricion\Cliente\Logic\ImplementacionArbol$NodoBinario.class
 edu\ucr\rp\clinicadenutricion\Cliente\Gui\MainMenuBarCliente.class
 edu\ucr\rp\clinicadenutricion\inicioSesion\Gui\Ayuda.class
 edu\ucr\rp\clinicadenutricion\Admin\logic\ImplementacionCola$Node.class
@@ -54,5 +56,6 @@ edu\ucr\rp\clinicadenutricion\SuperAdmin\Gui\LogoApp.class
 edu\ucr\rp\clinicadenutricion\Cliente\Logic\Pila.class
 edu\ucr\rp\clinicadenutricion\Admin\Gui\MainMenuBarAdministrador.class
 edu\ucr\rp\clinicadenutricion\Cliente\Gui\SolicitaCita.class
+edu\ucr\rp\clinicadenutricion\Cliente\Logic\LogicaArbol.class
 edu\ucr\rp\clinicadenutricion\Utilitario\Alertas.class
 edu\ucr\rp\clinicadenutricion\Cliente\Gui\SolicitaCita$1.class

@@ -2,12 +2,10 @@ package edu.ucr.rp.clinicadenutricion.Cliente.Gui;
 
 import edu.ucr.rp.clinicadenutricion.AVL.LogicaAVL;
 import edu.ucr.rp.clinicadenutricion.Admin.logic.LogicaCola;
+import edu.ucr.rp.clinicadenutricion.Cliente.Logic.LogicaArbol;
 import edu.ucr.rp.clinicadenutricion.Cliente.Logic.LogicaPila;
-
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
-import edu.ucr.rp.clinicadenutricion.Objetos.Cita;
 import edu.ucr.rp.clinicadenutricion.Objetos.ReporteMedico;
-
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
 import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
@@ -29,9 +27,9 @@ public class ReporteCitas {
     FechaHora fechaHora = new FechaHora();
     LogicaPila logicaCliente = new LogicaPila();
 
-
     TableView<ReporteMedico> tableViewReporteMedico;
     LogicaCola logicaCola = new LogicaCola();
+    LogicaArbol logicaArbol = new LogicaArbol();
     Label labelTraeId = new Label();
 
     LogicaListas logicaListas = new LogicaListas();
@@ -107,7 +105,6 @@ public class ReporteCitas {
         grasaVisceralColunm.setMaxWidth(200);
         grasaVisceralColunm.setCellValueFactory(new PropertyValueFactory<>("grasaVisceral"));
 
-
         TableColumn<ReporteMedico, String> huesoColunm = new TableColumn<>("hueso");
         huesoColunm.setMaxWidth(200);
         huesoColunm.setCellValueFactory(new PropertyValueFactory<>("hueso"));
@@ -136,12 +133,12 @@ public class ReporteCitas {
         buttonBuscar.setDisable(false);
         buttonBuscar.setOnAction((event) -> {
 
-            Acciones acciones = new Acciones(iniciarSesion.ID, repoCita, fechaHora.histoFechaHora());
+            Acciones acciones = new Acciones(iniciarSesion.ID, "consulto su reporte de citas", fechaHora.histoFechaHora());
             logicaAVL.escribeHistorial(acciones);
 
             gridPaneReporteCitas.add(tableViewReporteMedico, 0, 4);
             GridPane.setColumnSpan(tableViewReporteMedico, Integer.BYTES);
-            tableViewReporteMedico.setItems(obtieneReporteMedico(labelTraeId.getText()));
+            tableViewReporteMedico.setItems(obtieneReporteMedicos(labelTraeId.getText()));
             //  System.out.println(labelTraeId.getText());
             tableViewReporteMedico.getColumns().addAll(idColunm, nombreColunm, fechaColunm, horaColunm, edadColunm, edadMetabolicaColunm, alturaColunm, pesoColunm, porcenMasaMuscularColunm, grasaColunm, grasaVisceralColunm, huesoColunm, porcenAguaColunm, actividadFisicaColunm, horasDeSueñoColunm, textAreaNotasColunm);
 
@@ -167,10 +164,10 @@ public class ReporteCitas {
 
     }
 
-    public ObservableList<ReporteMedico> obtieneReporteMedico(String file) {
+    public ObservableList<ReporteMedico> obtieneReporteMedicos(String file) {
         ObservableList<ReporteMedico> reporteMedico = FXCollections.observableArrayList();
-        for (int i = 0; i < logicaCola.cantidadDeLineas(file); i++) {
-            reporteMedico.add(logicaCola.stringTokenizer(logicaCola.leeArchivo(labelTraeId.getText(), i)));
+        for (int i = 0; i < logicaArbol.cantidadDeLineas(file); i++) {
+            reporteMedico.add(logicaArbol.stringTokenizer(logicaArbol.leeArchivo(labelTraeId.getText(), i)));
         }
         return reporteMedico;
     }

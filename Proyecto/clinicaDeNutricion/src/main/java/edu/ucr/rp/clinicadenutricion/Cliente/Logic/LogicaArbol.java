@@ -1,47 +1,27 @@
-package edu.ucr.rp.clinicadenutricion.Admin.logic;
+package edu.ucr.rp.clinicadenutricion.Cliente.Logic;
 
+import edu.ucr.rp.clinicadenutricion.Objetos.Cita;
 import edu.ucr.rp.clinicadenutricion.Objetos.ReporteMedico;
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
-import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
-import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
-import java.io.*;
-import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.util.StringTokenizer;
 import javax.swing.JOptionPane;
 
-public class LogicaCola {
+public class LogicaArbol {
 
-    ImplementacionCola implementacionCola = new ImplementacionCola();
-
-    public ArrayList<Usuario> arrayListClientes = new ArrayList<>();
+    ImplementacionArbol implementacionArbol = new ImplementacionArbol();
     ArchSupAdmin logiSuper = new ArchSupAdmin();
-    LogicaListas logic = new LogicaListas();
 
-    public void escribeCitas(ReporteMedico reporteMedico) {
-
-        SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
-        File newFile = new File(configuracion.getPathDeGuardado() + "\\Solicitud de cita para " + reporteMedico.getID() + ".txt");
-
-        try {
-            FileOutputStream fileOutputStream = new FileOutputStream(newFile, true);
-            PrintStream printStream = new PrintStream(fileOutputStream);
-
-            printStream.println(reporteMedico.getID() + "|" + reporteMedico.getNombre() + "|"
-                    + reporteMedico.getFecha() + "|" + reporteMedico.getHora() + "|"
-                    + reporteMedico.getEdad() + "|" + reporteMedico.getEdadMetabolica() + "|"
-                    + reporteMedico.getAltura() + "|" + reporteMedico.getPeso() + "|"
-                    + reporteMedico.getPorcenMasaMuscular() + "|" + reporteMedico.getGrasa() + "|"
-                    + reporteMedico.getGrasaVisceral() + "|" + reporteMedico.getHueso() + "|"
-                    + reporteMedico.getPorcenAgua() + "|" + reporteMedico.getActividadFisica() + "|"
-                    + reporteMedico.getHorasDeSueño() + "|" + reporteMedico.getTextAreaNotas());
-
-        } catch (FileNotFoundException fileNotFoundException) {
-            JOptionPane.showMessageDialog(null, fileNotFoundException + "\nProblemas con el archivo");
-        }
-    }//end writeFileCatalogue()
-
-    public String leeArchivo(String file, int identificador) {
+    
+        public String leeArchivo(String file, int identificador) {
 
         File newFile = new File("Solicitud de cita para " + file + ".txt");
         String returned = "";
@@ -53,7 +33,7 @@ public class LogicaCola {
             int contador = 0;
             while (currentRegistry != null) {
                 if (contador == identificador) {
-                    implementacionCola.enqueue(stringTokenizer(currentRegistry));
+                    implementacionArbol.insertar(stringTokenizer(currentRegistry));
                     returned += currentRegistry;
                     contador++;
                 }
@@ -66,59 +46,6 @@ public class LogicaCola {
             JOptionPane.showMessageDialog(null, IOException + ": Problemas con el archivo");
         }
         return returned;
-    }// end readProperties()
-
-    public String obtieneLineaEspecifica(String file, boolean identificador) {
-
-        File newFile = new File("Solicitud de cita para " + file + ".txt");
-        String returned = "";
-        try {
-            FileInputStream fileInputStream = new FileInputStream(newFile);
-            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            String currentRegistry = bufferedReader.readLine();
-
-            if (identificador == true) {
-
-                while (currentRegistry != null) {
-                    implementacionCola.enqueue(stringTokenizer(currentRegistry));
-                    returned = currentRegistry;
-
-                    currentRegistry = bufferedReader.readLine();
-                }
-            } else {
-                return currentRegistry;
-            }
-
-        } catch (FileNotFoundException fileNotFoundException) {
-        } catch (IOException IOException) {
-            JOptionPane.showMessageDialog(null, IOException + ": Problemas con el archivo");
-        }
-        return returned;
-    }// end readProperties()
-
-    public int cantidadDeClientes(String identificador) {
-        int cantidad = 0;
-        File newFile = new File("usuarios.txt");
-        try {
-            FileInputStream fileInputStream = new FileInputStream(newFile);
-            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            String currentRegistry = bufferedReader.readLine();
-
-            while (currentRegistry != null) {
-                if (currentRegistry.contains(identificador)) {
-                    arrayListClientes.add(logic.stringTokenizer(currentRegistry));
-                    cantidad++;
-                }
-                currentRegistry = bufferedReader.readLine();
-            }
-
-        } catch (FileNotFoundException fileNotFoundException) {
-        } catch (IOException IOException) {
-            JOptionPane.showMessageDialog(null, IOException + ": Problemas con el archivo");
-        }
-        return cantidad;
     }// end readProperties()
 
     public int cantidadDeLineas(String file) {
@@ -144,10 +71,6 @@ public class LogicaCola {
         }
         return cantidad;
     }// end readProperties()
-
-    public Usuario obtieneUsuario(String s) {
-        return logic.stringTokenizer(logic.leeLinea(s));
-    }
 
     public ReporteMedico stringTokenizer(String lines) {
 
@@ -243,7 +166,9 @@ public class LogicaCola {
 
         }
 
-        ReporteMedico reporteMedico = new ReporteMedico(iD, nombre, fecha, hora, edad, edadMetabolica, altura, peso, porcenMasaMuscular, grasa, grasaVisceral, hueso, porcenAgua, actividadFisica, horasDeSueño, textAreaNotas);
+        ReporteMedico reporteMedico = new ReporteMedico(iD, nombre, fecha, hora, edad, edadMetabolica,
+                altura, peso, porcenMasaMuscular, grasa, grasaVisceral, hueso, porcenAgua, actividadFisica,
+                horasDeSueño, textAreaNotas);
         return reporteMedico;
 
     }
