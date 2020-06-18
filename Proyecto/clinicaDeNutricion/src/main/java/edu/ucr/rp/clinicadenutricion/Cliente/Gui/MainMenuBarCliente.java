@@ -4,7 +4,6 @@ import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
-import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
 import javafx.application.Platform;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -19,16 +18,11 @@ public class MainMenuBarCliente {
 
     ReporteCitas reporteCitas = new ReporteCitas();
     ReporteProgreso reporteProgreso = new ReporteProgreso();
-
     SolicitaCita solicitaCita = new SolicitaCita();
     ModificaCancelaCita modificaCancelaCita = new ModificaCancelaCita();
-
     PlanesAlimenticios planesAlimenticios = new PlanesAlimenticios();
-
     AjustesCliente ajustesCliente = new AjustesCliente();
 
-    LogoApp logo = new LogoApp();
-    LogicaListas logic = new LogicaListas();
     ArchSupAdmin logiSuper = new ArchSupAdmin();
 
 

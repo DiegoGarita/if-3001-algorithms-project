@@ -21,7 +21,6 @@ public class PlanesAlimenticios {
     Button buttonAceptar;
     TextArea textAreaMostrar = new TextArea();
     ComboBox comboBoxOpciones = new ComboBox();
-    LogoApp logo = new LogoApp();
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
     IniciarSesion inicioSesion;

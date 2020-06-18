@@ -9,12 +9,9 @@ import javax.swing.JOptionPane;
 public class ArchSupAdmin {
 
     LogicSuperAdmin crudListas = new LogicSuperAdmin();
-//    ArchSupAdmin logiSuper = new ArchSupAdmin();
 
     public void writeInFile(SuperAdmin supAd) {
-      //  SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
         File newFile = new File("SuperAdminConfig.txt");
-        String tipoDeToken = "";
 
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(newFile, true);
@@ -170,8 +167,8 @@ public class ArchSupAdmin {
         }
         return null;
     }// end readProperties()
-    
-       public int cantidadDeLineas() {
+
+    public int cantidadDeLineas() {
         int cantidad = 0;
         File newFile = new File("Historial.txt");
         try {
@@ -182,9 +179,9 @@ public class ArchSupAdmin {
 
             while (currentRegistry != null) {
 
-                    //arrayListClientes.add(logic.stringTokenizer(currentRegistry));
-                    cantidad++;
-                
+                //arrayListClientes.add(logic.stringTokenizer(currentRegistry));
+                cantidad++;
+
                 currentRegistry = bufferedReader.readLine();
             }
 
@@ -194,8 +191,8 @@ public class ArchSupAdmin {
         }
         return cantidad;
     }// end readProperties()
-       
-         public String leeArchivo(int identificador) {
+
+    public String leeArchivo(int identificador) {
 
         File newFile = new File("Historial.txt");
         String returned = "";
@@ -204,11 +201,11 @@ public class ArchSupAdmin {
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
             String currentRegistry = bufferedReader.readLine();
-            int contador=0;
+            int contador = 0;
             while (currentRegistry != null) {
-                if(contador==identificador){
-                returned += currentRegistry;
-                contador++;
+                if (contador == identificador) {
+                    returned += currentRegistry;
+                    contador++;
                 }
                 contador++;
                 currentRegistry = bufferedReader.readLine();
@@ -220,8 +217,8 @@ public class ArchSupAdmin {
         }
         return returned;
     }// end readProperties()
-         
-         public Acciones stringTokenizerHistorial(String lines) {
+
+    public Acciones stringTokenizerHistorial(String lines) {
 
         StringTokenizer stringTokenizer = new StringTokenizer(lines, "&");
         int counterTokens = 0;
@@ -253,6 +250,5 @@ public class ArchSupAdmin {
         return acciones;
 
     }
-    
 
 }//end archSupAdmin

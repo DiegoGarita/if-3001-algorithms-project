@@ -2,16 +2,12 @@ package edu.ucr.rp.clinicadenutricion.Cliente.Gui;
 
 import edu.ucr.rp.clinicadenutricion.AVL.LogicaAVL;
 import edu.ucr.rp.clinicadenutricion.Cliente.Logic.LogicaPila;
-import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
-import edu.ucr.rp.clinicadenutricion.Objetos.Cita;
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
 import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.IniciarSesion;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
 import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -20,14 +16,11 @@ import javafx.scene.text.*;
 
 public class ReporteCitas {
 
-    String repoCita = "Vio su reporte de citas";
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
     LogicaPila logicaCliente = new LogicaPila();
-
     LogicaListas logicaListas = new LogicaListas();
     IniciarSesion iniciarSesion;
-    LogoApp logo = new LogoApp();
     ArchSupAdmin logiSuper = new ArchSupAdmin();
 
     public GridPane reporteCita() {
@@ -50,8 +43,7 @@ public class ReporteCitas {
             tipo = "Administración";
         }
 
-        Acciones acciones = new Acciones(usuario.getName(), repoCita, fechaHora.histoFechaHora());
-        logicaAVL.escribeHistorial(acciones);
+
 
         MainMenuBarCliente barCliente = new MainMenuBarCliente();
 

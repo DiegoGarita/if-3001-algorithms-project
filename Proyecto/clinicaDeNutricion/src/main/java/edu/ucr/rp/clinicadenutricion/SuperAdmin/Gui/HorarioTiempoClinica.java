@@ -1,9 +1,7 @@
 package edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui;
 
-//en esta clase se colocaran para realizar los ajustes en tiempos de consulta y en horarios de atencion
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
-import edu.ucr.rp.clinicadenutricion.Utilitario.EncryptMD5;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
 import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
 import javafx.geometry.Pos;
@@ -20,13 +18,8 @@ public class HorarioTiempoClinica {
     TextField textFieldCierraClinica;
     Button buttonGuardar;
     Button buttonModificar;
-    public int intervalo = 1;
-    public int abre = 9;
-    public int cierra = 17;
-    public String inter = "";
 
     LogicaListas logic = new LogicaListas();
-    EncryptMD5 encrypt = new EncryptMD5();
       ArchSupAdmin logiSuper = new ArchSupAdmin();
 
     public GridPane horarioClinica() {

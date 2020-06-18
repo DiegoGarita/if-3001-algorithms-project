@@ -3,7 +3,6 @@ package edu.ucr.rp.clinicadenutricion.Cliente.Gui;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.IniciarSesion;
 import edu.ucr.rp.clinicadenutricion.AVL.LogicaAVL;
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
 import edu.ucr.rp.clinicadenutricion.Utilitario.EncryptMD5;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
@@ -34,9 +33,6 @@ public class AjustesCliente{
     Button buttonModificar;
     Button buttonEliminar;
     Button buttonAceptar;
-    String NombreArchivo;
-    String accionBorra = "Borro su usuario";
-    String accionModi = "Modifico su usuario";
 
     EncryptMD5 encrypt = new EncryptMD5();
     LogicaListas logicaLista = new LogicaListas();
@@ -44,13 +40,7 @@ public class AjustesCliente{
 
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
-
-    LogoApp logo = new LogoApp();
-
-    /**
-     *
-     * @return Nos da la GUI que nos permite crear un nuevo catálogo
-     */
+    
     public GridPane ajustesCliente() {
 
         GridPane gridPaneAjustesCliente = new GridPane();

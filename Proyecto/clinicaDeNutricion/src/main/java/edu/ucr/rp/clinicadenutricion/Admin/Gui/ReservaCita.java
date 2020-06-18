@@ -28,10 +28,8 @@ public class ReservaCita {
     ComboBox comboBoxHora = new ComboBox();
     ComboBox comboBoxClientes = new ComboBox();
     LogicaPila LogicaCliente = new LogicaPila();
-    HorarioTiempoClinica horarioTiempoClinica = new HorarioTiempoClinica();
     LogicaListas logic = new LogicaListas();
     IniciarSesion inicioSesion;
-    LogoApp logo = new LogoApp();
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
     ArchSupAdmin logiSuper = new ArchSupAdmin();
@@ -44,12 +42,8 @@ public class ReservaCita {
         gridPaneSolicitaCita.setVgap(15);
         gridPaneSolicitaCita.setHgap(15);
         gridPaneSolicitaCita.setAlignment(Pos.CENTER);
-
         SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
-
-        Usuario usuarioTemp = logic.stringTokenizer(logic.leeLinea("ë"));
         comboBoxHora.setValue("Hora de cita");
-
         gridPaneSolicitaCita.setStyle(("-fx-background-image:url('file:src/image/" + configuracion.getNombreLogo() + "');"
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
@@ -63,7 +57,6 @@ public class ReservaCita {
         }
 
         textFieldIDReservacion = new TextField(); //--->> Buscar forma de que sea unico para cada cita reservada
-        //textFieldIDReservacion.setDisable(true);
         textFieldIDReservacion.setPromptText("ID reservacion");
         textFieldIDReservacion.setStyle(
                 "-fx-background-color: lightblue; "
@@ -80,11 +73,9 @@ public class ReservaCita {
         dT_DateFligth.setEditable(false);
         gridPaneSolicitaCita.add(dT_DateFligth, 1, 2);
 
-        //-->  abre      cierra      intervalo
         for (int i = Integer.parseInt(configuracion.getAbreClinica());
                 i < Integer.parseInt(configuracion.getCierreClinica());
                 i = i + Integer.parseInt(configuracion.getTiempoConsulta())) {  //--> horario de 9am a 5pm -->>Estos valores (9y17) van a ser variables
-            // que vengan desde superAdmin -->> Consultas cada hora
             comboBoxHora.getItems().addAll(i + ":00");
         }
         gridPaneSolicitaCita.add(comboBoxHora, 0, 03);

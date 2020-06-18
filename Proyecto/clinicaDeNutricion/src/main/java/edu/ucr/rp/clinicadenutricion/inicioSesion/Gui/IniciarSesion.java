@@ -5,7 +5,6 @@ import edu.ucr.rp.clinicadenutricion.Admin.Gui.MainMenuBarAdministrador;
 import edu.ucr.rp.clinicadenutricion.Cliente.Gui.MainMenuBarCliente;
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.MainMenuBarSuperAdmi;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
 import edu.ucr.rp.clinicadenutricion.Utilitario.EncryptMD5;
@@ -25,14 +24,11 @@ public class IniciarSesion {
     public static String ID;
 
     TextField textFieldID;
-    public TextField textFieldNombre;
     PasswordField textFieldContraseña;
     Button buttonCreaUsuario;
     LogicaListas logic = new LogicaListas();
-    LogoApp logo = new LogoApp();
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
-
     MainMenuBarSuperAdmi mainMenuBarSuperAdmi = new MainMenuBarSuperAdmi();
     MainMenuBarAdministrador mainMenuBarAdministrador = new MainMenuBarAdministrador();
     MainMenuBarCliente mainMenuBarCliente = new MainMenuBarCliente();

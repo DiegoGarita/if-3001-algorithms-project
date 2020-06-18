@@ -1,7 +1,6 @@
 package edu.ucr.rp.clinicadenutricion.Admin.Gui;
 
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
 import javafx.application.Platform;
 import javafx.scene.control.*;
@@ -15,7 +14,6 @@ public class MainMenuBarAdministrador {
     PlanesAlimenticios planesAlimenticios = new PlanesAlimenticios();
     ReservaCita reservarCita = new ReservaCita();
     Formulario formulario = new Formulario();
-    LogoApp logo = new LogoApp();
     ArchSupAdmin logiSuper = new ArchSupAdmin();
 
     /**
