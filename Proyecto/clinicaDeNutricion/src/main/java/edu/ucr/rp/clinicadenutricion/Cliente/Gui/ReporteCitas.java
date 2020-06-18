@@ -136,7 +136,7 @@ public class ReporteCitas {
         buttonBuscar.setDisable(false);
         buttonBuscar.setOnAction((event) -> {
 
-            Acciones acciones = new Acciones(iniciarSesion.ID, repoCita, fechaHora.histoFechaHora());
+            Acciones acciones = new Acciones(iniciarSesion.ID, "consultó su reporte de citas", fechaHora.histoFechaHora());
             logicaAVL.escribeHistorial(acciones);
 
             gridPaneReporteCitas.add(tableViewReporteMedico, 0, 4);

@@ -96,7 +96,7 @@ public class IniciarSesion {
                             ID = textFieldID.getText();
                             Acciones acciones = new Acciones(ID, "Inició sesión como cliente", fechaHora.histoFechaHora());
                             logicaAVL.escribeHistorial(acciones);
-                            //logicaAVL.leerHistorial();
+                          //  logicaAVL.leerHistorial();
                             gridPaneIniciarSesion.getChildren().clear();
                             gridPaneIniciarSesion.getChildren().add(0, node);
                             gridPaneIniciarSesion.getChildren().add(mainMenuBarCliente.menuCliente());

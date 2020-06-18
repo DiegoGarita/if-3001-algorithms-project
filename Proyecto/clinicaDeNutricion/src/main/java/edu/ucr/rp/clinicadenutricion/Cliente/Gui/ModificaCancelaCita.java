@@ -103,7 +103,7 @@ public class ModificaCancelaCita {
         buttonCancelarCita.setOnAction((event) -> {
 
 
-            Cita cita = logicaCliente.stringTokenizer(logicaCliente.leeLinea(textField.getText()));
+            Cita cita = logicaCliente.stringTokenizer(logicaCliente.leeLinea(textFieldId.getText()));
             logicaCliente.leeArchivoSolicitudCita();  
 
             logicaCliente.elimina(cita);
