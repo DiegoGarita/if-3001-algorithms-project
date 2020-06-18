@@ -65,3 +65,35 @@ asd & Vio su reporte de citas & Wed Jun 17 12:47:20 CST 2020
 111 & Modificó su cita & Wed Jun 17 13:31:59 CST 2020
 111 & Intentó iniciar sesión pero falló la contraseña & Wed Jun 17 14:29:21 CST 2020
 111 & Inició sesión como cliente & Wed Jun 17 14:29:26 CST 2020
+666 & Inició sesión como admistrador & Wed Jun 17 15:46:07 CST 2020
+111 & Inició sesión como cliente & Wed Jun 17 15:47:24 CST 2020
+111 & Vio su reporte de citas & Wed Jun 17 15:47:32 CST 2020
+111 & Inició sesión como cliente & Wed Jun 17 15:52:17 CST 2020
+111 & Vio su reporte de citas & Wed Jun 17 15:52:21 CST 2020
+111 & Inició sesión como cliente & Wed Jun 17 15:53:16 CST 2020
+111 & Vio su reporte de citas & Wed Jun 17 15:53:18 CST 2020
+111 & Inició sesión como cliente & Wed Jun 17 15:53:55 CST 2020
+111 & Vio su reporte de citas & Wed Jun 17 15:54:07 CST 2020
+111 & Inició sesión como cliente & Wed Jun 17 16:03:08 CST 2020
+111 & Vio su reporte de citas & Wed Jun 17 16:03:12 CST 2020
+111 & Inició sesión como cliente & Wed Jun 17 16:04:39 CST 2020
+111 & Vio su reporte de citas & Wed Jun 17 16:04:43 CST 2020
+111 & Vio su reporte de citas & Wed Jun 17 16:04:49 CST 2020
+111 & Inició sesión como cliente & Wed Jun 17 16:12:16 CST 2020
+111 & Vio su reporte de citas & Wed Jun 17 16:12:18 CST 2020
+111 & Inició sesión como cliente & Wed Jun 17 16:43:08 CST 2020
+666 & Inició sesión como admistrador & Wed Jun 17 16:56:51 CST 2020
+111 & Inició sesión como cliente & Wed Jun 17 19:54:53 CST 2020
+111 & Inició sesión como cliente & Wed Jun 17 20:04:01 CST 2020
+111 & Inició sesión como cliente & Wed Jun 17 20:06:37 CST 2020
+111 & Solicitó una cita & Wed Jun 17 20:07:22 CST 2020
+111 & Inició sesión como cliente & Wed Jun 17 20:33:33 CST 2020
+111 & Inició sesión como cliente & Wed Jun 17 20:37:20 CST 2020
+111 & Revisó su progreso graficamente & Wed Jun 17 20:37:24 CST 2020
+111 & Inició sesión como cliente & Wed Jun 17 20:38:24 CST 2020
+111 & Inició sesión como cliente & Wed Jun 17 20:40:45 CST 2020
+111 & Inició sesión como cliente & Wed Jun 17 20:56:02 CST 2020
+111 & Inició sesión como cliente & Wed Jun 17 21:02:19 CST 2020
+111 & Inició sesión como cliente & Wed Jun 17 21:02:40 CST 2020
+111 & Inició sesión como cliente & Wed Jun 17 21:07:51 CST 2020
+111 & Inició sesión como cliente & Wed Jun 17 21:12:48 CST 2020

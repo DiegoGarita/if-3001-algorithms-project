@@ -32,7 +32,7 @@ public class SolicitaCita {
     LogoApp logo = new LogoApp();
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
-     ArchSupAdmin logiSuper = new ArchSupAdmin();
+    ArchSupAdmin logiSuper = new ArchSupAdmin();
 
     public GridPane solicitaCita() {
 
@@ -41,13 +41,13 @@ public class SolicitaCita {
         gridPaneSolicitaCita.setVgap(15);
         gridPaneSolicitaCita.setHgap(15);
         gridPaneSolicitaCita.setAlignment(Pos.CENTER);
-        
-         SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+
+        SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
 
         Usuario usuarioTemp = logic.stringTokenizer(logic.leeLinea("ë"));
         comboBoxHora.setValue("Hora de cita");
 
-         gridPaneSolicitaCita.setStyle(("-fx-background-image:url('file:src/image/" + configuracion.getNombreLogo() + "');"
+        gridPaneSolicitaCita.setStyle(("-fx-background-image:url('file:src/image/" + configuracion.getNombreLogo() + "');"
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
@@ -64,19 +64,26 @@ public class SolicitaCita {
         gridPaneSolicitaCita.add(textFieldIDReservacion, 0, 1);
         textFieldIDReservacion.setFocusTraversable(false);
 
-        gridPaneSolicitaCita.add(new Label("Fecha de cita"), 0, 2);
         DatePicker dT_DateFligth = new DatePicker(LocalDate.now());
         dT_DateFligth.setEditable(false);
-        gridPaneSolicitaCita.add(dT_DateFligth, 1, 2);
+        dT_DateFligth.setDayCellFactory(picker -> new DateCell() {
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                LocalDate today = LocalDate.now();
+
+                setDisable(empty || date.compareTo(today) < 0);
+            }
+        });
+        gridPaneSolicitaCita.add(dT_DateFligth, 0, 2);
 
         //-->  abre      cierra      intervalo
-     for (int i = Integer.parseInt(configuracion.getAbreClinica());
+        for (int i = Integer.parseInt(configuracion.getAbreClinica());
                 i < Integer.parseInt(configuracion.getCierreClinica());
                 i = i + Integer.parseInt(configuracion.getTiempoConsulta())) {  //--> horario de 9am a 5pm -->>Estos valores (9y17) van a ser variables
             // que vengan desde superAdmin -->> Consultas cada hora
             comboBoxHora.getItems().addAll(i + ":00");
         }
-        gridPaneSolicitaCita.add(comboBoxHora, 0, 03);
+        gridPaneSolicitaCita.add(comboBoxHora, 0, 3);
 
         textFieldDoctora = new TextField();
         textFieldDoctora.setPromptText("Doctora");
@@ -89,6 +96,9 @@ public class SolicitaCita {
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
         gridPaneSolicitaCita.add(textFieldDoctora, 0, 4);
         textFieldDoctora.setFocusTraversable(false);
+        textFieldDoctora.setOnKeyPressed((event) -> {
+            botonGuardar.setDisable(false);
+        });
 
         Usuario usuario = logic.stringTokenizer(logic.leeLinea(inicioSesion.ID));
         String tipo = "";
@@ -103,7 +113,7 @@ public class SolicitaCita {
         botonGuardar.setStyle("-fx-background-color: BLACK");
         botonGuardar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         gridPaneSolicitaCita.add(botonGuardar, 0, 7);
-
+        botonGuardar.setDisable(true);
         botonGuardar.setOnAction((event) -> {
 
             Cita cita = new Cita(textFieldIDReservacion.getText(), usuario.getId(), dT_DateFligth.getValue().toString(),
@@ -112,6 +122,9 @@ public class SolicitaCita {
 
             Acciones acciones = new Acciones(inicioSesion.ID, "Solicitó una cita", fechaHora.histoFechaHora());
             logicaAVL.escribeHistorial(acciones);
+
+            textFieldIDReservacion.clear();
+            textFieldDoctora.clear();
 
         });
 

@@ -11,7 +11,6 @@ public class ArchSupAdmin {
 //    ArchSupAdmin logiSuper = new ArchSupAdmin();
 
     public void writeInFile(SuperAdmin supAd) {
-      //  SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
         File newFile = new File("SuperAdminConfig.txt");
         String tipoDeToken = "";
 

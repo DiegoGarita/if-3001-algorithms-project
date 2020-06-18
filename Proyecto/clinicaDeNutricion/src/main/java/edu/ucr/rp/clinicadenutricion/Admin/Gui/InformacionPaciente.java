@@ -119,14 +119,13 @@ public class InformacionPaciente {
         buttonBuscar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         gridPaneInformacionPaciente.add(buttonBuscar, 1, 0);
         buttonBuscar.setDisable(false);
-
         buttonBuscar.setOnAction((event) -> {
 
             Acciones acciones = new Acciones(iniciarSesion.ID, "Solicitó información de pacientes", fechaHora.histoFechaHora());
             logicaAVL.escribeHistorial(acciones);
 
             gridPaneInformacionPaciente.add(tableViewReporteMedico, 0, 4);
-             GridPane.setColumnSpan(tableViewReporteMedico, Integer.BYTES);
+            GridPane.setColumnSpan(tableViewReporteMedico, Integer.BYTES);
             tableViewReporteMedico.setItems(obtieneReporteMedico(comboBoxClientes.getValue().toString()));
             tableViewReporteMedico.getColumns().addAll(idColunm, nombreColunm, fechaColunm, horaColunm, edadColunm, edadMetabolicaColunm, alturaColunm, pesoColunm, porcenMasaMuscularColunm, grasaColunm, grasaVisceralColunm, huesoColunm, porcenAguaColunm, actividadFisicaColunm, horasDeSueñoColunm, textAreaNotasColunm);
 

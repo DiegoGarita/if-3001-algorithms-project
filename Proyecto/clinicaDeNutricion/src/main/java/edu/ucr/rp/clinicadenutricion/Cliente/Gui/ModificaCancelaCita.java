@@ -22,8 +22,12 @@ public class ModificaCancelaCita {
 
     TextField textFieldNombre;
     Button buttonDesplegar;
+    TextField textFieldId;
+
     Button buttonModificar;
     Button buttonCancelarCita;
+    Button buttonAceparModifi;
+    Button buttonAcepId;
     TextArea textAreaMostrar = new TextArea();
     ComboBox comboBoxHora = new ComboBox();
     String modiCita = "Modifico cita";
@@ -36,7 +40,7 @@ public class ModificaCancelaCita {
 
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
-      ArchSupAdmin logiSuper = new ArchSupAdmin();
+    ArchSupAdmin logiSuper = new ArchSupAdmin();
 
     public GridPane modificaCancelaCita() {
         GridPane gridPaneModificaCancela = new GridPane();
@@ -58,36 +62,69 @@ public class ModificaCancelaCita {
         } else if (usuario.getTipo().equals("ö")) {
             tipo = "Administración";
         }
-        
-         Cita citaTrae = logicaCliente.stringTokenizer(logicaCliente.leeLinea(""));
 
+        Cita citaTrae = logicaCliente.stringTokenizer(logicaCliente.leeLinea(""));
 
-        gridPaneModificaCancela.add(new Label("Fecha de cita"), 0, 2);
+        textFieldId = new TextField();
+        textFieldId.setPromptText("Id de cita");
+        gridPaneModificaCancela.add(textFieldId, 0, 0);
+
         DatePicker datePicker = new DatePicker(LocalDate.now());
         datePicker.setEditable(false);
-        gridPaneModificaCancela.add(datePicker, 1, 2);
+        gridPaneModificaCancela.add(datePicker, 0, 2);
+        datePicker.setDisable(true);
 
-          for (int i = Integer.parseInt(configuracion.getAbreClinica());
+        for (int i = Integer.parseInt(configuracion.getAbreClinica());
                 i < Integer.parseInt(configuracion.getCierreClinica());
                 i = i + Integer.parseInt(configuracion.getTiempoConsulta())) {  //--> horario de 9am a 5pm -->>Estos valores (9y17) van a ser variables
             // que vengan desde superAdmin -->> Consultas cada hora
             comboBoxHora.getItems().addAll(i + ":00");
         }
-        gridPaneModificaCancela.add(comboBoxHora, 0, 3);
-        
-
-        TextField textField = new TextField();
-        gridPaneModificaCancela.add(textField, 3, 3);
+        comboBoxHora.setDisable(true);
+        gridPaneModificaCancela.add(comboBoxHora, 1, 2);
 
         buttonModificar = new Button("Modificar");
         buttonModificar.setTextFill(Color.WHITE);
         buttonModificar.setStyle("-fx-background-color: BLACK");
         buttonModificar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
-        gridPaneModificaCancela.add(buttonModificar, 1, 5);
+        gridPaneModificaCancela.add(buttonModificar, 0, 1);
+        buttonModificar.setDisable(true);
         buttonModificar.setOnAction((event) -> {
 
-            Cita cita = logicaCliente.stringTokenizer(logicaCliente.leeLinea(textField.getText()));
-            Cita citaAux = new Cita(textField.getText(), cita.getNombre(),
+            datePicker.setDisable(false);
+            comboBoxHora.setDisable(false);
+            buttonAceparModifi.setDisable(false);
+
+        });//end setOnAction
+
+        buttonCancelarCita = new Button("Cancelar cita");
+        buttonCancelarCita.setTextFill(Color.WHITE);
+        buttonCancelarCita.setStyle("-fx-background-color: BLACK");
+        buttonCancelarCita.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        gridPaneModificaCancela.add(buttonCancelarCita, 1, 1);
+        buttonCancelarCita.setDisable(true);
+        buttonCancelarCita.setOnAction((event) -> {
+
+            Cita cita = logicaCliente.stringTokenizer(logicaCliente.leeLinea(textFieldId.getText()));
+            logicaCliente.leeArchivoSolicitudCita();   // ------------>>> Linea cerda del problema -805306369
+            logicaCliente.elimina(cita);
+            logicaCliente.remueveLineaDelArchivo(cita.getIDCita()); //----->> Linea que me duplica
+
+            Acciones acciones = new Acciones(iniciarSesion.ID, "Eliminó su cita", fechaHora.histoFechaHora());
+            logicaAVL.escribeHistorial(acciones);
+
+        });//end setOnAction
+
+        buttonAceparModifi = new Button("Aceptar cambios");
+        buttonAceparModifi.setTextFill(Color.WHITE);
+        buttonAceparModifi.setStyle("-fx-background-color: BLACK");
+        buttonAceparModifi.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        gridPaneModificaCancela.add(buttonAceparModifi, 2, 2);
+        buttonAceparModifi.setDisable(true);
+        buttonAceparModifi.setOnAction((event) -> {
+
+            Cita cita = logicaCliente.stringTokenizer(logicaCliente.leeLinea(textFieldId.getText()));
+            Cita citaAux = new Cita(textFieldId.getText(), cita.getNombre(),
                     datePicker.getValue().toString(), comboBoxHora.getValue().toString(), cita.getDoctora());
 
             logicaCliente.leeArchivoSolicitudCita();
@@ -99,20 +136,15 @@ public class ModificaCancelaCita {
 
         });//end setOnAction
 
-        buttonCancelarCita = new Button("Cancelar cita");
-        buttonCancelarCita.setTextFill(Color.WHITE);
-        buttonCancelarCita.setStyle("-fx-background-color: BLACK");
-        buttonCancelarCita.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
-        gridPaneModificaCancela.add(buttonCancelarCita, 2, 5);
-        buttonCancelarCita.setOnAction((event) -> {
+        buttonAcepId = new Button("Aceptar");
+        buttonAcepId.setTextFill(Color.WHITE);
+        buttonAcepId.setStyle("-fx-background-color: BLACK");
+        buttonAcepId.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        gridPaneModificaCancela.add(buttonAcepId, 1, 0);
+        buttonAcepId.setOnAction((event) -> {
 
-            Cita cita = logicaCliente.stringTokenizer(logicaCliente.leeLinea(textField.getText()));
-            logicaCliente.leeArchivoSolicitudCita();   // ------------>>> Linea cerda del problema -805306369
-            logicaCliente.elimina(cita);
-            logicaCliente.remueveLineaDelArchivo(cita.getIDCita()); //----->> Linea que me duplica
-
-            Acciones acciones = new Acciones(iniciarSesion.ID, "Eliminó su cita", fechaHora.histoFechaHora());
-            logicaAVL.escribeHistorial(acciones);
+            buttonModificar.setDisable(false);
+            buttonCancelarCita.setDisable(false);
 
         });//end setOnAction
 

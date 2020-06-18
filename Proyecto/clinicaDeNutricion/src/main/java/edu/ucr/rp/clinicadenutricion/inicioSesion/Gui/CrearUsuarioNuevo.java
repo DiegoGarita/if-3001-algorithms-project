@@ -130,12 +130,16 @@ public class CrearUsuarioNuevo {
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
         gridPaneCreaUsuario.add(textFieldDireccion, 0, 6);
         textFieldDireccion.setFocusTraversable(false);
+        textFieldDireccion.setOnKeyPressed((event) -> {
+            buttonCreaUsuario.setDisable(false);
+        });
 
         buttonCreaUsuario = new Button("Crear usuario");
         buttonCreaUsuario.setTextFill(Color.WHITE);
         buttonCreaUsuario.setStyle("-fx-background-color: BLACK");
         buttonCreaUsuario.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         gridPaneCreaUsuario.add(buttonCreaUsuario, 0, 8);
+        buttonCreaUsuario.setDisable(true);
         buttonCreaUsuario.setOnAction((event) -> {
 
             logic.leerArchivo();
@@ -153,6 +157,14 @@ public class CrearUsuarioNuevo {
                 Acciones acciones = new Acciones(textFieldID.getText(), "Intentó registrarse cuando ya estaba registrado", fechaHora.histoFechaHora());
                 logicaAVL.escribeHistorial(acciones);
             }
+
+            textFieldNombre.clear();
+            textFieldContraseña.clear();
+            textFieldID.clear();
+            textFieldTelefono.clear();
+            textFieldDireccion.clear();
+            textFieldCorreo.clear();
+
         });//end setOnAction
 
         Button buttonCerrar = new Button("Cerrar");
