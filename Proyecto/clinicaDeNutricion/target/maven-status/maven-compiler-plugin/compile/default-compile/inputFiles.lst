@@ -1,6 +1,7 @@
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\SuperAdmin\Logic\Cola.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\SuperAdmin\Logic\ColaImplementacion.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\SuperAdmin\Gui\ReportesAcciones.java
+C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\Cliente\Logic\ImplementacionArbol.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\inicioSesion\Gui\Creditos.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\inicioSesion\logic\LogicaListas.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\Cliente\Gui\ReporteCitas.java
@@ -41,6 +42,7 @@ C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\j
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\Cliente\Gui\ReporteProgreso.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\Admin\logic\ImplementacionCola.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\Cliente\Gui\MainMenuBarCliente.java
+C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\Cliente\Logic\LogicaArbol.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\SuperAdmin\Gui\HorarioTiempoClinica.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\Cliente\Logic\ImplementacionPila.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\SuperAdmin\Gui\IndicarPath.java

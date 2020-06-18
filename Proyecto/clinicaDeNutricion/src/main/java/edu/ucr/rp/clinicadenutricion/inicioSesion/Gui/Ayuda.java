@@ -21,7 +21,6 @@ public class Ayuda {
 
     ArchSupAdmin logiSuper = new ArchSupAdmin();
 
-
     public GridPane getGraphicalUserInterfaceAyuda() {
         GridPane gridPaneAyuda = new GridPane();
         gridPaneAyuda.setMinSize(600, 700);
