@@ -139,3 +139,21 @@ asd & Vio su reporte de citas & Wed Jun 17 12:47:20 CST 2020
 111 & IniciÃ³ sesiÃ³n como cliente & Wed Jun 17 16:57:11 CST 2020
 111 & IniciÃ³ sesiÃ³n como cliente & Wed Jun 17 17:00:21 CST 2020
 111 & IniciÃ³ sesiÃ³n como cliente & Wed Jun 17 21:06:55 CST 2020
+111 & Inició sesión como cliente & Wed Jun 17 21:41:40 CST 2020
+111 & consultó su reporte de citas & Wed Jun 17 21:41:44 CST 2020
+1234 & Intentó registrarse cuando ya estaba registrado & Wed Jun 17 22:33:21 CST 2020
+111 & Inició sesión como cliente & Wed Jun 17 22:35:22 CST 2020
+12 & Se registró como nuevo usuario & Wed Jun 17 22:35:52 CST 2020
+cec & Se registró como nuevo usuario & Wed Jun 17 22:36:46 CST 2020
+cec & Inició sesión como cliente & Wed Jun 17 22:36:57 CST 2020
+123 & Se registró como nuevo usuario & Wed Jun 17 22:37:42 CST 2020
+321 & Se registró como nuevo usuario & Wed Jun 17 22:38:32 CST 2020
+321 & Inició sesión como cliente & Wed Jun 17 22:38:40 CST 2020
+12 & Se registró como nuevo usuario & Wed Jun 17 22:39:24 CST 2020
+12345 & Se registró como nuevo usuario & Wed Jun 17 22:40:19 CST 2020
+12345 & Inició sesión como cliente & Wed Jun 17 22:40:27 CST 2020
+111 & Inició sesión como cliente & Wed Jun 17 22:40:51 CST 2020
+124 & Se registró como nuevo usuario & Wed Jun 17 22:41:44 CST 2020
+124 & Inició sesión como cliente & Wed Jun 17 22:41:51 CST 2020
+124 & Intentó iniciar sesión pero falló la contraseña & Wed Jun 17 22:42:56 CST 2020
+124 & Inició sesión como cliente & Wed Jun 17 22:43:01 CST 2020
