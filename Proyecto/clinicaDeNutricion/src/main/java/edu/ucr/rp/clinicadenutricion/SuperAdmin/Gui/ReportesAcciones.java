@@ -1,8 +1,6 @@
 package edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui;
 
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
-import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
-import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,8 +14,6 @@ import javafx.scene.text.*;
 // en esta clase se podra tener acceso a los reportes de acciones
 public class ReportesAcciones {
 
-    LogicaListas logic = new LogicaListas();
-    Usuario uwu = logic.stringTokenizer(logic.leeLinea("ë"));
     ArchSupAdmin archSupAdmin = new ArchSupAdmin();
     TableView<Acciones> tableViewAcciones;
 

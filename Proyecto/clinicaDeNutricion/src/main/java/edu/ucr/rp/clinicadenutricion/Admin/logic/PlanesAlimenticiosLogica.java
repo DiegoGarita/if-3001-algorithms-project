@@ -1,6 +1,5 @@
 package edu.ucr.rp.clinicadenutricion.Admin.logic;
 
-import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,11 +10,8 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class PlanesAlimenticiosLogica {
-
-    public ArrayList<String> arrayListRecetas = new ArrayList<>();
+ public ArrayList<String> arrayListRecetas = new ArrayList<>();
     public ArrayList<String> arrayListPlanes = new ArrayList<>();
-    LogicaListas logic = new LogicaListas();
-
     public int cantidadRecetas(String identificador, String nombreArchivo, ArrayList<String> mantieneLista) {
         int cantidad = 0;
         File newFile = new File(nombreArchivo + ".txt");

@@ -33,11 +33,6 @@ public class ImplementacionAVL {
         return raiz.altura;
     }// end altura()
 
-    /**
-     * Se relaciona con el metodo de arriba
-     *
-     * @return altura
-     */
     public int buscarAltura() {
         return altura(root);
     }// end buscarAltur()
@@ -129,86 +124,18 @@ public class ImplementacionAVL {
         return node;
     }//end insertarNodo
 
-    /**
-     * metodo para buscar
-     *
-     * @param valor elemento por buscar
-     * @return
-     */
-//    public boolean buscar(int valor) {
-//        Node node = buscar(root, valor);
-//        if (node == null) {
-//
-//            return false;
-//        }// enf if
-//
-//        return true;
-//
-//    }//end buscar
-    /**
-     * metodo que se relaciona con el metodo de arriba
-     *
-     * @param raiz
-     * @param valor
-     * @return
-     */
-//    public Node buscar(Node raiz, int valor) {
-//        if (raiz == null) {
-//            return null;
-//        } else {
-//            if (valor == raiz.value) {
-//                return raiz;
-//            } else if (valor < raiz.value) {
-//                return buscar(raiz.left, valor);
-//            } else {
-//                return buscar(raiz.right, valor);
-//            }// end else raiz.right    
-//        }// end else
-//    }// end method()
     public void PreOrden() {
         PreOrden(root);
     }
 
-    /**
-     * metodo de ordenamiento de arbol
-     *
-     * @param nodo
-     */
     public void PreOrden(Node nodo) {
-        // pregunta si el nodo esta vacio
-        // METODO RECURSIVO :(
         if (nodo != null) {
             System.out.print(nodo.acciones.getFechaHoraAccion() + " , ");
-            // estamos haciendo una impresion del
-            //arbol de forma recursiva
             PreOrden(nodo.left);
             PreOrden(nodo.right);
         }
-    }// end ProeOrden()
-//
-//    public void InOrden() {
-//        InOrden(root);
-//    }
+    }
 
-    /**
-     * metodo de ordenamiento de arbol
-     *
-     * @param nodo
-     */
-//    private void InOrden(Node nodo) {
-//        if (nodo != null) {
-//
-//            InOrden(nodo.left);
-//            System.out.print(nodo.value + " , ");
-//            InOrden(nodo.right);
-//        }
-//    }//end inOrden
-    /**
-     * metodo que nos indica el balance del arbol
-     *
-     * @param node
-     * @return
-     */
     private int obtenerBalance(Node node) {
         if (node == null) {
             return 0;

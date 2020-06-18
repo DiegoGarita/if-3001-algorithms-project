@@ -18,7 +18,6 @@ public class LogoApp {
     Button buttonGuardar;
     Button buttonLogo;
     Button buttonModifica;
-    public String NombreLogo = "3";
     LogicaListas logic = new LogicaListas();
     ArchSupAdmin logiSuper = new ArchSupAdmin();
 

@@ -24,7 +24,6 @@ public class PlanesAlimenticios {
     LogoApp logo = new LogoApp();
     IniciarSesion iniciarSesion;
     ArchSupAdmin logiSuper = new ArchSupAdmin();
-
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
 

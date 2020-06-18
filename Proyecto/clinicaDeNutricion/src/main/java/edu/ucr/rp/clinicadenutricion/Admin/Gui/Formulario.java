@@ -18,7 +18,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 
-public class Formulario{
+public class Formulario {
 
     ComboBox comboBoxClientes = new ComboBox();
 
@@ -39,28 +39,19 @@ public class Formulario{
     TextField textFieldHorasDescanso;
 
     TextArea textAreaNotas = new TextArea();
-
     Button buttonAceptar;
     Button buttonIngresar;
-
     LogicaCola adminLogic = new LogicaCola();
-     LogicaAVL logicaAVL = new LogicaAVL();
+    LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
-        ArchSupAdmin logiSuper = new ArchSupAdmin();
+    ArchSupAdmin logiSuper = new ArchSupAdmin();
+    IniciarSesion iniciarSesion;
 
-   IniciarSesion iniciarSesion;
-    
-            
-
-    /**
-     *
-     * @return Nos da la GUI que nos permite crear un nuevo catálogo
-     */
     public GridPane formulario() {
 
         GridPane gridPaneFormulario = new GridPane();
         gridPaneFormulario.setMinSize(600, 700);
-         SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+        SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
         gridPaneFormulario.setVgap(15);
         gridPaneFormulario.setHgap(15);
         gridPaneFormulario.setAlignment(Pos.CENTER);
@@ -328,10 +319,10 @@ public class Formulario{
                     textFieldGrasaVisceral.getText(), textFieldHueso.getText(), textFieldPorcentajeAgua.getText(), textFieldActividadFisica.getText(),
                     textFieldHorasDescanso.getText(), textAreaNotas.getText());
             adminLogic.escribeCitas(reporteMedico);
-            
-             Acciones acciones = new Acciones(iniciarSesion.ID, "Ingresó nuevo formulario para un paciente", fechaHora.histoFechaHora());
+
+            Acciones acciones = new Acciones(iniciarSesion.ID, "Ingresó nuevo formulario para un paciente", fechaHora.histoFechaHora());
             logicaAVL.escribeHistorial(acciones);
-            
+
         });//end setOnAction
 
         Button buttonCerrar = new Button("Cerrar");
@@ -339,7 +330,6 @@ public class Formulario{
         buttonCerrar.setStyle("-fx-background-color: BLACK");
         buttonCerrar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         gridPaneFormulario.add(buttonCerrar, 0, 8);
-        MainMenuBarAdministrador n = new MainMenuBarAdministrador();
 
         MainMenuBarAdministrador o = new MainMenuBarAdministrador();
 

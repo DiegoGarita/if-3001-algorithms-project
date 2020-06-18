@@ -85,7 +85,6 @@ public class IndicarPath {
 
         });//END BUTTON
 
-        ////// file1.getName()  *************************************************////////////////*******************//////////////////
         botonGuardar = new Button("Guardar");
         botonGuardar.setTextFill(Color.WHITE);//Color de la letra del boton
         botonGuardar.setStyle("-fx-background-color: BLACK");//Color del fondo
@@ -94,15 +93,6 @@ public class IndicarPath {
         botonGuardar.setVisible(false);
         botonGuardar.setOnAction((event) -> {
 
-//            Usuario usuario = logic.stringTokenizer(logic.readLine("ë"));
-//            Usuario usuario1 = new Usuario(uwu.getTipo(), uwu.getId(), uwu.getName(), label.getText(), uwu.getCorreo(),
-//                    uwu.getTelefono(), uwu.getDireccion());
-//
-//            logic.readInFile();
-//            ///logic.modified(usuario, textFieldAbre.getText());
-//            // logic.modifiedSuperFondo(usuario, label.getText());
-//            logic.removeLineFromFile(usuario.getTipo());
-//            logic.writeInFile(usuario1);
             SuperAdmin configuracion1 = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
 
             SuperAdmin configuracion2 = new SuperAdmin(configuracion.getIdentificadorSA(), configuracion.getAbreClinica(),
@@ -117,9 +107,8 @@ public class IndicarPath {
 
         });//END BUTTON
 
-        //***
         MainMenuBarSuperAdmi barSuper = new MainMenuBarSuperAdmi();
-        //***
+        
         Button botonCerrar = new Button("Cerrar");
         botonCerrar.setTextFill(Color.WHITE);//Color de la letra del boton
         botonCerrar.setStyle("-fx-background-color: BLACK");//Color del fondo

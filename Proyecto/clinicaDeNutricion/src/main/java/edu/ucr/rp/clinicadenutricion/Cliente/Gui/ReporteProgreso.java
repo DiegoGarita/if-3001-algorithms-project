@@ -22,10 +22,8 @@ public class ReporteProgreso {
     IniciarSesion iniciarSesion;
     Button buttonGraficoActual;
     Button buttonGraficoInicial;
-    String repoPro = "Vio su progreso";
     Grafico grafico = new Grafico();
     LogicaListas logicaListas = new LogicaListas();
-    LogoApp logo = new LogoApp();
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
     ArchSupAdmin logiSuper = new ArchSupAdmin();

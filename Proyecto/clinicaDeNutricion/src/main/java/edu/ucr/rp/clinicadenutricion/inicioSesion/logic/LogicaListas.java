@@ -21,7 +21,7 @@ public class LogicaListas {
 
     public void escribirArchivo(Usuario usuario) {
         SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
-        File newFile = new File(configuracion.getPathDeGuardado()+"\\usuarios.txt");
+        File newFile = new File(configuracion.getPathDeGuardado() + "\\usuarios.txt");
         String tipoDeToken = "";
 
         try {
@@ -47,7 +47,7 @@ public class LogicaListas {
 
     public void leerArchivo() {
 
-         File newFile = new File("usuarios.txt");
+        File newFile = new File("usuarios.txt");
         try {
             FileInputStream fileInputStream = new FileInputStream(newFile);
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
@@ -186,16 +186,6 @@ public class LogicaListas {
         implementacionListas.add(nuevaContraseña(usuario, cadena));
     }
 
-    public void modificaSuperHoras(Usuario usuario, String abre, String cierra, String inter) {
-        implementacionListas.remove(usuario);
-        implementacionListas.add(ConfiguraHoras(usuario, abre, cierra, inter));
-    }
-
-    public void modificaSuperFondo(Usuario usuario, String fondo) {
-        implementacionListas.remove(usuario);
-        implementacionListas.add(ConfiguraFondo(usuario, fondo));
-    }
-
     public void remueve(Usuario usuario) {
         implementacionListas.remove(usuario);
 
@@ -213,18 +203,6 @@ public class LogicaListas {
     public Usuario nuevaContraseña(Usuario usuario, String contraseña) {
         Usuario usuarioTemp = usuario;
         Usuario usuarioNuevo = new Usuario(usuarioTemp.getTipo(), usuarioTemp.getId(), usuarioTemp.getName(), contraseña, usuarioTemp.getCorreo(), usuarioTemp.getTelefono(), usuarioTemp.getDireccion());
-        return usuarioNuevo;
-    }
-
-    public Usuario ConfiguraHoras(Usuario usuario, String abre, String cierra, String inter) {
-        Usuario usuarioTemp = usuario;
-        Usuario usuarioNuevo = new Usuario(usuarioTemp.getTipo(), usuarioTemp.getId(), usuarioTemp.getName(), usuarioTemp.getContraseña(), abre, cierra, inter);
-        return usuarioNuevo;
-    }
-
-    public Usuario ConfiguraFondo(Usuario usuario, String fondo) {
-        Usuario usuarioTemp = usuario;
-        Usuario usuarioNuevo = new Usuario(usuarioTemp.getTipo(), usuarioTemp.getId(), usuarioTemp.getName(), fondo, usuarioTemp.getCorreo(), usuarioTemp.getTelefono(), usuarioTemp.getDireccion());
         return usuarioNuevo;
     }
 
