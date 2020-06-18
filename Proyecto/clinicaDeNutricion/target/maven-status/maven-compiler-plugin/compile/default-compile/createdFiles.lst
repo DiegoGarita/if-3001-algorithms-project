@@ -55,3 +55,4 @@ edu\ucr\rp\clinicadenutricion\Cliente\Logic\Pila.class
 edu\ucr\rp\clinicadenutricion\Admin\Gui\MainMenuBarAdministrador.class
 edu\ucr\rp\clinicadenutricion\Cliente\Gui\SolicitaCita.class
 edu\ucr\rp\clinicadenutricion\Utilitario\Alertas.class
+edu\ucr\rp\clinicadenutricion\Cliente\Gui\SolicitaCita$1.class

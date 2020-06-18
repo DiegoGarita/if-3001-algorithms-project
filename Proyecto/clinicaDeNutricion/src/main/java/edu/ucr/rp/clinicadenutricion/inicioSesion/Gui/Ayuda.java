@@ -18,7 +18,10 @@ public class Ayuda {
     Button buttonMantenimiento;
     Button buttonReportes;
 
+
+    ArchSupAdmin logiSuper = new ArchSupAdmin();
         ArchSupAdmin logiSuper = new ArchSupAdmin();
+
 
     public GridPane getGraphicalUserInterfaceAyuda() {
         GridPane gridPaneAyuda = new GridPane();
@@ -31,12 +34,12 @@ public class Ayuda {
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
-        Label labelFuncionalidad = new Label("¿ Y cómo funciona cada una de las opciones del app Control de inventarios ?");
+        Label labelFuncionalidad = new Label("¿ Y cómo funciona los 3 roles de Clinica?");
         labelFuncionalidad.setFont(Font.font("Rockwell", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 20));
         labelFuncionalidad.setTextFill(Color.POWDERBLUE);
         gridPaneAyuda.add(labelFuncionalidad, 0, 1);
 
-        buttonDefinicion = new Button("Crear Catalogo");
+        buttonDefinicion = new Button("Cliente");
         buttonDefinicion.setTextFill(Color.WHITE);
         buttonDefinicion.setStyle("-fx-background-color: BLACK");
         buttonDefinicion.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
@@ -44,8 +47,9 @@ public class Ayuda {
         buttonDefinicion.setOnAction((event) -> {
             labelReportes.setVisible(false);
             labelMantenimiento.setVisible(false);
-            labelDefinicion = new Label("Crear catalogo: \n Es donde se define el nombre del objeto y las propiedades de este \n "
-                    + "Definir propiedades: \n Aquí podra asignar las propiedades anteriormente definidas \n");
+            labelDefinicion = new Label("Reportes: Acceso a informes de avance y historial de citas\n"
+                    + " Citas: Reservar una cita, modificarla o eliminarla\n Planes: Acceso a planes y recetas\n"
+                    + " Ajustes: Modificar o eliminar su usuario \n Mas: Pagina web de la clinica con mas informacion \n  ");
             labelDefinicion.setFont(Font.font("Rockwell", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 20));  // tipo y tamaño de letra
             labelDefinicion.setStyle("-fx-background-color: rgb(41, 75, 152);");
             labelDefinicion.setTextFill(Color.POWDERBLUE);
@@ -57,7 +61,7 @@ public class Ayuda {
 
         }); //end action Paises
 
-        buttonReportes = new Button("Reporte");
+        buttonReportes = new Button("Administrador");
         buttonReportes.setTextFill(Color.WHITE);
         buttonReportes.setStyle("-fx-background-color: BLACK");
         buttonReportes.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
@@ -66,9 +70,9 @@ public class Ayuda {
             labelMantenimiento.setVisible(false);
             labelDefinicion.setVisible(false);
 
-            labelReportes = new Label("Búsqueda por catalogo: \n Es donde se muestran los distintos objetos que tiene un catalogo en específico \n "
-                    + "Modificar catalogo: \n Aquí podrás modificar \n"
-                    + "Listado de catalogos: Aquí se muestra la lista de catalogos existentes ");
+            labelReportes = new Label("Paciente: Crear reportes de los pacientes acceso a informacion \n "
+                    + "Citas: en el cual podra agendar una cita para cualquier usuario registrado\n"
+                    + "Pllanes: Acceso a planes y recetas varias \n");
             labelReportes.setTextFill(Color.POWDERBLUE);
             labelReportes.setFont(Font.font("Rockwell", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 20));
             labelReportes.setStyle("-fx-background-color: rgb(41, 75, 152);");
@@ -80,7 +84,7 @@ public class Ayuda {
 
         }); //end action report
 
-        buttonMantenimiento = new Button("Mantenimiento");
+        buttonMantenimiento = new Button("Super administrador ");
         buttonMantenimiento.setTextFill(Color.WHITE);
         buttonMantenimiento.setStyle("-fx-background-color: BLACK");
         buttonMantenimiento.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
@@ -89,7 +93,9 @@ public class Ayuda {
 
             labelDefinicion.setVisible(false);
             labelReportes.setVisible(false);
-            labelMantenimiento = new Label("Aquí podrás eliminar por completo todos tus registros ");
+            labelMantenimiento = new Label("Ajustes: Cambiar el horario de la clinica\n"
+            +" Registros: Donde se crearan respaldos de informacion, se podra cambiar la paginacion y se tendra acceso a un historial\n"
+                    + "Otros: En donde se podra cambiar el logo del app y el path de los archivos");
             labelMantenimiento.setTextFill(Color.POWDERBLUE);
             labelMantenimiento.setFont(Font.font("Rockwell", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 20));
             labelMantenimiento.setStyle("-fx-background-color: rgb(41, 75, 152);");
