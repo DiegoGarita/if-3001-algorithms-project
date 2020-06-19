@@ -162,3 +162,7 @@ cec & IniciÃ³ sesiÃ³n como cliente & Wed Jun 17 22:36:57 CST 2020
 124 & IntentÃ³ iniciar sesiÃ³n pero fallÃ³ la contraseÃ±a & Wed Jun 17 22:42:56 CST 2020
 124 & IniciÃ³ sesiÃ³n como cliente & Wed Jun 17 22:43:01 CST 2020
 
+111 & Inició sesión como cliente & Thu Jun 18 23:34:42 CST 2020
+111 & Inició sesión como cliente & Thu Jun 18 23:35:49 CST 2020
+111 & Inició sesión como cliente & Thu Jun 18 23:36:20 CST 2020
+111 & Inició sesión como cliente & Thu Jun 18 23:46:43 CST 2020
