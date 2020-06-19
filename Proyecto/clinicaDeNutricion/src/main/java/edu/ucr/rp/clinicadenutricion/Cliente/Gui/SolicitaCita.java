@@ -10,12 +10,15 @@ import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.IniciarSesion;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
 import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.*;
+import javafx.util.Callback;
 
 public class SolicitaCita {
 
@@ -58,6 +61,40 @@ public class SolicitaCita {
         gridPaneSolicitaCita.add(textFieldIDReservacion, 0, 1);
         textFieldIDReservacion.setFocusTraversable(false);
 
+        Callback<DatePicker, DateCell> dayCellFactory = dp -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate item, boolean empty) {
+
+                super.updateItem(item, empty);
+
+                this.setDisable(false);
+                this.setBackground(null);
+                this.setTextFill(Color.BLACK);
+
+//                // deshabilitar las fechas futuras
+//                if (item.isAfter(LocalDate.now())) {
+//                    this.setDisable(true);
+//                }
+
+                // marcar los dias de quincena
+                int day = item.getDayOfMonth();
+                if (day == 15 || day == 30) {
+
+                    Paint color = Color.RED;
+                    BackgroundFill fill = new BackgroundFill(color, null, null);
+
+                    this.setBackground(new Background(fill));
+                    this.setTextFill(Color.WHITESMOKE);
+                }
+
+                // fines de semana en color verde
+                DayOfWeek dayweek = item.getDayOfWeek();
+                if (dayweek == DayOfWeek.SATURDAY || dayweek == DayOfWeek.SUNDAY) {
+                    this.setTextFill(Color.ORANGE);
+                }
+            }
+        };
+
         DatePicker dT_DateFligth = new DatePicker(LocalDate.now());
         dT_DateFligth.setEditable(false);
         dT_DateFligth.setDayCellFactory(picker -> new DateCell() {
@@ -68,10 +105,11 @@ public class SolicitaCita {
                 setDisable(empty || date.compareTo(today) < 0);
             }
         });
+        dT_DateFligth.setDayCellFactory(dayCellFactory);
+
         gridPaneSolicitaCita.add(dT_DateFligth, 0, 2);
 
-     for (int i = Integer.parseInt(configuracion.getAbreClinica());
-
+        for (int i = Integer.parseInt(configuracion.getAbreClinica());
                 i < Integer.parseInt(configuracion.getCierreClinica());
                 i = i + Integer.parseInt(configuracion.getTiempoConsulta())) {  //--> horario de 9am a 5pm -->>Estos valores (9y17) van a ser variables
             comboBoxHora.getItems().addAll(i + ":00");
