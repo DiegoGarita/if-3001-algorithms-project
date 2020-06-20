@@ -1,6 +1,12 @@
 package edu.ucr.rp.clinicadenutricion.Cliente.Gui;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import edu.ucr.rp.clinicadenutricion.AVL.LogicaAVL;
+import edu.ucr.rp.clinicadenutricion.Admin.Gui.Formulario;
 import edu.ucr.rp.clinicadenutricion.Utilitario.Grafico;
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
@@ -10,6 +16,11 @@ import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.IniciarSesion;
 import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -69,6 +80,7 @@ public class ReporteProgreso {
         buttonGraficoInicial.setOnAction((event) -> {
 
             grafico.MuestraGraficoInicial(); //--> %agua, %masMusc, grasa , grasaVisc
+            
 
         });//END BUTTON
 

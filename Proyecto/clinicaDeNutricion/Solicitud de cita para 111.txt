@@ -2,3 +2,7 @@
 111|asd|ingresar fecha de cita*|ingresar hora de cita*|31|11|11|68|25|10|15|32|50|nA|55|aaaaaas
 111|asd|ingresar fecha de cita*|ingresar hora de cita*|31|11|11|68|30|5|15|32|50|nA|55|aaaaaas
 111|asd|ingresar fecha de cita*|ingresar hora de cita*|31|11|11|68|30|5|15|32|50|nA|55|aaaaaas
+111|asd|Fri Jun 19|12:47:22|9000|785000|2cm|0|0|9000000|5|5|9|Nula|0.30|excelente condicion, siga asi
+111|asd|Fri Jun 19|17:09:27|p|o|i|u|y|t|r|e|w|q|a|Hola este es el primer intento de PDF
+111|asd|Fri Jun 19|17:19:29|a|a|a|a|a|a|a|a|a|a|a|Segudo intento a ver si coEla
+111|asd|Fri Jun 19|18:45:34|20|8|1.70|56kg|5|5|5|1|30|Nula|3|MUY pesimo, le pronostico la temprana muerte 

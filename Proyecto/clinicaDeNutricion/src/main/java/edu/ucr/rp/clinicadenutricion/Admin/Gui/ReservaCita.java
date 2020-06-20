@@ -6,14 +6,12 @@ import edu.ucr.rp.clinicadenutricion.Cliente.Logic.LogicaPila;
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Objetos.Cita;
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.HorarioTiempoClinica;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.IniciarSesion;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
-import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
-import java.time.LocalDate;
+import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
+import edu.ucr.rp.clinicadenutricion.Utilitario.Calendario;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -34,6 +32,8 @@ public class ReservaCita {
     FechaHora fechaHora = new FechaHora();
     ArchSupAdmin logiSuper = new ArchSupAdmin();
     LogicaCola logicaCola = new LogicaCola();
+    Calendario calendarioParaCitas = new Calendario();
+    Alertas alerta = new Alertas();
 
     public GridPane reservarCita() {
 
@@ -68,10 +68,8 @@ public class ReservaCita {
         gridPaneSolicitaCita.add(textFieldIDReservacion, 0, 1);
         textFieldIDReservacion.setFocusTraversable(false);
 
-        gridPaneSolicitaCita.add(new Label("Fecha de cita"), 0, 2);
-        DatePicker dT_DateFligth = new DatePicker(LocalDate.now());
-        dT_DateFligth.setEditable(false);
-        gridPaneSolicitaCita.add(dT_DateFligth, 1, 2);
+        gridPaneSolicitaCita.add(calendarioParaCitas.calenCita(), 0, 2);
+        calendarioParaCitas.calenCita().setEditable(false);
 
         for (int i = Integer.parseInt(configuracion.getAbreClinica());
                 i < Integer.parseInt(configuracion.getCierreClinica());
@@ -97,15 +95,18 @@ public class ReservaCita {
         botonGuardar.setStyle("-fx-background-color: BLACK");
         botonGuardar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         gridPaneSolicitaCita.add(botonGuardar, 0, 7);
-
         botonGuardar.setOnAction((event) -> {
 
-            Cita cita = new Cita(textFieldIDReservacion.getText(), comboBoxClientes.getValue().toString(), dT_DateFligth.getValue().toString(),
+            Cita cita = new Cita(textFieldIDReservacion.getText(), comboBoxClientes.getValue().toString(), calendarioParaCitas.calenCita().getValue().toString(),
                     comboBoxHora.getValue().toString(), textFieldDoctora.getText());
             LogicaCliente.EscribeArchivoSolicitudCita(cita);
 
             Acciones acciones = new Acciones(inicioSesion.ID, "Solicitó una cita", fechaHora.histoFechaHora());
             logicaAVL.escribeHistorial(acciones);
+
+            textFieldIDReservacion.clear();
+            textFieldDoctora.clear();
+            alerta.alertInformation("Cita agendada, correctamente");
 
         });
 
@@ -127,4 +128,4 @@ public class ReservaCita {
         return gridPaneSolicitaCita;
     }//end GridPane createCatalogue()
 
-}
+}// end ReservaCita 

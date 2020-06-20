@@ -7,6 +7,7 @@ import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.MainMenuBarSuperAdmi;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
+import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
 import edu.ucr.rp.clinicadenutricion.Utilitario.EncryptMD5;
 import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
@@ -34,6 +35,7 @@ public class IniciarSesion {
     MainMenuBarCliente mainMenuBarCliente = new MainMenuBarCliente();
     EncryptMD5 encrypt = new EncryptMD5();
     ArchSupAdmin logiSuper = new ArchSupAdmin();
+    Alertas alertas = new Alertas();
 
     public GridPane iniciarSesion() {
 
@@ -130,6 +132,8 @@ public class IniciarSesion {
                 JOptionPane.showMessageDialog(null, "El usuario no existe");
 
             }
+            
+            alertas.alertInformation("Bienvenido"+ textFieldID.getText());
 
         });
 

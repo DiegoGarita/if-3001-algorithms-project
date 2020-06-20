@@ -6,17 +6,24 @@ import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
 import edu.ucr.rp.clinicadenutricion.Admin.logic.LogicaCola;
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Objetos.ReporteMedico;
+import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
 import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.IniciarSesion;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.GridPane;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Formulario {
 
@@ -41,11 +48,13 @@ public class Formulario {
     TextArea textAreaNotas = new TextArea();
     Button buttonAceptar;
     Button buttonIngresar;
+    Button buttongeneraPDF;
     LogicaCola adminLogic = new LogicaCola();
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
     ArchSupAdmin logiSuper = new ArchSupAdmin();
     IniciarSesion iniciarSesion;
+    Alertas alerta = new Alertas();
 
     public GridPane formulario() {
 
@@ -73,7 +82,7 @@ public class Formulario {
         buttonIngresar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         gridPaneFormulario.add(buttonIngresar, 1, 0);
         buttonIngresar.setOnAction((event) -> {
-
+            buttonIngresar.setDisable(true);
             if (!comboBoxClientes.getValue().toString().equals("")) {
                 textFieldID.setVisible(true);
                 textFieldNombre.setVisible(true);
@@ -94,6 +103,7 @@ public class Formulario {
                 textAreaNotas.setVisible(true);
 
                 buttonAceptar.setVisible(true);
+                buttongeneraPDF.setVisible(true);
 
                 textFieldID.setText(adminLogic.obtieneUsuario(comboBoxClientes.getValue().toString()).getId());
                 textFieldNombre.setText(adminLogic.obtieneUsuario(comboBoxClientes.getValue().toString()).getName());
@@ -304,6 +314,60 @@ public class Formulario {
         textAreaNotas.setVisible(false);
         textAreaNotas.setMinSize(650, 75);
         gridPaneFormulario.add(textAreaNotas, 0, 5);
+        textAreaNotas.setFocusTraversable(false);
+
+        buttongeneraPDF = new Button("Generar PDF");
+        buttongeneraPDF.setVisible(false);
+        buttongeneraPDF.setTextFill(Color.WHITE);
+        buttongeneraPDF.setStyle("-fx-background-color: BLACK");
+        buttongeneraPDF.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        gridPaneFormulario.add(buttongeneraPDF, 1, 6);
+        buttongeneraPDF.setOnAction((event) -> {
+
+            Document document = new Document();
+            try {
+                PdfWriter writer = PdfWriter.getInstance(document,
+                        new FileOutputStream("Reporte " + comboBoxClientes.getValue().toString() + ".pdf"));
+                document.open();
+
+                //Add Image
+                Image image1 = Image.getInstance("file:src/image/" + configuracion.getNombreLogo());
+                //Fixed Positioning
+                image1.setAbsolutePosition(0f, 0f);
+                //Scale to new height and new width of image
+                image1.scaleAbsolute(300, 300);
+                //Add to document
+                document.add(image1);
+                
+                document.add(new Paragraph("Reporte medico del paciente: " + textFieldNombre.getText()));
+                document.add(new Paragraph("Id--> " + textFieldID.getText()));
+                document.add(new Paragraph("Nombre--> " + textFieldNombre.getText()));
+                document.add(new Paragraph("Fecha--> " + textFieldFecha.getText()));
+                document.add(new Paragraph("Hora--> " + textFieldHora.getText()));
+                document.add(new Paragraph("Edad--> " + textFieldEdad.getText()));
+                document.add(new Paragraph("Edad Metabolica--> " + textFieldEdadMetabolica.getText()));
+                document.add(new Paragraph("Altura--> " + textFieldAltura.getText()));
+                document.add(new Paragraph("Peso--> " + textFieldPeso.getText()));
+                document.add(new Paragraph("Masa muscular--> " + textFieldPorcentajeMasaMuscular.getText()));
+                document.add(new Paragraph("Grasa--> " + textFieldGrasa.getText()));
+                document.add(new Paragraph("Grasa visceral--> " + textFieldGrasaVisceral.getText()));
+                document.add(new Paragraph("Hueso--> " + textFieldHueso.getText()));
+                document.add(new Paragraph("Porcentaje de Agua--> " + textFieldPorcentajeAgua.getText()));
+                document.add(new Paragraph("Actividad fisica--> " + textFieldActividadFisica.getText()));
+                document.add(new Paragraph("Horas de descanso--> " + textFieldHorasDescanso.getText()));
+                document.add(new Paragraph("Notas--> " + textAreaNotas.getText()));
+
+                document.close();
+                writer.close();
+            } catch (DocumentException e) {
+                e.printStackTrace();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException ex) {
+                Logger.getLogger(Formulario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        });//end setOnAction
 
         buttonAceptar = new Button("Aceptar");
         buttonAceptar.setVisible(false);
@@ -322,6 +386,25 @@ public class Formulario {
 
             Acciones acciones = new Acciones(iniciarSesion.ID, "Ingresó nuevo formulario para un paciente", fechaHora.histoFechaHora());
             logicaAVL.escribeHistorial(acciones);
+
+            textFieldID.clear();
+            textFieldNombre.clear();
+            textFieldFecha.clear();
+            textFieldHora.clear();
+            textFieldEdad.clear();
+            textFieldEdadMetabolica.clear();
+            textFieldAltura.clear();
+            textFieldPeso.clear();
+            textFieldPorcentajeMasaMuscular.clear();
+            textFieldGrasa.clear();
+            textFieldGrasaVisceral.clear();
+            textFieldHueso.clear();
+            textFieldPorcentajeAgua.clear();
+            textFieldActividadFisica.clear();
+            textFieldHorasDescanso.clear();
+            textAreaNotas.clear();
+            buttonIngresar.setDisable(false);
+            alerta.alertInformation("Formulario completado");
 
         });//end setOnAction
 

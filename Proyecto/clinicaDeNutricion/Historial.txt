@@ -166,3 +166,50 @@ cec & IniciÃ³ sesiÃ³n como cliente & Wed Jun 17 22:36:57 CST 2020
 111 & Inició sesión como cliente & Thu Jun 18 23:35:49 CST 2020
 111 & Inició sesión como cliente & Thu Jun 18 23:36:20 CST 2020
 111 & Inició sesión como cliente & Thu Jun 18 23:46:43 CST 2020
+111 & Inició sesión como cliente & Thu Jun 18 23:57:52 CST 2020
+111 & Inició sesión como cliente & Fri Jun 19 11:43:51 CST 2020
+111 & Inició sesión como cliente & Fri Jun 19 11:45:19 CST 2020
+111 & Inició sesión como cliente & Fri Jun 19 11:52:49 CST 2020
+111 & Inició sesión como cliente & Fri Jun 19 12:05:40 CST 2020
+666 & Inició sesión como admistrador & Fri Jun 19 12:06:08 CST 2020
+111 & Inició sesión como cliente & Fri Jun 19 12:28:46 CST 2020
+111 & Revisó su progreso graficamente & Fri Jun 19 12:28:58 CST 2020
+111 & consultó su reporte de citas & Fri Jun 19 12:29:38 CST 2020
+666 & Inició sesión como admistrador & Fri Jun 19 12:31:13 CST 2020
+111 & Inició sesión como cliente & Fri Jun 19 12:46:57 CST 2020
+666 & Inició sesión como admistrador & Fri Jun 19 12:47:12 CST 2020
+666 & Ingresó nuevo formulario para un paciente & Fri Jun 19 12:48:13 CST 2020
+666 & Inició sesión como admistrador & Fri Jun 19 12:51:26 CST 2020
+666 & Ingresó nuevo formulario para un paciente & Fri Jun 19 12:52:06 CST 2020
+666 & Inició sesión como admistrador & Fri Jun 19 12:53:09 CST 2020
+666 & Inició sesión como admistrador & Fri Jun 19 12:58:27 CST 2020
+666 & Solicitó una cita & Fri Jun 19 12:58:59 CST 2020
+111 & Inició sesión como cliente & Fri Jun 19 15:21:31 CST 2020
+117850422 & Se registró como nuevo usuario & Fri Jun 19 15:39:33 CST 2020
+111 & Inició sesión como cliente & Fri Jun 19 15:59:48 CST 2020
+111 & Inició sesión como cliente & Fri Jun 19 16:02:37 CST 2020
+111 & Solicitó una cita & Fri Jun 19 16:03:13 CST 2020
+111 & Inició sesión como cliente & Fri Jun 19 16:13:52 CST 2020
+111 & Solicitó una cita & Fri Jun 19 16:14:23 CST 2020
+111 & Eliminó su cita & Fri Jun 19 16:14:49 CST 2020
+111 & Modificó su cita & Fri Jun 19 16:15:21 CST 2020
+111 & Inició sesión como cliente & Fri Jun 19 16:15:54 CST 2020
+111 & Modificó su cita & Fri Jun 19 16:16:16 CST 2020
+111 & Inició sesión como cliente & Fri Jun 19 16:17:05 CST 2020
+111 & Modificó su cita & Fri Jun 19 16:17:28 CST 2020
+666 & Inició sesión como admistrador & Fri Jun 19 17:07:50 CST 2020
+666 & Inició sesión como admistrador & Fri Jun 19 17:09:17 CST 2020
+666 & Ingresó nuevo formulario para un paciente & Fri Jun 19 17:10:00 CST 2020
+666 & Inició sesión como admistrador & Fri Jun 19 17:19:22 CST 2020
+666 & Ingresó nuevo formulario para un paciente & Fri Jun 19 17:19:49 CST 2020
+666 & Inició sesión como admistrador & Fri Jun 19 17:45:20 CST 2020
+666 & Inició sesión como admistrador & Fri Jun 19 17:58:45 CST 2020
+666 & Inició sesión como admistrador & Fri Jun 19 18:01:33 CST 2020
+666 & Inició sesión como admistrador & Fri Jun 19 18:03:37 CST 2020
+666 & Inició sesión como admistrador & Fri Jun 19 18:04:48 CST 2020
+666 & Inició sesión como admistrador & Fri Jun 19 18:06:39 CST 2020
+666 & Inició sesión como admistrador & Fri Jun 19 18:08:20 CST 2020
+666 & Inició sesión como admistrador & Fri Jun 19 18:45:28 CST 2020
+666 & Ingresó nuevo formulario para un paciente & Fri Jun 19 18:46:46 CST 2020
+666 & Inició sesión como admistrador & Fri Jun 19 18:47:12 CST 2020
+666 & Inició sesión como admistrador & Fri Jun 19 18:54:26 CST 2020

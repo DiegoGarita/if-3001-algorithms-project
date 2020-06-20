@@ -40,8 +40,7 @@ public class Alertas {
     public Alert alertConfirmation(String message) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Información");
-        alert.setHeaderText("Ventana de confirmación");
-        alert.setContentText(message);
+        alert.setHeaderText("Acepta nuestros terminos y condiciones");
         return alert;
     }//end alertConfirmation
     

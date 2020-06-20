@@ -4,6 +4,7 @@ import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
 import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
+import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -20,7 +21,8 @@ public class HorarioTiempoClinica {
     Button buttonModificar;
 
     LogicaListas logic = new LogicaListas();
-      ArchSupAdmin logiSuper = new ArchSupAdmin();
+    ArchSupAdmin logiSuper = new ArchSupAdmin();
+    Alertas alerta = new Alertas();
 
     public GridPane horarioClinica() {
 
@@ -34,12 +36,9 @@ public class HorarioTiempoClinica {
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
-
         Usuario usuarioTemp = logic.stringTokenizer(logic.leeLinea("ë"));
         SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
 
-
-        
         textFieldContraseña = new TextField();
         textFieldContraseña.setPromptText("Contraseña");
         textFieldContraseña.setStyle(
@@ -66,7 +65,7 @@ public class HorarioTiempoClinica {
         textFieldIntervalo.setVisible(false);
 
         textFieldAbreClinica = new TextField();
-       textFieldAbreClinica.setText(configuracion.getAbreClinica() + "<- Abre a las");
+        textFieldAbreClinica.setText(configuracion.getAbreClinica() + "<- Abre a las");
         textFieldAbreClinica.setStyle(
                 "-fx-background-color: lightblue; "
                 + "-fx-background-insets: 4; "
@@ -104,6 +103,7 @@ public class HorarioTiempoClinica {
                 textFieldCierraClinica.setVisible(true);
                 buttonModificar.setDisable(true);
             }
+            textFieldContraseña.setDisable(true);
 
         });//end setOnAction
 
@@ -123,11 +123,13 @@ public class HorarioTiempoClinica {
             logiSuper.readInFile();
             logiSuper.removeLineFromFile(configuracion.getIdentificadorSA()); //-->>Here esta vara me cae
             logiSuper.writeInFile(configuracion2);
+            textFieldContraseña.setDisable(false);
+            alerta.alertInformation("Horario cambiado, correctamente");
 
         });//END BUTTON
 
         MainMenuBarSuperAdmi barSuper = new MainMenuBarSuperAdmi();
-        
+
         Button botonCerrar = new Button("Cerrar");
         botonCerrar.setTextFill(Color.WHITE);//Color de la letra del boton
         botonCerrar.setStyle("-fx-background-color: BLACK");//Color del fondo

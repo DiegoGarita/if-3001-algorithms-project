@@ -10,7 +10,8 @@ import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.IniciarSesion;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
 import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
-import java.time.LocalDate;
+import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
+import edu.ucr.rp.clinicadenutricion.Utilitario.Calendario;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -18,9 +19,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 
 public class ModificaCancelaCita {
-
-
-
 
     TextField textFieldId;
     Button buttonModificar;
@@ -35,6 +33,8 @@ public class ModificaCancelaCita {
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
     ArchSupAdmin logiSuper = new ArchSupAdmin();
+    Calendario calendarioParaCitas = new Calendario();
+    Alertas alerta = new Alertas();
 
     public GridPane modificaCancelaCita() {
         GridPane gridPaneModificaCancela = new GridPane();
@@ -56,18 +56,14 @@ public class ModificaCancelaCita {
             tipo = "Administración";
         }
 
-
         Cita citaTrae = logicaCliente.stringTokenizer(logicaCliente.leeLinea(""));
 
         textFieldId = new TextField();
         textFieldId.setPromptText("Id de cita");
         gridPaneModificaCancela.add(textFieldId, 0, 0);
 
-
-        DatePicker datePicker = new DatePicker(LocalDate.now());
-        datePicker.setEditable(false);
-        gridPaneModificaCancela.add(datePicker, 0, 2);
-        datePicker.setDisable(true);
+        gridPaneModificaCancela.add(calendarioParaCitas.calenCita(), 0, 2);
+        calendarioParaCitas.calenCita().setDisable(true);
 
         for (int i = Integer.parseInt(configuracion.getAbreClinica());
                 i < Integer.parseInt(configuracion.getCierreClinica());
@@ -79,7 +75,6 @@ public class ModificaCancelaCita {
         comboBoxHora.setDisable(true);
         gridPaneModificaCancela.add(comboBoxHora, 1, 2);
 
-
         buttonModificar = new Button("Modificar");
         buttonModificar.setTextFill(Color.WHITE);
         buttonModificar.setStyle("-fx-background-color: BLACK");
@@ -88,7 +83,7 @@ public class ModificaCancelaCita {
         buttonModificar.setDisable(true);
         buttonModificar.setOnAction((event) -> {
 
-            datePicker.setDisable(false);
+            calendarioParaCitas.calenCita().setDisable(false);
             comboBoxHora.setDisable(false);
             buttonAceparModifi.setDisable(false);
 
@@ -102,15 +97,15 @@ public class ModificaCancelaCita {
         buttonCancelarCita.setDisable(true);
         buttonCancelarCita.setOnAction((event) -> {
 
-
             Cita cita = logicaCliente.stringTokenizer(logicaCliente.leeLinea(textFieldId.getText()));
-            logicaCliente.leeArchivoSolicitudCita();  
+            logicaCliente.leeArchivoSolicitudCita();
 
             logicaCliente.elimina(cita);
             logicaCliente.remueveLineaDelArchivo(cita.getIDCita());
 
             Acciones acciones = new Acciones(iniciarSesion.ID, "Eliminó su cita", fechaHora.histoFechaHora());
             logicaAVL.escribeHistorial(acciones);
+              alerta.alertInformation("Se cancelo su cita, correctamente");
 
         });//end setOnAction
 
@@ -124,7 +119,7 @@ public class ModificaCancelaCita {
 
             Cita cita = logicaCliente.stringTokenizer(logicaCliente.leeLinea(textFieldId.getText()));
             Cita citaAux = new Cita(textFieldId.getText(), cita.getNombre(),
-                    datePicker.getValue().toString(), comboBoxHora.getValue().toString(), cita.getDoctora());
+                    calendarioParaCitas.calenCita().getValue().toString(), comboBoxHora.getValue().toString(), cita.getDoctora());
 
             logicaCliente.leeArchivoSolicitudCita();
             logicaCliente.remueveLineaDelArchivo(cita.getIDCita());
@@ -132,6 +127,7 @@ public class ModificaCancelaCita {
 
             Acciones acciones = new Acciones(iniciarSesion.ID, "Modificó su cita", fechaHora.histoFechaHora());
             logicaAVL.escribeHistorial(acciones);
+            alerta.alertInformation("Se modifico su cita, correctamente");
 
         });//end setOnAction
 

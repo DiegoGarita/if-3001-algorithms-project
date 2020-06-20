@@ -6,19 +6,17 @@ import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Objetos.Cita;
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
 import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
+import edu.ucr.rp.clinicadenutricion.Utilitario.Calendario;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.IniciarSesion;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
 import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
+import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.*;
-import javafx.util.Callback;
 
 public class SolicitaCita {
 
@@ -32,6 +30,8 @@ public class SolicitaCita {
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
     ArchSupAdmin logiSuper = new ArchSupAdmin();
+    Calendario calendarioParaCitas = new Calendario();
+    Alertas alerta = new Alertas();
 
     public GridPane solicitaCita() {
 
@@ -61,53 +61,7 @@ public class SolicitaCita {
         gridPaneSolicitaCita.add(textFieldIDReservacion, 0, 1);
         textFieldIDReservacion.setFocusTraversable(false);
 
-        Callback<DatePicker, DateCell> dayCellFactory = dp -> new DateCell() {
-            @Override
-            public void updateItem(LocalDate item, boolean empty) {
-
-                super.updateItem(item, empty);
-
-                this.setDisable(false);
-                this.setBackground(null);
-                this.setTextFill(Color.BLACK);
-
-//                // deshabilitar las fechas futuras
-//                if (item.isAfter(LocalDate.now())) {
-//                    this.setDisable(true);
-//                }
-
-                // marcar los dias de quincena
-                int day = item.getDayOfMonth();
-                if (day == 15 || day == 30) {
-
-                    Paint color = Color.RED;
-                    BackgroundFill fill = new BackgroundFill(color, null, null);
-
-                    this.setBackground(new Background(fill));
-                    this.setTextFill(Color.WHITESMOKE);
-                }
-
-                // fines de semana en color verde
-                DayOfWeek dayweek = item.getDayOfWeek();
-                if (dayweek == DayOfWeek.SATURDAY || dayweek == DayOfWeek.SUNDAY) {
-                    this.setTextFill(Color.ORANGE);
-                }
-            }
-        };
-
-        DatePicker dT_DateFligth = new DatePicker(LocalDate.now());
-        dT_DateFligth.setEditable(false);
-        dT_DateFligth.setDayCellFactory(picker -> new DateCell() {
-            public void updateItem(LocalDate date, boolean empty) {
-                super.updateItem(date, empty);
-                LocalDate today = LocalDate.now();
-
-                setDisable(empty || date.compareTo(today) < 0);
-            }
-        });
-        dT_DateFligth.setDayCellFactory(dayCellFactory);
-
-        gridPaneSolicitaCita.add(dT_DateFligth, 0, 2);
+        gridPaneSolicitaCita.add(calendarioParaCitas.calenCita(), 0, 2);
 
         for (int i = Integer.parseInt(configuracion.getAbreClinica());
                 i < Integer.parseInt(configuracion.getCierreClinica());
@@ -147,13 +101,14 @@ public class SolicitaCita {
         botonGuardar.setDisable(true);
         botonGuardar.setOnAction((event) -> {
 
-            Cita cita = new Cita(textFieldIDReservacion.getText(), usuario.getId(), dT_DateFligth.getValue().toString(),
+            Cita cita = new Cita(textFieldIDReservacion.getText(), usuario.getId(), calendarioParaCitas.calenCita().getValue().toString(),
                     comboBoxHora.getValue().toString(), textFieldDoctora.getText());
             LogicaCliente.EscribeArchivoSolicitudCita(cita);
 
             Acciones acciones = new Acciones(inicioSesion.ID, "Solicitó una cita", fechaHora.histoFechaHora());
             logicaAVL.escribeHistorial(acciones);
 
+            alerta.alertInformation("Cita reservada con exito");
             textFieldIDReservacion.clear();
             textFieldDoctora.clear();
 
