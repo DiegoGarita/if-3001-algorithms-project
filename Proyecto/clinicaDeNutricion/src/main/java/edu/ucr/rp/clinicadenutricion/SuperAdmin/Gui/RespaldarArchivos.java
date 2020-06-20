@@ -3,6 +3,7 @@ package edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.Respaldo;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
 import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
+import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +21,7 @@ public class RespaldarArchivos {
     Button buttonRespaldo;
     LogicaListas logic = new LogicaListas();
     Usuario uwu = logic.stringTokenizer(logic.leeLinea("ë"));
+    Alertas alerta = new Alertas();
 
     public GridPane respaldo() {
 
@@ -56,13 +58,14 @@ public class RespaldarArchivos {
 
                 buttonRespaldo.setVisible(true);
             }
+            buttonModiUsu.setDisable(true);
+            textFieldContra.setDisable(true);
         });//end setOnAction
 
         Respaldo resUsuarios = new Respaldo();
         Respaldo resHistorial = new Respaldo();
         Respaldo resApartaCita = new Respaldo();
-        
-        
+
         buttonRespaldo = new Button("Respaldar informacion");
         buttonRespaldo.setTextFill(Color.WHITE);//Color de la letra del boton
         buttonRespaldo.setStyle("-fx-background-color: BLACK");//Color del fondo
@@ -79,6 +82,10 @@ public class RespaldarArchivos {
                 Logger.getLogger(RespaldarArchivos.class.getName()).log(Level.SEVERE, null, ex);
             }
 
+            buttonModiUsu.setDisable(false);
+            textFieldContra.setDisable(false);
+            alerta.alertInformation("Respaldo creado correctamente");
+            
         });//end setOnAction
 
         //***

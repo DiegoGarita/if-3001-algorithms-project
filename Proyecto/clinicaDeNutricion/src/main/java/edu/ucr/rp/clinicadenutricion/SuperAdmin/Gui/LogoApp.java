@@ -4,6 +4,7 @@ import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
 import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
+import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
 import java.io.File;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -20,6 +21,7 @@ public class LogoApp {
     Button buttonModifica;
     LogicaListas logic = new LogicaListas();
     ArchSupAdmin logiSuper = new ArchSupAdmin();
+    Alertas alerta = new Alertas();
 
     public GridPane logoApp() {
 
@@ -34,7 +36,7 @@ public class LogoApp {
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
         Usuario usuarioTemp = logic.stringTokenizer(logic.leeLinea("ë"));
-         SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+        SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
 
         textFieldContraseña = new TextField();
         textFieldContraseña.setPromptText("Contraseña");
@@ -60,7 +62,8 @@ public class LogoApp {
                 buttonGuardar.setVisible(true);
                 buttonModifica.setDisable(true);
             }
-
+            textFieldContraseña.setDisable(true);
+            buttonModifica.setDisable(true);
         });//end setOnAction
 
         Label label = new Label("no files selected");
@@ -94,6 +97,9 @@ public class LogoApp {
             logiSuper.readInFile();
             logiSuper.removeLineFromFile(configuracion.getIdentificadorSA()); //-->>Here esta vara me cae
             logiSuper.writeInFile(configuracion2);
+            textFieldContraseña.setDisable(false);
+            buttonModifica.setDisable(false);
+            alerta.alertInformation("Imagen de fonde cambiada, correctamente");
         });//END BUTTON
 
         MainMenuBarSuperAdmi mainMenuBarSuperAdmi = new MainMenuBarSuperAdmi();
@@ -113,7 +119,7 @@ public class LogoApp {
         return gridPaneLogoApp;
     }//end GridPane createCatalogue()
 
-      public FileChooser setFileChooser() {
+    public FileChooser setFileChooser() {
         //Este metodo crea el fileChooser que va a escoger las imagenes
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Buscar Imagen");

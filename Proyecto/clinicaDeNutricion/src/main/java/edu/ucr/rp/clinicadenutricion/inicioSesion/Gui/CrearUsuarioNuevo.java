@@ -7,8 +7,10 @@ import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
+import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
 import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.*;
+import java.util.Optional;
 import javafx.collections.*;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -32,6 +34,7 @@ public class CrearUsuarioNuevo {
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
     ArchSupAdmin logiSuper = new ArchSupAdmin();
+    Alertas alertas = new Alertas();
 
     public GridPane creaUsuario() {
 
@@ -141,22 +144,26 @@ public class CrearUsuarioNuevo {
         buttonCreaUsuario.setDisable(true);
         buttonCreaUsuario.setOnAction((event) -> {
 
-            logic.leerArchivo();
-            if (logic.busca(textFieldID.getText()) == false) {
-                Usuario usuario = new Usuario(comboBoxRol.getValue().toString(), textFieldID.getText(),
-                        textFieldNombre.getText(), encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()),
-                        textFieldCorreo.getText(), textFieldTelefono.getText(), textFieldDireccion.getText());
+            alertas.alertConfirmation("");
+            Optional<ButtonType> result = alertas.alertConfirmation("").showAndWait();
+            if (result.get() == ButtonType.OK) {
 
-                logic.escribirArchivo(usuario);
-                Acciones acciones = new Acciones(textFieldID.getText(), "Se registró como nuevo usuario", fechaHora.histoFechaHora());
-                logicaAVL.escribeHistorial(acciones);
+                logic.leerArchivo();
+                if (logic.busca(textFieldID.getText()) == false) {
+                    Usuario usuario = new Usuario(comboBoxRol.getValue().toString(), textFieldID.getText(),
+                            textFieldNombre.getText(), encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()),
+                            textFieldCorreo.getText(), textFieldTelefono.getText(), textFieldDireccion.getText());
 
-            } else {
-                System.out.println("Ya existe alguien con este ID");
-                Acciones acciones = new Acciones(textFieldID.getText(), "Intentó registrarse cuando ya estaba registrado", fechaHora.histoFechaHora());
-                logicaAVL.escribeHistorial(acciones);
-            }
+                    logic.escribirArchivo(usuario);
+                    Acciones acciones = new Acciones(textFieldID.getText(), "Se registró como nuevo usuario", fechaHora.histoFechaHora());
+                    logicaAVL.escribeHistorial(acciones);
 
+                } else {
+                    System.out.println("Ya existe alguien con este ID");
+                    Acciones acciones = new Acciones(textFieldID.getText(), "Intentó registrarse cuando ya estaba registrado", fechaHora.histoFechaHora());
+                    logicaAVL.escribeHistorial(acciones);
+                }
+            }//end if alert
             textFieldNombre.clear();
             textFieldContraseña.clear();
             textFieldID.clear();

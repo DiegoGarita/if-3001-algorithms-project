@@ -4,6 +4,7 @@ import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
 import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
+import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
 import java.io.File;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -21,6 +22,7 @@ public class IndicarPath {
     Button buttonModiUsu;
     LogicaListas logic = new LogicaListas();
     ArchSupAdmin logiSuper = new ArchSupAdmin();
+    Alertas alerta = new Alertas();
 
     /**
      *
@@ -66,6 +68,8 @@ public class IndicarPath {
                 buttonModiUsu.setDisable(true);
             }
 
+            textFieldContra.setDisable(true);
+            buttonModiUsu.setDisable(true);
         });//end setOnAction
 
         Label label = new Label("no files selected");
@@ -105,10 +109,14 @@ public class IndicarPath {
             logiSuper.writeInFile(configuracion2);
             System.out.println("Hola no boto el app");
 
+            textFieldContra.setDisable(false);
+            buttonModiUsu.setDisable(false);
+            alerta.alertInformation("Path cambiado correctamente");
+
         });//END BUTTON
 
         MainMenuBarSuperAdmi barSuper = new MainMenuBarSuperAdmi();
-        
+
         Button botonCerrar = new Button("Cerrar");
         botonCerrar.setTextFill(Color.WHITE);//Color de la letra del boton
         botonCerrar.setStyle("-fx-background-color: BLACK");//Color del fondo

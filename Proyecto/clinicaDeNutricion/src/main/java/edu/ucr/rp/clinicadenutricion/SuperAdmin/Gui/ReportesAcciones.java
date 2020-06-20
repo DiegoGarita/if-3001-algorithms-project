@@ -45,10 +45,11 @@ public class ReportesAcciones {
         fechaHoraAccionColunm.setMaxWidth(200);
         fechaHoraAccionColunm.setCellValueFactory(new PropertyValueFactory<>("fechaHoraAccion"));
 
-        gridPaneCitaNue.add(tableViewAcciones, 0, 2);
         GridPane.setColumnSpan(tableViewAcciones, Integer.BYTES);
         tableViewAcciones.setItems(obtieneAcciones());
         tableViewAcciones.getColumns().addAll(accionadorColunm, accionColunm, fechaHoraAccionColunm);
+        tableViewAcciones.setMinSize(500, 400);
+        gridPaneCitaNue.add(tableViewAcciones, 0, 2);
 
         Button botonCerrar = new Button("Cerrar");
         botonCerrar.setTextFill(Color.WHITE);//Color de la letra del boton
