@@ -11,6 +11,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 import javax.swing.JOptionPane;
 
@@ -18,7 +19,7 @@ public class LogicaPila {
 
     ImplementacionPila implementacionPila = new ImplementacionPila();
      ArchSupAdmin logiSuper = new ArchSupAdmin();
-
+ public int contadorHoras = 0;
     public void EscribeArchivoSolicitudCita(Cita cita) {
 
        SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
@@ -186,6 +187,38 @@ public class LogicaPila {
         }
         return null;
     }// end readProperties()
+     public ArrayList<String> leeArchivoHoraFecha(String date) {
+
+        File newFile = new File("ApartaCita.txt");
+        ArrayList<String> returned = new ArrayList<>();
+        try {
+            FileInputStream fileInputStream = new FileInputStream(newFile);
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            String currentRegistry = bufferedReader.readLine();
+            contadorHoras = 0;
+            while (currentRegistry != null) {
+                if (currentRegistry.contains(date)) {
+                    contadorHoras++;
+                    Cita c = stringTokenizer(currentRegistry);
+                    returned.add(c.getHora().substring(1, 3));
+                }
+
+                currentRegistry = bufferedReader.readLine();
+
+            }//end while
+
+        } catch (FileNotFoundException fileNotFoundException) {
+            System.out.println(fileNotFoundException + ": Problemas con el archivo");
+        } catch (IOException IOException) {
+            System.out.println(IOException + ": Problemas con el archivo");
+        }
+        return returned;
+    }
+
+    public int tamanio() {
+        return contadorHoras;
+    }
 
     public void elimina(Cita cita) {
         implementacionPila.pop(cita);

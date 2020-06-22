@@ -346,3 +346,19 @@ cec & IniciÃ³ sesiÃ³n como cliente & Wed Jun 17 22:36:57 CST 2020
 666 & Inició sesión como admistrador & Mon Jun 22 16:08:16 CST 2020
 666 & Solicitó la lista de Recetas & Mon Jun 22 16:08:33 CST 2020
 666 & Solicitó la lista de Recetas & Mon Jun 22 16:08:50 CST 2020
+111 & Inició sesión como cliente & Mon Jun 22 16:38:19 CST 2020
+111 & Solicitó una cita & Mon Jun 22 16:38:50 CST 2020
+111 & Inició sesión como cliente & Mon Jun 22 16:54:32 CST 2020
+111 & Solicitó una cita & Mon Jun 22 16:55:16 CST 2020
+111 & Inició sesión como cliente & Mon Jun 22 16:56:35 CST 2020
+111 & Inició sesión como cliente & Mon Jun 22 16:59:18 CST 2020
+111 & Solicitó una cita & Mon Jun 22 16:59:31 CST 2020
+111 & Solicitó una cita & Mon Jun 22 16:59:44 CST 2020
+111 & Solicitó una cita & Mon Jun 22 16:59:58 CST 2020
+111 & Solicitó una cita & Mon Jun 22 17:00:10 CST 2020
+111 & Solicitó una cita & Mon Jun 22 17:00:20 CST 2020
+111 & Solicitó una cita & Mon Jun 22 17:00:29 CST 2020
+111 & Solicitó una cita & Mon Jun 22 17:00:39 CST 2020
+111 & Solicitó una cita & Mon Jun 22 17:00:52 CST 2020
+111 & Solicitó una cita & Mon Jun 22 17:01:02 CST 2020
+111 & Modificó su perfil & Mon Jun 22 17:01:18 CST 2020
