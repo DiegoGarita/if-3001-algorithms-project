@@ -25,6 +25,7 @@ public class InformacionPaciente {
     ArchSupAdmin logiSuper = new ArchSupAdmin();
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
+    Button buttonBuscar;
     TableView<ReporteMedico> tableViewReporteMedico;
 
     public GridPane informacionPaciente() {
@@ -46,8 +47,13 @@ public class InformacionPaciente {
         for (int i = 0; i < logicaCola.cantidadDeClientes("ä"); i++) {
             comboBoxClientes.getItems().addAll(logicaCola.arrayListClientes.get(i).getId());
         }
+        comboBoxClientes.setOnMouseClicked((even) -> {
+            tableViewReporteMedico.getItems().clear();  //---> tratando de limpiar table
+            buttonBuscar.setDisable(false);
+        });
 
         tableViewReporteMedico = new TableView<>();
+        gridPaneInformacionPaciente.add(tableViewReporteMedico, 0, 4);
 
         TableColumn<ReporteMedico, String> idColunm = new TableColumn<>("ID");
         idColunm.setMaxWidth(200);
@@ -113,22 +119,29 @@ public class InformacionPaciente {
         textAreaNotasColunm.setMaxWidth(200);
         textAreaNotasColunm.setCellValueFactory(new PropertyValueFactory<>("textAreaNotas"));
 
-        Button buttonBuscar = new Button("Buscar");
+        tableViewReporteMedico.getColumns().addAll(idColunm, nombreColunm, fechaColunm, horaColunm,
+                edadColunm, edadMetabolicaColunm, alturaColunm, pesoColunm, porcenMasaMuscularColunm,
+                grasaColunm, grasaVisceralColunm, huesoColunm, porcenAguaColunm, actividadFisicaColunm,
+                horasDeSueñoColunm, textAreaNotasColunm);
+        GridPane.setColumnSpan(tableViewReporteMedico, Integer.BYTES);
+        tableViewReporteMedico.setVisible(false);
+
+        buttonBuscar = new Button("Buscar");
         buttonBuscar.setTextFill(Color.WHITE);
         buttonBuscar.setStyle("-fx-background-color: BLACK");
         buttonBuscar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         gridPaneInformacionPaciente.add(buttonBuscar, 1, 0);
         buttonBuscar.setDisable(false);
+        buttonBuscar.setDisable(true);
         buttonBuscar.setOnAction((event) -> {
 
+            tableViewReporteMedico.setVisible(true);
             Acciones acciones = new Acciones(iniciarSesion.ID, "Solicitó información de pacientes", fechaHora.histoFechaHora());
             logicaAVL.escribeHistorial(acciones);
 
-            gridPaneInformacionPaciente.add(tableViewReporteMedico, 0, 4);
-            GridPane.setColumnSpan(tableViewReporteMedico, Integer.BYTES);
             tableViewReporteMedico.setItems(obtieneReporteMedico(comboBoxClientes.getValue().toString()));
-            tableViewReporteMedico.getColumns().addAll(idColunm, nombreColunm, fechaColunm, horaColunm, edadColunm, edadMetabolicaColunm, alturaColunm, pesoColunm, porcenMasaMuscularColunm, grasaColunm, grasaVisceralColunm, huesoColunm, porcenAguaColunm, actividadFisicaColunm, horasDeSueñoColunm, textAreaNotasColunm);
 
+            buttonBuscar.setDisable(true);
         });// end boton
 
         Button buttonCerrar = new Button("Cerrar");

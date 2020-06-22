@@ -143,7 +143,7 @@ public class ReporteCitas {
             tableViewReporteMedico.setItems(obtieneReporteMedicos(labelTraeId.getText()));
             //  System.out.println(labelTraeId.getText());
             tableViewReporteMedico.getColumns().addAll(idColunm, nombreColunm, fechaColunm, horaColunm, edadColunm, edadMetabolicaColunm, alturaColunm, pesoColunm, porcenMasaMuscularColunm, grasaColunm, grasaVisceralColunm, huesoColunm, porcenAguaColunm, actividadFisicaColunm, horasDeSueñoColunm, textAreaNotasColunm);
-
+            buttonBuscar.setDisable(true);
         });// end boton
 
 //---------------------------------------------------------------------------------------------------------------------------
