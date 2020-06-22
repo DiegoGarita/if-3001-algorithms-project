@@ -11,7 +11,6 @@ edu\ucr\rp\clinicadenutricion\SuperAdmin\Logic\Cola.class
 edu\ucr\rp\clinicadenutricion\SuperAdmin\Gui\MainMenuBarSuperAdmi.class
 edu\ucr\rp\clinicadenutricion\Admin\Gui\PlanesAlimenticios.class
 edu\ucr\rp\clinicadenutricion\Admin\logic\LogicaCola.class
-edu\ucr\rp\clinicadenutricion\Utilitario\Calendario$2.class
 edu\ucr\rp\clinicadenutricion\Cliente\Logic\ImplementacionArbol.class
 edu\ucr\rp\clinicadenutricion\Cliente\Gui\ReporteCitas.class
 edu\ucr\rp\clinicadenutricion\Cliente\Logic\LogicaPila.class

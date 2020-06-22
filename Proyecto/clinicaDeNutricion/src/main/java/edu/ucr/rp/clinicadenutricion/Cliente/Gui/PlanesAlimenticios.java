@@ -4,7 +4,6 @@ import edu.ucr.rp.clinicadenutricion.AVL.LogicaAVL;
 import edu.ucr.rp.clinicadenutricion.Admin.logic.PlanesAlimenticiosLogica;
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
 import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.IniciarSesion;
@@ -24,7 +23,7 @@ public class PlanesAlimenticios {
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
     IniciarSesion inicioSesion;
-      ArchSupAdmin logiSuper = new ArchSupAdmin();
+    ArchSupAdmin logiSuper = new ArchSupAdmin();
 
     PlanesAlimenticiosLogica planesAlimenticiosLogica = new PlanesAlimenticiosLogica();
 
@@ -35,7 +34,7 @@ public class PlanesAlimenticios {
         gridPanePlanesAlimenticios.setVgap(15);
         gridPanePlanesAlimenticios.setHgap(15);
         gridPanePlanesAlimenticios.setAlignment(Pos.CENTER);
-         SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+        SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
         gridPanePlanesAlimenticios.setStyle(("-fx-background-image:url('file:src/image/" + configuracion.getNombreLogo() + "');"
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
@@ -44,17 +43,24 @@ public class PlanesAlimenticios {
         comboBoxOpciones.setStyle("-fx-background-color: lightblue");
         comboBoxOpciones.getItems().addAll("Planes alimenticios", "Recetas");
         gridPanePlanesAlimenticios.add(comboBoxOpciones, 0, 0);
+        comboBoxOpciones.setOnMouseClicked((event) -> {
+            buttonAceptar.setDisable(false);
+        });
 
         comboBoxSeleccion.setValue("Elige una opcion");
         comboBoxSeleccion.setVisible(false);
         comboBoxSeleccion.setStyle("-fx-background-color: lightblue");
         gridPanePlanesAlimenticios.add(comboBoxSeleccion, 0, 1);
+        comboBoxSeleccion.setOnMouseClicked((event) -> {
+            buttonDesplegarInformacion.setDisable(false);
+        });
 
         buttonAceptar = new Button("Aceptar");
         buttonAceptar.setTextFill(Color.WHITE);
         buttonAceptar.setStyle("-fx-background-color: BLACK");
         buttonAceptar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         gridPanePlanesAlimenticios.add(buttonAceptar, 1, 0);
+        buttonAceptar.setDisable(true);
         buttonAceptar.setOnAction((event) -> {
             if (comboBoxOpciones.getValue().toString().equals("Recetas")) {
                 comboBoxSeleccion.setVisible(true);
@@ -69,12 +75,13 @@ public class PlanesAlimenticios {
                     comboBoxSeleccion.getItems().addAll(planesAlimenticiosLogica.arrayListPlanes.get(i));
                 }
             }
-
+            buttonAceptar.setDisable(true);
         });//end setOnAction
 
         buttonDesplegarInformacion = new Button("Desplegar");
         buttonDesplegarInformacion.setTextFill(Color.WHITE);
         buttonDesplegarInformacion.setVisible(false);
+        buttonDesplegarInformacion.setDisable(true);
         buttonDesplegarInformacion.setStyle("-fx-background-color: BLACK");
         buttonDesplegarInformacion.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         gridPanePlanesAlimenticios.add(buttonDesplegarInformacion, 1, 1);
@@ -88,7 +95,8 @@ public class PlanesAlimenticios {
                 logicaAVL.escribeHistorial(acciones);
                 textAreaMostrar.setText(planesAlimenticiosLogica.leeArchivo(comboBoxSeleccion.getValue().toString(), "Planes"));
             }
-
+            buttonDesplegarInformacion.setDisable(true);
+            comboBoxOpciones.setDisable(true);
         });//end setOnAction
 
         textAreaMostrar.setEditable(false);

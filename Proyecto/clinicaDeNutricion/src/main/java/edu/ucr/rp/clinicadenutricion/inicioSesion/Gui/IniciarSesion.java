@@ -60,6 +60,9 @@ public class IniciarSesion {
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
         gridPaneIniciarSesion.add(textFieldID, 0, 2);
         textFieldID.setFocusTraversable(false);
+        textFieldID.setOnKeyPressed((event) -> {
+            textFieldContraseña.setDisable(false);
+        });
 
         textFieldContraseña = new PasswordField();
         textFieldContraseña.setPromptText("Contraseña");
@@ -70,13 +73,18 @@ public class IniciarSesion {
                 "-fx-background-radius: 4; "
                 +// tamano
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
+        textFieldContraseña.setDisable(true);
         gridPaneIniciarSesion.add(textFieldContraseña, 0, 3);
         textFieldContraseña.setFocusTraversable(false);
+        textFieldContraseña.setOnKeyPressed((event) -> {
+            buttonCreaUsuario.setDisable(false);
+        });
 
         buttonCreaUsuario = new Button("Aceptar");
         buttonCreaUsuario.setTextFill(Color.WHITE);
         buttonCreaUsuario.setStyle("-fx-background-color: BLACK");
         buttonCreaUsuario.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        buttonCreaUsuario.setDisable(true);
         gridPaneIniciarSesion.add(buttonCreaUsuario, 0, 4);
         buttonCreaUsuario.setOnAction((event) -> {
             Node node = gridPaneIniciarSesion.getChildren().get(2);
@@ -98,7 +106,7 @@ public class IniciarSesion {
                             ID = textFieldID.getText();
                             Acciones acciones = new Acciones(ID, "Inició sesión como cliente", fechaHora.histoFechaHora());
                             logicaAVL.escribeHistorial(acciones);
-                          //  logicaAVL.leerHistorial();
+                            //  logicaAVL.leerHistorial();
                             gridPaneIniciarSesion.getChildren().clear();
                             gridPaneIniciarSesion.getChildren().add(0, node);
                             gridPaneIniciarSesion.getChildren().add(mainMenuBarCliente.menuCliente());
@@ -132,8 +140,8 @@ public class IniciarSesion {
                 JOptionPane.showMessageDialog(null, "El usuario no existe");
 
             }
-            
-            alertas.alertInformation("Bienvenido"+ textFieldID.getText());
+
+            alertas.alertInformation("Bienvenido" + textFieldID.getText());
 
         });
 

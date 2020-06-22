@@ -12,6 +12,7 @@ import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
 import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
 import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
+import java.time.LocalDate;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -32,6 +33,7 @@ public class SolicitaCita {
     ArchSupAdmin logiSuper = new ArchSupAdmin();
     Calendario calendarioParaCitas = new Calendario();
     Alertas alerta = new Alertas();
+    DatePicker dT_DateFligth;
 
     public GridPane solicitaCita() {
 
@@ -42,8 +44,6 @@ public class SolicitaCita {
         gridPaneSolicitaCita.setAlignment(Pos.CENTER);
 
         SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
-
-        comboBoxHora.setValue("Hora de cita");
 
         gridPaneSolicitaCita.setStyle(("-fx-background-image:url('file:src/image/" + configuracion.getNombreLogo() + "');"
                 + "-fx-background-repeat : no-repeat;"
@@ -60,15 +60,30 @@ public class SolicitaCita {
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
         gridPaneSolicitaCita.add(textFieldIDReservacion, 0, 1);
         textFieldIDReservacion.setFocusTraversable(false);
+        textFieldIDReservacion.setOnKeyPressed((event) -> {
+            dT_DateFligth.setDisable(false);
+        });
 
-        gridPaneSolicitaCita.add(calendarioParaCitas.calenCita(), 0, 2);
+        dT_DateFligth = new DatePicker(LocalDate.now());
+        dT_DateFligth.setEditable(false);
+        dT_DateFligth.setDayCellFactory(calendarioParaCitas.dayCellFactory);
+        dT_DateFligth.setDisable(true);
+        gridPaneSolicitaCita.add(dT_DateFligth, 0, 2);
+        dT_DateFligth.setOnMouseClicked((event) -> {
+            comboBoxHora.setDisable(false);
+        });
 
+        comboBoxHora.setValue("Hora de cita");
         for (int i = Integer.parseInt(configuracion.getAbreClinica());
                 i < Integer.parseInt(configuracion.getCierreClinica());
                 i = i + Integer.parseInt(configuracion.getTiempoConsulta())) {  //--> horario de 9am a 5pm -->>Estos valores (9y17) van a ser variables
             comboBoxHora.getItems().addAll(i + ":00");
         }
+        comboBoxHora.setDisable(true);
         gridPaneSolicitaCita.add(comboBoxHora, 0, 3);
+        comboBoxHora.setOnMouseClicked((event) -> {
+            textFieldDoctora.setDisable(false);
+        });
 
         textFieldDoctora = new TextField();
         textFieldDoctora.setPromptText("Doctora");
@@ -81,6 +96,7 @@ public class SolicitaCita {
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
         gridPaneSolicitaCita.add(textFieldDoctora, 0, 4);
         textFieldDoctora.setFocusTraversable(false);
+        textFieldDoctora.setDisable(true);
         textFieldDoctora.setOnKeyPressed((event) -> {
             botonGuardar.setDisable(false);
         });
@@ -101,7 +117,7 @@ public class SolicitaCita {
         botonGuardar.setDisable(true);
         botonGuardar.setOnAction((event) -> {
 
-            Cita cita = new Cita(textFieldIDReservacion.getText(), usuario.getId(), calendarioParaCitas.calenCita().getValue().toString(),
+            Cita cita = new Cita(textFieldIDReservacion.getText(), usuario.getId(), dT_DateFligth.getValue().toString(),
                     comboBoxHora.getValue().toString(), textFieldDoctora.getText());
             LogicaCliente.EscribeArchivoSolicitudCita(cita);
 
@@ -111,7 +127,12 @@ public class SolicitaCita {
             alerta.alertInformation("Cita reservada con exito");
             textFieldIDReservacion.clear();
             textFieldDoctora.clear();
-
+            comboBoxHora.setValue("Hora de cita");
+            dT_DateFligth.setValue(LocalDate.now());
+            botonGuardar.setDisable(true);
+            textFieldDoctora.setDisable(true);
+            comboBoxHora.setDisable(true);
+            dT_DateFligth.setDisable(true);
         });
 
         MainMenuBarCliente mainMenuBarCliente = new MainMenuBarCliente();

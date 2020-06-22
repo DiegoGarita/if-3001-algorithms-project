@@ -1,26 +1,14 @@
 package edu.ucr.rp.clinicadenutricion.Cliente.Gui;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Image;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
 import edu.ucr.rp.clinicadenutricion.AVL.LogicaAVL;
-import edu.ucr.rp.clinicadenutricion.Admin.Gui.Formulario;
 import edu.ucr.rp.clinicadenutricion.Utilitario.Grafico;
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
 import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.IniciarSesion;
 import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -58,29 +46,37 @@ public class ReporteProgreso {
             tipo = "Administración";
         }
 
+        Label labelNombew = new Label("Nombre: " + usuario.getName());
+        gridPaneReportePorgreso.add(labelNombew, 0, 1);
+        Label labelCedula = new Label("Cedula: " + usuario.getId());
+        gridPaneReportePorgreso.add(labelCedula, 1, 1);
+        Label labelTelefono = new Label("Telefono: " + usuario.getTelefono());
+        gridPaneReportePorgreso.add(labelTelefono, 2, 1);
+
         buttonGraficoActual = new Button("Ver datos recientes");
         buttonGraficoActual.setTextFill(Color.WHITE);
         buttonGraficoActual.setStyle("-fx-background-color: BLACK");
         buttonGraficoActual.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
-        gridPaneReportePorgreso.add(buttonGraficoActual, 3, 1);
+        gridPaneReportePorgreso.add(buttonGraficoActual, 3, 3);
 
         buttonGraficoActual.setOnAction((event) -> {
 
             grafico.MuestraGraficoActual(); //--> %agua, %masMusc, grasa , grasaVisc
             Acciones acciones = new Acciones(iniciarSesion.ID, "Revisó su progreso graficamente", fechaHora.histoFechaHora());
             logicaAVL.escribeHistorial(acciones);
+            buttonGraficoActual.setDisable(true);
         });//END BUTTON
 
         buttonGraficoInicial = new Button("Ver datos iniciales");
         buttonGraficoInicial.setTextFill(Color.WHITE);
         buttonGraficoInicial.setStyle("-fx-background-color: BLACK");
         buttonGraficoInicial.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
-        gridPaneReportePorgreso.add(buttonGraficoInicial, 1, 1);
+        gridPaneReportePorgreso.add(buttonGraficoInicial, 1, 3);
 
         buttonGraficoInicial.setOnAction((event) -> {
 
             grafico.MuestraGraficoInicial(); //--> %agua, %masMusc, grasa , grasaVisc
-            
+            buttonGraficoInicial.setDisable(true);
 
         });//END BUTTON
 

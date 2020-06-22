@@ -45,17 +45,24 @@ public class PlanesAlimenticios {
         comboBoxOp.setStyle("-fx-background-color: lightblue");
         comboBoxOp.getItems().addAll("Planes alimenticios", "Recetas");
         gridPanePlanesAlimenticios.add(comboBoxOp, 0, 0);
+        comboBoxOp.setOnMouseClicked((event) -> {
+            buttonAceptar.setDisable(false);
+        });
 
         comboBoxSele.setValue("Elige una opcion");
         comboBoxSele.setVisible(false);
         comboBoxSele.setStyle("-fx-background-color: lightblue");
         gridPanePlanesAlimenticios.add(comboBoxSele, 0, 1);
+        comboBoxSele.setOnMouseClicked((event) -> {
+            buttonDesplegarInfo.setDisable(false);
+        });
 
         buttonAceptar = new Button("Aceptar");
         buttonAceptar.setTextFill(Color.WHITE);
         buttonAceptar.setStyle("-fx-background-color: BLACK");
         buttonAceptar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         gridPanePlanesAlimenticios.add(buttonAceptar, 1, 0);
+        buttonAceptar.setDisable(true);
         buttonAceptar.setOnAction((event) -> {
             if (comboBoxOp.getValue().toString().equals("Recetas")) {
                 comboBoxSele.setVisible(true);
@@ -70,12 +77,14 @@ public class PlanesAlimenticios {
                     comboBoxSele.getItems().addAll(planAl.arrayListPlanes.get(i));
                 }
             }
-
+            buttonAceptar.setDisable(true);
+            comboBoxOp.setDisable(true);
         });//end setOnAction
 
         buttonDesplegarInfo = new Button("Desplegar");
         buttonDesplegarInfo.setTextFill(Color.WHITE);
         buttonDesplegarInfo.setVisible(false);
+        buttonDesplegarInfo.setDisable(true);
         buttonDesplegarInfo.setStyle("-fx-background-color: BLACK");
         buttonDesplegarInfo.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         gridPanePlanesAlimenticios.add(buttonDesplegarInfo, 1, 1);
@@ -89,7 +98,7 @@ public class PlanesAlimenticios {
                 Acciones acciones = new Acciones(iniciarSesion.ID, "Solicitó la lista de planes alimenticios", fechaHora.histoFechaHora());
                 logicaAVL.escribeHistorial(acciones);
             }
-
+            buttonDesplegarInfo.setDisable(true);
         });//end setOnAction
 
         textAreaMostrar.setEditable(false);

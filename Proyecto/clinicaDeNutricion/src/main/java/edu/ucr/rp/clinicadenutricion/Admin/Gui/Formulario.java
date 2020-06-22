@@ -82,6 +82,7 @@ public class Formulario {
         buttonIngresar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         gridPaneFormulario.add(buttonIngresar, 1, 0);
         buttonIngresar.setOnAction((event) -> {
+            comboBoxClientes.setDisable(true);
             buttonIngresar.setDisable(true);
             if (!comboBoxClientes.getValue().toString().equals("")) {
                 textFieldID.setVisible(true);
@@ -309,10 +310,16 @@ public class Formulario {
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
         gridPaneFormulario.add(textFieldHorasDescanso, 2, 4);
         textFieldHorasDescanso.setFocusTraversable(false);
+        textFieldHorasDescanso.setOnKeyPressed((event) -> {
+            buttonAceptar.setDisable(false);
+            buttongeneraPDF.setDisable(false);
+            textAreaNotas.setDisable(false);
+        });
 
         GridPane.setColumnSpan(textAreaNotas, Integer.BYTES);
         textAreaNotas.setVisible(false);
         textAreaNotas.setMinSize(650, 75);
+        textAreaNotas.setDisable(true);
         gridPaneFormulario.add(textAreaNotas, 0, 5);
         textAreaNotas.setFocusTraversable(false);
 
@@ -322,6 +329,7 @@ public class Formulario {
         buttongeneraPDF.setStyle("-fx-background-color: BLACK");
         buttongeneraPDF.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         gridPaneFormulario.add(buttongeneraPDF, 1, 6);
+        buttongeneraPDF.setDisable(true);
         buttongeneraPDF.setOnAction((event) -> {
 
             Document document = new Document();
@@ -338,7 +346,7 @@ public class Formulario {
                 image1.scaleAbsolute(300, 300);
                 //Add to document
                 document.add(image1);
-                
+
                 document.add(new Paragraph("Reporte medico del paciente: " + textFieldNombre.getText()));
                 document.add(new Paragraph("Id--> " + textFieldID.getText()));
                 document.add(new Paragraph("Nombre--> " + textFieldNombre.getText()));
@@ -367,6 +375,7 @@ public class Formulario {
                 Logger.getLogger(Formulario.class.getName()).log(Level.SEVERE, null, ex);
             }
 
+            buttongeneraPDF.setDisable(true);
         });//end setOnAction
 
         buttonAceptar = new Button("Aceptar");
@@ -375,6 +384,7 @@ public class Formulario {
         buttonAceptar.setStyle("-fx-background-color: BLACK");
         buttonAceptar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         gridPaneFormulario.add(buttonAceptar, 0, 6);
+        buttonAceptar.setDisable(true);
         buttonAceptar.setOnAction((event) -> {
 
             ReporteMedico reporteMedico = new ReporteMedico(textFieldID.getText(), textFieldNombre.getText(),
@@ -403,8 +413,10 @@ public class Formulario {
             textFieldActividadFisica.clear();
             textFieldHorasDescanso.clear();
             textAreaNotas.clear();
-            buttonIngresar.setDisable(false);
             alerta.alertInformation("Formulario completado");
+            buttonAceptar.setDisable(true);
+            buttongeneraPDF.setDisable(true);
+            
 
         });//end setOnAction
 
