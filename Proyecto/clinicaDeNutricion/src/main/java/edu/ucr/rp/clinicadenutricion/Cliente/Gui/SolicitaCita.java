@@ -70,19 +70,58 @@ public class SolicitaCita {
         dT_DateFligth.setDisable(true);
         gridPaneSolicitaCita.add(dT_DateFligth, 0, 2);
         dT_DateFligth.setOnMouseClicked((event) -> {
+            comboBoxHora.getItems().clear();
             comboBoxHora.setDisable(false);
+
         });
 
-        comboBoxHora.setValue("Hora de cita");
-        for (int i = Integer.parseInt(configuracion.getAbreClinica());
-                i < Integer.parseInt(configuracion.getCierreClinica());
-                i = i + Integer.parseInt(configuracion.getTiempoConsulta())) {  //--> horario de 9am a 5pm -->>Estos valores (9y17) van a ser variables
-            comboBoxHora.getItems().addAll(i + ":00");
-        }
         comboBoxHora.setDisable(true);
         gridPaneSolicitaCita.add(comboBoxHora, 0, 3);
-        comboBoxHora.setOnMouseClicked((event) -> {
+
+        comboBoxHora.setOnMouseEntered((event) -> {
             textFieldDoctora.setDisable(false);
+            comboBoxHora.setEditable(true);
+            LogicaCliente.leeArchivoHoraFecha(dT_DateFligth.getValue().toString());
+            int tam = LogicaCliente.tamanio();
+            for (int i = Integer.parseInt(configuracion.getAbreClinica()); i < Integer.parseInt(configuracion.getCierreClinica()); i = i + Integer.parseInt(configuracion.getTiempoConsulta())) {  //--> horario de 9am a 5pm -->>Estos valores (9y17) van a ser variables
+                if (tam != 0) {
+                    for (int j = 0; j < tam; j++) {
+                        if (comboBoxHora.getItems().contains(+j + ":00")) {
+                            comboBoxHora.getItems().remove(j);
+                        }
+
+                        if (Integer.parseInt(LogicaCliente.leeArchivoHoraFecha(dT_DateFligth.getValue().toString()).get(j)) != i) {
+                            if (i < 10) {
+                                if (comboBoxHora.getItems().contains("0" + Integer.parseInt(LogicaCliente.leeArchivoHoraFecha(dT_DateFligth.getValue().toString()).get(j)) + ":00") || comboBoxHora.getItems().contains("0" + i + ":00")) {
+                                    comboBoxHora.getItems().removeAll("0" + Integer.parseInt(LogicaCliente.leeArchivoHoraFecha(dT_DateFligth.getValue().toString()).get(j)) + ":00");
+                                    comboBoxHora.getItems().removeAll("0" + i + ":00");
+                                }
+                                comboBoxHora.getItems().addAll("0" + i + ":00");
+
+                            } else {
+                                if (comboBoxHora.getItems().contains(+Integer.parseInt(LogicaCliente.leeArchivoHoraFecha(dT_DateFligth.getValue().toString()).get(j)) + ":00") || comboBoxHora.getItems().contains(+i + ":00")) {
+                                    comboBoxHora.getItems().removeAll(+Integer.parseInt(LogicaCliente.leeArchivoHoraFecha(dT_DateFligth.getValue().toString()).get(j)) + ":00");
+                                    comboBoxHora.getItems().removeAll(i + ":00");
+                                }
+                                comboBoxHora.getItems().addAll(i + ":00");
+                            }
+                        }
+
+                    }
+                } else {
+                    if (i == Integer.parseInt(configuracion.getAbreClinica())) {
+                        comboBoxHora.getItems().clear();
+                    }
+                    if (i < 10) {
+
+                        comboBoxHora.getItems().addAll("0" + i + ":00");
+                    } else {
+                        comboBoxHora.getItems().addAll(i + ":00");
+                    }
+
+                }
+            }
+
         });
 
         textFieldDoctora = new TextField();
