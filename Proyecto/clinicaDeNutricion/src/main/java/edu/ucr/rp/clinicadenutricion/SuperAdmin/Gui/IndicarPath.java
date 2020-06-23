@@ -54,12 +54,16 @@ public class IndicarPath {
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
         gridPaneCitaNue.add(textFieldContra, 0, 1); /// columna fila
         textFieldContra.setFocusTraversable(false);
+        textFieldContra.setOnKeyPressed((event) -> {
+            buttonModiUsu.setDisable(false);
+        });
 
         buttonModiUsu = new Button("Modificar ubicacion");
         buttonModiUsu.setTextFill(Color.WHITE);//Color de la letra del boton
         buttonModiUsu.setStyle("-fx-background-color: BLACK");//Color del fondo
         buttonModiUsu.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
         gridPaneCitaNue.add(buttonModiUsu, 1, 1);
+        buttonModiUsu.setDisable(true);
         buttonModiUsu.setOnAction((event) -> {
 
             if (textFieldContra.getText().equals(uwu.getName())) {
@@ -86,8 +90,11 @@ public class IndicarPath {
 
                 label.setText(file1.getAbsolutePath());
             }
-
+            botonLogo.setDisable(true);
         });//END BUTTON
+        botonLogo.setOnMousePressed((event) -> {
+            botonGuardar.setDisable(false);
+        });
 
         botonGuardar = new Button("Guardar");
         botonGuardar.setTextFill(Color.WHITE);//Color de la letra del boton
@@ -95,6 +102,7 @@ public class IndicarPath {
         botonGuardar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
         gridPaneCitaNue.add(botonGuardar, 0, 7);
         botonGuardar.setVisible(false);
+        botonGuardar.setDisable(true);
         botonGuardar.setOnAction((event) -> {
 
             SuperAdmin configuracion1 = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
@@ -109,8 +117,8 @@ public class IndicarPath {
             logiSuper.writeInFile(configuracion2);
             System.out.println("Hola no boto el app");
 
-            textFieldContra.setDisable(false);
-            buttonModiUsu.setDisable(false);
+            textFieldContra.clear();
+            botonGuardar.setDisable(true);
             alerta.alertInformation("Path cambiado correctamente");
 
         });//END BUTTON

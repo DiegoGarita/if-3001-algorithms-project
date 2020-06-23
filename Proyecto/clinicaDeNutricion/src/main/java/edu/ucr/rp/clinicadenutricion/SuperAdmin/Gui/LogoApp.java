@@ -49,12 +49,16 @@ public class LogoApp {
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
         gridPaneLogoApp.add(textFieldContraseña, 0, 1);
         textFieldContraseña.setFocusTraversable(false);
+        textFieldContraseña.setOnKeyPressed((event) -> {
+            buttonModifica.setDisable(false);
+        });
 
         buttonModifica = new Button("Modificar logo");
         buttonModifica.setTextFill(Color.WHITE);
         buttonModifica.setStyle("-fx-background-color: BLACK");
         buttonModifica.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         gridPaneLogoApp.add(buttonModifica, 1, 1);
+        buttonModifica.setDisable(true);
         buttonModifica.setOnAction((event) -> {
 
             if (textFieldContraseña.getText().equals(usuarioTemp.getName())) {
@@ -79,7 +83,11 @@ public class LogoApp {
 
                 label.setText(file1.getName());
             }
+            buttonLogo.setDisable(true);
         });//END BUTTON
+        buttonLogo.setOnMousePressed((event) -> {
+            buttonGuardar.setDisable(false);
+        });
 
         buttonGuardar = new Button("Guardar");
         buttonGuardar.setTextFill(Color.WHITE);
@@ -87,6 +95,7 @@ public class LogoApp {
         buttonGuardar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         gridPaneLogoApp.add(buttonGuardar, 0, 7);
         buttonGuardar.setVisible(false);
+        buttonGuardar.setDisable(true);
         buttonGuardar.setOnAction((event) -> {
 
             SuperAdmin configuracion2 = new SuperAdmin(configuracion.getIdentificadorSA(), configuracion.getAbreClinica(),
@@ -97,9 +106,10 @@ public class LogoApp {
             logiSuper.readInFile();
             logiSuper.removeLineFromFile(configuracion.getIdentificadorSA()); //-->>Here esta vara me cae
             logiSuper.writeInFile(configuracion2);
-            textFieldContraseña.setDisable(false);
-            buttonModifica.setDisable(false);
+            textFieldContraseña.clear();
+            buttonGuardar.setDisable(true);
             alerta.alertInformation("Imagen de fonde cambiada, correctamente");
+            
         });//END BUTTON
 
         MainMenuBarSuperAdmi mainMenuBarSuperAdmi = new MainMenuBarSuperAdmi();

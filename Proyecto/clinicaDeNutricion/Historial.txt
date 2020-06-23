@@ -346,3 +346,6 @@ cec & IniciÃ³ sesiÃ³n como cliente & Wed Jun 17 22:36:57 CST 2020
 666 & Inició sesión como admistrador & Mon Jun 22 16:08:16 CST 2020
 666 & Solicitó la lista de Recetas & Mon Jun 22 16:08:33 CST 2020
 666 & Solicitó la lista de Recetas & Mon Jun 22 16:08:50 CST 2020
+666 & Inició sesión como admistrador & Mon Jun 22 20:22:29 CST 2020
+111 & Inició sesión como cliente & Mon Jun 22 20:50:42 CST 2020
+666 & Inició sesión como admistrador & Mon Jun 22 20:51:33 CST 2020

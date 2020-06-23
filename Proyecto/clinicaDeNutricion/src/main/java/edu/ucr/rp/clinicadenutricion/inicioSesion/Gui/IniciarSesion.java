@@ -87,11 +87,12 @@ public class IniciarSesion {
         buttonCreaUsuario.setDisable(true);
         gridPaneIniciarSesion.add(buttonCreaUsuario, 0, 4);
         buttonCreaUsuario.setOnAction((event) -> {
+
             Node node = gridPaneIniciarSesion.getChildren().get(2);
             logic.leerArchivo();
 
             if (textFieldID.getText().equals("Super") && textFieldContraseña.getText().equals("1234")) {
-
+                alertas.alertInformation("Bienvenido super administrador: " + textFieldID.getText());
                 gridPaneIniciarSesion.getChildren().clear();
                 gridPaneIniciarSesion.getChildren().add(0, node);
                 gridPaneIniciarSesion.getChildren().add(mainMenuBarSuperAdmi.menuSuperAdmi());
@@ -102,7 +103,7 @@ public class IniciarSesion {
                 if (logic.leeLinea(textFieldID.getText()).substring(0, 1).equals("ä")) {
                     if (logic.stringTokenizer(logic.leeLinea(textFieldID.getText())).getId().equals(textFieldID.getText())) {
                         if (logic.stringTokenizer(logic.leeLinea(textFieldID.getText())).getContraseña().equals(encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()))) {
-
+                            alertas.alertInformation("Bienvenido usuario: " + textFieldID.getText());
                             ID = textFieldID.getText();
                             Acciones acciones = new Acciones(ID, "Inició sesión como cliente", fechaHora.histoFechaHora());
                             logicaAVL.escribeHistorial(acciones);
@@ -119,6 +120,7 @@ public class IniciarSesion {
                 } else if (logic.leeLinea(textFieldID.getText()).substring(0, 1).equals("ö")) {
                     if (logic.stringTokenizer(logic.leeLinea(textFieldID.getText())).getId().equals(textFieldID.getText())) {
                         if (logic.stringTokenizer(logic.leeLinea(textFieldID.getText())).getContraseña().equals(encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()))) {
+                            alertas.alertInformation("Bienvenido administrador: " + textFieldID.getText());
                             ID = textFieldID.getText();
                             Acciones acciones = new Acciones(ID, "Inició sesión como admistrador", fechaHora.histoFechaHora());
                             logicaAVL.escribeHistorial(acciones);
@@ -140,8 +142,6 @@ public class IniciarSesion {
                 JOptionPane.showMessageDialog(null, "El usuario no existe");
 
             }
-
-            alertas.alertInformation("Bienvenido" + textFieldID.getText());
 
         });
 
