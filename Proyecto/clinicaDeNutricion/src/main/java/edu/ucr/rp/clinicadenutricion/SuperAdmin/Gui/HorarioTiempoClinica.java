@@ -50,6 +50,9 @@ public class HorarioTiempoClinica {
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
         gridPaneHorarioTiempoClinica.add(textFieldContraseña, 0, 1);
         textFieldContraseña.setFocusTraversable(false);
+        textFieldContraseña.setOnKeyPressed((event) -> {
+            buttonModificar.setDisable(false);
+        });
 
         textFieldIntervalo = new TextField();
         textFieldIntervalo.setText(configuracion.getTiempoConsulta() + "<- Intervalo");
@@ -89,12 +92,16 @@ public class HorarioTiempoClinica {
         gridPaneHorarioTiempoClinica.add(textFieldCierraClinica, 0, 4);
         textFieldCierraClinica.setFocusTraversable(false);
         textFieldCierraClinica.setVisible(false);
+        textFieldCierraClinica.setOnKeyPressed((event) -> {
+            buttonGuardar.setDisable(false);
+        });
 
         buttonModificar = new Button("Modificar valores");
         buttonModificar.setTextFill(Color.WHITE);//Color de la letra del boton
         buttonModificar.setStyle("-fx-background-color: BLACK");//Color del fondo
         buttonModificar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
         gridPaneHorarioTiempoClinica.add(buttonModificar, 1, 1);
+        buttonModificar.setDisable(true);
         buttonModificar.setOnAction((event) -> {
 
             if (textFieldContraseña.getText().equals(usuarioTemp.getName())) {
@@ -112,7 +119,7 @@ public class HorarioTiempoClinica {
         buttonGuardar.setStyle("-fx-background-color: BLACK");//Color del fondo
         buttonGuardar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
         gridPaneHorarioTiempoClinica.add(buttonGuardar, 0, 7);
-
+        buttonGuardar.setDisable(true);
         buttonGuardar.setOnAction((event) -> {
 
             SuperAdmin configuracion2 = new SuperAdmin(configuracion.getIdentificadorSA(), textFieldAbreClinica.getText(),
@@ -124,7 +131,9 @@ public class HorarioTiempoClinica {
             logiSuper.removeLineFromFile(configuracion.getIdentificadorSA()); //-->>Here esta vara me cae
             logiSuper.writeInFile(configuracion2);
             textFieldContraseña.setDisable(false);
+            textFieldContraseña.clear();
             alerta.alertInformation("Horario cambiado, correctamente");
+            buttonGuardar.setDisable(true);
 
         });//END BUTTON
 
@@ -142,6 +151,21 @@ public class HorarioTiempoClinica {
             gridPaneHorarioTiempoClinica.getChildren().add(barSuper.menuSuperAdmi());
 
         });//end btn cerrar
+
+        Label aclaracion1 = new Label();
+        aclaracion1.setText("* Formato de horario a utilizar es de 24 horas");
+        aclaracion1.setFont(new Font("Arial", 10));
+        aclaracion1.setTextFill(Color.web("#0076a3"));
+        gridPaneHorarioTiempoClinica.add(aclaracion1, 0, 9);
+
+        Label aclaracion2 = new Label();
+        aclaracion2.setText("** Lass citas no pueden durar mas del horario de atencion de la clinica");
+        aclaracion2.setFont(new Font("Arial", 10));
+        aclaracion2.setTextFill(Color.web("#0076a3"));
+        gridPaneHorarioTiempoClinica.add(aclaracion2, 0, 10);
+        
+        GridPane.setColumnSpan(aclaracion1, Integer.BYTES);
+        GridPane.setColumnSpan(aclaracion2, Integer.BYTES);
 
         return gridPaneHorarioTiempoClinica;
     }//end GridPane createCatalogue()
