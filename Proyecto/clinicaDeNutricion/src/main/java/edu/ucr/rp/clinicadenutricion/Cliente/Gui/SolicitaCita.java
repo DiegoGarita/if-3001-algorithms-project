@@ -75,12 +75,6 @@ public class SolicitaCita {
 
         });
 
-        comboBoxHora.setValue("Hora de cita");
-        for (int i = Integer.parseInt(configuracion.getAbreClinica());
-                i < Integer.parseInt(configuracion.getCierreClinica());
-                i = i + Integer.parseInt(configuracion.getTiempoConsulta())) {  //--> horario de 9am a 5pm -->>Estos valores (9y17) van a ser variables
-            comboBoxHora.getItems().addAll(i + ":00");
-        }
         comboBoxHora.setDisable(true);
         gridPaneSolicitaCita.add(comboBoxHora, 0, 3);
 
@@ -97,7 +91,6 @@ public class SolicitaCita {
                         }
 
                         if (Integer.parseInt(LogicaCliente.leeArchivoHoraFecha(dT_DateFligth.getValue().toString()).get(j)) != i) {
-                            System.out.println(LogicaCliente.leeArchivoHoraFecha(dT_DateFligth.getValue().toString()).get(j) + "!=" + i);
                             if (i < 10) {
                                 if (comboBoxHora.getItems().contains("0" + Integer.parseInt(LogicaCliente.leeArchivoHoraFecha(dT_DateFligth.getValue().toString()).get(j)) + ":00") || comboBoxHora.getItems().contains("0" + i + ":00")) {
                                     comboBoxHora.getItems().removeAll("0" + Integer.parseInt(LogicaCliente.leeArchivoHoraFecha(dT_DateFligth.getValue().toString()).get(j)) + ":00");
