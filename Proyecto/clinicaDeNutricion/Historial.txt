@@ -362,3 +362,15 @@ cec & IniciÃ³ sesiÃ³n como cliente & Wed Jun 17 22:36:57 CST 2020
 111 & Solicitó una cita & Mon Jun 22 17:00:52 CST 2020
 111 & Solicitó una cita & Mon Jun 22 17:01:02 CST 2020
 111 & Modificó su perfil & Mon Jun 22 17:01:18 CST 2020
+111 & Inició sesión como cliente & Mon Jun 22 17:55:48 CST 2020
+111 & Inició sesión como cliente & Mon Jun 22 18:01:23 CST 2020
+111 & Modificó su cita & Mon Jun 22 18:01:59 CST 2020
+666 & Inició sesión como admistrador & Mon Jun 22 18:06:38 CST 2020
+666 & Solicitó una cita & Mon Jun 22 18:07:09 CST 2020
+111 & Inició sesión como cliente & Mon Jun 22 18:09:02 CST 2020
+111 & Inició sesión como cliente & Mon Jun 22 18:12:59 CST 2020
+111 & Inició sesión como cliente & Mon Jun 22 18:14:15 CST 2020
+111 & Solicitó una cita & Mon Jun 22 18:14:45 CST 2020
+111 & Solicitó una cita & Mon Jun 22 18:15:45 CST 2020
+111 & Inició sesión como cliente & Mon Jun 22 18:17:22 CST 2020
+111 & Solicitó una cita & Mon Jun 22 18:17:49 CST 2020
