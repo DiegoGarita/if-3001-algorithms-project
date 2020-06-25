@@ -8,6 +8,7 @@ import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Objetos.ReporteMedico;
 import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
 import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
+import edu.ucr.rp.clinicadenutricion.Utilitario.EnviarCorreo;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.IniciarSesion;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -48,13 +49,16 @@ public class Formulario {
     TextArea textAreaNotas = new TextArea();
     Button buttonAceptar;
     Button buttonIngresar;
+    Button buttonEnviarCorreo;
     Button buttongeneraPDF;
+    Button buttonCerrar;
     LogicaCola adminLogic = new LogicaCola();
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
     ArchSupAdmin logiSuper = new ArchSupAdmin();
     IniciarSesion iniciarSesion;
     Alertas alerta = new Alertas();
+    EnviarCorreo enviarCorreo = new EnviarCorreo();
 
     public GridPane formulario() {
 
@@ -105,6 +109,7 @@ public class Formulario {
 
                 buttonAceptar.setVisible(true);
                 buttongeneraPDF.setVisible(true);
+                buttonEnviarCorreo.setVisible(true);
 
                 textFieldID.setText(adminLogic.obtieneUsuario(comboBoxClientes.getValue().toString()).getId());
                 textFieldNombre.setText(adminLogic.obtieneUsuario(comboBoxClientes.getValue().toString()).getName());
@@ -311,8 +316,9 @@ public class Formulario {
         gridPaneFormulario.add(textFieldHorasDescanso, 2, 4);
         textFieldHorasDescanso.setFocusTraversable(false);
         textFieldHorasDescanso.setOnKeyPressed((event) -> {
-            buttonAceptar.setDisable(false);
+            buttonEnviarCorreo.setDisable(false);
             buttongeneraPDF.setDisable(false);
+            textAreaNotas.setDisable(false);
             textAreaNotas.setDisable(false);
         });
 
@@ -328,9 +334,10 @@ public class Formulario {
         buttongeneraPDF.setTextFill(Color.WHITE);
         buttongeneraPDF.setStyle("-fx-background-color: BLACK");
         buttongeneraPDF.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
-        gridPaneFormulario.add(buttongeneraPDF, 1, 6);
+        gridPaneFormulario.add(buttongeneraPDF, 0, 6);
         buttongeneraPDF.setDisable(true);
         buttongeneraPDF.setOnAction((event) -> {
+            buttonAceptar.setDisable(false);
 
             if (!textFieldEdad.getText().trim().equals("") && !textFieldEdadMetabolica.getText().trim().equals("")
                     && !textFieldAltura.getText().trim().equals("") && !textFieldPeso.getText().trim().equals("")
@@ -389,12 +396,29 @@ public class Formulario {
             }//end else
         });//end setOnAction
 
+        buttonEnviarCorreo = new Button("Enviar Correo");
+        buttonEnviarCorreo.setVisible(false);
+        buttonEnviarCorreo.setTextFill(Color.WHITE);
+        buttonEnviarCorreo.setStyle("-fx-background-color: BLACK");
+        buttonEnviarCorreo.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        gridPaneFormulario.add(buttonEnviarCorreo, 1, 6);
+        buttonEnviarCorreo.setDisable(true);
+        buttonEnviarCorreo.setOnAction((event) -> {
+            String correo = adminLogic.obtieneUsuario(comboBoxClientes.getValue().toString()).getCorreo();
+            try {
+                enviarCorreo.sendPDF(correo, "Clínica Susana Distancia", comboBoxClientes.getValue().toString());
+            } catch (IOException ex) {
+                Logger.getLogger(Formulario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            buttonEnviarCorreo.setDisable(true);
+        });
+
         buttonAceptar = new Button("Aceptar");
         buttonAceptar.setVisible(false);
         buttonAceptar.setTextFill(Color.WHITE);
         buttonAceptar.setStyle("-fx-background-color: BLACK");
         buttonAceptar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
-        gridPaneFormulario.add(buttonAceptar, 0, 6);
+        gridPaneFormulario.add(buttonAceptar, 0, 7);
         buttonAceptar.setDisable(true);
         buttonAceptar.setOnAction((event) -> {
 
@@ -433,14 +457,14 @@ public class Formulario {
                 textAreaNotas.clear();
                 alerta.alertInformation("Formulario completado");
                 buttonAceptar.setDisable(true);
-                buttongeneraPDF.setDisable(true);
+                buttonCerrar.setDisable(false);
             }//end if
             else {
                 alerta.alertWarning("Hay campos vacios\nIntentelo de nuevo");
             }//end else
         });//end setOnAction
 
-        Button buttonCerrar = new Button("Cerrar");
+        buttonCerrar = new Button("Cerrar");
         buttonCerrar.setTextFill(Color.WHITE);
         buttonCerrar.setStyle("-fx-background-color: BLACK");
         buttonCerrar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));

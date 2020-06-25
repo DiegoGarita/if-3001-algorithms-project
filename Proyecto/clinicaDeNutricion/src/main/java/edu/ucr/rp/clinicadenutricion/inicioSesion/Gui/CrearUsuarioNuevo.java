@@ -5,10 +5,10 @@ import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Utilitario.EncryptMD5;
 import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
 import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
 import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
+import edu.ucr.rp.clinicadenutricion.Utilitario.EnviarCorreo;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.*;
 import java.util.Optional;
 import javafx.collections.*;
@@ -35,6 +35,7 @@ public class CrearUsuarioNuevo {
     FechaHora fechaHora = new FechaHora();
     ArchSupAdmin logiSuper = new ArchSupAdmin();
     Alertas alertas = new Alertas();
+    EnviarCorreo enviarCorreo = new EnviarCorreo();
 
     public GridPane creaUsuario() {
 
@@ -161,6 +162,11 @@ public class CrearUsuarioNuevo {
 
                             logic.leerArchivo();
                             if (logic.busca(textFieldID.getText()) == false) {
+                                enviarCorreo.sendMessage(textFieldCorreo.getText(), "Clínica Susana Distancia",
+                                        "Mensaje de confirmación de creación de nuevo usuario en nuestra clínica Susana Distancia.\n"
+                                        + "¡Bienvenido! " + textFieldNombre.getText() + " es un gusto atenderle.\n"
+                                        + "Si desea realizar consultas directamente con nuestro soporte de aplicación deberá realizarlas"
+                                        + " por este medio a este correo electrónico.\nSerá un gusto atenderle.");
                                 Usuario usuario = new Usuario(comboBoxRol.getValue().toString(), textFieldID.getText(),
                                         textFieldNombre.getText(), encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()),
                                         textFieldCorreo.getText(), textFieldTelefono.getText(), textFieldDireccion.getText());
