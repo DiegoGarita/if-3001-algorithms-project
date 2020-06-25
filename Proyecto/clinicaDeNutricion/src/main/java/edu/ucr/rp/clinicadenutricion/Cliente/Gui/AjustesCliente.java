@@ -190,23 +190,29 @@ public class AjustesCliente {
         buttonModificar.setDisable(true);
         buttonModificar.setOnAction((event) -> {
 
-            Acciones acciones = new Acciones(iniciarSesion.ID, "Modificó su perfil", fechaHora.histoFechaHora());
-            logicaAVL.escribeHistorial(acciones);
+            if (!textFieldContraseña.getText().trim().equals("")) {
 
-            if (usuarioTemp.getContraseña().equals(encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()))) {
-                textFieldCorreo.setVisible(true);
-                textFieldDireccion.setVisible(true);
-                textFieldTelefono.setVisible(true);
-                labelTelefono.setVisible(true);
-                labelCorreo.setVisible(true);
-                labelDireccion.setVisible(true);
+                Acciones acciones = new Acciones(iniciarSesion.ID, "Modificó su perfil", fechaHora.histoFechaHora());
+                logicaAVL.escribeHistorial(acciones);
 
-                buttonAceptar.setVisible(true);
+                if (usuarioTemp.getContraseña().equals(encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()))) {
+                    textFieldCorreo.setVisible(true);
+                    textFieldDireccion.setVisible(true);
+                    textFieldTelefono.setVisible(true);
+                    labelTelefono.setVisible(true);
+                    labelCorreo.setVisible(true);
+                    labelDireccion.setVisible(true);
+
+                    buttonAceptar.setVisible(true);
+                    buttonEliminar.setDisable(true);
+                    buttonModificar.setDisable(true);
+                }
                 buttonEliminar.setDisable(true);
-                buttonModificar.setDisable(true);
-            }
-            buttonEliminar.setDisable(true);
-            textFieldContraseña.setDisable(true);
+                textFieldContraseña.setDisable(true);
+            }//end if
+            else {
+                alertas.alertWarning("Espacio vacio\nIntente de nuevo");
+            }//end else
 
         });//end setOnAction
 
@@ -218,20 +224,27 @@ public class AjustesCliente {
         buttonEliminar.setDisable(true);
         buttonEliminar.setOnAction((event) -> {
 
-            Acciones acciones = new Acciones(iniciarSesion.ID, "Eliminó su perfil", fechaHora.histoFechaHora());
-            logicaAVL.escribeHistorial(acciones);
+            if (!textFieldContraseña.getText().trim().equals("")) {
 
-            if (usuarioTemp.getContraseña().equals(encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()))) {
-                Usuario usuario = logicaLista.stringTokenizer(logicaLista.leeLinea(textFieldID.getText()));
-                logicaLista.leerArchivo();
-                logicaLista.remueve(usuario);
-                logicaLista.remueveLineaDeArchivo(usuario.getId());
+                Acciones acciones = new Acciones(iniciarSesion.ID, "Eliminó su perfil", fechaHora.histoFechaHora());
+                logicaAVL.escribeHistorial(acciones);
+
+                if (usuarioTemp.getContraseña().equals(encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()))) {
+                    Usuario usuario = logicaLista.stringTokenizer(logicaLista.leeLinea(textFieldID.getText()));
+                    logicaLista.leerArchivo();
+                    logicaLista.remueve(usuario);
+                    logicaLista.remueveLineaDeArchivo(usuario.getId());
+                    buttonModificar.setDisable(true);
+                }
+                buttonEliminar.setDisable(true);
                 buttonModificar.setDisable(true);
-            }
-            buttonEliminar.setDisable(true);
-            buttonModificar.setDisable(true);
-            textFieldContraseña.clear();
-            Platform.exit();
+                textFieldContraseña.clear();
+                Platform.exit();
+
+            }//end if
+            else {
+                alertas.alertWarning("Espacio vacio\nIntente de nuevo");
+            }//end else
 
         });//end setOnAction
 
@@ -243,24 +256,34 @@ public class AjustesCliente {
         buttonAceptar.setVisible(false);
         buttonAceptar.setOnAction((event) -> {
 
-            alertas.alertInformation("Usuario modificado correctamente");
-            Usuario usuario = logicaLista.stringTokenizer(logicaLista.leeLinea(textFieldID.getText()));
-            Usuario usuario1 = new Usuario(textFieldTipo.getText(), textFieldID.getText(), textFieldNombreUsuario.getText(), encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()), textFieldCorreo.getText(), textFieldTelefono.getText(), textFieldDireccion.getText());
+            if (!textFieldCorreo.getText().trim().equals("")
+                    && !textFieldTelefono.getText().trim().equals("")
+                    && !textFieldDireccion.getText().trim().equals("")
+                    && textFieldCorreo.getText().contains("@") ) {
 
-            logicaLista.leerArchivo();
-            logicaLista.modificado(usuario, encrypt.encriptar("SusanaDistancia", textFieldCorreo.getText()));
-            logicaLista.remueveLineaDeArchivo(usuario.getId());
-            logicaLista.escribirArchivo(usuario1);
+                alertas.alertInformation("Usuario modificado correctamente");
+                Usuario usuario = logicaLista.stringTokenizer(logicaLista.leeLinea(textFieldID.getText()));
+                Usuario usuario1 = new Usuario(textFieldTipo.getText(), textFieldID.getText(), textFieldNombreUsuario.getText(), encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()), textFieldCorreo.getText(), textFieldTelefono.getText(), textFieldDireccion.getText());
 
-            textFieldDireccion.setDisable(true);
-            textFieldCorreo.setDisable(true);
-            textFieldTelefono.setDisable(true);
-            textFieldDireccion.clear();
-            textFieldCorreo.clear();
-            textFieldTelefono.clear();
-            textFieldContraseña.clear();
+                logicaLista.leerArchivo();
+                logicaLista.modificado(usuario, encrypt.encriptar("SusanaDistancia", textFieldCorreo.getText()));
+                logicaLista.remueveLineaDeArchivo(usuario.getId());
+                logicaLista.escribirArchivo(usuario1);
 
-            buttonAceptar.setDisable(true);
+                textFieldDireccion.setDisable(true);
+                textFieldCorreo.setDisable(true);
+                textFieldTelefono.setDisable(true);
+                textFieldDireccion.clear();
+                textFieldCorreo.clear();
+                textFieldTelefono.clear();
+                textFieldContraseña.clear();
+
+                buttonAceptar.setDisable(true);
+
+            }//end if
+            else {
+                alertas.alertWarning("Espacio vacio\nIntente de nuevo");
+            }//end else
         });//end setOnAction
 
         MainMenuBarCliente barCliente = new MainMenuBarCliente();
