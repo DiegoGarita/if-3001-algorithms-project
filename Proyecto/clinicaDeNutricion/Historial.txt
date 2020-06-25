@@ -471,3 +471,15 @@ ghh & , usuario no registrado intentó iniciar sesión & Wed Jun 24 20:55:57 CST 2
 999 & Ingresó nuevo formulario para un paciente & Wed Jun 24 21:33:46 CST 2020
 999 & Inició sesión como admistrador & Wed Jun 24 21:37:37 CST 2020
 999 & Ingresó nuevo formulario para un paciente & Wed Jun 24 21:39:00 CST 2020
+305240285 & Inició sesión como admistrador & Wed Jun 24 22:17:04 CST 2020
+305240285 & Solicitó información de pacientes & Wed Jun 24 22:17:58 CST 2020
+305240285 & Ingresó nuevo formulario para un paciente & Wed Jun 24 22:18:46 CST 2020
+305240285 & Inició sesión como admistrador & Wed Jun 24 22:26:43 CST 2020
+305240285 & Ingresó nuevo formulario para un paciente & Wed Jun 24 22:28:02 CST 2020
+3000 & Se registró como nuevo usuario & Wed Jun 24 22:30:33 CST 2020
+12345 & Se registró como nuevo usuario & Wed Jun 24 22:33:17 CST 2020
+qwe & Se registró como nuevo usuario & Wed Jun 24 22:33:47 CST 2020
+54321 & Se registró como nuevo usuario & Wed Jun 24 22:38:32 CST 2020
+666666 & Se registró como nuevo usuario & Wed Jun 24 22:39:50 CST 2020
+111 & , usuario no registrado intentó iniciar sesión & Wed Jun 24 22:48:12 CST 2020
+54321 & Inició sesión como cliente & Wed Jun 24 22:48:28 CST 2020

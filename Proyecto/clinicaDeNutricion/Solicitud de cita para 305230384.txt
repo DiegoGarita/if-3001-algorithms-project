@@ -2,3 +2,5 @@
 305230384|Ale|Wed Jun 24|21:32:58|55 anos||dsad|asdsa|sad|adsd|sads|dsad|sds|adsa|dsad|dsadsa
 305230384|Ale|Wed Jun 24|21:33:36|fdgf||dgf|dgfd|fg|dfgfdg|gfg|gfd|dfg|fdgfd|gfdgdf|dfgfdgfd
 305230384|Ale|Wed Jun 24|21:37:41|20|4..0|1.70|85|98|85|8|98|dsd|effre|fdrfdr|sirvo
+305230384|Ale|Wed Jun 24|22:18:03|49|12|3m|23lib|66|66|66|66|2l|6h|9h|Mucho texto
+305230384|Ale|Wed Jun 24|22:26:48|23|23|4m|23|66|66|66|66|3l|1h|6h|Mucho texto

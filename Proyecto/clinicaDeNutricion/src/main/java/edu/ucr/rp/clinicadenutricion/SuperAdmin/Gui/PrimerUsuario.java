@@ -8,6 +8,7 @@ import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
 import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
+import edu.ucr.rp.clinicadenutricion.Utilitario.EnviarCorreo;
 import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.*;
 import java.util.Optional;
@@ -34,6 +35,7 @@ public class PrimerUsuario {
     FechaHora fechaHora = new FechaHora();
     ArchSupAdmin logiSuper = new ArchSupAdmin();
     Alertas alertas = new Alertas();
+    EnviarCorreo enviarCorreo = new EnviarCorreo();
 
     public GridPane creaUsuario() {
 
@@ -150,7 +152,7 @@ public class PrimerUsuario {
                     if (textFieldCorreo.getText().contains("@") && textFieldContraseña.getText().length() >= 5
                             && !textFieldID.getText().trim().equals("") && !textFieldNombre.getText().trim().equals("")
                             && !textFieldContraseña.getText().trim().equals("") && !textFieldCorreo.getText().trim().equals("")
-                            && !textFieldTelefono.getText().trim().equals("") && !textFieldDireccion.getText().trim().equals("") ){
+                            && !textFieldTelefono.getText().trim().equals("") && !textFieldDireccion.getText().trim().equals("")) {
                         //  && Integer.parseInt(textFieldTelefono.getText()) % 2 == 0
                         //   && Integer.parseInt(textFieldTelefono.getText()) % 3 == 1) {
 
@@ -160,6 +162,12 @@ public class PrimerUsuario {
 
                             logic.leerArchivo();
                             if (logic.busca(textFieldID.getText()) == false) {
+                                enviarCorreo.sendMessage(textFieldCorreo.getText(), "Clínica Susana Distancia",
+                                        "Mensaje de confirmación de creación de nuevo usuario en nuestra clínica Susana Distancia.\n"
+                                        + "¡Bienvenido! " + textFieldNombre.getText() + " es un gusto atenderle.\n"
+                                        + "Si desea realizar consultas directamente con nuestro soporte de aplicación deberá realizarlas"
+                                        + " por este medio a este correo electrónico.\nSerá un gusto atenderle.");
+
                                 Usuario usuario = new Usuario(comboBoxRol.getValue().toString(), textFieldID.getText(),
                                         textFieldNombre.getText(), encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()),
                                         textFieldCorreo.getText(), textFieldTelefono.getText(), textFieldDireccion.getText());
