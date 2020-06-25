@@ -9,6 +9,7 @@ import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.IniciarSesion;
 import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
+import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -26,6 +27,7 @@ public class ReporteProgreso {
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
     ArchSupAdmin logiSuper = new ArchSupAdmin();
+    Alertas alertas = new Alertas();
 
     public GridPane reporteProgreso() {
 
@@ -72,13 +74,16 @@ public class ReporteProgreso {
         buttonGraficoActual.setStyle("-fx-background-color: BLACK");
         buttonGraficoActual.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         gridPaneReportePorgreso.add(buttonGraficoActual, 3, 3);
-
         buttonGraficoActual.setOnAction((event) -> {
-
-            grafico.MuestraGraficoActual(); //--> %agua, %masMusc, grasa , grasaVisc
-            Acciones acciones = new Acciones(iniciarSesion.ID, "Revisó su progreso graficamente", fechaHora.histoFechaHora());
-            logicaAVL.escribeHistorial(acciones);
-            buttonGraficoActual.setDisable(true);
+            try {
+                grafico.MuestraGraficoActual(); //--> %agua, %masMusc, grasa , grasaVisc
+                Acciones acciones = new Acciones(iniciarSesion.ID, "Revisó su progreso graficamente", fechaHora.histoFechaHora());
+                logicaAVL.escribeHistorial(acciones);
+                buttonGraficoActual.setDisable(true);
+            }//end try
+            catch (java.lang.NumberFormatException kk) {
+                alertas.alertWarning("No hay informacion por mostrar, debe tener una primer cita");
+            }//end catch
         });//END BUTTON
 
         buttonGraficoInicial = new Button("Ver datos iniciales");
@@ -86,12 +91,14 @@ public class ReporteProgreso {
         buttonGraficoInicial.setStyle("-fx-background-color: BLACK");
         buttonGraficoInicial.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         gridPaneReportePorgreso.add(buttonGraficoInicial, 1, 3);
-
         buttonGraficoInicial.setOnAction((event) -> {
-
-            grafico.MuestraGraficoInicial(); //--> %agua, %masMusc, grasa , grasaVisc
-            buttonGraficoInicial.setDisable(true);
-
+            try {
+                grafico.MuestraGraficoInicial(); //--> %agua, %masMusc, grasa , grasaVisc
+                buttonGraficoInicial.setDisable(true);
+            }//end try
+            catch (java.lang.NumberFormatException kk) {
+                alertas.alertWarning("No hay informacion por mostrar, debe tener una primer cita");
+            }//end catch
         });//END BUTTON
 
         MainMenuBarCliente mainMenuBarCliente = new MainMenuBarCliente();

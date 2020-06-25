@@ -25,6 +25,7 @@ public class SolicitaCita {
     TextField textFieldDoctora;
     Button botonGuardar;
     ComboBox comboBoxHora = new ComboBox();
+    
     LogicaPila LogicaCliente = new LogicaPila();
     LogicaListas logic = new LogicaListas();
     IniciarSesion inicioSesion;
@@ -158,6 +159,9 @@ public class SolicitaCita {
         gridPaneSolicitaCita.add(botonGuardar, 0, 7);
         botonGuardar.setDisable(true);
         botonGuardar.setOnAction((event) -> {
+            
+            if (!textFieldIDReservacion.getText().trim().equals("") 
+                && !textFieldDoctora.getText().trim().equals("")){
 
             Cita cita = new Cita(textFieldIDReservacion.getText(), usuario.getId(), dT_DateFligth.getValue().toString(),
                     comboBoxHora.getValue().toString(), textFieldDoctora.getText());
@@ -175,6 +179,10 @@ public class SolicitaCita {
             textFieldDoctora.setDisable(true);
             comboBoxHora.setDisable(true);
             dT_DateFligth.setDisable(true);
+            }//end if
+            else {
+                alerta.alertWarning("Hay campos vacios\nIntentelo de nuevo");
+            }//end else
         });
 
         MainMenuBarCliente mainMenuBarCliente = new MainMenuBarCliente();

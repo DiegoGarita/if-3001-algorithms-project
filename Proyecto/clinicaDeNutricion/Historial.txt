@@ -483,3 +483,21 @@ qwe & Se registró como nuevo usuario & Wed Jun 24 22:33:47 CST 2020
 666666 & Se registró como nuevo usuario & Wed Jun 24 22:39:50 CST 2020
 111 & , usuario no registrado intentó iniciar sesión & Wed Jun 24 22:48:12 CST 2020
 54321 & Inició sesión como cliente & Wed Jun 24 22:48:28 CST 2020
+54321 & Inició sesión como cliente & Wed Jun 24 23:07:48 CST 2020
+54321 & Inició sesión como cliente & Wed Jun 24 23:11:16 CST 2020
+54321 & Inició sesión como cliente & Wed Jun 24 23:22:03 CST 2020
+54321 & Solicitó una cita & Wed Jun 24 23:22:32 CST 2020
+54321 & Inició sesión como cliente & Wed Jun 24 23:23:21 CST 2020
+54321 & Solicitó una cita & Wed Jun 24 23:23:59 CST 2020
+54321 & Inició sesión como cliente & Wed Jun 24 23:27:24 CST 2020
+54321 & Intentó iniciar sesión pero falló la contraseña & Wed Jun 24 23:29:32 CST 2020
+54321 & Inició sesión como cliente & Wed Jun 24 23:29:41 CST 2020
+54321 & Inició sesión como cliente & Wed Jun 24 23:31:41 CST 2020
+54321 & Modificó su perfil & Wed Jun 24 23:31:53 CST 2020
+54321 & Inició sesión como cliente & Wed Jun 24 23:39:05 CST 2020
+54321 & Modificó su perfil & Wed Jun 24 23:39:20 CST 2020
+54321 & Inició sesión como cliente & Wed Jun 24 23:43:43 CST 2020
+54321 & consultó su reporte de citas & Wed Jun 24 23:43:46 CST 2020
+54321 & Inició sesión como cliente & Wed Jun 24 23:47:37 CST 2020
+54321 & Inició sesión como cliente & Wed Jun 24 23:50:21 CST 2020
+54321 & Inició sesión como cliente & Wed Jun 24 23:52:27 CST 2020
