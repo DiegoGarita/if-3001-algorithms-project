@@ -26,7 +26,7 @@ public class Creditos {
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
 
-        Text Titulo = new Text(200, 200, "Creditos de la aplicacion: Control de inventarios");
+        Text Titulo = new Text(200, 200, "Créditos de la aplicación: Clínica de alimentación");
         Titulo.setFont(Font.font(20));
         Titulo.setOnMouseMoved(e -> {
             Titulo.setFill(Color.color(Math.random(), Math.random(), Math.random()));

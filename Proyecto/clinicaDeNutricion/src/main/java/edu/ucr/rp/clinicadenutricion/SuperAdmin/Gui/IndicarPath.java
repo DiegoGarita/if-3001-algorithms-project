@@ -113,7 +113,7 @@ public class IndicarPath {
                     label.getText(), configuracion.getPaginacion());
 
             logiSuper.readInFile();
-            logiSuper.removeLineFromFile(configuracion.getIdentificadorSA()); //-->>Here esta vara me cae
+            logiSuper.removeLineFromFile(configuracion2.getIdentificadorSA()); //-->>Here esta vara me cae
             logiSuper.writeInFile(configuracion2);
             System.out.println("Hola no boto el app");
 

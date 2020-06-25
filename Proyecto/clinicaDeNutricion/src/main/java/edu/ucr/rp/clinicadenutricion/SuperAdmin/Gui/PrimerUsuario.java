@@ -1,4 +1,4 @@
-package edu.ucr.rp.clinicadenutricion.inicioSesion.Gui;
+package edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui;
 
 import edu.ucr.rp.clinicadenutricion.AVL.LogicaAVL;
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
@@ -18,8 +18,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 
-//en esta clase se colocara la GUI para crear un usuario nuevo, de cualquier de los 3 tipos posibles
-public class CrearUsuarioNuevo {
+public class PrimerUsuario {
 
     TextField textFieldNombre;
     TextField textFieldContraseña;
@@ -38,8 +37,8 @@ public class CrearUsuarioNuevo {
 
     public GridPane creaUsuario() {
 
-        if (logic.cantidadDeClientes("|") < 3) {
-            alertas.alertWarning("Se deben registrar primero un cliente\n y un admin desde Super administrador");
+        if (logic.cantidadDeClientes("|") >= 3) {
+            alertas.alertWarning("Ya se registo el primer usuario y el primer Administrador\nDirigase a la parte de registro");
             System.out.println(logic.cantidadDeClientes("|") + "if");
         } else {
             System.out.println(logic.cantidadDeClientes("|") + "else");
@@ -151,8 +150,8 @@ public class CrearUsuarioNuevo {
                     if (textFieldCorreo.getText().contains("@") && textFieldContraseña.getText().length() >= 5
                             && !textFieldID.getText().trim().equals("") && !textFieldNombre.getText().trim().equals("")
                             && !textFieldContraseña.getText().trim().equals("") && !textFieldCorreo.getText().trim().equals("")
-                            && !textFieldTelefono.getText().trim().equals("") && !textFieldDireccion.getText().trim().equals("")) {
-                        //   && Integer.parseInt(textFieldTelefono.getText()) % 2 == 0
+                            && !textFieldTelefono.getText().trim().equals("") && !textFieldDireccion.getText().trim().equals("") ){
+                        //  && Integer.parseInt(textFieldTelefono.getText()) % 2 == 0
                         //   && Integer.parseInt(textFieldTelefono.getText()) % 3 == 1) {
 
                         alertas.alertConfirmation("");
@@ -201,14 +200,17 @@ public class CrearUsuarioNuevo {
             gridPaneCreaUsuario.add(labelAclaracion, 0, 9);
             GridPane.setColumnSpan(labelAclaracion, Integer.BYTES);
 
+            MainMenuBarSuperAdmi mainMenuBarSuperAdmi = new MainMenuBarSuperAdmi();
             Button buttonCerrar = new Button("Cerrar");
             buttonCerrar.setTextFill(Color.WHITE);
             buttonCerrar.setStyle("-fx-background-color: BLACK");
             buttonCerrar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
             gridPaneCreaUsuario.add(buttonCerrar, 2, 8);
             buttonCerrar.setOnAction((event) -> {
+
                 gridPaneCreaUsuario.getChildren().clear();
                 gridPaneCreaUsuario.setBackground(Background.EMPTY);
+                gridPaneCreaUsuario.getChildren().add(mainMenuBarSuperAdmi.menuSuperAdmi());
 
             });//end btn cerrar
 

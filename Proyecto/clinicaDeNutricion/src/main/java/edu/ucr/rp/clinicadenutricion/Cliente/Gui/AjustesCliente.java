@@ -7,6 +7,8 @@ import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
 import edu.ucr.rp.clinicadenutricion.Utilitario.EncryptMD5;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
 import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
+import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.Background;
@@ -14,7 +16,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 
-public class AjustesCliente{
+public class AjustesCliente {
 
     TextField textFieldTipo;
     TextField textFieldID;
@@ -38,9 +40,11 @@ public class AjustesCliente{
     LogicaListas logicaLista = new LogicaListas();
     IniciarSesion iniciarSesion;
 
+    Alertas alertas = new Alertas();
+
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
-    
+
     public GridPane ajustesCliente() {
 
         GridPane gridPaneAjustesCliente = new GridPane();
@@ -193,10 +197,16 @@ public class AjustesCliente{
                 textFieldCorreo.setVisible(true);
                 textFieldDireccion.setVisible(true);
                 textFieldTelefono.setVisible(true);
+                labelTelefono.setVisible(true);
+                labelCorreo.setVisible(true);
+                labelDireccion.setVisible(true);
+
                 buttonAceptar.setVisible(true);
                 buttonEliminar.setDisable(true);
                 buttonModificar.setDisable(true);
             }
+            buttonEliminar.setDisable(true);
+            textFieldContraseña.setDisable(true);
 
         });//end setOnAction
 
@@ -218,6 +228,11 @@ public class AjustesCliente{
                 logicaLista.remueveLineaDeArchivo(usuario.getId());
                 buttonModificar.setDisable(true);
             }
+            buttonEliminar.setDisable(true);
+            buttonModificar.setDisable(true);
+            textFieldContraseña.clear();
+            Platform.exit();
+
         });//end setOnAction
 
         buttonAceptar = new Button("Aceptar");
@@ -228,6 +243,7 @@ public class AjustesCliente{
         buttonAceptar.setVisible(false);
         buttonAceptar.setOnAction((event) -> {
 
+            alertas.alertInformation("Usuario modificado correctamente");
             Usuario usuario = logicaLista.stringTokenizer(logicaLista.leeLinea(textFieldID.getText()));
             Usuario usuario1 = new Usuario(textFieldTipo.getText(), textFieldID.getText(), textFieldNombreUsuario.getText(), encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()), textFieldCorreo.getText(), textFieldTelefono.getText(), textFieldDireccion.getText());
 
@@ -239,6 +255,10 @@ public class AjustesCliente{
             textFieldDireccion.setDisable(true);
             textFieldCorreo.setDisable(true);
             textFieldTelefono.setDisable(true);
+            textFieldDireccion.clear();
+            textFieldCorreo.clear();
+            textFieldTelefono.clear();
+            textFieldContraseña.clear();
 
             buttonAceptar.setDisable(true);
         });//end setOnAction

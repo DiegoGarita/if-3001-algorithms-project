@@ -46,12 +46,26 @@ public class ReporteProgreso {
             tipo = "Administración";
         }
 
-        Label labelNombew = new Label("Nombre: " + usuario.getName());
-        gridPaneReportePorgreso.add(labelNombew, 0, 1);
+        Label labelNombre = new Label("Nombre: " + usuario.getName());
+        labelNombre.setFont(new Font("Arial", 15));
+        labelNombre.setStyle("-fx-font-weight: bold");
+        labelNombre.setTextFill(Color.web("#0076a3"));
+        labelNombre.setStyle("-fx-background-color: rgb(111, 210, 170);");
+        gridPaneReportePorgreso.add(labelNombre, 0, 0);
+
         Label labelCedula = new Label("Cedula: " + usuario.getId());
-        gridPaneReportePorgreso.add(labelCedula, 1, 1);
+        labelCedula.setFont(new Font("Arial", 15));
+        labelCedula.setStyle("-fx-font-weight: bold");
+        labelCedula.setTextFill(Color.web("#0076a3"));
+        labelCedula.setStyle("-fx-background-color: rgb(111, 210, 170);");
+        gridPaneReportePorgreso.add(labelCedula, 0, 1);
+
         Label labelTelefono = new Label("Telefono: " + usuario.getTelefono());
-        gridPaneReportePorgreso.add(labelTelefono, 2, 1);
+        labelTelefono.setFont(new Font("Arial", 15));
+        labelTelefono.setStyle("-fx-font-weight: bold");
+        labelTelefono.setTextFill(Color.web("#0076a3"));
+        labelTelefono.setStyle("-fx-background-color: rgb(111, 210, 170);");
+        gridPaneReportePorgreso.add(labelTelefono, 0, 2);
 
         buttonGraficoActual = new Button("Ver datos recientes");
         buttonGraficoActual.setTextFill(Color.WHITE);

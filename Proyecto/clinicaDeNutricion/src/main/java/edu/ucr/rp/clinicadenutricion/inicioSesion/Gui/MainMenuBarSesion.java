@@ -42,10 +42,10 @@ public class MainMenuBarSesion {
                 + "-fx-background-insets: 50;");
 
         MenuItem menuItemAbout = new MenuItem("Acerca de", new ImageView(new Image("file:src/image/aD.png")));
-        menuItemAbout.setAccelerator(KeyCombination.keyCombination("Ctrl+A"));
         MenuItem menuItemCredits = new MenuItem("Créditos", new ImageView(new Image("file:src/image/credi.png")));
         menuItemCredits.setAccelerator(KeyCombination.keyCombination("Ctrl+C"));
         MenuItem menuItemPerformance = new MenuItem("Funcionamiento", new ImageView(new Image("file:src/image/preg.png")));
+        menuItemPerformance.setAccelerator(KeyCombination.keyCombination("Ctrl+F"));
         MenuItem menuItemExit = new MenuItem("Salir", new ImageView(new Image("file:src/image/salir.png")));
         menuItemExit.setAccelerator(KeyCombination.keyCombination("Alt+S"));
 
@@ -73,10 +73,10 @@ public class MainMenuBarSesion {
                 + "-fx-effect: dropshadow(gaussian, red, 50, 0, 0, 0);"
                 + "-fx-background-insets: 50;");
         MenuItem menuItemCreaCuenta = new MenuItem("Crear cuenta", new ImageView(new Image("file:src/image/nuevo.png")));
-        menuItemCreaCuenta.setAccelerator(KeyCombination.keyCombination("Ctrl+D"));
+        menuItemCreaCuenta.setAccelerator(KeyCombination.keyCombination("Ctrl+N"));
 
         MenuItem menuItemIngresar = new MenuItem("Ingresar", new ImageView(new Image("file:src/image/ingr.png")));
-        menuItemIngresar.setAccelerator(KeyCombination.keyCombination("Ctrl+D"));
+        menuItemIngresar.setAccelerator(KeyCombination.keyCombination("Ctrl+I"));
 
         menuItemCreaCuenta.setOnAction((event) -> {
             vBoxWindows.getChildren().clear();

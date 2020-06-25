@@ -47,7 +47,7 @@ public class PlanesAlimenticios {
             buttonAceptar.setDisable(false);
         });
 
-        comboBoxSeleccion.setValue("Elige una opcion");
+        comboBoxSeleccion.setValue("Elige una opción");
         comboBoxSeleccion.setVisible(false);
         comboBoxSeleccion.setStyle("-fx-background-color: lightblue");
         gridPanePlanesAlimenticios.add(comboBoxSeleccion, 0, 1);

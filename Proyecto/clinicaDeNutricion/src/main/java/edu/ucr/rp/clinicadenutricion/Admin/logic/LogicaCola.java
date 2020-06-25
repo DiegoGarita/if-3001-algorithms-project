@@ -17,7 +17,7 @@ public class LogicaCola {
     public ArrayList<Usuario> arrayListClientes = new ArrayList<>();
     ArchSupAdmin logiSuper = new ArchSupAdmin();
     LogicaListas logic = new LogicaListas();
-
+     
     public void escribeCitas(ReporteMedico reporteMedico) {
 
         SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
@@ -42,7 +42,7 @@ public class LogicaCola {
     }//end writeFileCatalogue()
 
     public String leeArchivo(String file, int identificador) {
-
+       // SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
         File newFile = new File("Solicitud de cita para " + file + ".txt");
         String returned = "";
         try {
@@ -69,8 +69,8 @@ public class LogicaCola {
     }// end readProperties()
 
     public String obtieneLineaEspecifica(String file, boolean identificador) {
-
-        File newFile = new File("Solicitud de cita para " + file + ".txt");
+     //   SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+        File newFile = new File( "Solicitud de cita para " + file + ".txt");
         String returned = "";
         try {
             FileInputStream fileInputStream = new FileInputStream(newFile);
@@ -99,6 +99,7 @@ public class LogicaCola {
 
     public int cantidadDeClientes(String identificador) {
         int cantidad = 0;
+      //  SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
         File newFile = new File("usuarios.txt");
         try {
             FileInputStream fileInputStream = new FileInputStream(newFile);
@@ -123,7 +124,8 @@ public class LogicaCola {
 
     public int cantidadDeLineas(String file) {
         int cantidad = 0;
-        File newFile = new File("Solicitud de cita para " + file + ".txt");
+        //SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+        File newFile = new File( "Solicitud de cita para " + file + ".txt");
         try {
             FileInputStream fileInputStream = new FileInputStream(newFile);
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
@@ -243,7 +245,9 @@ public class LogicaCola {
 
         }
 
-        ReporteMedico reporteMedico = new ReporteMedico(iD, nombre, fecha, hora, edad, edadMetabolica, altura, peso, porcenMasaMuscular, grasa, grasaVisceral, hueso, porcenAgua, actividadFisica, horasDeSueño, textAreaNotas);
+        ReporteMedico reporteMedico = new ReporteMedico(iD, nombre, fecha,
+                hora, edad, edadMetabolica, altura, peso, porcenMasaMuscular,
+                grasa, grasaVisceral, hueso, porcenAgua, actividadFisica, horasDeSueño, textAreaNotas);
         return reporteMedico;
 
     }

@@ -15,14 +15,14 @@ import java.util.StringTokenizer;
 import javax.swing.JOptionPane;
 
 public class LogicaAVL {
-    
+
     ImplementacionAVL implementacionAVL = new ImplementacionAVL();
-    
-        ArchSupAdmin logiSuper = new ArchSupAdmin();
+
+    ArchSupAdmin logiSuper = new ArchSupAdmin();
 
     public void escribeHistorial(Acciones acciones) {
 
-           SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+        SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
         File newFile = new File(configuracion.getPathDeGuardado() + "\\Historial.txt");
 
         try {
@@ -35,9 +35,9 @@ public class LogicaAVL {
             JOptionPane.showMessageDialog(null, fileNotFoundException + "\nProblemas con el archivo");
         }
     }//end writeFileCatalogue()
-    
-        public void leerHistorial() {
 
+    public void leerHistorial() {
+       // SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
         File newFile = new File("Historial.txt");
         try {
             FileInputStream fileInputStream = new FileInputStream(newFile);
@@ -58,8 +58,8 @@ public class LogicaAVL {
             JOptionPane.showMessageDialog(null, IOException + ": Problemas con el archivo");
         }
     }// end readProperties()
-        
-        public Acciones stringTokenizer(String lineas) {
+
+    public Acciones stringTokenizer(String lineas) {
 
         StringTokenizer stringTokenizer = new StringTokenizer(lineas, "&");
         int counterTokens = 0;
@@ -87,7 +87,7 @@ public class LogicaAVL {
 
         }
 
-            Acciones acciones = new Acciones(nombre, accion, fechaHora);
+        Acciones acciones = new Acciones(nombre, accion, fechaHora);
         return acciones;
 
     }

@@ -1,6 +1,5 @@
 package edu.ucr.rp.clinicadenutricion.inicioSesion.logic;
 
-import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
 import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
 import java.io.BufferedReader;
@@ -20,8 +19,8 @@ public class LogicaListas {
     ArchSupAdmin logiSuper = new ArchSupAdmin();
 
     public void escribirArchivo(Usuario usuario) {
-        SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
-        File newFile = new File(configuracion.getPathDeGuardado() + "\\usuarios.txt");
+
+        File newFile = new File("usuarios.txt");
         String tipoDeToken = "";
 
         try {
@@ -179,6 +178,30 @@ public class LogicaListas {
             JOptionPane.showMessageDialog(null, IOException + ": Problemas con el archivo");
         }
         return null;
+    }// end readProperties()
+    
+    
+        public int cantidadDeClientes(String identificador) {
+        int cantidad = 0;
+        File newFile = new File("usuarios.txt");
+        try {
+            FileInputStream fileInputStream = new FileInputStream(newFile);
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            String currentRegistry = bufferedReader.readLine();
+
+            while (currentRegistry != null) {
+                if (currentRegistry.contains(identificador)) {
+                    cantidad++;
+                }
+                currentRegistry = bufferedReader.readLine();
+            }
+
+        } catch (FileNotFoundException fileNotFoundException) {
+        } catch (IOException IOException) {
+            JOptionPane.showMessageDialog(null, IOException + ": Problemas con el archivo");
+        }
+        return cantidad;
     }// end readProperties()
 
     public void modificado(Usuario usuario, String cadena) {
