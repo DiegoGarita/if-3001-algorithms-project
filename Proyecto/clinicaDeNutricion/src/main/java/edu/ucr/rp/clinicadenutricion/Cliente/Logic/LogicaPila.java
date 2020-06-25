@@ -18,12 +18,13 @@ import javax.swing.JOptionPane;
 public class LogicaPila {
 
     ImplementacionPila implementacionPila = new ImplementacionPila();
-     ArchSupAdmin logiSuper = new ArchSupAdmin();
- public int contadorHoras = 0;
+    ArchSupAdmin logiSuper = new ArchSupAdmin();
+    public int contadorHoras = 0;
+
     public void EscribeArchivoSolicitudCita(Cita cita) {
 
-       SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
-        File newFile = new File(configuracion.getPathDeGuardado()+"\\ApartaCita.txt");
+        SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+        File newFile = new File(configuracion.getPathDeGuardado() + "\\ApartaCita.txt");
 
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(newFile, true);
@@ -37,8 +38,8 @@ public class LogicaPila {
     }//end writeFileCatalogue()
 
     public void leeArchivoSolicitudCita() {
-
-        File newFile = new File("ApartaCita.txt");
+      //  SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+        File newFile = new File( "ApartaCita.txt");
         String currentRegistry = null;
         try {
             FileInputStream fileInputStream = new FileInputStream(newFile);
@@ -83,7 +84,7 @@ public class LogicaPila {
     }// end readProperties()
 
     public void remueveLineaDelArchivo(String IDBuscar) {
-        
+      //  SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
         ImplementacionPila implementacionPila = new ImplementacionPila();
         File previousFile = new File("ApartaCita.txt");
         try {
@@ -162,7 +163,7 @@ public class LogicaPila {
     }//end token
 
     public String leeLinea(String identificador) {
-
+    //    SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
         File newFile = new File("ApartaCita.txt");
         try {
             FileInputStream fileInputStream = new FileInputStream(newFile);
@@ -187,8 +188,9 @@ public class LogicaPila {
         }
         return null;
     }// end readProperties()
-     public ArrayList<String> leeArchivoHoraFecha(String date) {
 
+    public ArrayList<String> leeArchivoHoraFecha(String date) {
+      //  SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
         File newFile = new File("ApartaCita.txt");
         ArrayList<String> returned = new ArrayList<>();
         try {

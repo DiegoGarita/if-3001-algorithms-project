@@ -24,8 +24,8 @@ public class Grafico {
 
         pieDataset.setValue("% Agua", Integer.parseInt(reporteMedico.getPorcenAgua()));
         pieDataset.setValue("% Masa muscular", Integer.parseInt(reporteMedico.getPorcenMasaMuscular()));
-        pieDataset.setValue("Grasa", Integer.parseInt(reporteMedico.getGrasa()));
-        pieDataset.setValue("Grasa visceral", Integer.parseInt(reporteMedico.getGrasaVisceral()));
+        pieDataset.setValue("%Grasa", Integer.parseInt(reporteMedico.getGrasa()));
+        pieDataset.setValue("%Grasa visceral", Integer.parseInt(reporteMedico.getGrasaVisceral()));
 
         JFreeChart chart = ChartFactory.createPieChart(
                 "Reporte reciente (" + reporteMedico.getFecha() + ")",

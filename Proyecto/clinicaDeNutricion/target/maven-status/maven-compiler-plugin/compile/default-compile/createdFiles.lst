@@ -26,6 +26,7 @@ edu\ucr\rp\clinicadenutricion\Admin\Gui\ReservaCita.class
 edu\ucr\rp\clinicadenutricion\inicioSesion\logic\ImplementacionListas.class
 edu\ucr\rp\clinicadenutricion\Objetos\SuperAdmin.class
 edu\ucr\rp\clinicadenutricion\Admin\logic\PlanesAlimenticiosLogica.class
+edu\ucr\rp\clinicadenutricion\SuperAdmin\Gui\PrimerUsuario.class
 edu\ucr\rp\clinicadenutricion\SuperAdmin\Logic\Node.class
 edu\ucr\rp\clinicadenutricion\inicioSesion\Gui\CrearUsuarioNuevo.class
 edu\ucr\rp\clinicadenutricion\SuperAdmin\Logic\ArchSupAdmin.class

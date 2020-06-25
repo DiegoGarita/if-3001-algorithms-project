@@ -136,7 +136,8 @@ public class ArchSupAdmin {
 
         }
 
-        SuperAdmin u = new SuperAdmin(identificadorSA, abreClinica, cierreClinica, TiempoConsulta, NombreLogo, pathDeGuardado, paginacion);
+        SuperAdmin u = new SuperAdmin(identificadorSA, abreClinica, cierreClinica,
+                TiempoConsulta, NombreLogo, pathDeGuardado, paginacion);
         return u;
 
     }

@@ -88,7 +88,7 @@ public class IniciarSesion {
         gridPaneIniciarSesion.add(buttonCreaUsuario, 0, 4);
         buttonCreaUsuario.setOnAction((event) -> {
 
-            Node node = gridPaneIniciarSesion.getChildren().get(2);
+            Node node = gridPaneIniciarSesion.getChildren().get(2);  //--> Limpia para que entren los otros grids con su menuBar
             logic.leerArchivo();
 
             if (textFieldID.getText().equals("Super") && textFieldContraseña.getText().equals("1234")) {
@@ -100,8 +100,9 @@ public class IniciarSesion {
 
                 gridPaneIniciarSesion.getChildren().clear();
 
-                if (logic.leeLinea(textFieldID.getText()).substring(0, 1).equals("ä")) {
-                    if (logic.stringTokenizer(logic.leeLinea(textFieldID.getText())).getId().equals(textFieldID.getText())) {
+                if (logic.leeLinea(textFieldID.getText()).substring(0, 1).equals("ä") ) {
+                    if (logic.stringTokenizer(logic.leeLinea(textFieldID.getText())).getId().equals(textFieldID.getText())
+                            && !textFieldID.getText().trim().equals("") && !textFieldContraseña.getText().trim().equals("")) {
                         if (logic.stringTokenizer(logic.leeLinea(textFieldID.getText())).getContraseña().equals(encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()))) {
                             alertas.alertInformation("Bienvenido usuario: " + textFieldID.getText());
                             ID = textFieldID.getText();
@@ -112,6 +113,7 @@ public class IniciarSesion {
                             gridPaneIniciarSesion.getChildren().add(0, node);
                             gridPaneIniciarSesion.getChildren().add(mainMenuBarCliente.menuCliente());
                         } else {
+                            alertas.alertInformation("Contraseña invalida, o espacios vacios\nPor favor intente de nuevo");
                             Acciones acciones = new Acciones(textFieldID.getText(), "Intentó iniciar sesión pero falló la contraseña", fechaHora.histoFechaHora());
                             logicaAVL.escribeHistorial(acciones);
 
@@ -128,6 +130,7 @@ public class IniciarSesion {
                             gridPaneIniciarSesion.getChildren().add(mainMenuBarAdministrador.menuAdministrador());
 
                         } else {
+                            alertas.alertInformation("Contraseña invalida, por favor intente de nuevo");
                             Acciones acciones = new Acciones(textFieldID.getText(), "Intentó iniciar sesión pero falló la contraseña", fechaHora.histoFechaHora());
                             logicaAVL.escribeHistorial(acciones);
 
@@ -139,7 +142,7 @@ public class IniciarSesion {
             } else {
                 Acciones acciones = new Acciones(textFieldID.getText(), ", usuario no registrado intentó iniciar sesión", fechaHora.histoFechaHora());
                 logicaAVL.escribeHistorial(acciones);
-                JOptionPane.showMessageDialog(null, "El usuario no existe");
+                alertas.alertInformation("Usuario: " + textFieldID.getText() + " no existe, registrece primero");
 
             }
 

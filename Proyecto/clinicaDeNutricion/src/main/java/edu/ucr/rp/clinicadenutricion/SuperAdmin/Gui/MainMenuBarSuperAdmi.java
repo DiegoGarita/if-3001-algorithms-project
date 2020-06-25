@@ -19,6 +19,7 @@ public class MainMenuBarSuperAdmi {
     ReportesAcciones reportesAcciones = new ReportesAcciones();
     RespaldarArchivos respaldarArchivos = new RespaldarArchivos();
     ResgistrosPaginacion registrosPaginacion = new ResgistrosPaginacion();
+    PrimerUsuario primerUsu = new PrimerUsuario();
 
     public GridPane menuSuperAdmi() {
 
@@ -35,13 +36,14 @@ public class MainMenuBarSuperAdmi {
                 + "-fx-background-insets: 50;");
 
         SeparatorMenuItem separator = new SeparatorMenuItem();
-        
+
         Menu menuAjustes = new Menu("Ajustes", new ImageView(new Image("file:src/image/ajus.png")));
         menuAjustes.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"
                 + "-fx-effect: dropshadow(gaussian, red, 50, 0, 0, 0);"
                 + "-fx-background-insets: 50;");
         
         MenuItem menuItemHorario = new MenuItem("Horario clínica y tiempo de consulta",
+
                 new ImageView(new Image("file:src/image/tiempo.png")));
         menuItemHorario.setAccelerator(KeyCombination.keyCombination("Ctrl+A"));
 
@@ -49,7 +51,7 @@ public class MainMenuBarSuperAdmi {
             gridPaneSuperAdmi.getChildren().clear();
             gridPaneSuperAdmi.getChildren().addAll(horarioTiempoClinica.horarioClinica());
         });
-        
+
         menuAjustes.getItems().addAll(menuItemHorario);
 
         Menu menuRegistros = new Menu("Registros", new ImageView(new Image("file:src/image/reporte.png")));
@@ -59,7 +61,13 @@ public class MainMenuBarSuperAdmi {
         MenuItem menuItemReporAcciones = new MenuItem("Reportes de acciones", new ImageView(new Image("file:src/image/histo.png")));
         menuItemReporAcciones.setAccelerator(KeyCombination.keyCombination("Ctrl+D"));
         MenuItem menuItemRespaldar = new MenuItem("Respaldar archivos", new ImageView(new Image("file:src/image/respal.png")));
+
         MenuItem menuItemNumPag = new MenuItem("Número de registros, paginacion", new ImageView(new Image("file:src/image/numRegis.png")));
+
+        MenuItem menuItemNumPag = new MenuItem("Número de registros, paginación", new ImageView(new Image("file:src/image/numRegis.png")));
+        MenuItem menuItemCreaCuenta = new MenuItem("Crear cuenta", new ImageView(new Image("file:src/image/nuevo.png")));
+        menuItemCreaCuenta.setAccelerator(KeyCombination.keyCombination("Ctrl+N"));
+
 
         menuItemReporAcciones.setOnAction((event) -> {
             gridPaneSuperAdmi.getChildren().clear();
@@ -74,7 +82,12 @@ public class MainMenuBarSuperAdmi {
             gridPaneSuperAdmi.getChildren().clear();
         });
 
-        menuRegistros.getItems().addAll(menuItemReporAcciones, menuItemRespaldar, menuItemNumPag);
+        menuItemCreaCuenta.setOnAction((event) -> {
+            gridPaneSuperAdmi.getChildren().clear();
+            gridPaneSuperAdmi.getChildren().addAll(primerUsu.creaUsuario());
+        });
+
+        menuRegistros.getItems().addAll(menuItemReporAcciones, menuItemRespaldar, menuItemNumPag, menuItemCreaCuenta);
 
         Menu menuOtros = new Menu("Otros", new ImageView(new Image("file:src/image/otros.png")));
         menuOtros.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"

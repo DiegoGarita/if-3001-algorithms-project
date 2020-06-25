@@ -14,9 +14,9 @@ public class Ayuda {
     Label labelDefinicion = new Label("");
     Label labelMantenimiento = new Label("");
     Label labelReportes = new Label("");
-    Button buttonDefinicion;
-    Button buttonMantenimiento;
-    Button buttonReportes;
+    Button cliente;
+    Button superAdmin;
+    Button admin;
 
 
     ArchSupAdmin logiSuper = new ArchSupAdmin();
@@ -32,76 +32,76 @@ public class Ayuda {
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
-        Label labelFuncionalidad = new Label("¿ Y cómo funciona los 3 roles de Clinica?");
+        Label labelFuncionalidad = new Label("¿ Y cómo funcionan los tres roles de clínica?");
         labelFuncionalidad.setFont(Font.font("Rockwell", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 20));
         labelFuncionalidad.setTextFill(Color.POWDERBLUE);
         gridPaneAyuda.add(labelFuncionalidad, 0, 1);
 
-        buttonDefinicion = new Button("Cliente");
-        buttonDefinicion.setTextFill(Color.WHITE);
-        buttonDefinicion.setStyle("-fx-background-color: BLACK");
-        buttonDefinicion.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
-        gridPaneAyuda.add(buttonDefinicion, 0, 2);
-        buttonDefinicion.setOnAction((event) -> {
+        cliente = new Button("Cliente");
+        cliente.setTextFill(Color.WHITE);
+        cliente.setStyle("-fx-background-color: BLACK");
+        cliente.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        gridPaneAyuda.add(cliente, 0, 4);
+        cliente.setOnAction((event) -> {
             labelReportes.setVisible(false);
             labelMantenimiento.setVisible(false);
             labelDefinicion = new Label("Reportes: Acceso a informes de avance y historial de citas\n"
-                    + " Citas: Reservar una cita, modificarla o eliminarla\n Planes: Acceso a planes y recetas\n"
-                    + " Ajustes: Modificar o eliminar su usuario \n Mas: Pagina web de la clinica con mas informacion \n  ");
+                    + "Citas: Reservar una cita, modificarla o eliminarla\n Planes: Acceso a planes y recetas\n"
+                    + "Ajustes: Modificar o eliminar su usuario\nMás: Página web de la clínica con más información\n");
             labelDefinicion.setFont(Font.font("Rockwell", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 20));  // tipo y tamaño de letra
             labelDefinicion.setStyle("-fx-background-color: rgb(41, 75, 152);");
             labelDefinicion.setTextFill(Color.POWDERBLUE);
             labelDefinicion.setVisible(true);
             gridPaneAyuda.add(labelDefinicion, 0, 7);
-            buttonMantenimiento.setDisable(false);
-            buttonReportes.setDisable(false);
-            buttonDefinicion.setDisable(true);
+            superAdmin.setDisable(false);
+            admin.setDisable(false);
+            cliente.setDisable(true);
 
         }); //end action Paises
 
-        buttonReportes = new Button("Administrador");
-        buttonReportes.setTextFill(Color.WHITE);
-        buttonReportes.setStyle("-fx-background-color: BLACK");
-        buttonReportes.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
-        gridPaneAyuda.add(buttonReportes, 0, 4);
-        buttonReportes.setOnMouseClicked((event) -> {
+        admin = new Button("Administrador");
+        admin.setTextFill(Color.WHITE);
+        admin.setStyle("-fx-background-color: BLACK");
+        admin.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        gridPaneAyuda.add(admin, 0, 3);
+        admin.setOnMouseClicked((event) -> {
             labelMantenimiento.setVisible(false);
             labelDefinicion.setVisible(false);
 
-            labelReportes = new Label("Paciente: Crear reportes de los pacientes acceso a informacion \n "
-                    + "Citas: en el cual podra agendar una cita para cualquier usuario registrado\n"
-                    + "Pllanes: Acceso a planes y recetas varias \n");
+            labelReportes = new Label("Paciente: Crear reportes de los pacientes acceso a información \n"
+                    + "Citas: En el cual podra agendar una cita para cualquier usuario registrado\n"
+                    + "Planes: Acceso a planes y recetas varias \n");
             labelReportes.setTextFill(Color.POWDERBLUE);
             labelReportes.setFont(Font.font("Rockwell", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 20));
             labelReportes.setStyle("-fx-background-color: rgb(41, 75, 152);");
             labelReportes.setVisible(true);
             gridPaneAyuda.add(labelReportes, 0, 7);
-            buttonMantenimiento.setDisable(false);
-            buttonDefinicion.setDisable(false);
-            buttonReportes.setDisable(true);
+            superAdmin.setDisable(false);
+            cliente.setDisable(false);
+            admin.setDisable(true);
 
         }); //end action report
 
-        buttonMantenimiento = new Button("Super administrador ");
-        buttonMantenimiento.setTextFill(Color.WHITE);
-        buttonMantenimiento.setStyle("-fx-background-color: BLACK");
-        buttonMantenimiento.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
-        gridPaneAyuda.add(buttonMantenimiento, 0, 3);
-        buttonMantenimiento.setOnMouseClicked((event) -> {
+        superAdmin = new Button("Super administrador");
+        superAdmin.setTextFill(Color.WHITE);
+        superAdmin.setStyle("-fx-background-color: BLACK");
+        superAdmin.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        gridPaneAyuda.add(superAdmin, 0, 2);
+        superAdmin.setOnMouseClicked((event) -> {
 
             labelDefinicion.setVisible(false);
             labelReportes.setVisible(false);
-            labelMantenimiento = new Label("Ajustes: Cambiar el horario de la clinica\n"
-            +" Registros: Donde se crearan respaldos de informacion, se podra cambiar la paginacion y se tendra acceso a un historial\n"
-                    + "Otros: En donde se podra cambiar el logo del app y el path de los archivos");
+            labelMantenimiento = new Label("Ajustes: Cambiar el horario de la clínica\n"
+            +"Registros: Donde se crearan respaldos de información, se podrá cambiar la paginación y se tendra acceso a un historial\n"
+                    + "Otros: En donde se podrá cambiar el logo del app y el path de los archivos");
             labelMantenimiento.setTextFill(Color.POWDERBLUE);
             labelMantenimiento.setFont(Font.font("Rockwell", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 20));
             labelMantenimiento.setStyle("-fx-background-color: rgb(41, 75, 152);");
             labelMantenimiento.setVisible(true);
             gridPaneAyuda.add(labelMantenimiento, 0, 7);
-            buttonDefinicion.setDisable(false);
-            buttonReportes.setDisable(false);
-            buttonMantenimiento.setDisable(true);
+            cliente.setDisable(false);
+            admin.setDisable(false);
+            superAdmin.setDisable(true);
         }); //end action Mant
 
         Button buttonCerrar = new Button("Cerrar");
