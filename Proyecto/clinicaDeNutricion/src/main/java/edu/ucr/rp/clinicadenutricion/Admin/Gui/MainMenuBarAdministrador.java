@@ -41,9 +41,9 @@ public class MainMenuBarAdministrador {
         menuPaciente.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"
                 + "-fx-effect: dropshadow(gaussian, red, 50, 0, 0, 0);"
                 + "-fx-background-insets: 50;");
-        MenuItem menuItemInformacionPaciente = new MenuItem("Acceder a informacion", new ImageView(new Image("file:src/image/infoPaci.png")));
+        MenuItem menuItemInformacionPaciente = new MenuItem("Acceder a información", new ImageView(new Image("file:src/image/infoPaci.png")));
         menuItemInformacionPaciente.setAccelerator(KeyCombination.keyCombination("Ctrl+A"));
-        MenuItem menuItemFormulario = new MenuItem("Form nuevo", new ImageView(new Image("file:src/image/formDo.png")));
+        MenuItem menuItemFormulario = new MenuItem("Formulario nuevo", new ImageView(new Image("file:src/image/formDo.png")));
         menuItemFormulario.setAccelerator(KeyCombination.keyCombination("Ctrl+F"));
 
         menuItemInformacionPaciente.setOnAction((event) -> {
@@ -72,11 +72,11 @@ public class MainMenuBarAdministrador {
 
         menuCita.getItems().addAll(menuItemReservarCita);
 
-        Menu menuAlimentacion = new Menu("Planes de alimentacion", new ImageView(new Image("file:src/image/planAli.png")));
+        Menu menuAlimentacion = new Menu("Planes de alimentación", new ImageView(new Image("file:src/image/planAli.png")));
         menuAlimentacion.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"
                 + "-fx-effect: dropshadow(gaussian, red, 50, 0, 0, 0);"
                 + "-fx-background-insets: 50;");
-        MenuItem menuItemVerPlanes = new MenuItem("Ver planes de alimentacion", new ImageView(new Image("file:src/image/verPlan.png")));
+        MenuItem menuItemVerPlanes = new MenuItem("Ver planes de alimentación", new ImageView(new Image("file:src/image/verPlan.png")));
         //Funcionamiento
         menuItemVerPlanes.setOnAction((event) -> {
             gridPaneAdministrador.getChildren().clear();
@@ -86,7 +86,7 @@ public class MainMenuBarAdministrador {
 
         Menu menuUsuario = new Menu("                                                      "
                 + "                                                                                        Usuario");
-        MenuItem menuItemSalir = new MenuItem("Cerrar sesion", new ImageView(new Image("file:src/image/salir.png")));
+        MenuItem menuItemSalir = new MenuItem("Cerrar sesión", new ImageView(new Image("file:src/image/salir.png")));
         menuItemSalir.setAccelerator(KeyCombination.keyCombination("Alt+S"));
 
         menuItemSalir.setOnAction((event) -> Platform.exit());

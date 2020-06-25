@@ -4,11 +4,13 @@ edu\ucr\rp\clinicadenutricion\Utilitario\EncryptMD5.class
 edu\ucr\rp\clinicadenutricion\Objetos\Usuario.class
 edu\ucr\rp\clinicadenutricion\Cliente\Gui\AjustesCliente.class
 edu\ucr\rp\clinicadenutricion\SuperAdmin\Logic\LogicSuperAdmin.class
+edu\ucr\rp\clinicadenutricion\Utilitario\EnviarCorreo.class
 edu\ucr\rp\clinicadenutricion\Utilitario\Calendario.class
 edu\ucr\rp\clinicadenutricion\inicioSesion\Gui\IniciarSesion.class
 edu\ucr\rp\clinicadenutricion\EjecutorClinica.class
 edu\ucr\rp\clinicadenutricion\SuperAdmin\Logic\Cola.class
 edu\ucr\rp\clinicadenutricion\SuperAdmin\Gui\MainMenuBarSuperAdmi.class
+edu\ucr\rp\clinicadenutricion\Utilitario\EnviarCorreo$1.class
 edu\ucr\rp\clinicadenutricion\Admin\Gui\PlanesAlimenticios.class
 edu\ucr\rp\clinicadenutricion\Admin\logic\LogicaCola.class
 edu\ucr\rp\clinicadenutricion\Cliente\Logic\ImplementacionArbol.class
@@ -31,6 +33,7 @@ edu\ucr\rp\clinicadenutricion\inicioSesion\Gui\MainMenuBarSesion.class
 edu\ucr\rp\clinicadenutricion\SuperAdmin\Gui\RespaldarArchivos.class
 edu\ucr\rp\clinicadenutricion\Admin\Gui\InformacionPaciente.class
 edu\ucr\rp\clinicadenutricion\AVL\ImplementacionAVL.class
+edu\ucr\rp\clinicadenutricion\Utilitario\EnviarCorreo$2.class
 edu\ucr\rp\clinicadenutricion\Objetos\ReporteMedico.class
 edu\ucr\rp\clinicadenutricion\SuperAdmin\Gui\HorarioTiempoClinica.class
 edu\ucr\rp\clinicadenutricion\Admin\Gui\Formulario.class

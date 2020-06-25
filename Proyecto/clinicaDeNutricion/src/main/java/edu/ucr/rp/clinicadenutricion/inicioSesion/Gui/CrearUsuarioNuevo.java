@@ -9,6 +9,7 @@ import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
 import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
 import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
+import edu.ucr.rp.clinicadenutricion.Utilitario.EnviarCorreo;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.*;
 import java.util.Optional;
 import javafx.collections.*;
@@ -34,6 +35,7 @@ public class CrearUsuarioNuevo {
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
     ArchSupAdmin logiSuper = new ArchSupAdmin();
+    EnviarCorreo enviarCorreo = new EnviarCorreo();
     Alertas alertas = new Alertas();
 
     public GridPane creaUsuario() {
@@ -143,6 +145,12 @@ public class CrearUsuarioNuevo {
         gridPaneCreaUsuario.add(buttonCreaUsuario, 0, 8);
         buttonCreaUsuario.setDisable(true);
         buttonCreaUsuario.setOnAction((event) -> {
+
+            enviarCorreo.sendMessage(textFieldCorreo.getText(), "Clínica Susana Distancia",
+                    "Mensaje de confirmación de creación de nuevo usuario en nuestra clínica Susana Distancia\n"
+                    + "¡Bienvenido! " + textFieldNombre.getText() + " es un gusto atenderle\n"
+                    + "Si desea realizar consultas directamente con nuestro soporte de aplicación deberá realizalas"
+                    + " por este medio a este correo electrónico\nSerá un gusto atenderle");
 
             alertas.alertConfirmation("");
             Optional<ButtonType> result = alertas.alertConfirmation("").showAndWait();

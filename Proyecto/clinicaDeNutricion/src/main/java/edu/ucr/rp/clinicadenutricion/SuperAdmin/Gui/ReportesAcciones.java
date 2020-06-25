@@ -37,11 +37,11 @@ public class ReportesAcciones {
         accionadorColunm.setMaxWidth(200);
         accionadorColunm.setCellValueFactory(new PropertyValueFactory<>("Accionador"));
 
-        TableColumn<Acciones, String> accionColunm = new TableColumn<>("accion");
+        TableColumn<Acciones, String> accionColunm = new TableColumn<>("Acción");
         accionColunm.setMaxWidth(200);
         accionColunm.setCellValueFactory(new PropertyValueFactory<>("accion"));
 
-        TableColumn<Acciones, String> fechaHoraAccionColunm = new TableColumn<>("fechaHoraAccion");
+        TableColumn<Acciones, String> fechaHoraAccionColunm = new TableColumn<>("Fecha y hora de la acción");
         fechaHoraAccionColunm.setMaxWidth(200);
         fechaHoraAccionColunm.setCellValueFactory(new PropertyValueFactory<>("fechaHoraAccion"));
 

@@ -377,3 +377,125 @@ cec & IniciÃƒÂ³ sesiÃƒÂ³n como cliente & Wed Jun 17 22:36:57 CST 2020
 111 & SolicitÃ³ una cita & Mon Jun 22 18:15:45 CST 2020
 111 & IniciÃ³ sesiÃ³n como cliente & Mon Jun 22 18:17:22 CST 2020
 111 & SolicitÃ³ una cita & Mon Jun 22 18:17:49 CST 2020
+111 & Inició sesión como cliente & Mon Jun 22 21:38:40 CST 2020
+111 & Inició sesión como cliente & Mon Jun 22 21:40:24 CST 2020
+111 & Revisó su progreso graficamente & Mon Jun 22 21:40:34 CST 2020
+111 & consultó su reporte de citas & Mon Jun 22 21:41:34 CST 2020
+111 & Solicitó una cita & Mon Jun 22 21:42:11 CST 2020
+111 & Eliminó su cita & Mon Jun 22 21:42:32 CST 2020
+111 & Solicitó información sobre planes alimenticios & Mon Jun 22 21:44:32 CST 2020
+111 & Solicitó información sobre planes alimenticios & Mon Jun 22 21:44:34 CST 2020
+111 & Solicitó información sobre planes alimenticios & Mon Jun 22 21:44:37 CST 2020
+111 & Modificó su perfil & Mon Jun 22 21:44:45 CST 2020
+111 & Modificó su perfil & Mon Jun 22 21:44:51 CST 2020
+666 & Inició sesión como admistrador & Mon Jun 22 21:47:45 CST 2020
+666 & Solicitó información de pacientes & Mon Jun 22 21:47:52 CST 2020
+666 & Solicitó información de pacientes & Mon Jun 22 21:47:57 CST 2020
+666 & Solicitó información de pacientes & Mon Jun 22 21:48:07 CST 2020
+666 & Solicitó la lista de Recetas & Mon Jun 22 21:48:35 CST 2020
+111 & Inició sesión como cliente & Mon Jun 22 21:51:29 CST 2020
+111 & Revisó su progreso graficamente & Mon Jun 22 21:51:35 CST 2020
+111 & consultó su reporte de citas & Mon Jun 22 21:51:39 CST 2020
+111 & consultó su reporte de citas & Mon Jun 22 21:52:24 CST 2020
+111 & Inició sesión como cliente & Mon Jun 22 21:56:11 CST 2020
+666 & Inició sesión como admistrador & Mon Jun 22 21:57:20 CST 2020
+666 & Solicitó información de pacientes & Mon Jun 22 21:57:25 CST 2020
+666 & Solicitó información de pacientes & Mon Jun 22 21:57:29 CST 2020
+666 & Solicitó información de pacientes & Mon Jun 22 21:57:31 CST 2020
+666 & Solicitó información de pacientes & Mon Jun 22 21:57:33 CST 2020
+777 & Se registró como nuevo usuario & Mon Jun 22 22:51:41 CST 2020
+111 & Intentó registrarse cuando ya estaba registrado & Mon Jun 22 22:53:43 CST 2020
+111 & Intentó registrarse cuando ya estaba registrado & Mon Jun 22 22:55:48 CST 2020
+ & Se registró como nuevo usuario & Mon Jun 22 22:56:14 CST 2020
+ & , usuario no registrado intentó iniciar sesión & Mon Jun 22 22:58:34 CST 2020
+121 & , usuario no registrado intentó iniciar sesión & Mon Jun 22 23:23:23 CST 2020
+111 & Intentó iniciar sesión pero falló la contraseña & Mon Jun 22 23:23:44 CST 2020
+111 & Inició sesión como cliente & Mon Jun 22 23:28:57 CST 2020
+111 & Revisó su progreso graficamente & Mon Jun 22 23:32:23 CST 2020
+111 & consultó su reporte de citas & Mon Jun 22 23:35:13 CST 2020
+111 & consultó su reporte de citas & Mon Jun 22 23:36:43 CST 2020
+111 & Solicitó una cita & Mon Jun 22 23:40:31 CST 2020
+111 & Solicitó información sobre recetas & Mon Jun 22 23:59:28 CST 2020
+111 & Solicitó información sobre recetas & Mon Jun 22 23:59:31 CST 2020
+111 & Solicitó información sobre recetas & Mon Jun 22 23:59:33 CST 2020
+111 & Solicitó información sobre recetas & Mon Jun 22 23:59:36 CST 2020
+111 & Modificó su perfil & Tue Jun 23 00:02:13 CST 2020
+111 & Eliminó su perfil & Tue Jun 23 00:02:15 CST 2020
+111 & Modificó su perfil & Tue Jun 23 00:02:18 CST 2020
+111 & Inició sesión como cliente & Tue Jun 23 20:06:53 CST 2020
+666 & Inició sesión como admistrador & Tue Jun 23 20:07:47 CST 2020
+666 & Solicitó información de pacientes & Tue Jun 23 20:07:54 CST 2020
+666 & Solicitó información de pacientes & Tue Jun 23 20:10:14 CST 2020
+666 & Solicitó información de pacientes & Tue Jun 23 20:11:54 CST 2020
+666 & Solicitó información de pacientes & Tue Jun 23 20:11:56 CST 2020
+666 & Solicitó información de pacientes & Tue Jun 23 20:12:03 CST 2020
+666 & Solicitó información de pacientes & Tue Jun 23 20:12:06 CST 2020
+666 & Solicitó información de pacientes & Tue Jun 23 20:12:08 CST 2020
+666 & Solicitó información de pacientes & Tue Jun 23 20:13:40 CST 2020
+666 & Solicitó información de pacientes & Tue Jun 23 20:13:45 CST 2020
+666 & Solicitó una cita & Tue Jun 23 20:28:12 CST 2020
+666 & Solicitó una cita & Tue Jun 23 20:29:54 CST 2020
+111 & Inició sesión como cliente & Tue Jun 23 22:42:03 CST 2020
+111 & Solicitó información sobre planes alimenticios & Tue Jun 23 22:42:16 CST 2020
+666 & Inició sesión como admistrador & Tue Jun 23 22:42:54 CST 2020
+666 & Solicitó la lista de planes alimenticios & Tue Jun 23 22:43:09 CST 2020
+666 & Solicitó la lista de Recetas & Tue Jun 23 22:43:17 CST 2020
+666 & Inició sesión como admistrador & Tue Jun 23 22:44:49 CST 2020
+666 & Solicitó la lista de planes alimenticios & Tue Jun 23 22:44:55 CST 2020
+666 & Solicitó la lista de planes alimenticios & Tue Jun 23 22:45:03 CST 2020
+666 & Solicitó la lista de planes alimenticios & Tue Jun 23 22:45:10 CST 2020
+666 & Solicitó la lista de planes alimenticios & Tue Jun 23 22:45:47 CST 2020
+666 & Solicitó la lista de Recetas & Tue Jun 23 22:46:00 CST 2020
+666 & Solicitó la lista de Recetas & Tue Jun 23 22:46:30 CST 2020
+666 & Solicitó la lista de Recetas & Tue Jun 23 22:46:43 CST 2020
+666 & Solicitó la lista de Recetas & Tue Jun 23 22:47:16 CST 2020
+666 & Solicitó la lista de Recetas & Tue Jun 23 22:47:26 CST 2020
+666 & Solicitó la lista de Recetas & Tue Jun 23 22:47:40 CST 2020
+666 & Inició sesión como admistrador & Tue Jun 23 23:00:02 CST 2020
+666 & Inició sesión como admistrador & Tue Jun 23 23:01:17 CST 2020
+666 & Inició sesión como admistrador & Tue Jun 23 23:03:49 CST 2020
+666 & Solicitó información de pacientes & Tue Jun 23 23:03:58 CST 2020
+666 & Inició sesión como admistrador & Tue Jun 23 23:11:27 CST 2020
+666 & Solicitó la lista de Recetas & Tue Jun 23 23:11:37 CST 2020
+666 & Inició sesión como admistrador & Tue Jun 23 23:13:36 CST 2020
+666 & Inició sesión como admistrador & Tue Jun 23 23:17:24 CST 2020
+666 & Inició sesión como admistrador & Tue Jun 23 23:23:30 CST 2020
+666 & Inició sesión como admistrador & Tue Jun 23 23:25:08 CST 2020
+666 & Inició sesión como admistrador & Tue Jun 23 23:26:18 CST 2020
+666 & Solicitó una cita & Tue Jun 23 23:26:37 CST 2020
+666 & Solicitó una cita & Tue Jun 23 23:26:50 CST 2020
+666 & Solicitó una cita & Tue Jun 23 23:27:11 CST 2020
+111 & Inició sesión como cliente & Tue Jun 23 23:44:35 CST 2020
+111 & Revisó su progreso graficamente & Tue Jun 23 23:44:46 CST 2020
+111 & Inició sesión como cliente & Tue Jun 23 23:45:56 CST 2020
+111 & Revisó su progreso graficamente & Tue Jun 23 23:46:03 CST 2020
+111 & Inició sesión como cliente & Tue Jun 23 23:51:34 CST 2020
+111 & consultó su reporte de citas & Tue Jun 23 23:51:40 CST 2020
+111 & consultó su reporte de citas & Tue Jun 23 23:56:54 CST 2020
+666 & Inició sesión como admistrador & Tue Jun 23 23:58:23 CST 2020
+666 & Solicitó información de pacientes & Tue Jun 23 23:58:31 CST 2020
+666 & Solicitó información de pacientes & Tue Jun 23 23:58:34 CST 2020
+305240285 & Se registró como nuevo usuario & Wed Jun 24 19:53:50 CST 2020
+111 & Inició sesión como cliente & Wed Jun 24 19:56:11 CST 2020
+305240285 & Inició sesión como admistrador & Wed Jun 24 19:57:27 CST 2020
+305240285 & Solicitó información de pacientes & Wed Jun 24 19:57:46 CST 2020
+888 & Se registró como nuevo usuario & Wed Jun 24 20:29:07 CST 2020
+666 & Inició sesión como admistrador & Wed Jun 24 20:30:31 CST 2020
+666 & Inició sesión como admistrador & Wed Jun 24 20:36:07 CST 2020
+666 & Ingresó nuevo formulario para un paciente & Wed Jun 24 20:38:55 CST 2020
+666 & Inició sesión como admistrador & Wed Jun 24 20:40:12 CST 2020
+666 & Ingresó nuevo formulario para un paciente & Wed Jun 24 20:41:12 CST 2020
+666 & Inició sesión como admistrador & Wed Jun 24 20:43:24 CST 2020
+666 & Inició sesión como admistrador & Wed Jun 24 20:48:02 CST 2020
+666 & Inició sesión como admistrador & Wed Jun 24 20:50:58 CST 2020
+666 & Inició sesión como admistrador & Wed Jun 24 20:52:20 CST 2020
+666 & Solicitó información de pacientes & Wed Jun 24 20:55:07 CST 2020
+666 & Solicitó información de pacientes & Wed Jun 24 20:55:53 CST 2020
+666 & Inició sesión como admistrador & Wed Jun 24 21:30:59 CST 2020
+666 & Ingresó nuevo formulario para un paciente & Wed Jun 24 21:31:14 CST 2020
+666 & Ingresó nuevo formulario para un paciente & Wed Jun 24 21:32:21 CST 2020
+666 & Inició sesión como admistrador & Wed Jun 24 21:38:57 CST 2020
+666 & Ingresó nuevo formulario para un paciente & Wed Jun 24 21:39:22 CST 2020
+666 & Ingresó nuevo formulario para un paciente & Wed Jun 24 21:41:41 CST 2020
+666 & Inició sesión como admistrador & Wed Jun 24 21:48:04 CST 2020
+666 & Ingresó nuevo formulario para un paciente & Wed Jun 24 21:49:40 CST 2020
