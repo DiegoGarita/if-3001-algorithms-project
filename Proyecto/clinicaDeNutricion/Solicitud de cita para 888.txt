@@ -1,0 +1,7 @@
+888|Deego|Wed Jun 24|20:36:16|20|40|1,72|60kilos|30|40|20|10|70|1h|6h|Estas notas son fake, inventadas para probar sobre los datos
+888|Deego|Wed Jun 24|20:40:20|20|40|1,72|60|40|30|30|10|75|1h|6h|datos como prueba, debe hacer más actividad física y blablabla
+888|Deego|Wed Jun 24|21:31:06|rew|rwe|wre|rwe|qw|rew|wer|erw|erw|rew|rew|rewerwrwrewwerwerwerwererw
+888|Deego|Wed Jun 24|21:31:26|19|67|56m|89litros|34|43|56|9|7l|2m|9h|Hola buenas tardes esto es una proeba
+888|Deego|Wed Jun 24|21:39:03|14|3|334|43|23|43|23|23|w|qwew|ew|ewwegfdghfdbnbv
+888|Deego|Wed Jun 24|21:40:48|20|29|2m|35l|89|12|0.3|206|80|5h|8h|Excelente condicion fisica 
+888|Deego|Wed Jun 24|21:48:08|21|21|1,76|62|34|45|12|32|71|1h|6h|Todo bien y todo correcto

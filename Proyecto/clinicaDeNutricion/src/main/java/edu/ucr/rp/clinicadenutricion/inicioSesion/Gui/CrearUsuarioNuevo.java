@@ -9,6 +9,7 @@ import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
 import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
 import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
+import edu.ucr.rp.clinicadenutricion.Utilitario.EnviarCorreo;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.*;
 import java.util.Optional;
 import javafx.collections.*;
@@ -34,9 +35,11 @@ public class CrearUsuarioNuevo {
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
     ArchSupAdmin logiSuper = new ArchSupAdmin();
+    EnviarCorreo enviarCorreo = new EnviarCorreo();
     Alertas alertas = new Alertas();
 
     public GridPane creaUsuario() {
+
 
         if (logic.cantidadDeClientes("|") < 3) {
             alertas.alertWarning("Se deben registrar primero un cliente\n y un admin desde Super administrador");
@@ -161,6 +164,12 @@ public class CrearUsuarioNuevo {
 
                             logic.leerArchivo();
                             if (logic.busca(textFieldID.getText()) == false) {
+                                          enviarCorreo.sendMessage(textFieldCorreo.getText(), "Clínica Susana Distancia",
+                    "Mensaje de confirmación de creación de nuevo usuario en nuestra clínica Susana Distancia\n"
+                    + "¡Bienvenido! " + textFieldNombre.getText() + " es un gusto atenderle\n"
+                    + "Si desea realizar consultas directamente con nuestro soporte de aplicación deberá realizalas"
+                    + " por este medio a este correo electrónico\nSerá un gusto atenderle");
+                              
                                 Usuario usuario = new Usuario(comboBoxRol.getValue().toString(), textFieldID.getText(),
                                         textFieldNombre.getText(), encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()),
                                         textFieldCorreo.getText(), textFieldTelefono.getText(), textFieldDireccion.getText());
@@ -189,6 +198,7 @@ public class CrearUsuarioNuevo {
                     }//end else validaciones
                 } catch (NumberFormatException nfe) {
                     alertas.alertWarning("correo,contraseña y/o teléfono no validos\nO espacios vacios");
+
                 }
             });//end setOnAction
 

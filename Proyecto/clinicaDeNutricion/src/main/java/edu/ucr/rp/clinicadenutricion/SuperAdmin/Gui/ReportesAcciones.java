@@ -43,7 +43,11 @@ public class ReportesAcciones {
         accionColunm.setCellValueFactory(new PropertyValueFactory<>("accion"));
         accionColunm.setStyle("-fx-alignment: CENTER;");
 
+
+        TableColumn<Acciones, String> fechaHoraAccionColunm = new TableColumn<>("Fecha y hora de la acción");
+
         TableColumn<Acciones, String> fechaHoraAccionColunm = new TableColumn<>("Fecha/Hora de acción");
+
         fechaHoraAccionColunm.setMaxWidth(200);
         fechaHoraAccionColunm.setCellValueFactory(new PropertyValueFactory<>("fechaHoraAccion"));
         fechaHoraAccionColunm.setStyle("-fx-alignment: CENTER;");

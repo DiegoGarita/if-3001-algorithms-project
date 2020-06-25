@@ -169,8 +169,14 @@ public class LogicaListas {
 
                 }
 
+                
+                
+                
                 currentRegistry = bufferedReader.readLine();
+                
+                
             }
+            
 
         } catch (FileNotFoundException fileNotFoundException) {
             JOptionPane.showMessageDialog(null, fileNotFoundException + ": Problemas con el archivo");
