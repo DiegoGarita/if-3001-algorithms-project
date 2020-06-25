@@ -95,7 +95,7 @@ public class ModificaCancelaCita {
 
         comboBoxHora.setOnMouseEntered((event) -> {
             buttonAceparModifi.setDisable(false);
-            comboBoxHora.setEditable(true);
+            comboBoxHora.setEditable(false);
             logicaCliente.leeArchivoHoraFecha(dT_DateFligth.getValue().toString());
             int tam = logicaCliente.tamanio();
             for (int i = Integer.parseInt(configuracion.getAbreClinica()); i < Integer.parseInt(configuracion.getCierreClinica()); i = i + Integer.parseInt(configuracion.getTiempoConsulta())) {  //--> horario de 9am a 5pm -->>Estos valores (9y17) van a ser variables

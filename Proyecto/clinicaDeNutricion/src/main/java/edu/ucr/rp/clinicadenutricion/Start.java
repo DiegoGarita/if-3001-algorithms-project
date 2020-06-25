@@ -14,7 +14,7 @@ public class Start extends Application {
         Image image = new Image("file:src/image/sesIni.png");
         stage.setResizable(false);
         stage.getIcons().add(image);
-        stage.setTitle("Clinica SusanaDistancia S.A");
+        stage.setTitle("Clínica SusanaDistancia S.A");
         stage.setScene(mainMenuBar.getMainScene());
         stage.show();
     }//end Start

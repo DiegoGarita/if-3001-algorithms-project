@@ -128,7 +128,7 @@ public class HorarioTiempoClinica {
                     configuracion.getPathDeGuardado(), configuracion.getPaginacion());
 
             logiSuper.readInFile();
-            logiSuper.removeLineFromFile(configuracion.getIdentificadorSA()); //-->>Here esta vara me cae
+            logiSuper.removeLineFromFile(configuracion2.getIdentificadorSA()); //-->>Here esta vara me cae
             logiSuper.writeInFile(configuracion2);
             textFieldContraseña.setDisable(false);
             textFieldContraseña.clear();
@@ -154,16 +154,20 @@ public class HorarioTiempoClinica {
 
         Label aclaracion1 = new Label();
         aclaracion1.setText("* Formato de horario a utilizar es de 24 horas");
-        aclaracion1.setFont(new Font("Arial", 10));
+        aclaracion1.setFont(new Font("Arial", 15));
         aclaracion1.setTextFill(Color.web("#0076a3"));
+        aclaracion1.setStyle("-fx-font-weight: bold");
+        aclaracion1.setStyle("-fx-background-color: rgb(111, 210, 170);");
         gridPaneHorarioTiempoClinica.add(aclaracion1, 0, 9);
 
         Label aclaracion2 = new Label();
         aclaracion2.setText("** Lass citas no pueden durar mas del horario de atencion de la clinica");
-        aclaracion2.setFont(new Font("Arial", 10));
+        aclaracion2.setFont(new Font("Arial", 15));
         aclaracion2.setTextFill(Color.web("#0076a3"));
+        aclaracion2.setStyle("-fx-font-weight: bold");
+        aclaracion2.setStyle("-fx-background-color: rgb(111, 210, 170);");
         gridPaneHorarioTiempoClinica.add(aclaracion2, 0, 10);
-        
+
         GridPane.setColumnSpan(aclaracion1, Integer.BYTES);
         GridPane.setColumnSpan(aclaracion2, Integer.BYTES);
 

@@ -8,7 +8,7 @@ import java.util.zip.*;
 public class Respaldo {
 
     public void createZipFile(String porRespaldar, String nombreZip) throws IOException {
-        String TARGET_FILE = "C:\\Users\\diego\\Desktop\\"+nombreZip+".zip";
+        String TARGET_FILE = "C:\\Users\\Ale\\Desktop\\"+nombreZip+".zip";
         FileOutputStream fout = new FileOutputStream(TARGET_FILE);
         CheckedOutputStream checksum = new CheckedOutputStream(fout, new Adler32());
         ZipOutputStream zout = new ZipOutputStream(checksum);

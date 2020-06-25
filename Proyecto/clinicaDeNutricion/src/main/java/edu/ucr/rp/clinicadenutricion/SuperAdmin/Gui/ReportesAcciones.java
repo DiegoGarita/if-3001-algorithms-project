@@ -36,14 +36,17 @@ public class ReportesAcciones {
         TableColumn<Acciones, String> accionadorColunm = new TableColumn<>("Accionador");
         accionadorColunm.setMaxWidth(200);
         accionadorColunm.setCellValueFactory(new PropertyValueFactory<>("Accionador"));
+        accionadorColunm.setStyle("-fx-alignment: CENTER;");
 
-        TableColumn<Acciones, String> accionColunm = new TableColumn<>("accion");
+        TableColumn<Acciones, String> accionColunm = new TableColumn<>("Acción");
         accionColunm.setMaxWidth(200);
         accionColunm.setCellValueFactory(new PropertyValueFactory<>("accion"));
+        accionColunm.setStyle("-fx-alignment: CENTER;");
 
-        TableColumn<Acciones, String> fechaHoraAccionColunm = new TableColumn<>("fechaHoraAccion");
+        TableColumn<Acciones, String> fechaHoraAccionColunm = new TableColumn<>("Fecha/Hora de acción");
         fechaHoraAccionColunm.setMaxWidth(200);
         fechaHoraAccionColunm.setCellValueFactory(new PropertyValueFactory<>("fechaHoraAccion"));
+        fechaHoraAccionColunm.setStyle("-fx-alignment: CENTER;");
 
         GridPane.setColumnSpan(tableViewAcciones, Integer.BYTES);
         tableViewAcciones.setItems(obtieneAcciones());

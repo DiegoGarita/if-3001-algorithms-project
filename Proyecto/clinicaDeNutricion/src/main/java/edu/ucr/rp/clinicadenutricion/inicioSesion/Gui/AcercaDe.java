@@ -23,14 +23,14 @@ public class AcercaDe {
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
-        Text title = new Text(200, 200, "Acerca de la aplicación: Control de inventarios");
+        Text title = new Text(200, 200, "Acerca de la aplicación: Clínica de alimentación");
         title.setFont(Font.font(20));
         title.setOnMouseMoved(e -> {
             title.setFill(Color.color(Math.random(), Math.random(), Math.random()));
         });
         acercaDe.add(title, 0, 0);
 
-        Label labelAcercaDe = new Label("Aplicación control de inventarios 2020 \n"
+        Label labelAcercaDe = new Label("Clínica de alimentación 2020 \n"
                 + " Desarrollado en: Apache NetBeans IDE 11.3 \n Lenguaje Java, version 14 \n 2020");
         labelAcercaDe.setFont(Font.font("Rockwell", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 20));
         labelAcercaDe.setTextFill(Color.DEEPSKYBLUE);
