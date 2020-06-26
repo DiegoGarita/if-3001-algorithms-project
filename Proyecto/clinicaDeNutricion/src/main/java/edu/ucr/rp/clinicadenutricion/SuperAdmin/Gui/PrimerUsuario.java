@@ -51,7 +51,7 @@ public class PrimerUsuario {
             gridPaneCreaUsuario.setHgap(15);
             gridPaneCreaUsuario.setAlignment(Pos.CENTER);
 
-            gridPaneCreaUsuario.setStyle(("-fx-background-image:url('file:src/image/" + configuracion.getNombreLogo() + "');"
+            gridPaneCreaUsuario.setStyle(("-fx-background-image:url('file:src/image/SuperAdmin.gif');"
                     + "-fx-background-repeat : no-repeat;"
                     + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 

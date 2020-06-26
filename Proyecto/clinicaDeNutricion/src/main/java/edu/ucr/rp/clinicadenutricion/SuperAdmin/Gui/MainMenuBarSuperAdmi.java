@@ -1,6 +1,8 @@
 package edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui;
 
+import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
 import javafx.application.Platform;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -21,6 +23,7 @@ public class MainMenuBarSuperAdmi {
     RespaldarArchivos respaldarArchivos = new RespaldarArchivos();
     ResgistrosPaginacion registrosPaginacion = new ResgistrosPaginacion();
     PrimerUsuario primerUsu = new PrimerUsuario();
+    Alertas alerta = new Alertas();
 
     public GridPane menuSuperAdmi() {
 
@@ -79,8 +82,14 @@ public class MainMenuBarSuperAdmi {
         });
 
         menuItemCreaCuenta.setOnAction((event) -> {
+            try{
             gridPaneSuperAdmi.getChildren().clear();
             gridPaneSuperAdmi.getChildren().addAll(primerUsu.creaUsuario());
+            }
+            catch(java.lang.NullPointerException jlnpe){
+               alerta.alertWarning("Ya no se pueden realizar\nmas registros desde aqui.");
+               Platform.exit();
+            }
         });
 
         menuRegistros.getItems().addAll(menuItemReporAcciones, menuItemRespaldar, menuItemNumPag, menuItemCreaCuenta);
