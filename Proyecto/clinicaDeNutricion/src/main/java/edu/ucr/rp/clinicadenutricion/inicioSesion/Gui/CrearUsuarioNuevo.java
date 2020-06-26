@@ -152,9 +152,9 @@ public class CrearUsuarioNuevo {
                     if (textFieldCorreo.getText().contains("@") && textFieldContraseña.getText().length() >= 5
                             && !textFieldID.getText().trim().equals("") && !textFieldNombre.getText().trim().equals("")
                             && !textFieldContraseña.getText().trim().equals("") && !textFieldCorreo.getText().trim().equals("")
-                            && !textFieldTelefono.getText().trim().equals("") && !textFieldDireccion.getText().trim().equals("")) {
-                        //   && Integer.parseInt(textFieldTelefono.getText()) % 2 == 0
-                        //   && Integer.parseInt(textFieldTelefono.getText()) % 3 == 1) {
+                            && !textFieldTelefono.getText().trim().equals("") && !textFieldDireccion.getText().trim().equals("")
+                            || Integer.parseInt(textFieldTelefono.getText()) % 2 == 0
+                            || Integer.parseInt(textFieldTelefono.getText()) % 3 == 1) {
 
                         alertas.alertConfirmation("");
                         Optional<ButtonType> result = alertas.alertConfirmation("").showAndWait();
@@ -195,6 +195,9 @@ public class CrearUsuarioNuevo {
                     }//end else validaciones
                 } catch (NumberFormatException nfe) {
                     alertas.alertWarning("correo,contraseña y/o teléfono no validos\nO espacios vacios");
+                } //Esto permite que si el correo no existe se envie y no se cae el app
+                catch (Exception jr) {
+                    alertas.alertWarning("Correo no existe, cree un correo primero");
                 }
             });//end setOnAction
 

@@ -92,7 +92,7 @@ public class Ayuda {
             labelDefinicion.setVisible(false);
             labelReportes.setVisible(false);
             labelMantenimiento = new Label("Ajustes: Cambiar el horario de la clínica\n"
-            +"Registros: Donde se crearan respaldos de información, se podrá cambiar la paginación y se tendra acceso a un historial\n"
+            +"Registros: Donde se crearan respaldos de información, se podrá cambiar\n la paginación y se tendra acceso a un historial\n"
                     + "Otros: En donde se podrá cambiar el logo del app y el path de los archivos");
             labelMantenimiento.setTextFill(Color.POWDERBLUE);
             labelMantenimiento.setFont(Font.font("Rockwell", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 20));

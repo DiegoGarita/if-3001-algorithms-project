@@ -34,7 +34,7 @@ public class Creditos {
         gridPaneCreditos.add(Titulo, 0, 0);
 
         Label labelCreditos = new Label("Realizado por: \n"
-                + " Diego Garita Abarca B83214 \n Alejandro Quesada Leiva B86205");
+                + "Diego Garita Abarca B83214 \nAlejandro Quesada Leiva B86205");
         labelCreditos.setFont(Font.font("Rockwell", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 20));
         labelCreditos.setTextFill(Color.GREENYELLOW);
         gridPaneCreditos.add(labelCreditos, 0, 1);

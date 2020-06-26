@@ -152,9 +152,9 @@ public class PrimerUsuario {
                     if (textFieldCorreo.getText().contains("@") && textFieldContraseña.getText().length() >= 5
                             && !textFieldID.getText().trim().equals("") && !textFieldNombre.getText().trim().equals("")
                             && !textFieldContraseña.getText().trim().equals("") && !textFieldCorreo.getText().trim().equals("")
-                            && !textFieldTelefono.getText().trim().equals("") && !textFieldDireccion.getText().trim().equals("")) {
-                        //  && Integer.parseInt(textFieldTelefono.getText()) % 2 == 0
-                        //   && Integer.parseInt(textFieldTelefono.getText()) % 3 == 1) {
+                            && !textFieldTelefono.getText().trim().equals("") && !textFieldDireccion.getText().trim().equals("")
+                            || Integer.parseInt(textFieldTelefono.getText()) % 2 == 0
+                            || Integer.parseInt(textFieldTelefono.getText()) % 3 == 1) {
 
                         alertas.alertConfirmation("");
                         Optional<ButtonType> result = alertas.alertConfirmation("").showAndWait();

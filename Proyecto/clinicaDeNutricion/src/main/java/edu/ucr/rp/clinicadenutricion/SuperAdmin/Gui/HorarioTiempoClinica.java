@@ -121,20 +121,38 @@ public class HorarioTiempoClinica {
         gridPaneHorarioTiempoClinica.add(buttonGuardar, 0, 7);
         buttonGuardar.setDisable(true);
         buttonGuardar.setOnAction((event) -> {
+            try {
+                if (!textFieldAbreClinica.getText().trim().equals("")
+                        && !textFieldCierraClinica.getText().trim().equals("")
+                        && !textFieldIntervalo.getText().trim().equals("")
+                        && Integer.parseInt(textFieldAbreClinica.getText()) < Integer.parseInt(textFieldCierraClinica.getText())) {
 
-            SuperAdmin configuracion2 = new SuperAdmin(configuracion.getIdentificadorSA(), textFieldAbreClinica.getText(),
-                    textFieldCierraClinica.getText(), textFieldIntervalo.getText(),
-                    configuracion.getNombreLogo(),
-                    configuracion.getPathDeGuardado(), configuracion.getPaginacion());
+                    SuperAdmin configuracion2 = new SuperAdmin(configuracion.getIdentificadorSA(), textFieldAbreClinica.getText(),
+                            textFieldCierraClinica.getText(), textFieldIntervalo.getText(),
+                            configuracion.getNombreLogo(),
+                            configuracion.getPathDeGuardado(), configuracion.getPaginacion());
 
-            logiSuper.readInFile();
-            logiSuper.removeLineFromFile(configuracion2.getIdentificadorSA()); //-->>Here esta vara me cae
-            logiSuper.writeInFile(configuracion2);
-            textFieldContraseña.setDisable(false);
-            textFieldContraseña.clear();
-            alerta.alertInformation("Horario cambiado, correctamente");
-            buttonGuardar.setDisable(true);
+                    logiSuper.readInFile();
+                    logiSuper.removeLineFromFile(configuracion.getIdentificadorSA()); //-->>Here esta vara me cae
+                    logiSuper.writeInFile(configuracion);
+                    textFieldAbreClinica.clear();
+                    textFieldAbreClinica.setDisable(true);
+                    textFieldCierraClinica.clear();
+                    textFieldCierraClinica.setDisable(true);
+                    textFieldIntervalo.clear();
+                    textFieldIntervalo.setDisable(true);
+                    textFieldContraseña.clear();
+                    alerta.alertInformation("Horario cambiado, correctamente");
+                    buttonGuardar.setDisable(true);
 
+                }//end if
+                else {
+                    alerta.alertWarning("Campos vacios o error de formato\nIntente de nuevo");
+                }//end else
+            }//end try
+            catch (java.lang.NumberFormatException jLNFE) {
+                alerta.alertWarning("Campos vacios o error de formato\nIntente de nuevo");
+            }//end catch
         });//END BUTTON
 
         MainMenuBarSuperAdmi barSuper = new MainMenuBarSuperAdmi();
@@ -161,15 +179,24 @@ public class HorarioTiempoClinica {
         gridPaneHorarioTiempoClinica.add(aclaracion1, 0, 9);
 
         Label aclaracion2 = new Label();
-        aclaracion2.setText("** Lass citas no pueden durar mas del horario de atencion de la clinica");
+        aclaracion2.setText("** Las citas no pueden durar mas del horario de atencion de la clinica");
         aclaracion2.setFont(new Font("Arial", 15));
         aclaracion2.setTextFill(Color.web("#0076a3"));
         aclaracion2.setStyle("-fx-font-weight: bold");
         aclaracion2.setStyle("-fx-background-color: rgb(111, 210, 170);");
         gridPaneHorarioTiempoClinica.add(aclaracion2, 0, 10);
 
+        Label aclaracion3 = new Label();
+        aclaracion3.setText("*** Hora de apertura no puede ser mayor a hora de cierre, lapsos de 1 o 2 horas maximo");
+        aclaracion3.setFont(new Font("Arial", 15));
+        aclaracion3.setTextFill(Color.web("#0076a3"));
+        aclaracion3.setStyle("-fx-font-weight: bold");
+        aclaracion3.setStyle("-fx-background-color: rgb(111, 210, 170);");
+        gridPaneHorarioTiempoClinica.add(aclaracion3, 0, 11);
+
         GridPane.setColumnSpan(aclaracion1, Integer.BYTES);
         GridPane.setColumnSpan(aclaracion2, Integer.BYTES);
+        GridPane.setColumnSpan(aclaracion3, Integer.BYTES);
 
         return gridPaneHorarioTiempoClinica;
     }//end GridPane createCatalogue()

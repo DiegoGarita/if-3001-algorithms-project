@@ -501,3 +501,69 @@ qwe & Se registró como nuevo usuario & Wed Jun 24 22:33:47 CST 2020
 54321 & Inició sesión como cliente & Wed Jun 24 23:47:37 CST 2020
 54321 & Inició sesión como cliente & Wed Jun 24 23:50:21 CST 2020
 54321 & Inició sesión como cliente & Wed Jun 24 23:52:27 CST 2020
+54321 & Inició sesión como cliente & Thu Jun 25 14:42:18 CST 2020
+666666 & Inició sesión como admistrador & Thu Jun 25 14:43:50 CST 2020
+54321 & Inició sesión como cliente & Thu Jun 25 15:21:02 CST 2020
+666666 & Inició sesión como admistrador & Thu Jun 25 15:22:43 CST 2020
+54321 & Inició sesión como cliente & Thu Jun 25 19:04:23 CST 2020
+54321 & Inició sesión como cliente & Thu Jun 25 19:05:55 CST 2020
+54321 & Inició sesión como cliente & Thu Jun 25 19:20:32 CST 2020
+54321 & Inició sesión como cliente & Thu Jun 25 19:22:23 CST 2020
+54321 & Inició sesión como cliente & Thu Jun 25 19:23:56 CST 2020
+54321 & Inició sesión como cliente & Thu Jun 25 19:24:33 CST 2020
+54321 & Inició sesión como cliente & Thu Jun 25 19:25:17 CST 2020
+54321 & Inició sesión como cliente & Thu Jun 25 19:27:40 CST 2020
+88888888 & Se registró como nuevo usuario & Thu Jun 25 19:31:58 CST 2020
+54321 & Inició sesión como cliente & Thu Jun 25 19:32:14 CST 2020
+54321 & Inició sesión como cliente & Thu Jun 25 19:48:05 CST 2020
+54321 & Solicitó una cita & Thu Jun 25 19:48:31 CST 2020
+54321 & Inició sesión como cliente & Thu Jun 25 21:03:38 CST 2020
+54321 & Inició sesión como cliente & Thu Jun 25 21:04:07 CST 2020
+666666 & Inició sesión como admistrador & Thu Jun 25 21:04:52 CST 2020
+666666 & Solicitó información de pacientes & Thu Jun 25 21:05:02 CST 2020
+666666 & Solicitó información de pacientes & Thu Jun 25 21:05:05 CST 2020
+666666 & Solicitó la lista de planes alimenticios & Thu Jun 25 21:06:41 CST 2020
+54321 & Inició sesión como cliente & Thu Jun 25 21:09:58 CST 2020
+54321 & Modificó su perfil & Thu Jun 25 21:10:24 CST 2020
+54321 & Inició sesión como cliente & Thu Jun 25 22:34:04 CST 2020
+666666 & Inició sesión como admistrador & Thu Jun 25 22:40:28 CST 2020
+666666 & Ingresó nuevo formulario para un paciente & Thu Jun 25 22:41:54 CST 2020
+54321 & Inició sesión como cliente & Thu Jun 25 22:42:20 CST 2020
+54321 & Revisó su progreso graficamente & Thu Jun 25 22:42:34 CST 2020
+54321 & Inició sesión como cliente & Thu Jun 25 22:49:54 CST 2020
+54321 & Revisó su progreso graficamente & Thu Jun 25 22:50:21 CST 2020
+54321 & consultó su reporte de citas & Thu Jun 25 22:54:19 CST 2020
+54321 & Modificó su perfil & Thu Jun 25 23:01:31 CST 2020
+54321 & Eliminó su perfil & Thu Jun 25 23:03:30 CST 2020
+54321 & Inició sesión como cliente & Thu Jun 25 23:12:29 CST 2020
+54321 & Inició sesión como cliente & Thu Jun 25 23:15:23 CST 2020
+54321 & Inició sesión como cliente & Thu Jun 25 23:22:03 CST 2020
+54321 & Modificó su perfil & Thu Jun 25 23:22:11 CST 2020
+54321 & Modificó su perfil & Thu Jun 25 23:22:23 CST 2020
+54321 & Modificó su perfil & Thu Jun 25 23:22:42 CST 2020
+54321 & Inició sesión como cliente & Thu Jun 25 23:33:52 CST 2020
+54321 & Modificó su perfil & Thu Jun 25 23:34:16 CST 2020
+54321 & Inició sesión como cliente & Thu Jun 25 23:40:16 CST 2020
+54321 & Eliminó su perfil & Thu Jun 25 23:45:01 CST 2020
+54321 & Inició sesión como cliente & Fri Jun 26 00:01:08 CST 2020
+54321 & Inició sesión como cliente & Fri Jun 26 00:11:50 CST 2020
+54321 & Inició sesión como cliente & Fri Jun 26 00:17:09 CST 2020
+54321 & Inició sesión como cliente & Fri Jun 26 09:08:44 CST 2020
+54321 & Inició sesión como cliente & Fri Jun 26 09:11:02 CST 2020
+54321 & Inició sesión como cliente & Fri Jun 26 09:12:49 CST 2020
+54321 & Inició sesión como cliente & Fri Jun 26 09:19:05 CST 2020
+54321 & Inició sesión como cliente & Fri Jun 26 12:35:34 CST 2020
+xxxxxx & Se registró como nuevo usuario & Fri Jun 26 12:46:36 CST 2020
+cccccc & Se registró como nuevo usuario & Fri Jun 26 12:56:44 CST 2020
+159753 & Se registró como nuevo usuario & Fri Jun 26 13:07:06 CST 2020
+56418023o & Se registró como nuevo usuario & Fri Jun 26 13:09:32 CST 2020
+   & , usuario no registrado intentó iniciar sesión & Fri Jun 26 13:17:54 CST 2020
+    & , usuario no registrado intentó iniciar sesión & Fri Jun 26 13:21:11 CST 2020
+    & , usuario no registrado intentó iniciar sesión & Fri Jun 26 13:21:29 CST 2020
+cdsf & , usuario no registrado intentó iniciar sesión & Fri Jun 26 14:35:00 CST 2020
+cdcdfds & , usuario no registrado intentó iniciar sesión & Fri Jun 26 14:36:27 CST 2020
+kgfdgd & , usuario no registrado intentó iniciar sesión & Fri Jun 26 14:37:08 CST 2020
+rfdfd & , usuario no registrado intentó iniciar sesión & Fri Jun 26 14:38:27 CST 2020
+dsf & , usuario no registrado intentó iniciar sesión & Fri Jun 26 14:39:36 CST 2020
+vcxv & , usuario no registrado intentó iniciar sesión & Fri Jun 26 14:40:01 CST 2020
+vcx & , usuario no registrado intentó iniciar sesión & Fri Jun 26 14:40:21 CST 2020
