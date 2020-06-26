@@ -22,10 +22,10 @@ import javafx.scene.text.*;
 public class ReservaCita {
 
     TextField textFieldIDReservacion;
-    TextField textFieldDoctora;
     Button botonGuardar;
     ComboBox comboBoxHora = new ComboBox();
     ComboBox comboBoxClientes = new ComboBox();
+    ComboBox comboBoxDoctora;
     LogicaPila LogicaCliente = new LogicaPila();
     LogicaListas logic = new LogicaListas();
     IniciarSesion inicioSesion;
@@ -91,7 +91,7 @@ public class ReservaCita {
         gridPaneSolicitaCita.add(comboBoxHora, 0, 3);
 
         comboBoxHora.setOnMouseEntered((event) -> {
-            textFieldDoctora.setDisable(false);
+            comboBoxDoctora.setDisable(false);
             comboBoxHora.setEditable(true);
             LogicaCliente.leeArchivoHoraFecha(dT_DateFligth.getValue().toString());
             int tam = LogicaCliente.tamanio();
@@ -136,19 +136,17 @@ public class ReservaCita {
 
         });
 
-        textFieldDoctora = new TextField();
-        textFieldDoctora.setPromptText("Doctora");
-        textFieldDoctora.setStyle(
-                "-fx-background-color: lightblue; "
-                + "-fx-background-insets: 4; "
-                +// tamano
-                "-fx-background-radius: 4; "
-                +// tamano
-                "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-        textFieldDoctora.setDisable(true);
-        gridPaneSolicitaCita.add(textFieldDoctora, 0, 4);
-        textFieldDoctora.setFocusTraversable(false);
-        textFieldDoctora.setOnKeyPressed((event) -> {
+        comboBoxDoctora = new ComboBox();
+        comboBoxDoctora.setValue("Doctora");
+        comboBoxDoctora.setStyle("-fx-background-color: lightblue");
+        gridPaneSolicitaCita.add(comboBoxDoctora, 0, 4);
+        comboBoxDoctora.setFocusTraversable(false);
+        comboBoxDoctora.setDisable(true);
+
+        for (int i = 0; i < logicaCola.cantidadDeClientes("ö"); i++) {
+            comboBoxDoctora.getItems().addAll(logicaCola.arrayListClientes.get(i).getName());
+        }
+        comboBoxDoctora.setOnMouseClicked((event) -> {
             botonGuardar.setDisable(false);
         });
 
@@ -159,9 +157,11 @@ public class ReservaCita {
         gridPaneSolicitaCita.add(botonGuardar, 0, 7);
         botonGuardar.setDisable(true);
         botonGuardar.setOnAction((event) -> {
+            
+            if( !textFieldIDReservacion.getText().trim().equals("")){
 
             Cita cita = new Cita(textFieldIDReservacion.getText(), comboBoxClientes.getValue().toString(), dT_DateFligth.getValue().toString(),
-                    comboBoxHora.getValue().toString(), textFieldDoctora.getText());
+                    comboBoxHora.getValue().toString(), comboBoxDoctora.getValue().toString());
             LogicaCliente.EscribeArchivoSolicitudCita(cita);
 
             Acciones acciones = new Acciones(inicioSesion.ID, "Solicitó una cita", fechaHora.histoFechaHora());
@@ -170,17 +170,19 @@ public class ReservaCita {
             botonGuardar.setDisable(true);
             comboBoxClientes.setDisable(true);
             comboBoxHora.setDisable(true);
-            textFieldDoctora.setDisable(true);
+            comboBoxDoctora.setDisable(true);
             dT_DateFligth.setDisable(true);
             textFieldIDReservacion.setDisable(true);
             textFieldIDReservacion.clear();
-            textFieldDoctora.clear();
             comboBoxClientes.setValue("Clientes");
             comboBoxHora.setValue("Hora de cita");
             dT_DateFligth.setValue(LocalDate.now());
 
             alerta.alertInformation("Cita agendada, correctamente");
-
+            }//end if
+            else{
+                alerta.alertWarning("Campos en blanco\nIntentelo de nuevo");
+            }//end else
         });
 
         MainMenuBarAdministrador mainMenuBarAdmin = new MainMenuBarAdministrador();

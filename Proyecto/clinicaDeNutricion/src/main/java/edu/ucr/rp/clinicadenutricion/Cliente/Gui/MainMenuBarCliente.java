@@ -4,7 +4,16 @@ import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -25,7 +34,6 @@ public class MainMenuBarCliente {
 
     ArchSupAdmin logiSuper = new ArchSupAdmin();
 
-
     public GridPane menuCliente() {
 
         GridPane gridPaneUsuario = new GridPane();
@@ -33,7 +41,7 @@ public class MainMenuBarCliente {
 
         SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
 
-         gridPaneUsuario.setStyle(("-fx-background-image:url('file:src/image/" + configuracion.getNombreLogo() + "');"
+        gridPaneUsuario.setStyle(("-fx-background-image:url('file:src/image/" + configuracion.getNombreLogo() + "');"
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
@@ -114,12 +122,22 @@ public class MainMenuBarCliente {
                 + "-fx-effect: dropshadow(gaussian, red, 50, 0, 0, 0);"
                 + "-fx-background-insets: 50;");
 
-        MenuItem menuItemMasInfo = new MenuItem("Encuentra más info", new ImageView(new Image("file:src/image/pagW.png")));
+        MenuItem menuItemMasInfo = new MenuItem("Encuentra más información", new ImageView(new Image("file:src/image/pagW.png")));
         menuItemMasInfo.setAccelerator(KeyCombination.keyCombination("Ctrl+V"));
 
+        //  link.setText("");
         menuItemMasInfo.setOnAction((event) -> {
-            gridPaneUsuario.getChildren().clear();
+            System.out.println("entro pero no voy");
+            Hyperlink link = new Hyperlink();
+                if (Desktop.isDesktopSupported()) {
+                    try {
+                        Desktop.getDesktop().browse(new URI("https://clinicasusanadistancia.wordpress.com/"));
+                    } catch (IOException | URISyntaxException io) {
+                        System.out.println("No sirvo");
+                    }
+                }
         });
+
         menuMas.getItems().addAll(menuItemMasInfo);
 
         Menu menuUsuario = new Menu("                                               "

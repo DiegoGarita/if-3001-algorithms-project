@@ -235,11 +235,16 @@ public class AjustesCliente {
                     logicaLista.remueve(usuario);
                     logicaLista.remueveLineaDeArchivo(usuario.getId());
                     buttonModificar.setDisable(true);
+                    Platform.exit();
+                } else {
+                    buttonEliminar.setDisable(true);
+                    buttonModificar.setDisable(true);
+                    textFieldContraseña.clear();
+                    alertas.alertWarning("Contraseña incorrecta\nIntente de nuevo");
                 }
                 buttonEliminar.setDisable(true);
                 buttonModificar.setDisable(true);
                 textFieldContraseña.clear();
-                Platform.exit();
 
             }//end if
             else {
@@ -256,34 +261,43 @@ public class AjustesCliente {
         buttonAceptar.setVisible(false);
         buttonAceptar.setOnAction((event) -> {
 
-            if (!textFieldCorreo.getText().trim().equals("")
-                    && !textFieldTelefono.getText().trim().equals("")
-                    && !textFieldDireccion.getText().trim().equals("")
-                    && textFieldCorreo.getText().contains("@") ) {
+            try {
 
-                alertas.alertInformation("Usuario modificado correctamente");
-                Usuario usuario = logicaLista.stringTokenizer(logicaLista.leeLinea(textFieldID.getText()));
-                Usuario usuario1 = new Usuario(textFieldTipo.getText(), textFieldID.getText(), textFieldNombreUsuario.getText(), encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()), textFieldCorreo.getText(), textFieldTelefono.getText(), textFieldDireccion.getText());
+                if (!textFieldCorreo.getText().trim().equals("")
+                        && !textFieldTelefono.getText().trim().equals("")
+                        && !textFieldDireccion.getText().trim().equals("")
+                        && textFieldCorreo.getText().contains("@")
+                        || Integer.parseInt(textFieldTelefono.getText()) % 2 == 0
+                        || Integer.parseInt(textFieldTelefono.getText()) % 3 == 1) {
 
-                logicaLista.leerArchivo();
-                logicaLista.modificado(usuario, encrypt.encriptar("SusanaDistancia", textFieldCorreo.getText()));
-                logicaLista.remueveLineaDeArchivo(usuario.getId());
-                logicaLista.escribirArchivo(usuario1);
+                    alertas.alertInformation("Usuario modificado correctamente");
+                    Usuario usuario = logicaLista.stringTokenizer(logicaLista.leeLinea(textFieldID.getText()));
+                    Usuario usuario1 = new Usuario(textFieldTipo.getText(), textFieldID.getText(), textFieldNombreUsuario.getText(), encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()), textFieldCorreo.getText(), textFieldTelefono.getText(), textFieldDireccion.getText());
 
-                textFieldDireccion.setDisable(true);
-                textFieldCorreo.setDisable(true);
-                textFieldTelefono.setDisable(true);
-                textFieldDireccion.clear();
-                textFieldCorreo.clear();
-                textFieldTelefono.clear();
-                textFieldContraseña.clear();
+                    logicaLista.leerArchivo();
+                    logicaLista.modificado(usuario, encrypt.encriptar("SusanaDistancia", textFieldCorreo.getText()));
+                    logicaLista.remueveLineaDeArchivo(usuario.getId());
+                    logicaLista.escribirArchivo(usuario1);
 
-                buttonAceptar.setDisable(true);
+                    textFieldDireccion.setDisable(true);
+                    textFieldCorreo.setDisable(true);
+                    textFieldTelefono.setDisable(true);
+                    textFieldDireccion.clear();
+                    textFieldCorreo.clear();
+                    textFieldTelefono.clear();
+                    textFieldContraseña.clear();
 
-            }//end if
-            else {
-                alertas.alertWarning("Espacio vacio\nIntente de nuevo");
-            }//end else
+                    buttonAceptar.setDisable(true);
+
+                }//end if
+                else {
+                    alertas.alertWarning("Espacio vacio o error en formato\nIntente de nuevo");
+                }//end else
+            }//end try
+            catch (java.lang.NumberFormatException jlNFE) {
+                alertas.alertWarning("Espacio vacio o error en formato\nIntente de nuevo");
+            }//end catch
+
         });//end setOnAction
 
         MainMenuBarCliente barCliente = new MainMenuBarCliente();
