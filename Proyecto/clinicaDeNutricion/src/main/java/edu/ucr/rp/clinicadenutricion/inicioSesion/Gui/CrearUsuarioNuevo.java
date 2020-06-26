@@ -36,7 +36,7 @@ public class CrearUsuarioNuevo {
     ArchSupAdmin logiSuper = new ArchSupAdmin();
     Alertas alertas = new Alertas();
     EnviarCorreo enviarCorreo = new EnviarCorreo();
-
+    GridPane gridPaneCreaUsuario;
     public GridPane creaUsuario() {
 
         if (logic.cantidadDeClientes("|") < 3) {
@@ -44,7 +44,7 @@ public class CrearUsuarioNuevo {
             System.out.println(logic.cantidadDeClientes("|") + "if");
         } else {
             System.out.println(logic.cantidadDeClientes("|") + "else");
-            GridPane gridPaneCreaUsuario = new GridPane();
+            gridPaneCreaUsuario = new GridPane();
             gridPaneCreaUsuario.setMinSize(600, 700);
             SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
             gridPaneCreaUsuario.setVgap(15);
@@ -223,7 +223,7 @@ public class CrearUsuarioNuevo {
 
             return gridPaneCreaUsuario;   //---> cambio
         }//end else 
-        return null;   //---> cambio
+        return gridPaneCreaUsuario;   //---> cambio
     }//end GridPane createCatalogue()
 
 }

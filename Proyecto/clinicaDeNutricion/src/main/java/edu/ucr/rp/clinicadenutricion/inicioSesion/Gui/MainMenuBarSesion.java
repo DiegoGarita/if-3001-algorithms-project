@@ -2,6 +2,7 @@ package edu.ucr.rp.clinicadenutricion.inicioSesion.Gui;
 
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
+import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -19,6 +20,7 @@ public class MainMenuBarSesion {
     IniciarSesion entrar = new IniciarSesion();
     VBox vBoxWindows, vBoxMain;
     ArchSupAdmin logiSuper = new ArchSupAdmin();
+    Alertas alerta = new Alertas();
 
     public Scene getMainScene() {
 
@@ -79,8 +81,13 @@ public class MainMenuBarSesion {
         menuItemIngresar.setAccelerator(KeyCombination.keyCombination("Ctrl+I"));
 
         menuItemCreaCuenta.setOnAction((event) -> {
+            try{
             vBoxWindows.getChildren().clear();
             vBoxWindows.getChildren().addAll(crearUsuarionuevo.creaUsuario());
+            }
+            catch(java.lang.NullPointerException jlnpe){
+                alerta.alertWarning("Se esta usando por primera el app\nIngrese como SuperAdmin");
+            }
         });
 
         menuItemIngresar.setOnAction((event) -> {

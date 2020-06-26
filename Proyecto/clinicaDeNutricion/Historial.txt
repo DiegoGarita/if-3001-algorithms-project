@@ -567,3 +567,11 @@ rfdfd & , usuario no registrado intentó iniciar sesión & Fri Jun 26 14:38:27 CST
 dsf & , usuario no registrado intentó iniciar sesión & Fri Jun 26 14:39:36 CST 2020
 vcxv & , usuario no registrado intentó iniciar sesión & Fri Jun 26 14:40:01 CST 2020
 vcx & , usuario no registrado intentó iniciar sesión & Fri Jun 26 14:40:21 CST 2020
+xsddsf & , usuario no registrado intentó iniciar sesión & Fri Jun 26 14:52:19 CST 2020
+fsdfds & , usuario no registrado intentó iniciar sesión & Fri Jun 26 15:45:34 CST 2020
+ftdth & , usuario no registrado intentó iniciar sesión & Fri Jun 26 15:46:35 CST 2020
+fsrer & , usuario no registrado intentó iniciar sesión & Fri Jun 26 15:47:40 CST 2020
+613512 & , usuario no registrado intentó iniciar sesión & Fri Jun 26 15:48:45 CST 2020
+ewds & , usuario no registrado intentó iniciar sesión & Fri Jun 26 15:50:57 CST 2020
+666666 & Se registró como nuevo usuario & Fri Jun 26 16:29:17 CST 2020
+999999999 & Se registró como nuevo usuario & Fri Jun 26 16:30:40 CST 2020

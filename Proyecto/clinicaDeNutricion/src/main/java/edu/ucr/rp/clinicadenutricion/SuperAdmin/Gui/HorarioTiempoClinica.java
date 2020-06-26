@@ -19,7 +19,9 @@ public class HorarioTiempoClinica {
     TextField textFieldCierraClinica;
     Button buttonGuardar;
     Button buttonModificar;
-
+    Label labelInter;
+    Label labelAbre;
+    Label labelCierra;
     LogicaListas logic = new LogicaListas();
     ArchSupAdmin logiSuper = new ArchSupAdmin();
     Alertas alerta = new Alertas();
@@ -54,8 +56,17 @@ public class HorarioTiempoClinica {
             buttonModificar.setDisable(false);
         });
 
+        labelInter = new Label();
+        labelInter.setText("Intervalo entre citas");
+        gridPaneHorarioTiempoClinica.add(labelInter, 0, 2);
+        labelInter.setFont(new Font("Arial", 15));
+        labelInter.setTextFill(Color.web("#0076a3"));
+        labelInter.setStyle("-fx-font-weight: bold");
+        labelInter.setStyle("-fx-background-color: rgb(111, 210, 170);");
+        labelInter.setVisible(false);
+
         textFieldIntervalo = new TextField();
-        textFieldIntervalo.setText(configuracion.getTiempoConsulta() + "<- Intervalo");
+        textFieldIntervalo.setText(configuracion.getTiempoConsulta());
         textFieldIntervalo.setStyle(
                 "-fx-background-color: lightblue; "
                 + "-fx-background-insets: 4; "
@@ -63,12 +74,21 @@ public class HorarioTiempoClinica {
                 "-fx-background-radius: 4; "
                 +// tamano
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-        gridPaneHorarioTiempoClinica.add(textFieldIntervalo, 0, 2);
+        gridPaneHorarioTiempoClinica.add(textFieldIntervalo, 1, 2);
         textFieldIntervalo.setFocusTraversable(false);
         textFieldIntervalo.setVisible(false);
 
+        labelAbre = new Label();
+        labelAbre.setText("Abre a las: ");
+        gridPaneHorarioTiempoClinica.add(labelAbre, 0, 3);
+        labelAbre.setFont(new Font("Arial", 15));
+        labelAbre.setTextFill(Color.web("#0076a3"));
+        labelAbre.setStyle("-fx-font-weight: bold");
+        labelAbre.setStyle("-fx-background-color: rgb(111, 210, 170);");
+        labelAbre.setVisible(false);
+
         textFieldAbreClinica = new TextField();
-        textFieldAbreClinica.setText(configuracion.getAbreClinica() + "<- Abre a las");
+        textFieldAbreClinica.setText(configuracion.getAbreClinica());
         textFieldAbreClinica.setStyle(
                 "-fx-background-color: lightblue; "
                 + "-fx-background-insets: 4; "
@@ -76,12 +96,21 @@ public class HorarioTiempoClinica {
                 "-fx-background-radius: 4; "
                 +// tamano
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-        gridPaneHorarioTiempoClinica.add(textFieldAbreClinica, 0, 3);
+        gridPaneHorarioTiempoClinica.add(textFieldAbreClinica, 1, 3);
         textFieldAbreClinica.setFocusTraversable(false);
         textFieldAbreClinica.setVisible(false);
 
+        labelCierra = new Label();
+        labelCierra.setText("Cierra a las: ");
+        gridPaneHorarioTiempoClinica.add(labelCierra, 0, 4);
+        labelCierra.setFont(new Font("Arial", 15));
+        labelCierra.setTextFill(Color.web("#0076a3"));
+        labelCierra.setStyle("-fx-font-weight: bold");
+        labelCierra.setStyle("-fx-background-color: rgb(111, 210, 170);");
+        labelCierra.setVisible(false);
+
         textFieldCierraClinica = new TextField();
-        textFieldCierraClinica.setText(configuracion.getCierreClinica() + "<- Cierra a las");
+        textFieldCierraClinica.setText(configuracion.getCierreClinica());
         textFieldCierraClinica.setStyle(
                 "-fx-background-color: lightblue; "
                 + "-fx-background-insets: 4; "
@@ -89,7 +118,7 @@ public class HorarioTiempoClinica {
                 "-fx-background-radius: 4; "
                 +// tamano
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-        gridPaneHorarioTiempoClinica.add(textFieldCierraClinica, 0, 4);
+        gridPaneHorarioTiempoClinica.add(textFieldCierraClinica, 1, 4);
         textFieldCierraClinica.setFocusTraversable(false);
         textFieldCierraClinica.setVisible(false);
         textFieldCierraClinica.setOnKeyPressed((event) -> {
@@ -108,6 +137,9 @@ public class HorarioTiempoClinica {
                 textFieldIntervalo.setVisible(true);
                 textFieldAbreClinica.setVisible(true);
                 textFieldCierraClinica.setVisible(true);
+                labelCierra.setVisible(true);
+                labelAbre.setVisible(true);
+                labelInter.setVisible(true);
                 buttonModificar.setDisable(true);
             }
             textFieldContraseña.setDisable(true);
