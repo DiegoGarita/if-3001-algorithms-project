@@ -18,6 +18,8 @@ public class MainMenuBarAdministrador {
     ModiCancel modificaCancelaCita = new ModiCancel();
     ArchSupAdmin logiSuper = new ArchSupAdmin();
     Alertas alerta = new Alertas();
+    PaginacionAdmin paginacionAdmin = new PaginacionAdmin();
+
 
     /**
      *
@@ -44,6 +46,7 @@ public class MainMenuBarAdministrador {
         menuPaciente.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"
                 + "-fx-effect: dropshadow(gaussian, red, 50, 0, 0, 0);"
                 + "-fx-background-insets: 50;");
+        
         MenuItem menuItemInformacionPaciente = new MenuItem("Acceder a informacion", new ImageView(new Image("file:src/image/infoPaci.png")));
         menuItemInformacionPaciente.setAccelerator(KeyCombination.keyCombination("Ctrl+A"));
         MenuItem menuItemFormulario = new MenuItem("Form nuevo", new ImageView(new Image("file:src/image/formDo.png")));
@@ -58,8 +61,15 @@ public class MainMenuBarAdministrador {
             gridPaneAdministrador.getChildren().clear();
             gridPaneAdministrador.getChildren().addAll(formulario.formulario());
         });
+        
+            MenuItem menuItemNumPag = new MenuItem("Número de registros, paginación", new ImageView(new Image("file:src/image/numRegis.png")));
+        menuItemNumPag.setOnAction((event) -> {
+         gridPaneAdministrador.getChildren().clear();
+            gridPaneAdministrador.getChildren().addAll(paginacionAdmin.historial());
+        });
+        
 
-        menuPaciente.getItems().addAll(menuItemInformacionPaciente, menuItemFormulario);
+        menuPaciente.getItems().addAll(menuItemInformacionPaciente, menuItemFormulario, menuItemNumPag);
 
         Menu menuCita = new Menu("Citas", new ImageView(new Image("file:src/image/cita.png")));
         menuCita.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"

@@ -78,8 +78,9 @@ public class MainMenuBarSuperAdmi {
 
         });
         menuItemNumPag.setOnAction((event) -> {
-            alerta.alertWarning("EROR 503 Service Temporarily Unavailable");
-            Platform.exit();
+            gridPaneSuperAdmi.getChildren().clear();
+            gridPaneSuperAdmi.getChildren().addAll(registrosPaginacion.historial());
+
         });
 
         menuItemCreaCuenta.setOnAction((event) -> {

@@ -99,7 +99,6 @@ public class LogicaCola {
 
     public int cantidadDeClientes(String identificador) {
         int cantidad = 0;
-      //  SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
         File newFile = new File("usuarios.txt");
         try {
             FileInputStream fileInputStream = new FileInputStream(newFile);

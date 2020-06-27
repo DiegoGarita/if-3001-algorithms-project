@@ -35,9 +35,6 @@ public class LogoApp {
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
-        Usuario usuarioTemp = logic.stringTokenizer(logic.leeLinea("ë"));
-        SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
-
         textFieldContraseña = new TextField();
         textFieldContraseña.setPromptText("Contraseña");
         textFieldContraseña.setStyle(
@@ -52,6 +49,8 @@ public class LogoApp {
         textFieldContraseña.setOnKeyPressed((event) -> {
             buttonModifica.setDisable(false);
         });
+
+        Usuario usuarioTemp = logic.stringTokenizer(logic.leeLinea("ë"));
 
         buttonModifica = new Button("Modificar logo");
         buttonModifica.setTextFill(Color.WHITE);
@@ -98,18 +97,18 @@ public class LogoApp {
         buttonGuardar.setDisable(true);
         buttonGuardar.setOnAction((event) -> {
 
+            SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
             SuperAdmin configuracion2 = new SuperAdmin(configuracion.getIdentificadorSA(), configuracion.getAbreClinica(),
                     configuracion.getCierreClinica(), configuracion.getTiempoConsulta(),
                     label.getText(),
                     configuracion.getPathDeGuardado(), configuracion.getPaginacion());
 
-            logiSuper.readInFile();
-            logiSuper.removeLineFromFile(configuracion2.getIdentificadorSA()); //-->>Here esta vara me cae
-            logiSuper.writeInFile(configuracion2);
+            logiSuper.replacefromfile(configuracion2);
+
             textFieldContraseña.clear();
             buttonGuardar.setDisable(true);
             alerta.alertInformation("Imagen de fonde cambiada, correctamente");
-            
+
         });//END BUTTON
 
         MainMenuBarSuperAdmi mainMenuBarSuperAdmi = new MainMenuBarSuperAdmi();
