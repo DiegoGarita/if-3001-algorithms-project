@@ -23,10 +23,10 @@ import javafx.scene.text.*;
 public class SolicitaCita {
 
     TextField textFieldIDReservacion;
-    ComboBox comboBoxDoctora;
+    ComboBox comboBoxDoctora = new ComboBox();
     Button botonGuardar;
     ComboBox comboBoxHora = new ComboBox();
-
+    Alertas alertas = new Alertas();
     LogicaPila LogicaCliente = new LogicaPila();
     LogicaListas logic = new LogicaListas();
     IniciarSesion inicioSesion;
@@ -80,9 +80,9 @@ public class SolicitaCita {
 
         comboBoxHora.setValue("Hora de la cita");
         comboBoxHora.setDisable(true);
+        comboBoxHora.setEditable(false);
         gridPaneSolicitaCita.add(comboBoxHora, 0, 3);
-
-        comboBoxHora.setOnMouseEntered((event) -> {
+        comboBoxHora.setOnMouseClicked((event) -> {
             comboBoxDoctora.setDisable(false);
             comboBoxHora.setEditable(false);
             LogicaCliente.leeArchivoHoraFecha(dT_DateFligth.getValue().toString());
@@ -130,23 +130,7 @@ public class SolicitaCita {
 
         });
 
-//        textFieldDoctora = new TextField();
-//        textFieldDoctora.setPromptText("Doctora");
-//        textFieldDoctora.setStyle(
-//                "-fx-background-color: lightblue; "
-//                + "-fx-background-insets: 4; "
-//                +// tamano
-//                "-fx-background-radius: 4; "
-//                +// tamano
-//                "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-//        //   gridPaneSolicitaCita.add(textFieldDoctora, 0, 4);
-//        textFieldDoctora.setFocusTraversable(false);
-//        textFieldDoctora.setDisable(true);
-//        textFieldDoctora.setOnKeyPressed((event) -> {
-//            botonGuardar.setDisable(false);
-//        });
-
-        comboBoxDoctora = new ComboBox();
+        comboBoxDoctora.setEditable(false);
         comboBoxDoctora.setValue("Doctora");
         comboBoxDoctora.setStyle("-fx-background-color: lightblue");
         gridPaneSolicitaCita.add(comboBoxDoctora, 0, 4);
@@ -176,27 +160,35 @@ public class SolicitaCita {
         botonGuardar.setDisable(true);
         botonGuardar.setOnAction((event) -> {
 
-            if (!textFieldIDReservacion.getText().trim().equals("")) {
+            if (comboBoxHora.getSelectionModel().getSelectedItem().equals("Hora de la cita") != true
+                    && comboBoxDoctora.getSelectionModel().getSelectedItem().equals("Doctora") != true) {
 
-                Cita cita = new Cita(textFieldIDReservacion.getText(), usuario.getId(), dT_DateFligth.getValue().toString(),
-                        comboBoxHora.getValue().toString(), comboBoxDoctora.getValue().toString());
-                LogicaCliente.EscribeArchivoSolicitudCita(cita);
+                if (!textFieldIDReservacion.getText().trim().equals("")) {
 
-                Acciones acciones = new Acciones(inicioSesion.ID, "Solicitó una cita", fechaHora.histoFechaHora());
-                logicaAVL.escribeHistorial(acciones);
+                    Cita cita = new Cita(textFieldIDReservacion.getText(), usuario.getId(), dT_DateFligth.getValue().toString(),
+                            comboBoxHora.getValue().toString(), comboBoxDoctora.getValue().toString());
+                    LogicaCliente.EscribeArchivoSolicitudCita(cita);
 
-                alerta.alertInformation("Cita reservada con exito");
-                textFieldIDReservacion.clear();
-                comboBoxHora.setValue("Hora de cita");
-                dT_DateFligth.setValue(LocalDate.now());
-                botonGuardar.setDisable(true);
-                comboBoxDoctora.setDisable(true);
-                comboBoxHora.setDisable(true);
-                dT_DateFligth.setDisable(true);
-            }//end if
+                    Acciones acciones = new Acciones(inicioSesion.ID, "Solicitó una cita", fechaHora.histoFechaHora());
+                    logicaAVL.escribeHistorial(acciones);
+
+                    alerta.alertInformation("Cita reservada con exito");
+                    textFieldIDReservacion.clear();
+                    comboBoxHora.setValue("Hora de cita");
+                    dT_DateFligth.setValue(LocalDate.now());
+                    botonGuardar.setDisable(true);
+                    comboBoxDoctora.setDisable(true);
+                    comboBoxHora.setDisable(true);
+                    dT_DateFligth.setDisable(true);
+                }//end if
+                else {
+                    alerta.alertWarning("Hay campos vacios\nIntentelo de nuevo");
+                }//end else
+
+            }//end if 
             else {
-                alerta.alertWarning("Hay campos vacios\nIntentelo de nuevo");
-            }//end else
+                alertas.alertWarning("No selecciono la hora de cita o Doctora\nIntente de nuevo");
+            }
         });
 
         MainMenuBarCliente mainMenuBarCliente = new MainMenuBarCliente();

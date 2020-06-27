@@ -327,6 +327,7 @@ public class Formulario {
         textAreaNotas.setMinSize(650, 75);
         textAreaNotas.setDisable(true);
         gridPaneFormulario.add(textAreaNotas, 0, 5);
+        textAreaNotas.setPromptText("");
         textAreaNotas.setFocusTraversable(false);
 
         buttongeneraPDF = new Button("Generar PDF");
@@ -421,47 +422,65 @@ public class Formulario {
         gridPaneFormulario.add(buttonAceptar, 0, 7);
         buttonAceptar.setDisable(true);
         buttonAceptar.setOnAction((event) -> {
+            try {
+                if (Integer.parseInt(textFieldGrasaVisceral.getText()) % 2 == 0
+                        || Integer.parseInt(textFieldGrasaVisceral.getText()) % 2 == 1
+                        && Integer.parseInt(textFieldGrasa.getText()) % 2 == 0
+                        || Integer.parseInt(textFieldGrasa.getText()) % 2 == 1
+                        && Integer.parseInt(textFieldPorcentajeMasaMuscular.getText()) % 2 == 0
+                        || Integer.parseInt(textFieldPorcentajeMasaMuscular.getText()) % 2 == 1
+                        && Integer.parseInt(textFieldPorcentajeAgua.getText()) % 2 == 0
+                        || Integer.parseInt(textFieldPorcentajeAgua.getText()) % 2 == 1) {
 
-            if (!textFieldEdad.getText().trim().equals("") && !textFieldEdadMetabolica.getText().trim().equals("")
-                    && !textFieldAltura.getText().trim().equals("") && !textFieldPeso.getText().trim().equals("")
-                    && !textFieldPorcentajeMasaMuscular.getText().trim().equals("") && !textFieldGrasa.getText().trim().equals("")
-                    && !textFieldGrasaVisceral.getText().trim().equals("") && !textFieldHueso.getText().trim().equals("")
-                    && !textFieldPorcentajeAgua.getText().trim().equals("") && !textFieldActividadFisica.getText().trim().equals("")
-                    && !textFieldHorasDescanso.getText().trim().equals("") && !textAreaNotas.getText().trim().equals("")) {
+                    if (!textFieldEdad.getText().trim().equals("") && !textFieldEdadMetabolica.getText().trim().equals("")
+                            && !textFieldAltura.getText().trim().equals("") && !textFieldPeso.getText().trim().equals("")
+                            && !textFieldPorcentajeMasaMuscular.getText().trim().equals("") && !textFieldGrasa.getText().trim().equals("")
+                            && !textFieldGrasaVisceral.getText().trim().equals("") && !textFieldHueso.getText().trim().equals("")
+                            && !textFieldPorcentajeAgua.getText().trim().equals("") && !textFieldActividadFisica.getText().trim().equals("")
+                            && !textFieldHorasDescanso.getText().trim().equals("") && !textAreaNotas.getText().trim().equals("")) {
 
-                ReporteMedico reporteMedico = new ReporteMedico(textFieldID.getText(), textFieldNombre.getText(),
-                        textFieldFecha.getText(), textFieldHora.getText(), textFieldEdad.getText(), textFieldEdadMetabolica.getText(),
-                        textFieldAltura.getText(), textFieldPeso.getText(), textFieldPorcentajeMasaMuscular.getText(), textFieldGrasa.getText(),
-                        textFieldGrasaVisceral.getText(), textFieldHueso.getText(), textFieldPorcentajeAgua.getText(), textFieldActividadFisica.getText(),
-                        textFieldHorasDescanso.getText(), textAreaNotas.getText());
-                adminLogic.escribeCitas(reporteMedico);
+                        ReporteMedico reporteMedico = new ReporteMedico(textFieldID.getText(), textFieldNombre.getText(),
+                                textFieldFecha.getText(), textFieldHora.getText(), textFieldEdad.getText(), textFieldEdadMetabolica.getText(),
+                                textFieldAltura.getText(), textFieldPeso.getText(), textFieldPorcentajeMasaMuscular.getText(), textFieldGrasa.getText(),
+                                textFieldGrasaVisceral.getText(), textFieldHueso.getText(), textFieldPorcentajeAgua.getText(), textFieldActividadFisica.getText(),
+                                textFieldHorasDescanso.getText(), textAreaNotas.getText());
+                        adminLogic.escribeCitas(reporteMedico);
 
-                Acciones acciones = new Acciones(iniciarSesion.ID, "Ingresó nuevo formulario para un paciente", fechaHora.histoFechaHora());
-                logicaAVL.escribeHistorial(acciones);
+                        Acciones acciones = new Acciones(iniciarSesion.ID, "Ingresó nuevo formulario para un paciente", fechaHora.histoFechaHora());
+                        logicaAVL.escribeHistorial(acciones);
 
-                textFieldID.clear();
-                textFieldNombre.clear();
-                textFieldFecha.clear();
-                textFieldHora.clear();
-                textFieldEdad.clear();
-                textFieldEdadMetabolica.clear();
-                textFieldAltura.clear();
-                textFieldPeso.clear();
-                textFieldPorcentajeMasaMuscular.clear();
-                textFieldGrasa.clear();
-                textFieldGrasaVisceral.clear();
-                textFieldHueso.clear();
-                textFieldPorcentajeAgua.clear();
-                textFieldActividadFisica.clear();
-                textFieldHorasDescanso.clear();
-                textAreaNotas.clear();
-                alerta.alertInformation("Formulario completado");
-                buttonAceptar.setDisable(true);
-                buttonCerrar.setDisable(false);
-            }//end if
-            else {
-                alerta.alertWarning("Hay campos vacios\nIntentelo de nuevo");
-            }//end else
+                        textFieldID.clear();
+                        textFieldNombre.clear();
+                        textFieldFecha.clear();
+                        textFieldHora.clear();
+                        textFieldEdad.clear();
+                        textFieldEdadMetabolica.clear();
+                        textFieldAltura.clear();
+                        textFieldPeso.clear();
+                        textFieldPorcentajeMasaMuscular.clear();
+                        textFieldGrasa.clear();
+                        textFieldGrasaVisceral.clear();
+                        textFieldHueso.clear();
+                        textFieldPorcentajeAgua.clear();
+                        textFieldActividadFisica.clear();
+                        textFieldHorasDescanso.clear();
+                        textAreaNotas.clear();
+                        alerta.alertInformation("Formulario completado");
+                        buttonAceptar.setDisable(true);
+                        buttonCerrar.setDisable(false);
+                        buttonEnviarCorreo.setDisable(true);
+                    }//end if
+                    else {
+                        alerta.alertWarning("Hay campos vacios\nIntentelo de nuevo");
+                    }//end else
+
+                }//end if 
+                else {
+                    alerta.alertWarning("Campos obligatorios con numeros\n(Agua,Grasa,Mas Muscular,Grasa viceral)\nIntente de nuevo");
+                }
+            } catch (java.lang.NumberFormatException Nfe) {
+                alerta.alertWarning("Campos obligatorios con numeros\n(Agua,Grasa,Mas Muscular,Grasa viceral)\nIntente de nuevo");
+            }
         });//end setOnAction
 
         buttonCerrar = new Button("Cerrar");

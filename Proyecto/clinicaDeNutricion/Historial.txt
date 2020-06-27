@@ -1,0 +1,79 @@
+54321 & Inició sesión como cliente & Sat Jun 27 08:25:54 CST 2020
+54321 & Modificó su perfil & Sat Jun 27 08:26:05 CST 2020
+54321 & Inició sesión como cliente & Sat Jun 27 08:33:01 CST 2020
+54321 & Modificó su perfil & Sat Jun 27 08:33:23 CST 2020
+ggggg & Se registró como nuevo usuario & Sat Jun 27 08:47:26 CST 2020
+54321 & Inició sesión como cliente & Sat Jun 27 09:19:51 CST 2020
+54321 & Inició sesión como cliente & Sat Jun 27 09:24:03 CST 2020
+54321 & Inició sesión como cliente & Sat Jun 27 09:50:52 CST 2020
+54321 & Eliminó su perfil & Sat Jun 27 09:51:09 CST 2020
+54321 & Modificó su perfil & Sat Jun 27 09:51:24 CST 2020
+54321 & Modificó su perfil & Sat Jun 27 09:51:28 CST 2020
+54321 & Inició sesión como cliente & Sat Jun 27 09:58:02 CST 2020
+54321 & Modificó su perfil & Sat Jun 27 09:58:11 CST 2020
+zxcvb & Se registró como nuevo usuario & Sat Jun 27 11:52:48 CST 2020
+zxcvb & Se registró como nuevo usuario & Sat Jun 27 11:55:10 CST 2020
+qwert & Se registró como nuevo usuario & Sat Jun 27 11:55:57 CST 2020
+asdfg & Se registró como nuevo usuario & Sat Jun 27 11:58:08 CST 2020
+lkjhg & Se registró como nuevo usuario & Sat Jun 27 11:59:01 CST 2020
+rfctg & Se registró como nuevo usuario & Sat Jun 27 12:00:44 CST 2020
+7777777 & Se registró como nuevo usuario & Sat Jun 27 12:03:13 CST 2020
+7777777 & Se registró como nuevo usuario & Sat Jun 27 12:05:28 CST 2020
+666666 & Se registró como nuevo usuario & Sat Jun 27 12:12:16 CST 2020
+55555 & Se registró como nuevo usuario & Sat Jun 27 12:15:12 CST 2020
+55555 & Inició sesión como admistrador & Sat Jun 27 12:29:45 CST 2020
+55555 & Inició sesión como admistrador & Sat Jun 27 12:37:32 CST 2020
+55555 & Inició sesión como admistrador & Sat Jun 27 12:41:59 CST 2020
+55555 & Solicitó una cita & Sat Jun 27 12:42:22 CST 2020
+55555 & Inició sesión como admistrador & Sat Jun 27 12:57:03 CST 2020
+55555 & Solicitó una cita & Sat Jun 27 12:57:43 CST 2020
+666666 & Intentó iniciar sesión pero falló la contraseña & Sat Jun 27 13:02:30 CST 2020
+666666 & Intentó iniciar sesión pero falló la contraseña & Sat Jun 27 13:02:56 CST 2020
+88888 & Se registró como nuevo usuario & Sat Jun 27 13:03:38 CST 2020
+88888 & Inició sesión como cliente & Sat Jun 27 13:03:51 CST 2020
+88888 & Inició sesión como cliente & Sat Jun 27 13:11:13 CST 2020
+88888 & Inició sesión como cliente & Sat Jun 27 13:13:21 CST 2020
+88888 & Inició sesión como cliente & Sat Jun 27 13:16:12 CST 2020
+88888 & Inició sesión como cliente & Sat Jun 27 13:20:29 CST 2020
+88888 & Inició sesión como cliente & Sat Jun 27 13:28:02 CST 2020
+88888 & Solicitó una cita & Sat Jun 27 13:28:34 CST 2020
+88888 & Inició sesión como cliente & Sat Jun 27 13:35:28 CST 2020
+88888 & Eliminó su cita & Sat Jun 27 13:36:49 CST 2020
+88888 & Inició sesión como cliente & Sat Jun 27 13:38:45 CST 2020
+666666 & Intentó iniciar sesión pero falló la contraseña & Sat Jun 27 13:42:41 CST 2020
+88888 & Inició sesión como cliente & Sat Jun 27 13:43:55 CST 2020
+88888 & Inició sesión como cliente & Sat Jun 27 13:50:51 CST 2020
+88888 & Modificó su cita & Sat Jun 27 13:52:11 CST 2020
+55555 & Inició sesión como admistrador & Sat Jun 27 14:03:16 CST 2020
+55555 & Ingresó nuevo formulario para un paciente & Sat Jun 27 14:04:20 CST 2020
+88888 & Inició sesión como cliente & Sat Jun 27 14:09:06 CST 2020
+88888 & Modificó su perfil & Sat Jun 27 14:09:14 CST 2020
+88888 & Eliminó su perfil & Sat Jun 27 14:09:24 CST 2020
+88888 & Se registró como nuevo usuario & Sat Jun 27 14:14:04 CST 2020
+666666 & Intentó iniciar sesión pero falló la contraseña & Sat Jun 27 14:14:20 CST 2020
+55555 & Inició sesión como admistrador & Sat Jun 27 14:14:42 CST 2020
+55555 & Ingresó nuevo formulario para un paciente & Sat Jun 27 14:15:49 CST 2020
+88888 & Inició sesión como cliente & Sat Jun 27 14:18:00 CST 2020
+88888 & Eliminó su perfil & Sat Jun 27 14:18:08 CST 2020
+88888 & Se registró como nuevo usuario & Sat Jun 27 14:19:36 CST 2020
+55555 & Inició sesión como admistrador & Sat Jun 27 14:19:46 CST 2020
+55555 & Ingresó nuevo formulario para un paciente & Sat Jun 27 14:20:17 CST 2020
+88888 & Inició sesión como cliente & Sat Jun 27 14:20:47 CST 2020
+88888 & Eliminó su perfil & Sat Jun 27 14:20:53 CST 2020
+55555 & Inició sesión como admistrador & Sat Jun 27 15:02:57 CST 2020
+55555 & Inició sesión como admistrador & Sat Jun 27 15:03:36 CST 2020
+55555 & Inició sesión como admistrador & Sat Jun 27 15:13:07 CST 2020
+55555 & Modificó su cita & Sat Jun 27 15:14:41 CST 2020
+55555 & Inició sesión como admistrador & Sat Jun 27 15:19:19 CST 2020
+55555 & Inició sesión como admistrador & Sat Jun 27 15:21:20 CST 2020
+77777 & Se registró como nuevo usuario & Sat Jun 27 15:25:13 CST 2020
+55555 & Inició sesión como admistrador & Sat Jun 27 15:25:22 CST 2020
+55555 & Ingresó nuevo formulario para un paciente & Sat Jun 27 15:26:13 CST 2020
+77777 & Inició sesión como cliente & Sat Jun 27 15:26:41 CST 2020
+55555 & Inició sesión como admistrador & Sat Jun 27 15:44:14 CST 2020
+55555 & Inició sesión como admistrador & Sat Jun 27 15:47:43 CST 2020
+55555 & Ingresó nuevo formulario para un paciente & Sat Jun 27 15:49:28 CST 2020
+55555 & Inició sesión como admistrador & Sat Jun 27 15:50:14 CST 2020
+55555 & Ingresó nuevo formulario para un paciente & Sat Jun 27 15:51:23 CST 2020
+dsf & , usuario no registrado intentó iniciar sesión & Sat Jun 27 16:00:28 CST 2020
+     & , usuario no registrado intentó iniciar sesión & Sat Jun 27 16:00:36 CST 2020

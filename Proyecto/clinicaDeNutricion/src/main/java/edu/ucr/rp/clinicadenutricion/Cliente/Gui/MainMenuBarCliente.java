@@ -2,17 +2,12 @@ package edu.ucr.rp.clinicadenutricion.Cliente.Gui;
 
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
-import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
+import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -31,7 +26,8 @@ public class MainMenuBarCliente {
     ModificaCancelaCita modificaCancelaCita = new ModificaCancelaCita();
     PlanesAlimenticios planesAlimenticios = new PlanesAlimenticios();
     AjustesCliente ajustesCliente = new AjustesCliente();
-
+    Alertas alerta = new Alertas();
+    
     ArchSupAdmin logiSuper = new ArchSupAdmin();
 
     public GridPane menuCliente() {
@@ -86,8 +82,13 @@ public class MainMenuBarCliente {
             gridPaneUsuario.getChildren().addAll(solicitaCita.solicitaCita());
         });
         menuItemModiCancela.setOnAction((event) -> {
-            gridPaneUsuario.getChildren().clear();
-            gridPaneUsuario.getChildren().addAll(modificaCancelaCita.modificaCancelaCita());
+            try {
+                gridPaneUsuario.getChildren().clear();
+                gridPaneUsuario.getChildren().addAll(modificaCancelaCita.modificaCancelaCita());
+            } catch (java.lang.NullPointerException e) {
+                alerta.alertWarning("Error, primero debe agendar una cita\nsi desea ingresar aquí");
+                Platform.exit();
+            }
 
         });
         menuNuevaCita.getItems().addAll(menuItemSolicitaCita, menuItemModiCancela);
@@ -129,13 +130,13 @@ public class MainMenuBarCliente {
         menuItemMasInfo.setOnAction((event) -> {
             System.out.println("entro pero no voy");
             Hyperlink link = new Hyperlink();
-                if (Desktop.isDesktopSupported()) {
-                    try {
-                        Desktop.getDesktop().browse(new URI("https://clinicasusanadistancia.wordpress.com/"));
-                    } catch (IOException | URISyntaxException io) {
-                        System.out.println("No sirvo");
-                    }
+            if (Desktop.isDesktopSupported()) {
+                try {
+                    Desktop.getDesktop().browse(new URI("https://clinicasusanadistancia.wordpress.com/"));
+                } catch (IOException | URISyntaxException io) {
+                    System.out.println("No sirvo");
                 }
+            }
         });
 
         menuMas.getItems().addAll(menuItemMasInfo);

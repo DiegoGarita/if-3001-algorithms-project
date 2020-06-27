@@ -78,7 +78,8 @@ public class MainMenuBarSuperAdmi {
 
         });
         menuItemNumPag.setOnAction((event) -> {
-            gridPaneSuperAdmi.getChildren().clear();
+            alerta.alertWarning("EROR 503 Service Temporarily Unavailable");
+            Platform.exit();
         });
 
         menuItemCreaCuenta.setOnAction((event) -> {

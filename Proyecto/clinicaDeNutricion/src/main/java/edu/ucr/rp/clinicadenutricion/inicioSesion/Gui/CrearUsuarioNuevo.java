@@ -19,7 +19,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 
 //en esta clase se colocara la GUI para crear un usuario nuevo, de cualquier de los 3 tipos posibles
-public class CrearUsuarioNuevo {
+public class CrearUsuarioNuevo{
 
     TextField textFieldNombre;
     TextField textFieldContraseña;
@@ -147,14 +147,15 @@ public class CrearUsuarioNuevo {
             gridPaneCreaUsuario.add(buttonCreaUsuario, 0, 8);
             buttonCreaUsuario.setDisable(true);
             buttonCreaUsuario.setOnAction((event) -> {
-
+                 if(comboBoxRol.getSelectionModel().getSelectedItem().equals("Elige un rol") != true){
                 try {
-                    if (textFieldCorreo.getText().contains("@") && textFieldContraseña.getText().length() >= 5
+                    if (textFieldCorreo.getText().contains("@gmail.com") && textFieldContraseña.getText().length() >= 5
                             && !textFieldID.getText().trim().equals("") && !textFieldNombre.getText().trim().equals("")
                             && !textFieldContraseña.getText().trim().equals("") && !textFieldCorreo.getText().trim().equals("")
-                            && !textFieldTelefono.getText().trim().equals("") && !textFieldDireccion.getText().trim().equals("")
-                            || Integer.parseInt(textFieldTelefono.getText()) % 2 == 0
-                            || Integer.parseInt(textFieldTelefono.getText()) % 3 == 1) {
+                            && !textFieldTelefono.getText().trim().equals("")
+                            && !textFieldDireccion.getText().trim().equals("")
+                            && Integer.parseInt(textFieldTelefono.getText()) % 2 == 0
+                            || Integer.parseInt(textFieldTelefono.getText()) % 2 == 1) {
 
                         alertas.alertConfirmation("");
                         Optional<ButtonType> result = alertas.alertConfirmation("").showAndWait();
@@ -169,7 +170,7 @@ public class CrearUsuarioNuevo {
                                         + " por este medio a este correo electrónico.\nSerá un gusto atenderle.");
                                 Usuario usuario = new Usuario(comboBoxRol.getValue().toString(), textFieldID.getText(),
                                         textFieldNombre.getText(), encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()),
-                                        textFieldCorreo.getText(), textFieldTelefono.getText(), textFieldDireccion.getText());
+                                        textFieldCorreo.getText(),  textFieldTelefono.getText(), textFieldDireccion.getText());
 
                                 logic.escribirArchivo(usuario);
                                 Acciones acciones = new Acciones(textFieldID.getText(), "Se registró como nuevo usuario", fechaHora.histoFechaHora());
@@ -183,6 +184,9 @@ public class CrearUsuarioNuevo {
                                 logicaAVL.escribeHistorial(acciones);
                             }
                         }//end if alert
+                        else{
+                            alertas.alertWarning("Accion cancelada");
+                        }
                         textFieldNombre.clear();
                         textFieldContraseña.clear();
                         textFieldID.clear();
@@ -191,18 +195,22 @@ public class CrearUsuarioNuevo {
                         textFieldCorreo.clear();
                     }//end if validaciones basicas
                     else {
-                        alertas.alertWarning("correo,contraseña y/o teléfono no validos");
+                        alertas.alertWarning("correo,contraseña y/o teléfono no validos1");
                     }//end else validaciones
                 } catch (NumberFormatException nfe) {
-                    alertas.alertWarning("correo,contraseña y/o teléfono no validos\nO espacios vacios");
+                    alertas.alertWarning("correo,contraseña y/o teléfono no validos\nO espacios vacios2");
                 } //Esto permite que si el correo no existe se envie y no se cae el app
                 catch (Exception jr) {
-                    alertas.alertWarning("Correo no existe, cree un correo primero");
+                    alertas.alertWarning("Correo no existe, cree un correo primero3");
                 }
+                 }//end if 
+                 else{
+                    alertas.alertWarning("No selecciono su rol\nIntente de nuevo");
+                 }
             });//end setOnAction
 
             Label labelAclaracion = new Label();
-            labelAclaracion.setText("* La contraseña debe tener 5 o más caracteres \n* El teléfono de incluir solo números \n* El correo debe ser válido y existente");
+            labelAclaracion.setText("* La contraseña debe tener 5 o más caracteres \n* El teléfono de incluir solo números \n* El correo debe ser válido y existente(@gmail.com)");
             labelAclaracion.setFont(new Font("Arial", 15));
             labelAclaracion.setStyle("-fx-font-weight: bold");
             labelAclaracion.setTextFill(Color.web("#0076a3"));
