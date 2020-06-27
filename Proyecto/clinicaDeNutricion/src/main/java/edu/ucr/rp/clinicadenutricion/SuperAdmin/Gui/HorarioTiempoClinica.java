@@ -38,7 +38,6 @@ public class HorarioTiempoClinica {
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
-        Usuario usuarioTemp = logic.stringTokenizer(logic.leeLinea("ë"));
         SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
 
         textFieldContraseña = new TextField();
@@ -125,6 +124,8 @@ public class HorarioTiempoClinica {
             buttonGuardar.setDisable(false);
         });
 
+        Usuario usuarioTemp = logic.stringTokenizer(logic.leeLinea("ë"));
+
         buttonModificar = new Button("Modificar valores");
         buttonModificar.setTextFill(Color.WHITE);//Color de la letra del boton
         buttonModificar.setStyle("-fx-background-color: BLACK");//Color del fondo
@@ -145,7 +146,7 @@ public class HorarioTiempoClinica {
             textFieldContraseña.setDisable(true);
 
         });//end setOnAction
-        
+
         buttonGuardar = new Button("Guardar");
         buttonGuardar.setTextFill(Color.WHITE);//Color de la letra del boton
         buttonGuardar.setStyle("-fx-background-color: BLACK");//Color del fondo
@@ -164,9 +165,8 @@ public class HorarioTiempoClinica {
                             configuracion.getNombreLogo(),
                             configuracion.getPathDeGuardado(), configuracion.getPaginacion());
 
-                    logiSuper.readInFile();
-                    logiSuper.removeLineFromFile(configuracion2.getIdentificadorSA()); //-->>Here esta vara me cae
-                    logiSuper.writeInFile(configuracion);
+                    logiSuper.replacefromfile(configuracion2);
+
                     textFieldAbreClinica.clear();
                     textFieldAbreClinica.setDisable(true);
                     textFieldCierraClinica.clear();
