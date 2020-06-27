@@ -1,8 +1,6 @@
-
 package edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic;
 
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
-
 
 class Node {
 
@@ -27,12 +25,13 @@ class Node {
 
 }
 
-public class LogicSuperAdmin {
-    
+public class LogicSuperAdmin implements InterfaceCola {
+
     public LogicSuperAdmin() {
     }
     Node inicio, fin;
 
+    @Override
     public void add(SuperAdmin n) { //inserta un elemento en la lista
 
         Node aux = inicio; //auxiliar tipo nodo 
@@ -55,6 +54,7 @@ public class LogicSuperAdmin {
         }// end else  
     } //end add(Object n)
 
+    @Override
     public void remove(SuperAdmin usuario) {
 
         if (isEmpty() == false) {
@@ -88,6 +88,7 @@ public class LogicSuperAdmin {
 
     } //end remove
 
+    @Override
     public boolean isEmpty() {
 
         boolean empty = false;
@@ -100,21 +101,23 @@ public class LogicSuperAdmin {
             return empty;
 
         } // end else
-    } 
+    }
 
+    @Override
     public SuperAdmin indexOf(int index) {
 
         Node aux = inicio;
 
         for (int i = -1; i < index - 1; i++) {
 
-            aux = aux.seeNext(); 
+            aux = aux.seeNext();
         } // end for
 
         return aux.seeElement();    // ---- >> Aqui tambien ???
 
     } //end indexOf
 
+    @Override
     public int size() {
 
         int output = 0;
@@ -126,6 +129,5 @@ public class LogicSuperAdmin {
         return output + 1; //retorna el output +1 por los indices
 
     }//end size
-    
-    
+
 }

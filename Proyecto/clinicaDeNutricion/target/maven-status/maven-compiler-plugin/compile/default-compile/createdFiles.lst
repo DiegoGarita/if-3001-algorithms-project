@@ -2,13 +2,14 @@ edu\ucr\rp\clinicadenutricion\AVL\LogicaAVL.class
 edu\ucr\rp\clinicadenutricion\Cliente\Gui\ModificaCancelaCita.class
 edu\ucr\rp\clinicadenutricion\Utilitario\EncryptMD5.class
 edu\ucr\rp\clinicadenutricion\Objetos\Usuario.class
+edu\ucr\rp\clinicadenutricion\AVL\InterfaceAVL.class
 edu\ucr\rp\clinicadenutricion\Cliente\Gui\AjustesCliente.class
 edu\ucr\rp\clinicadenutricion\SuperAdmin\Logic\LogicSuperAdmin.class
 edu\ucr\rp\clinicadenutricion\Utilitario\EnviarCorreo.class
 edu\ucr\rp\clinicadenutricion\Utilitario\Calendario.class
 edu\ucr\rp\clinicadenutricion\inicioSesion\Gui\IniciarSesion.class
+edu\ucr\rp\clinicadenutricion\Cliente\Logic\InterfacePila.class
 edu\ucr\rp\clinicadenutricion\EjecutorClinica.class
-edu\ucr\rp\clinicadenutricion\SuperAdmin\Logic\Cola.class
 edu\ucr\rp\clinicadenutricion\SuperAdmin\Gui\MainMenuBarSuperAdmi.class
 edu\ucr\rp\clinicadenutricion\Utilitario\EnviarCorreo$1.class
 edu\ucr\rp\clinicadenutricion\Admin\Gui\PlanesAlimenticios.class
@@ -18,9 +19,11 @@ edu\ucr\rp\clinicadenutricion\Cliente\Gui\ReporteCitas.class
 edu\ucr\rp\clinicadenutricion\Cliente\Logic\LogicaPila.class
 edu\ucr\rp\clinicadenutricion\Cliente\Logic\Node.class
 edu\ucr\rp\clinicadenutricion\Admin\logic\ImplementacionCola.class
+edu\ucr\rp\clinicadenutricion\Admin\logic\InterfaceCola.class
 edu\ucr\rp\clinicadenutricion\AVL\ImplementacionAVL$Node.class
 edu\ucr\rp\clinicadenutricion\inicioSesion\Gui\AcercaDe.class
 edu\ucr\rp\clinicadenutricion\SuperAdmin\Gui\ReportesAcciones.class
+edu\ucr\rp\clinicadenutricion\Cliente\Logic\InterfaceArbol.class
 edu\ucr\rp\clinicadenutricion\SuperAdmin\Gui\IndicarPath.class
 edu\ucr\rp\clinicadenutricion\Admin\Gui\ReservaCita.class
 edu\ucr\rp\clinicadenutricion\inicioSesion\logic\ImplementacionListas.class
@@ -45,6 +48,7 @@ edu\ucr\rp\clinicadenutricion\Cliente\Logic\ImplementacionArbol$NodoBinario.clas
 edu\ucr\rp\clinicadenutricion\Cliente\Gui\MainMenuBarCliente.class
 edu\ucr\rp\clinicadenutricion\inicioSesion\Gui\Ayuda.class
 edu\ucr\rp\clinicadenutricion\Admin\logic\ImplementacionCola$Node.class
+edu\ucr\rp\clinicadenutricion\SuperAdmin\Logic\InterfaceCola.class
 edu\ucr\rp\clinicadenutricion\Cliente\Logic\ImplementacionPila.class
 edu\ucr\rp\clinicadenutricion\Utilitario\FechaHora.class
 edu\ucr\rp\clinicadenutricion\Utilitario\Grafico.class
@@ -54,10 +58,10 @@ edu\ucr\rp\clinicadenutricion\Cliente\Gui\PlanesAlimenticios.class
 edu\ucr\rp\clinicadenutricion\SuperAdmin\Gui\ResgistrosPaginacion.class
 edu\ucr\rp\clinicadenutricion\inicioSesion\logic\Node.class
 edu\ucr\rp\clinicadenutricion\inicioSesion\Gui\Creditos.class
+edu\ucr\rp\clinicadenutricion\inicioSesion\logic\InterfaceListas.class
 edu\ucr\rp\clinicadenutricion\SuperAdmin\Logic\Respaldo.class
 edu\ucr\rp\clinicadenutricion\Utilitario\Calendario$1.class
 edu\ucr\rp\clinicadenutricion\SuperAdmin\Gui\LogoApp.class
-edu\ucr\rp\clinicadenutricion\Cliente\Logic\Pila.class
 edu\ucr\rp\clinicadenutricion\Admin\Gui\MainMenuBarAdministrador.class
 edu\ucr\rp\clinicadenutricion\Cliente\Gui\SolicitaCita.class
 edu\ucr\rp\clinicadenutricion\Cliente\Logic\LogicaArbol.class

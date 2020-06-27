@@ -3,7 +3,7 @@ package edu.ucr.rp.clinicadenutricion.AVL;
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import static java.lang.Integer.max;
 
-public class ImplementacionAVL {
+public class ImplementacionAVL implements InterfaceAVL{
 
     class Node {
 
@@ -26,6 +26,7 @@ public class ImplementacionAVL {
      * @param raiz raiz del arbol
      * @return devuelve la altura del arbol
      */
+    @Override
     public int altura(Node raiz) {
         if (raiz == null) {
             return 0;
@@ -33,6 +34,7 @@ public class ImplementacionAVL {
         return raiz.altura;
     }// end altura()
 
+    @Override
     public int buscarAltura() {
         return altura(root);
     }// end buscarAltur()
@@ -43,6 +45,7 @@ public class ImplementacionAVL {
      * @param node
      * @return arbol balanceado
      */
+    @Override
     public Node rotacionDerecha(Node node) {
         Node hijoIzq = node.left;
         node.left = hijoIzq.right;
@@ -58,6 +61,7 @@ public class ImplementacionAVL {
      * @param node
      * @return arbol balanceado
      */
+    @Override
     public Node rotacionIzquierda(Node node) {
         Node hijoDer = node.right;
         node.right = hijoDer.left;
@@ -72,6 +76,7 @@ public class ImplementacionAVL {
      *
      * @param acciones
      */
+    @Override
     public void insertar(Acciones acciones) {
         root = InsertarNodo(root, acciones);
     }
@@ -83,6 +88,7 @@ public class ImplementacionAVL {
      * @param acciones elemento a ingresar
      * @return
      */
+    @Override
     public Node InsertarNodo(Node node, Acciones acciones) {
 
         if (node == null) {
@@ -124,24 +130,20 @@ public class ImplementacionAVL {
         return node;
     }//end insertarNodo
 
+    @Override
     public void PreOrden() {
         PreOrden(root);
     }
 
+    @Override
     public void PreOrden(Node nodo) {
         if (nodo != null) {
-            System.out.print(nodo.acciones.getFechaHoraAccion() + " , ");
+            System.out.print(nodo.acciones.getFechaHoraAccion() + ", ");
             PreOrden(nodo.left);
             PreOrden(nodo.right);
         }
     }
 
-    private int obtenerBalance(Node node) {
-        if (node == null) {
-            return 0;
-        }
-        return altura(node.left) - altura(node.right);
-    }
 
 }// end class AVL
 

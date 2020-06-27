@@ -24,7 +24,7 @@ class Node {
 
 }
 
-public class ImplementacionPila implements Pila {
+public class ImplementacionPila implements InterfacePila {
 
     Node start, end;
 
@@ -95,6 +95,7 @@ public class ImplementacionPila implements Pila {
         return s;
     }
 
+    @Override
     public Cita indexOf(int index) {
 
         Node aux = start;

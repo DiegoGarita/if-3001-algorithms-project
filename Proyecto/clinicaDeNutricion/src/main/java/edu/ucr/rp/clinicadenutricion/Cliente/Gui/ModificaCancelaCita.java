@@ -73,15 +73,15 @@ public class ModificaCancelaCita {
         gridPaneModificaCancela.add(buttonAcepId, 1, 0);
         buttonAcepId.setDisable(true);
         buttonAcepId.setOnAction((event) -> {
-            
-            if(!textFieldId.getText().trim().equals("")){
 
-            buttonModificar.setDisable(false);
-            buttonCancelarCita.setDisable(false);
-            buttonAcepId.setDisable(true);
-            textFieldId.setDisable(true);
+            if (!textFieldId.getText().trim().equals("") && logicaCliente.existeCita(textFieldId.getText(), iniciarSesion.ID)) {
+
+                buttonModificar.setDisable(false);
+                buttonCancelarCita.setDisable(false);
+                buttonAcepId.setDisable(true);
+                textFieldId.setDisable(true);
             }//end if
-            else{
+            else {
                 alerta.alertWarning("Campos vacios\nIntentelo de nuevo");
             }//end else
         });//end setOnAction

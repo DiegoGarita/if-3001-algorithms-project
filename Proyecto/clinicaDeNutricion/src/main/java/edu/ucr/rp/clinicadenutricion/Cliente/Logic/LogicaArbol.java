@@ -1,17 +1,13 @@
 package edu.ucr.rp.clinicadenutricion.Cliente.Logic;
 
-import edu.ucr.rp.clinicadenutricion.Objetos.Cita;
 import edu.ucr.rp.clinicadenutricion.Objetos.ReporteMedico;
-import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintStream;
 import java.util.StringTokenizer;
 import javax.swing.JOptionPane;
 

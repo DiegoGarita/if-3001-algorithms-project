@@ -575,3 +575,14 @@ fsrer & , usuario no registrado intentó iniciar sesión & Fri Jun 26 15:47:40 CST
 ewds & , usuario no registrado intentó iniciar sesión & Fri Jun 26 15:50:57 CST 2020
 666666 & Se registró como nuevo usuario & Fri Jun 26 16:29:17 CST 2020
 999999999 & Se registró como nuevo usuario & Fri Jun 26 16:30:40 CST 2020
+54321 & , usuario no registrado intentó iniciar sesión & Fri Jun 26 17:41:34 CST 2020
+54321 & , usuario no registrado intentó iniciar sesión & Fri Jun 26 17:41:40 CST 2020
+54321 & Se registró como nuevo usuario & Fri Jun 26 17:42:34 CST 2020
+54321 & Inició sesión como cliente & Fri Jun 26 17:42:50 CST 2020
+54321 & Solicitó una cita & Fri Jun 26 17:43:08 CST 2020
+54321 & Modificó su cita & Fri Jun 26 17:43:37 CST 2020
+54321 & Modificó su perfil & Fri Jun 26 17:43:57 CST 2020
+54321 & Inició sesión como cliente & Fri Jun 26 18:04:45 CST 2020
+54321 & Inició sesión como cliente & Fri Jun 26 18:05:53 CST 2020
+54321 & Solicitó una cita & Fri Jun 26 18:06:35 CST 2020
+54321 & Solicitó una cita & Fri Jun 26 18:07:12 CST 2020
