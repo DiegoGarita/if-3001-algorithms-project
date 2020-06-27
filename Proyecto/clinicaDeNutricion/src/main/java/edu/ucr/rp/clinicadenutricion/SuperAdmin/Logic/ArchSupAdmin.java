@@ -2,7 +2,9 @@ package edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic;
 
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
+import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 import javax.swing.JOptionPane;
 
@@ -226,6 +228,85 @@ public class ArchSupAdmin {
 
         Acciones acciones = new Acciones(Accionador, accion, fechaHoraAccion);
         return acciones;
+
+    }
+    
+public int cantidadDC = 0;
+    
+       public ArrayList<Usuario> guardaEnAL(String identificador) {
+        ArrayList<Usuario> aL= new ArrayList<>();
+        File newFile = new File("usuarios.txt");
+        try {
+            FileInputStream fileInputStream = new FileInputStream(newFile);
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            String currentRegistry = bufferedReader.readLine();
+
+            while (currentRegistry != null) {
+                if (currentRegistry.contains(identificador)) {
+                    aL.add(stringTokenizerUsuario(currentRegistry));
+                    cantidadDC++;
+                }
+                currentRegistry = bufferedReader.readLine();
+            }
+
+        } catch (FileNotFoundException fileNotFoundException) {
+        } catch (IOException IOException) {
+            JOptionPane.showMessageDialog(null, IOException + ": Problemas con el archivo");
+        }
+        return aL;
+    }// end readProperties()
+       
+    public Usuario stringTokenizerUsuario(String lineas) {
+
+        StringTokenizer stringTokenizer = new StringTokenizer(lineas, "|");
+        int counterTokens = 0;
+        String tipo = "";
+        String ID = "";
+        String nombre = "";
+        String contraseña = "";
+        String correo = "";
+        String telefono = "";
+        String direccion = "";
+
+        while (stringTokenizer.hasMoreTokens()) {
+            switch (counterTokens) {
+                case 0:
+                    tipo = stringTokenizer.nextToken();
+                    counterTokens++;
+                    break;
+                case 1:
+                    ID = stringTokenizer.nextToken();
+                    counterTokens++;
+                    break;
+                case 2:
+                    nombre = stringTokenizer.nextToken();
+                    counterTokens++;
+                    break;
+                case 3:
+                    contraseña = stringTokenizer.nextToken();
+                    counterTokens++;
+                    break;
+                case 4:
+                    correo = stringTokenizer.nextToken();
+                    counterTokens++;
+                    break;
+                case 5:
+                    telefono = stringTokenizer.nextToken();
+                    counterTokens++;
+                    break;
+                case 6:
+                    direccion = stringTokenizer.nextToken();
+                    counterTokens++;
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
+        Usuario u = new Usuario(tipo, ID, nombre, contraseña, correo, telefono, direccion);
+        return u;
 
     }
 
