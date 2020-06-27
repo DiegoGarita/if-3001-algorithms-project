@@ -55,14 +55,14 @@ public class ReporteProgreso {
         labelNombre.setStyle("-fx-background-color: rgb(111, 210, 170);");
         gridPaneReportePorgreso.add(labelNombre, 0, 0);
 
-        Label labelCedula = new Label("Cedula: " + usuario.getId());
+        Label labelCedula = new Label("Cédula: " + usuario.getId());
         labelCedula.setFont(new Font("Arial", 15));
         labelCedula.setStyle("-fx-font-weight: bold");
         labelCedula.setTextFill(Color.web("#0076a3"));
         labelCedula.setStyle("-fx-background-color: rgb(111, 210, 170);");
         gridPaneReportePorgreso.add(labelCedula, 0, 1);
 
-        Label labelTelefono = new Label("Telefono: " + usuario.getTelefono());
+        Label labelTelefono = new Label("Teléfono: " + usuario.getTelefono());
         labelTelefono.setFont(new Font("Arial", 15));
         labelTelefono.setStyle("-fx-font-weight: bold");
         labelTelefono.setTextFill(Color.web("#0076a3"));

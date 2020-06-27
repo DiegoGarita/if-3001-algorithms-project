@@ -202,7 +202,7 @@ public class CrearUsuarioNuevo {
             });//end setOnAction
 
             Label labelAclaracion = new Label();
-            labelAclaracion.setText("* La contraseña debe tener 5 o mas caracteres \n* El teléfono de incluir solo números \n* Y el correo debe ser válido");
+            labelAclaracion.setText("* La contraseña debe tener 5 o más caracteres \n* El teléfono de incluir solo números \n* El correo debe ser válido y existente");
             labelAclaracion.setFont(new Font("Arial", 15));
             labelAclaracion.setStyle("-fx-font-weight: bold");
             labelAclaracion.setTextFill(Color.web("#0076a3"));

@@ -143,7 +143,7 @@ public class IniciarSesion {
             } else {
                 Acciones acciones = new Acciones(textFieldID.getText(), ", usuario no registrado intentó iniciar sesión", fechaHora.histoFechaHora());
                 logicaAVL.escribeHistorial(acciones);
-                alertas.alertInformation("Usuario: " + textFieldID.getText() + " no existe, registrece primero");
+                alertas.alertInformation("Usuario: " + textFieldID.getText() + " no existe, registrese primero");
             }
 
         });

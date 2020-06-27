@@ -35,7 +35,7 @@ public class AcercaDe {
         acercaDe.add(title, 0, 0);
 
         Label labelAcercaDe = new Label("Clínica de alimentación 2020 \n"
-                + " Desarrollado en: Apache NetBeans IDE 11.3 \n Lenguaje Java, version 14 \n 2020");
+                + " Desarrollado en: Apache NetBeans IDE 11.3 \n Lenguaje Java, versión 14 \n 2020");
         labelAcercaDe.setFont(Font.font("Rockwell", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 20));
         labelAcercaDe.setTextFill(Color.DEEPSKYBLUE);
         acercaDe.add(labelAcercaDe, 0, 1);

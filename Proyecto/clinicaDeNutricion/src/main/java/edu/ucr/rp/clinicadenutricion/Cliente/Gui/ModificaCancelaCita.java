@@ -82,7 +82,9 @@ public class ModificaCancelaCita {
                 textFieldId.setDisable(true);
             }//end if
             else {
-                alerta.alertWarning("Campos vacios\nIntentelo de nuevo");
+                alerta.alertWarning("Espacios erróneos\n"
+                        + "Verifique no dejar espacios vacíos y que el ID\n"
+                        + "de su cita sea válido\nIntentelo de nuevo");
             }//end else
         });//end setOnAction
 

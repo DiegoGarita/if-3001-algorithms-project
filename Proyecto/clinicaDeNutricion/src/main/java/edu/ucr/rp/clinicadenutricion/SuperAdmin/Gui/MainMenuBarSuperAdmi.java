@@ -46,7 +46,7 @@ public class MainMenuBarSuperAdmi {
                 + "-fx-effect: dropshadow(gaussian, red, 50, 0, 0, 0);"
                 + "-fx-background-insets: 50;");
 
-        MenuItem menuItemHorario = new MenuItem("Horario clinica y tiempo de consulta",
+        MenuItem menuItemHorario = new MenuItem("Horario clínica y tiempo de consulta",
                 new ImageView(new Image("file:src/image/tiempo.png")));
         menuItemHorario.setAccelerator(KeyCombination.keyCombination("Ctrl+A"));
 
@@ -64,7 +64,7 @@ public class MainMenuBarSuperAdmi {
         MenuItem menuItemReporAcciones = new MenuItem("Reportes de acciones", new ImageView(new Image("file:src/image/histo.png")));
         menuItemReporAcciones.setAccelerator(KeyCombination.keyCombination("Ctrl+D"));
         MenuItem menuItemRespaldar = new MenuItem("Respaldar archivos", new ImageView(new Image("file:src/image/respal.png")));
-        MenuItem menuItemNumPag = new MenuItem("Numero de registros, paginacion", new ImageView(new Image("file:src/image/numRegis.png")));
+        MenuItem menuItemNumPag = new MenuItem("Número de registros, paginación", new ImageView(new Image("file:src/image/numRegis.png")));
         MenuItem menuItemCreaCuenta = new MenuItem("Crear cuenta", new ImageView(new Image("file:src/image/nuevo.png")));
         menuItemCreaCuenta.setAccelerator(KeyCombination.keyCombination("Ctrl+N"));
 
@@ -87,7 +87,7 @@ public class MainMenuBarSuperAdmi {
             gridPaneSuperAdmi.getChildren().addAll(primerUsu.creaUsuario());
             }
             catch(java.lang.NullPointerException jlnpe){
-               alerta.alertWarning("Ya no se pueden realizar\nmas registros desde aqui.");
+               alerta.alertWarning("Ya no se pueden realizar más registros desde aquí.");
                Platform.exit();
             }
         });
