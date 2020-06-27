@@ -82,9 +82,13 @@ public class RespaldarArchivos {
                 resUsuarios.createZipFile("C:\\source-code\\if-3001-algorithms-project\\Proyecto\\clinicaDeNutricion\\usuarios.txt", "usu");
                 resHistorial.createZipFile("C:\\source-code\\if-3001-algorithms-project\\Proyecto\\clinicaDeNutricion\\Historial.txt", "histo");
                 resApartaCita.createZipFile("C:\\source-code\\if-3001-algorithms-project\\Proyecto\\clinicaDeNutricion\\ApartaCita.txt", "citas");
-            } catch (IOException ex) {
-                Logger.getLogger(RespaldarArchivos.class.getName()).log(Level.SEVERE, null, ex);
             }
+            catch (java.io.FileNotFoundException jio){
+                alerta.alertWarning("No se pudo realizar todos los respaldos\nNo se encontraron todos los archivos");
+            } catch (IOException ex) {
+                alerta.alertWarning("No se pudo realizar todos los respaldos\nNo se encontraron todos los archivos");
+            }
+                    
             
             buttonModiUsu.setDisable(false);
             textFieldContra.setDisable(false);

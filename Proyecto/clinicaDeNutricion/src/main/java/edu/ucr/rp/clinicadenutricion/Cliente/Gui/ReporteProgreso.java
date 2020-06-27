@@ -82,7 +82,7 @@ public class ReporteProgreso {
                 buttonGraficoActual.setDisable(true);
             }//end try
             catch (java.lang.NumberFormatException kk) {
-                alertas.alertWarning("No hay informacion por mostrar, debe tener una primer cita");
+                alertas.alertWarning("No hay informacion por mostrar, debe tener una primer cita\nO no se hizo un registro correcto");
             }//end catch
         });//END BUTTON
 
@@ -97,7 +97,7 @@ public class ReporteProgreso {
                 buttonGraficoInicial.setDisable(true);
             }//end try
             catch (java.lang.NumberFormatException kk) {
-                alertas.alertWarning("No hay informacion por mostrar, debe tener una primer cita");
+                alertas.alertWarning("No hay informacion por mostrar, debe tener una primer cita\nO no se hizo un registro correcto");
             }//end catch
         });//END BUTTON
 

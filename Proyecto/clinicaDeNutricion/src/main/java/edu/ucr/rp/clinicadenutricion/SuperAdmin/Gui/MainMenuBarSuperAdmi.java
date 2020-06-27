@@ -80,6 +80,7 @@ public class MainMenuBarSuperAdmi {
         menuItemNumPag.setOnAction((event) -> {
             gridPaneSuperAdmi.getChildren().clear();
             gridPaneSuperAdmi.getChildren().addAll(registrosPaginacion.historial());
+
         });
 
         menuItemCreaCuenta.setOnAction((event) -> {

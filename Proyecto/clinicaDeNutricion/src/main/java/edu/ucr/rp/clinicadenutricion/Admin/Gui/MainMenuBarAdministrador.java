@@ -2,6 +2,7 @@ package edu.ucr.rp.clinicadenutricion.Admin.Gui;
 
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
+import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
 import javafx.application.Platform;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
@@ -14,8 +15,11 @@ public class MainMenuBarAdministrador {
     PlanesAlimenticios planesAlimenticios = new PlanesAlimenticios();
     ReservaCita reservarCita = new ReservaCita();
     Formulario formulario = new Formulario();
+    ModiCancel modificaCancelaCita = new ModiCancel();
     ArchSupAdmin logiSuper = new ArchSupAdmin();
+    Alertas alerta = new Alertas();
     PaginacionAdmin paginacionAdmin = new PaginacionAdmin();
+
 
     /**
      *
@@ -27,7 +31,7 @@ public class MainMenuBarAdministrador {
         GridPane gridPaneAdministrador = new GridPane();
         gridPaneAdministrador.setMinSize(900, 700);
 
-       SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+        SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
 
         gridPaneAdministrador.setStyle(("-fx-background-image:url('file:src/image/" + configuracion.getNombreLogo() + "');"
                 + "-fx-background-repeat : no-repeat;"
@@ -73,13 +77,25 @@ public class MainMenuBarAdministrador {
                 + "-fx-background-insets: 50;");
         MenuItem menuItemReservarCita = new MenuItem("Reservar cita", new ImageView(new Image("file:src/image/reservaCita.png")));
         menuItemReservarCita.setAccelerator(KeyCombination.keyCombination("Ctrl+D"));
+        MenuItem menuItemModiCancela = new MenuItem("Modificar/Cancelar cita", new ImageView(new Image("file:src/image/canModi.png")));
 
         menuItemReservarCita.setOnAction((event) -> {
             gridPaneAdministrador.getChildren().clear();
             gridPaneAdministrador.getChildren().addAll(reservarCita.reservarCita());
         });
 
-        menuCita.getItems().addAll(menuItemReservarCita);
+        menuItemModiCancela.setOnAction((event) -> {
+            try {
+                gridPaneAdministrador.getChildren().clear();
+                gridPaneAdministrador.getChildren().addAll(modificaCancelaCita.modificaCancelaCita());
+            } catch (java.lang.NullPointerException e) {
+                alerta.alertWarning("Error, primero deben existir citas agendadas\nsi desea ingresar aquí");
+                Platform.exit();
+            }
+
+        });
+
+        menuCita.getItems().addAll(menuItemReservarCita, menuItemModiCancela);
 
         Menu menuAlimentacion = new Menu("Planes de alimentación", new ImageView(new Image("file:src/image/planAli.png")));
         menuAlimentacion.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"

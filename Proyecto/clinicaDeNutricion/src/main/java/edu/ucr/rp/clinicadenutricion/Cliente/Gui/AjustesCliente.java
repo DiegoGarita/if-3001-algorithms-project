@@ -9,6 +9,7 @@ import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
 import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
 import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
 import edu.ucr.rp.clinicadenutricion.Utilitario.EnviarCorreo;
+import java.io.File;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -206,11 +207,15 @@ public class AjustesCliente {
                     labelDireccion.setVisible(true);
 
                     buttonAceptar.setVisible(true);
+                    buttonEliminar.setVisible(false);
+                    buttonModificar.setVisible(false);
+                } else {
                     buttonEliminar.setDisable(true);
                     buttonModificar.setDisable(true);
-                }
-                buttonEliminar.setDisable(true);
-               // textFieldContraseña.setDisable(true);
+                    textFieldContraseña.clear();
+                    alertas.alertWarning("Contraseña incorrecta\nIntente de nuevo");
+                }//end else
+
             }//end if
             else {
                 alertas.alertWarning("Espacio vacio\nIntente de nuevo");
@@ -237,6 +242,10 @@ public class AjustesCliente {
                     logicaLista.remueve(usuario);
                     logicaLista.remueveLineaDeArchivo(usuario.getId());
                     buttonModificar.setDisable(true);
+                    File archivotxt = new File("C:\\source-code\\if-3001-algorithms-project\\Proyecto\\clinicaDeNutricion\\Solicitud de cita para " + usuario.getId() + ".txt");
+                    File archivopdf = new File("C:\\source-code\\if-3001-algorithms-project\\Proyecto\\clinicaDeNutricion\\Reporte " + usuario.getId() + ".pdf");
+                    archivotxt.delete();
+                    archivopdf.delete();
                     Platform.exit();
                 } else {
                     buttonEliminar.setDisable(true);
@@ -266,10 +275,11 @@ public class AjustesCliente {
             try {
 
                 if (!textFieldCorreo.getText().trim().equals("")
+                        && !textFieldContraseña.getText().trim().equals("")
                         && !textFieldTelefono.getText().trim().equals("")
                         && !textFieldDireccion.getText().trim().equals("")
-                        && textFieldCorreo.getText().contains("@")
-                        || Integer.parseInt(textFieldTelefono.getText()) % 2 == 0
+                        && textFieldCorreo.getText().contains("@gmail.com")
+                        && Integer.parseInt(textFieldTelefono.getText()) % 2 == 0
                         || Integer.parseInt(textFieldTelefono.getText()) % 2 == 1) {
 
                     enviarCorreo.sendMessage(textFieldCorreo.getText(), "Clínica Susana Distancia",
@@ -278,7 +288,11 @@ public class AjustesCliente {
 
                     alertas.alertInformation("Usuario modificado correctamente");
                     Usuario usuario = logicaLista.stringTokenizer(logicaLista.leeLinea(textFieldID.getText()));
-                    Usuario usuario1 = new Usuario(textFieldTipo.getText(), textFieldID.getText(), textFieldNombreUsuario.getText(), encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()), textFieldCorreo.getText(), textFieldTelefono.getText(), textFieldDireccion.getText());
+                    Usuario usuario1 = new Usuario(textFieldTipo.getText(), textFieldID.getText(),
+                            textFieldNombreUsuario.getText(),
+                            encrypt.encriptar("SusanaDistancia",
+                                    textFieldContraseña.getText()),
+                            textFieldCorreo.getText(), textFieldTelefono.getText(), textFieldDireccion.getText());
 
                     logicaLista.leerArchivo();
                     logicaLista.modificado(usuario, encrypt.encriptar("SusanaDistancia", textFieldCorreo.getText()));

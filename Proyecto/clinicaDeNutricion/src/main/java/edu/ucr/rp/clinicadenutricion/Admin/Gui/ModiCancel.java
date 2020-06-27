@@ -1,6 +1,8 @@
-package edu.ucr.rp.clinicadenutricion.Cliente.Gui;
+package edu.ucr.rp.clinicadenutricion.Admin.Gui;
 
 import edu.ucr.rp.clinicadenutricion.AVL.LogicaAVL;
+import edu.ucr.rp.clinicadenutricion.Admin.logic.LogicaCola;
+import edu.ucr.rp.clinicadenutricion.Cliente.Gui.MainMenuBarCliente;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
 import edu.ucr.rp.clinicadenutricion.Cliente.Logic.LogicaPila;
@@ -19,16 +21,18 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 
-public class ModificaCancelaCita {
+public class ModiCancel {
 
     TextField textFieldId;
     Button buttonModificar;
     Button buttonCancelarCita;
     Button buttonAceparModifi;
     Button buttonAcepId;
-    
+
     Alertas alertas = new Alertas();
     ComboBox comboBoxHora = new ComboBox();
+    ComboBox comboBoxClientes = new ComboBox();
+    LogicaCola adminLogic = new LogicaCola();
     LogicaListas logica = new LogicaListas();
     IniciarSesion iniciarSesion;
     LogicaPila logicaCliente = new LogicaPila();
@@ -60,9 +64,21 @@ public class ModificaCancelaCita {
 
         Cita citaTrae = logicaCliente.stringTokenizer(logicaCliente.leeLinea(""));
 
+        comboBoxClientes.setValue("Clientes");
+        comboBoxClientes.setStyle("-fx-background-color: lightblue");
+        gridPaneModificaCancela.add(comboBoxClientes, 0, 0);
+
+        for (int i = 0; i < adminLogic.cantidadDeClientes("ä"); i++) {
+            comboBoxClientes.getItems().addAll(adminLogic.arrayListClientes.get(i).getId());
+        }
+        comboBoxClientes.setOnMouseClicked((event) -> {
+             textFieldId.setDisable(false);
+        });
+
         textFieldId = new TextField();
         textFieldId.setPromptText("Id de cita");
-        gridPaneModificaCancela.add(textFieldId, 0, 0);
+        gridPaneModificaCancela.add(textFieldId, 1, 0);
+        textFieldId.setDisable(true);
         textFieldId.setOnKeyPressed((event) -> {
             buttonAcepId.setDisable(false);
         });
@@ -71,15 +87,18 @@ public class ModificaCancelaCita {
         buttonAcepId.setTextFill(Color.WHITE);
         buttonAcepId.setStyle("-fx-background-color: BLACK");
         buttonAcepId.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
-        gridPaneModificaCancela.add(buttonAcepId, 1, 0);
+        gridPaneModificaCancela.add(buttonAcepId, 2, 0);
         buttonAcepId.setDisable(true);
         buttonAcepId.setOnAction((event) -> {
 
-            if (!textFieldId.getText().trim().equals("") && logicaCliente.existeCita(textFieldId.getText(), iniciarSesion.ID)) {
+            if (!textFieldId.getText().trim().equals("") &&
+                    logicaCliente.existeCita(textFieldId.getText(), comboBoxClientes.getValue().toString())) {
 
                 buttonModificar.setDisable(false);
                 buttonCancelarCita.setDisable(false);
                 buttonAcepId.setDisable(true);
+                comboBoxClientes.setDisable(true);
+                
                 textFieldId.setDisable(true);
             }//end if
             else {
@@ -236,4 +255,5 @@ public class ModificaCancelaCita {
 
         return gridPaneModificaCancela;
     }//end GridPane createCatalogue()
+
 }

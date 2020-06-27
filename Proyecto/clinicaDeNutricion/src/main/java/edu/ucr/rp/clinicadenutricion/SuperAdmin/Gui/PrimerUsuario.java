@@ -147,60 +147,65 @@ public class PrimerUsuario {
             gridPaneCreaUsuario.add(buttonCreaUsuario, 0, 8);
             buttonCreaUsuario.setDisable(true);
             buttonCreaUsuario.setOnAction((event) -> {
+                if (comboBoxRol.getSelectionModel().getSelectedItem().equals("Elige un rol") != true) {
+                    try {
+                        if (textFieldCorreo.getText().contains("@gmail.com") && textFieldContraseña.getText().length() >= 5
+                                && !textFieldID.getText().trim().equals("") && !textFieldNombre.getText().trim().equals("")
+                                && !textFieldContraseña.getText().trim().equals("") && !textFieldCorreo.getText().trim().equals("")
+                                && !textFieldTelefono.getText().trim().equals("") && !textFieldDireccion.getText().trim().equals("")
+                                && Integer.parseInt(textFieldTelefono.getText()) % 2 == 0
+                                || Integer.parseInt(textFieldTelefono.getText()) % 2 == 1) {
 
-                try {
-                    if (textFieldCorreo.getText().contains("@") && textFieldContraseña.getText().length() >= 5
-                            && !textFieldID.getText().trim().equals("") && !textFieldNombre.getText().trim().equals("")
-                            && !textFieldContraseña.getText().trim().equals("") && !textFieldCorreo.getText().trim().equals("")
-                            && !textFieldTelefono.getText().trim().equals("") && !textFieldDireccion.getText().trim().equals("")
-                            || Integer.parseInt(textFieldTelefono.getText()) % 2 == 0
-                            || Integer.parseInt(textFieldTelefono.getText()) % 3 == 1) {
+                            alertas.alertConfirmation("");
+                            Optional<ButtonType> result = alertas.alertConfirmation("").showAndWait();
+                            if (result.get() == ButtonType.OK) {
 
-                        alertas.alertConfirmation("");
-                        Optional<ButtonType> result = alertas.alertConfirmation("").showAndWait();
-                        if (result.get() == ButtonType.OK) {
+                                logic.leerArchivo();
+                                if (logic.busca(textFieldID.getText()) == false) {
+                                    enviarCorreo.sendMessage(textFieldCorreo.getText(), "Clínica Susana Distancia",
+                                            "Mensaje de confirmación de creación de nuevo usuario en nuestra clínica Susana Distancia.\n"
+                                            + "¡Bienvenido! " + textFieldNombre.getText() + " es un gusto atenderle.\n"
+                                            + "Si desea realizar consultas directamente con nuestro soporte de aplicación deberá realizarlas"
+                                            + " por este medio a este correo electrónico.\nSerá un gusto atenderle.");
 
-                            logic.leerArchivo();
-                            if (logic.busca(textFieldID.getText()) == false) {
-                                enviarCorreo.sendMessage(textFieldCorreo.getText(), "Clínica Susana Distancia",
-                                        "Mensaje de confirmación de creación de nuevo usuario en nuestra clínica Susana Distancia.\n"
-                                        + "¡Bienvenido! " + textFieldNombre.getText() + " es un gusto atenderle.\n"
-                                        + "Si desea realizar consultas directamente con nuestro soporte de aplicación deberá realizarlas"
-                                        + " por este medio a este correo electrónico.\nSerá un gusto atenderle.");
+                                    Usuario usuario = new Usuario(comboBoxRol.getValue().toString(), textFieldID.getText(),
+                                            textFieldNombre.getText(), encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()),
+                                            textFieldCorreo.getText(), textFieldTelefono.getText(),
+                                            textFieldDireccion.getText());
 
-                                Usuario usuario = new Usuario(comboBoxRol.getValue().toString(), textFieldID.getText(),
-                                        textFieldNombre.getText(), encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()),
-                                        textFieldCorreo.getText(), textFieldTelefono.getText(), textFieldDireccion.getText());
+                                    logic.escribirArchivo(usuario);
+                                    Acciones acciones = new Acciones(textFieldID.getText(), "Se registró como nuevo usuario", fechaHora.histoFechaHora());
+                                    logicaAVL.escribeHistorial(acciones);
 
-                                logic.escribirArchivo(usuario);
-                                Acciones acciones = new Acciones(textFieldID.getText(), "Se registró como nuevo usuario", fechaHora.histoFechaHora());
-                                logicaAVL.escribeHistorial(acciones);
-
-                            } else {
-                                System.out.println("Ya existe alguien con este ID");
-                                alertas.alertWarning("Su ID ya esta registrado en sistema, intentelo de nuevo");
-                                textFieldID.clear();
-                                Acciones acciones = new Acciones(textFieldID.getText(), "Intentó registrarse cuando ya estaba registrado", fechaHora.histoFechaHora());
-                                logicaAVL.escribeHistorial(acciones);
-                            }
-                        }//end if alert
-                        textFieldNombre.clear();
-                        textFieldContraseña.clear();
-                        textFieldID.clear();
-                        textFieldTelefono.clear();
-                        textFieldDireccion.clear();
-                        textFieldCorreo.clear();
-                    }//end if validaciones basicas
-                    else {
-                        alertas.alertWarning("correo,contraseña y/o teléfono no validos");
-                    }//end else validaciones
-                } catch (NumberFormatException nfe) {
-                    alertas.alertWarning("correo,contraseña y/o teléfono no validos\nO espacios vacios");
+                                } else {
+                                    System.out.println("Ya existe alguien con este ID");
+                                    alertas.alertWarning("Su ID ya esta registrado en sistema, intentelo de nuevo");
+                                    textFieldID.clear();
+                                    Acciones acciones = new Acciones(textFieldID.getText(), "Intentó registrarse cuando ya estaba registrado", fechaHora.histoFechaHora());
+                                    logicaAVL.escribeHistorial(acciones);
+                                }
+                            }//end if alert
+                            textFieldNombre.clear();
+                            textFieldContraseña.clear();
+                            textFieldID.clear();
+                            textFieldTelefono.clear();
+                            textFieldDireccion.clear();
+                            textFieldCorreo.clear();
+                        }//end if validaciones basicas
+                        else {
+                            alertas.alertWarning("correo,contraseña y/o teléfono no validos");
+                        }//end else validaciones
+                    } catch (NumberFormatException nfe) {
+                        alertas.alertWarning("correo,contraseña y/o teléfono no validos\nO espacios vacios");
+                    }
+                }//end if 
+                else {
+                    alertas.alertWarning("No selecciono su rol\nIntente de nuevo");
                 }
             });//end setOnAction
 
             Label labelAclaracion = new Label();
-            labelAclaracion.setText("* La contraseña debe tener 5 o mas caracteres \n* El teléfono de incluir solo números \n* Y el correo debe ser válido");
+            labelAclaracion.setText("* La contraseña debe tener 5 o mas caracteres \n* El teléfono de incluir solo números \n* Y el correo debe ser válido(@gmail.com)");
             labelAclaracion.setFont(new Font("Arial", 15));
             labelAclaracion.setStyle("-fx-font-weight: bold");
             labelAclaracion.setTextFill(Color.web("#0076a3"));
