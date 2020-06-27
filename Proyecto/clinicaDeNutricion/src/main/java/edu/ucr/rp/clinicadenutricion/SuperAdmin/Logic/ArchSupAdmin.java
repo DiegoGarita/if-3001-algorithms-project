@@ -10,20 +10,16 @@ public class ArchSupAdmin {
 
     LogicSuperAdmin crudListas = new LogicSuperAdmin();
 
-    public void writeInFile(SuperAdmin supAd) {
+    public void writeInFile(SuperAdmin nuevo) {
         File newFile = new File("SuperAdminConfig.txt");
 
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(newFile, true);
             PrintStream printStream = new PrintStream(fileOutputStream);
 
-            if (newFile.length() == 0) {
-                printStream.println("KEYDistancia|8|18|1|3.jpeg|C:\\source-code\\if-3001-algorithms-project\\Proyecto\\clinicaDeNutricion|3");
-            }
-
-            printStream.println(supAd.getIdentificadorSA() + "|" + supAd.getAbreClinica() + "|" + supAd.getCierreClinica() + "|"
-                    + supAd.getTiempoConsulta() + "|" + supAd.getNombreLogo() + "|" + supAd.getPathDeGuardado()
-                    + "|" + supAd.getPaginacion());
+            printStream.println(nuevo.getIdentificadorSA() + "|" + nuevo.getAbreClinica() + "|" + nuevo.getCierreClinica() + "|"
+                    + nuevo.getTiempoConsulta() + "|" + nuevo.getNombreLogo() + "|" + nuevo.getPathDeGuardado()
+                    + "|" + nuevo.getPaginacion());
 
         } catch (FileNotFoundException fileNotFoundException) {
             JOptionPane.showMessageDialog(null, fileNotFoundException + "\nProblemas con el archivo");
@@ -51,42 +47,23 @@ public class ArchSupAdmin {
         }
     }// end readProperties()
 
-    public void removeLineFromFile(String idSearched) {
-        LogicSuperAdmin cr = new LogicSuperAdmin();
+    public void replacefromfile(SuperAdmin nuevo) {
         File previousFile = new File("SuperAdminConfig.txt");
-        try {
-            FileInputStream fileInputStream = new FileInputStream(previousFile);
-            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            String currentRegistry = bufferedReader.readLine();
 
-            while (currentRegistry != null) {
-                if (!currentRegistry.contains(idSearched)) {
-
-                    cr.add(stringTokenizer(currentRegistry));
-                }
-                currentRegistry = bufferedReader.readLine();
-            }
             previousFile.deleteOnExit();
-        } catch (FileNotFoundException fileNotFoundException) {
-            JOptionPane.showMessageDialog(null, fileNotFoundException + "\nProblemas con el archivo");
-        } catch (IOException IOException) {
-            JOptionPane.showMessageDialog(null, IOException + "\nProblemas con el archivo");
-        }
+      
         File fileNew = new File("SuperAdminConfig.txt");
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(fileNew);
             PrintStream printStream = new PrintStream(fileOutputStream);
-            for (int i = 0; i < cr.size(); i++) {  //---> Here
-                printStream.println(cr.indexOf(i).getIdentificadorSA() + " | " + cr.indexOf(i).getAbreClinica() + " | "
-                        + cr.indexOf(i).getCierreClinica() + " | " + cr.indexOf(i).getTiempoConsulta() + " | "
-                        + cr.indexOf(i).getNombreLogo() + " | " + cr.indexOf(i).getPathDeGuardado() + " | "
-                        + cr.indexOf(i).getPaginacion());
-            }
+            printStream.println(nuevo.getIdentificadorSA() + "|" + nuevo.getAbreClinica() + "|" + nuevo.getCierreClinica() + "|"
+                    + nuevo.getTiempoConsulta() + "|" + nuevo.getNombreLogo() + "|" + nuevo.getPathDeGuardado()
+                    + "|" + nuevo.getPaginacion());
+
         } catch (FileNotFoundException fileNotFoundException) {
             JOptionPane.showMessageDialog(null, fileNotFoundException + "\nProblemas con el archivo");
         }
-    }//end removeLineFromFile(
+    }//end replacefromfile(
 
     public SuperAdmin stringTokenizer(String lines) {
 

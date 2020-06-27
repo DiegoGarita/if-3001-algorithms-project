@@ -24,10 +24,6 @@ public class IndicarPath {
     ArchSupAdmin logiSuper = new ArchSupAdmin();
     Alertas alerta = new Alertas();
 
-    /**
-     *
-     * @return Nos da la GUI que nos permite crear un nuevo catálogo
-     */
     public GridPane path() {
 
         GridPane gridPaneCitaNue = new GridPane();
@@ -39,9 +35,6 @@ public class IndicarPath {
         gridPaneCitaNue.setStyle(("-fx-background-image:url('file:src/image/SuperAdmin.gif');"
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
-
-        Usuario uwu = logic.stringTokenizer(logic.leeLinea("ë"));
-        SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
 
         textFieldContra = new TextField();
         textFieldContra.setPromptText("Contraseña");
@@ -57,6 +50,8 @@ public class IndicarPath {
         textFieldContra.setOnKeyPressed((event) -> {
             buttonModiUsu.setDisable(false);
         });
+
+        Usuario uwu = logic.stringTokenizer(logic.leeLinea("ë"));
 
         buttonModiUsu = new Button("Modificar ubicacion");
         buttonModiUsu.setTextFill(Color.WHITE);//Color de la letra del boton
@@ -87,7 +82,6 @@ public class IndicarPath {
 
             File file1 = setPath().showDialog(null);
             if (file1 != null) {
-
                 label.setText(file1.getAbsolutePath());
             }
             botonLogo.setDisable(true);
@@ -105,17 +99,13 @@ public class IndicarPath {
         botonGuardar.setDisable(true);
         botonGuardar.setOnAction((event) -> {
 
-            SuperAdmin configuracion1 = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
-
+            SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
             SuperAdmin configuracion2 = new SuperAdmin(configuracion.getIdentificadorSA(), configuracion.getAbreClinica(),
                     configuracion.getCierreClinica(), configuracion.getTiempoConsulta(),
                     configuracion.getNombreLogo(),
                     label.getText(), configuracion.getPaginacion());
 
-            logiSuper.readInFile();
-            logiSuper.removeLineFromFile(configuracion2.getIdentificadorSA()); //-->>Here esta vara me cae
-            logiSuper.writeInFile(configuracion2);
-            System.out.println("Hola no boto el app");
+            logiSuper.replacefromfile(configuracion2);
 
             textFieldContra.clear();
             botonGuardar.setDisable(true);
