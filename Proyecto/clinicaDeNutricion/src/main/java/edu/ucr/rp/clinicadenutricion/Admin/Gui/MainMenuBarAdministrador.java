@@ -72,11 +72,11 @@ public class MainMenuBarAdministrador {
 
         menuCita.getItems().addAll(menuItemReservarCita);
 
-        Menu menuAlimentacion = new Menu("Planes de alimentacion", new ImageView(new Image("file:src/image/planAli.png")));
+        Menu menuAlimentacion = new Menu("Planes de alimentación", new ImageView(new Image("file:src/image/planAli.png")));
         menuAlimentacion.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"
                 + "-fx-effect: dropshadow(gaussian, red, 50, 0, 0, 0);"
                 + "-fx-background-insets: 50;");
-        MenuItem menuItemVerPlanes = new MenuItem("Ver planes de alimentacion", new ImageView(new Image("file:src/image/verPlan.png")));
+        MenuItem menuItemVerPlanes = new MenuItem("Ver planes de alimentación", new ImageView(new Image("file:src/image/verPlan.png")));
         //Funcionamiento
         menuItemVerPlanes.setOnAction((event) -> {
             gridPaneAdministrador.getChildren().clear();

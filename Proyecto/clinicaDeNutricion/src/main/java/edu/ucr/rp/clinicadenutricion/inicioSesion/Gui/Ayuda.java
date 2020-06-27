@@ -46,7 +46,7 @@ public class Ayuda {
             labelReportes.setVisible(false);
             labelMantenimiento.setVisible(false);
             labelDefinicion = new Label("Reportes: Acceso a informes de avance y historial de citas\n"
-                    + "Citas: Reservar una cita, modificarla o eliminarla\n Planes: Acceso a planes y recetas\n"
+                    + "Citas: Reservar una cita, modificarla o eliminarla\nPlanes: Acceso a planes y recetas\n"
                     + "Ajustes: Modificar o eliminar su usuario\nMás: Página web de la clínica con más información\n");
             labelDefinicion.setFont(Font.font("Rockwell", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 20));  // tipo y tamaño de letra
             labelDefinicion.setStyle("-fx-background-color: rgb(41, 75, 152);");
@@ -69,7 +69,7 @@ public class Ayuda {
             labelDefinicion.setVisible(false);
 
             labelReportes = new Label("Paciente: Crear reportes de los pacientes acceso a información \n"
-                    + "Citas: En el cual podra agendar una cita para cualquier usuario registrado\n"
+                    + "Citas: En el cual podrá agendar una cita para cualquier usuario registrado\n"
                     + "Planes: Acceso a planes y recetas varias \n");
             labelReportes.setTextFill(Color.POWDERBLUE);
             labelReportes.setFont(Font.font("Rockwell", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 20));

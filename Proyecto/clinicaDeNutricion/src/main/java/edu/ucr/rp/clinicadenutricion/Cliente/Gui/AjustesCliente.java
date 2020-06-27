@@ -210,7 +210,7 @@ public class AjustesCliente {
                     buttonModificar.setDisable(true);
                 }
                 buttonEliminar.setDisable(true);
-                textFieldContraseña.setDisable(true);
+               // textFieldContraseña.setDisable(true);
             }//end if
             else {
                 alertas.alertWarning("Espacio vacio\nIntente de nuevo");
@@ -270,7 +270,7 @@ public class AjustesCliente {
                         && !textFieldDireccion.getText().trim().equals("")
                         && textFieldCorreo.getText().contains("@")
                         || Integer.parseInt(textFieldTelefono.getText()) % 2 == 0
-                        || Integer.parseInt(textFieldTelefono.getText()) % 3 == 1) {
+                        || Integer.parseInt(textFieldTelefono.getText()) % 2 == 1) {
 
                     enviarCorreo.sendMessage(textFieldCorreo.getText(), "Clínica Susana Distancia",
                             "Mensaje de confirmación:\n\nSus datos han sido actualizados correctamente.\n"

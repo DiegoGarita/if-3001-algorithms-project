@@ -145,7 +145,7 @@ public class HorarioTiempoClinica {
             textFieldContraseña.setDisable(true);
 
         });//end setOnAction
-
+        
         buttonGuardar = new Button("Guardar");
         buttonGuardar.setTextFill(Color.WHITE);//Color de la letra del boton
         buttonGuardar.setStyle("-fx-background-color: BLACK");//Color del fondo
@@ -165,7 +165,7 @@ public class HorarioTiempoClinica {
                             configuracion.getPathDeGuardado(), configuracion.getPaginacion());
 
                     logiSuper.readInFile();
-                    logiSuper.removeLineFromFile(configuracion.getIdentificadorSA()); //-->>Here esta vara me cae
+                    logiSuper.removeLineFromFile(configuracion2.getIdentificadorSA()); //-->>Here esta vara me cae
                     logiSuper.writeInFile(configuracion);
                     textFieldAbreClinica.clear();
                     textFieldAbreClinica.setDisable(true);
@@ -179,11 +179,11 @@ public class HorarioTiempoClinica {
 
                 }//end if
                 else {
-                    alerta.alertWarning("Campos vacios o error de formato\nIntente de nuevo");
+                    alerta.alertWarning("Campos vacíos o error de formato\nIntente de nuevo");
                 }//end else
             }//end try
             catch (java.lang.NumberFormatException jLNFE) {
-                alerta.alertWarning("Campos vacios o error de formato\nIntente de nuevo");
+                alerta.alertWarning("Campos vacíos o error de formato\nIntente de nuevo");
             }//end catch
         });//END BUTTON
 
@@ -211,7 +211,7 @@ public class HorarioTiempoClinica {
         gridPaneHorarioTiempoClinica.add(aclaracion1, 0, 9);
 
         Label aclaracion2 = new Label();
-        aclaracion2.setText("** Las citas no pueden durar mas del horario de atencion de la clinica");
+        aclaracion2.setText("** Las citas no pueden durar más del horario de atención de la clínica");
         aclaracion2.setFont(new Font("Arial", 15));
         aclaracion2.setTextFill(Color.web("#0076a3"));
         aclaracion2.setStyle("-fx-font-weight: bold");
@@ -219,7 +219,7 @@ public class HorarioTiempoClinica {
         gridPaneHorarioTiempoClinica.add(aclaracion2, 0, 10);
 
         Label aclaracion3 = new Label();
-        aclaracion3.setText("*** Hora de apertura no puede ser mayor a hora de cierre, lapsos de 1 o 2 horas maximo");
+        aclaracion3.setText("*** Hora de apertura no puede ser mayor a hora de cierre, lapsos de 1 o 2 horas máximo");
         aclaracion3.setFont(new Font("Arial", 15));
         aclaracion3.setTextFill(Color.web("#0076a3"));
         aclaracion3.setStyle("-fx-font-weight: bold");

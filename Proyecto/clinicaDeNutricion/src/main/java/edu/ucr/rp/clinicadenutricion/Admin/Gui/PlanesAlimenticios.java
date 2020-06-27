@@ -41,7 +41,7 @@ public class PlanesAlimenticios {
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
-        comboBoxOp.setValue("Elige una opcion");
+        comboBoxOp.setValue("Elige una opción");
         comboBoxOp.setStyle("-fx-background-color: lightblue");
         comboBoxOp.getItems().addAll("Planes alimenticios", "Recetas");
         gridPanePlanesAlimenticios.add(comboBoxOp, 0, 0);
@@ -49,7 +49,7 @@ public class PlanesAlimenticios {
             buttonAceptar.setDisable(false);
         });
 
-        comboBoxSele.setValue("Elige una opcion");
+        comboBoxSele.setValue("Elige una opción");
         comboBoxSele.setVisible(false);
         comboBoxSele.setStyle("-fx-background-color: lightblue");
         gridPanePlanesAlimenticios.add(comboBoxSele, 0, 1);
