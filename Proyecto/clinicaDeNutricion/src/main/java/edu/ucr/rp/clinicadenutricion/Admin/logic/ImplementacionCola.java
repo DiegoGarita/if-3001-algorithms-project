@@ -2,7 +2,7 @@ package edu.ucr.rp.clinicadenutricion.Admin.logic;
 
 import edu.ucr.rp.clinicadenutricion.Objetos.ReporteMedico;
 
-public class ImplementacionCola {
+public class ImplementacionCola implements InterfaceCola {
 
     class Node {
 
@@ -24,6 +24,7 @@ public class ImplementacionCola {
         size = 0;
     }
 
+    @Override
     public String enqueue(ReporteMedico reporteMedico) {
         Node newNode = new Node(reporteMedico);
         String salida;
@@ -43,6 +44,7 @@ public class ImplementacionCola {
 
     }
 
+    @Override
     public ReporteMedico dequeue() {
         if (first == null) {
             return null;
@@ -53,20 +55,14 @@ public class ImplementacionCola {
         return o;
     }
 
+    @Override
     public boolean isEmpty() {
         return (size == 0);
     }
 
+    @Override
     public int size() {
         return size;
-    }
-
-    public ReporteMedico first() {
-        if (first == null) {
-            return null;
-        } else {
-            return first.reporteMedico;
-        }
     }
 
 }

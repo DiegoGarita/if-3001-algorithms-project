@@ -25,12 +25,13 @@ class Node {
 
 }
 
-public class ImplementacionListas {
+public class ImplementacionListas implements InterfaceListas{
 
     public ImplementacionListas() {
     }
     Node inicio, fin;
 
+    @Override
     public void add(Usuario usuario) { //inserta un elemento en la lista
 
         Node aux = inicio; //auxiliar tipo nodo 
@@ -53,6 +54,7 @@ public class ImplementacionListas {
         }// end else  
     } //end add(Object n)
 
+    @Override
     public void remove(Usuario usuario) {
 
         if (isEmpty() == false) {
@@ -86,6 +88,7 @@ public class ImplementacionListas {
 
     } //end remove
 
+    @Override
     public boolean isEmpty() {
 
         boolean empty = false;
@@ -100,6 +103,7 @@ public class ImplementacionListas {
         } // end else
     }
 
+    @Override
     public void display() {
         Node current = inicio;
 
@@ -115,6 +119,7 @@ public class ImplementacionListas {
         System.out.println();
     }
 
+    @Override
     public boolean search(String aBuscar) {
         Node current = inicio;
         while (current != null) {
@@ -127,6 +132,7 @@ public class ImplementacionListas {
         return false;    //data not found 
     }
 
+    @Override
     public Usuario indexOf(int index) {
 
         Node aux = inicio;
@@ -140,6 +146,7 @@ public class ImplementacionListas {
 
     } //end indexOf
 
+    @Override
     public int size() {
 
         int output = 0;

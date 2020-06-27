@@ -8,6 +8,7 @@ import edu.ucr.rp.clinicadenutricion.Utilitario.EncryptMD5;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
 import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
 import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
+import edu.ucr.rp.clinicadenutricion.Utilitario.EnviarCorreo;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -44,6 +45,7 @@ public class AjustesCliente {
 
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
+    EnviarCorreo enviarCorreo = new EnviarCorreo();
 
     public GridPane ajustesCliente() {
 
@@ -269,6 +271,10 @@ public class AjustesCliente {
                         && textFieldCorreo.getText().contains("@")
                         || Integer.parseInt(textFieldTelefono.getText()) % 2 == 0
                         || Integer.parseInt(textFieldTelefono.getText()) % 3 == 1) {
+
+                    enviarCorreo.sendMessage(textFieldCorreo.getText(), "Clínica Susana Distancia",
+                            "Mensaje de confirmación:\n\nSus datos han sido actualizados correctamente.\n"
+                            + "\nSi usted no modificó sus datos recientemente por favor contactese con nosotros.");
 
                     alertas.alertInformation("Usuario modificado correctamente");
                     Usuario usuario = logicaLista.stringTokenizer(logicaLista.leeLinea(textFieldID.getText()));

@@ -38,8 +38,8 @@ public class LogicaPila {
     }//end writeFileCatalogue()
 
     public void leeArchivoSolicitudCita() {
-      //  SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
-        File newFile = new File( "ApartaCita.txt");
+        //  SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+        File newFile = new File("ApartaCita.txt");
         String currentRegistry = null;
         try {
             FileInputStream fileInputStream = new FileInputStream(newFile);
@@ -84,7 +84,7 @@ public class LogicaPila {
     }// end readProperties()
 
     public void remueveLineaDelArchivo(String IDBuscar) {
-      //  SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+        //  SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
         ImplementacionPila implementacionPila = new ImplementacionPila();
         File previousFile = new File("ApartaCita.txt");
         try {
@@ -163,7 +163,7 @@ public class LogicaPila {
     }//end token
 
     public String leeLinea(String identificador) {
-    //    SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+        //    SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
         File newFile = new File("ApartaCita.txt");
         try {
             FileInputStream fileInputStream = new FileInputStream(newFile);
@@ -190,7 +190,7 @@ public class LogicaPila {
     }// end readProperties()
 
     public ArrayList<String> leeArchivoHoraFecha(String date) {
-      //  SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+        //  SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
         File newFile = new File("ApartaCita.txt");
         ArrayList<String> returned = new ArrayList<>();
         try {
@@ -224,6 +224,39 @@ public class LogicaPila {
 
     public void elimina(Cita cita) {
         implementacionPila.pop(cita);
+    }
+
+    public boolean existeCita(String identificador, String usuarioIngresado) {
+
+        File newFile = new File("ApartaCita.txt");
+        try {
+            FileInputStream fileInputStream = new FileInputStream(newFile);
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            String currentRegistry = bufferedReader.readLine();
+
+            while (currentRegistry != null) {
+                StringTokenizer stringTokenizerprev = new StringTokenizer(currentRegistry, "&");
+                stringTokenizerprev.nextToken();
+                String usuario = stringTokenizerprev.nextToken();
+                if (usuario.trim().equals(usuarioIngresado.trim())) {
+                    StringTokenizer stringTokenizer = new StringTokenizer(currentRegistry, "&");
+                    String id = stringTokenizer.nextToken();
+                    if (id.trim().equals(identificador.trim())) {
+                        return true;
+
+                    }
+
+                }
+                currentRegistry = bufferedReader.readLine();
+            }
+
+        } catch (FileNotFoundException fileNotFoundException) {
+            System.out.println(fileNotFoundException + ": Problemas con el archivo");
+        } catch (IOException IOException) {
+            System.out.println(IOException + ": Problemas con el archivo");
+        }
+        return false;
     }
 
 }// end writeFileCitas
