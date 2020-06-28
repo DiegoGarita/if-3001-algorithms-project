@@ -17,13 +17,16 @@ public class Grafico {
     LogicaCola logicaCola = new LogicaCola();
     IniciarSesion iniciarSesion;
 
+    /**
+     * método que muestra el gráfico con los datos del usuario más actuales
+     */
     public void MuestraGraficoActual() {
         ReporteMedico reporteMedico = logicaCola.stringTokenizer(logicaCola.obtieneLineaEspecifica(iniciarSesion.ID, true));
 
         DefaultPieDataset pieDataset = new DefaultPieDataset();
 
-        pieDataset.setValue("% Agua", Integer.parseInt(reporteMedico.getPorcenAgua()));
-        pieDataset.setValue("% Masa muscular", Integer.parseInt(reporteMedico.getPorcenMasaMuscular()));
+        pieDataset.setValue("% Agua", Integer.parseInt(reporteMedico.getPorcentajeAgua()));
+        pieDataset.setValue("% Masa muscular", Integer.parseInt(reporteMedico.getPorcentajeMasaMuscular()));
         pieDataset.setValue("%Grasa", Integer.parseInt(reporteMedico.getGrasa()));
         pieDataset.setValue("%Grasa visceral", Integer.parseInt(reporteMedico.getGrasaVisceral()));
 
@@ -45,15 +48,18 @@ public class Grafico {
         frame.pack();
         frame.setVisible(true);
 
-    }// end public void MuestraGraficoInicial()
+    }
 
+    /**
+     * método que muestra el gráfico del usuario con sus datos iniciales
+     */
     public void MuestraGraficoInicial() {
         ReporteMedico reporteMedico = logicaCola.stringTokenizer(logicaCola.obtieneLineaEspecifica(iniciarSesion.ID, false));
 
         DefaultPieDataset pieDataset = new DefaultPieDataset();
 
-        pieDataset.setValue("% Agua", Integer.parseInt(reporteMedico.getPorcenAgua()));
-        pieDataset.setValue("% Masa muscular", Integer.parseInt(reporteMedico.getPorcenMasaMuscular()));
+        pieDataset.setValue("% Agua", Integer.parseInt(reporteMedico.getPorcentajeAgua()));
+        pieDataset.setValue("% Masa muscular", Integer.parseInt(reporteMedico.getPorcentajeMasaMuscular()));
         pieDataset.setValue("Grasa", Integer.parseInt(reporteMedico.getGrasa()));
         pieDataset.setValue("Grasa visceral", Integer.parseInt(reporteMedico.getGrasaVisceral()));
 
@@ -73,6 +79,6 @@ public class Grafico {
         frame.pack();
         frame.setVisible(true);
 
-    }// end public void MuestraGraficoInicial()
+    }
 
-}// end grafico
+}

@@ -17,36 +17,42 @@ import javax.mail.internet.MimeMultipart;
 
 public class EnviarCorreo {
 
+    /**
+     * método que envía mensaje a correo electrónico
+     *
+     * @param correo correo al que será enviado
+     * @param tema tema del correo, será mostrado como título del correo
+     * @param texto texto que incluirá el correo
+     */
     public void sendMessage(String correo, String tema, String texto) {
 
-        String to = correo; //Recipient's email ID needs to be mentioned.
-        String from = "ClinicaSusanaDistancia@gmail.com"; //Sender's email ID needs to be mentioned
-        String host = "smtp.gmail.com";  // Assuming you are sending email from through gmails smtp
-        Properties properties = System.getProperties(); // Get system properties
+        String to = correo;
+        String from = "ClinicaSusanaDistancia@gmail.com";
+        String host = "smtp.gmail.com";
+        Properties properties = System.getProperties();
 
-        properties.put("mail.smtp.host", host);// Setup mail server
+        properties.put("mail.smtp.host", host);
         properties.put("mail.smtp.port", "465");
         properties.put("mail.smtp.ssl.enable", "true");
         properties.put("mail.smtp.auth", "true");
 
-        // Get the Session object.// and pass username and password
         Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication("ClinicaSusanaDistancia@gmail.com", "Algoritmos");
             }
         });
 
-        session.setDebug(true); // Used to debug SMTP issues
+        session.setDebug(true);
 
         try {
 
-            MimeMessage message = new MimeMessage(session); // Create a default MimeMessage object.
-            message.setFrom(new InternetAddress(from));// Set From: header field of the header.
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));// Set To: header field of the header.
-            message.setSubject(tema);// Set Subject: header field
-            message.setText(texto);// Now set the actual message
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(from));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+            message.setSubject(tema);
+            message.setText(texto);
             System.out.println("Enviando...");
-            Transport.send(message);// Send message
+            Transport.send(message);
             System.out.println("Mensaje enviado con éxito");
         } catch (MessagingException mex) {
             mex.printStackTrace();
@@ -54,33 +60,42 @@ public class EnviarCorreo {
 
     }
 
-    public void sendPDF(String correo, String tema, String texto, String text) throws IOException {
+    /**
+     * método que envía correo electrónico y pdf
+     *
+     * @param correo correo al que será enviado
+     * @param tema tema del mensaje
+     * @param pdf nombre del archivo pdf que será enviado
+     * @param text texto del mensaje que será enviado
+     * @throws IOException lanza la excepción de input output para evitar
+     * problemas
+     */
+    public void sendPDF(String correo, String tema, String pdf, String text) throws IOException {
 
-        String to = correo; //Recipient's email ID needs to be mentioned.
-        String from = "ClinicaSusanaDistancia@gmail.com"; //Sender's email ID needs to be mentioned
-        String host = "smtp.gmail.com";  // Assuming you are sending email from through gmails smtp
-        Properties properties = System.getProperties(); // Get system properties
+        String to = correo;
+        String from = "ClinicaSusanaDistancia@gmail.com";
+        String host = "smtp.gmail.com";
+        Properties properties = System.getProperties();
 
-        properties.put("mail.smtp.host", host);// Setup mail server
+        properties.put("mail.smtp.host", host);
         properties.put("mail.smtp.port", "465");
         properties.put("mail.smtp.ssl.enable", "true");
         properties.put("mail.smtp.auth", "true");
 
-        // Get the Session object.// and pass username and password
         Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication("ClinicaSusanaDistancia@gmail.com", "Algoritmos");
             }
         });
 
-        session.setDebug(true); // Used to debug SMTP issues
+        session.setDebug(true);
 
         try {
 
-            MimeMessage message = new MimeMessage(session); // Create a default MimeMessage object.
-            message.setFrom(new InternetAddress(from));// Set From: header field of the header.
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));// Set To: header field of the header.
-            message.setSubject(tema);// Set Subject: header field
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(from));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+            message.setSubject(tema);
             Multipart multipart = new MimeMultipart();
 
             MimeBodyPart attachmentPart = new MimeBodyPart();
@@ -89,7 +104,7 @@ public class EnviarCorreo {
 
             try {
 
-                File f = new File(texto + ".pdf");
+                File f = new File(pdf + ".pdf");
 
                 attachmentPart.attachFile(f);
                 textPart.setText(text);

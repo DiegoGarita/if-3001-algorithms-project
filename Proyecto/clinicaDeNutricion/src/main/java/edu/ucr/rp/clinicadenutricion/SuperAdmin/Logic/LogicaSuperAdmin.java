@@ -8,26 +8,36 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 import javax.swing.JOptionPane;
 
-public class ArchSupAdmin {
+public class LogicaSuperAdmin {
 
-    LogicSuperAdmin crudListas = new LogicSuperAdmin();
+    ImplementacionCola implementacionCola = new ImplementacionCola();
 
-    public void writeInFile(SuperAdmin nuevo) {
+    public int cantidadDC = 0;
+
+    /**
+     * método que escribe en el archivo .txt
+     *
+     * @param superAdmin elemento superAdmin agregado en el archivo .txt
+     */
+    public void writeInFile(SuperAdmin superAdmin) {
         File newFile = new File("SuperAdminConfig.txt");
 
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(newFile, true);
             PrintStream printStream = new PrintStream(fileOutputStream);
 
-            printStream.println(nuevo.getIdentificadorSA() + "|" + nuevo.getAbreClinica() + "|" + nuevo.getCierreClinica() + "|"
-                    + nuevo.getTiempoConsulta() + "|" + nuevo.getNombreLogo() + "|" + nuevo.getPathDeGuardado()
-                    + "|" + nuevo.getPaginacion());
+            printStream.println(superAdmin.getIdentificadorSA() + "|" + superAdmin.getAbreClinica() + "|" + superAdmin.getCierreClinica() + "|"
+                    + superAdmin.getTiempoConsulta() + "|" + superAdmin.getNombreLogo() + "|" + superAdmin.getPathDeGuardado()
+                    + "|" + superAdmin.getPaginacion());
 
         } catch (FileNotFoundException fileNotFoundException) {
             JOptionPane.showMessageDialog(null, fileNotFoundException + "\nProblemas con el archivo");
         }
-    }//end writeFileCatalogue()
+    }
 
+    /**
+     * método que lee el archivo SuperAdminConfig.txt y agrega en la lista
+     */
     public void readInFile() {
 
         File newFile = new File("SuperAdminConfig.txt");
@@ -39,7 +49,7 @@ public class ArchSupAdmin {
 
             while (currentRegistry != null) {
 
-                crudListas.add(stringTokenizer(currentRegistry));
+                implementacionCola.add(stringTokenizer(currentRegistry));
                 currentRegistry = bufferedReader.readLine();
             }
 
@@ -47,26 +57,37 @@ public class ArchSupAdmin {
         } catch (IOException IOException) {
             JOptionPane.showMessageDialog(null, IOException + ": Problemas con el archivo");
         }
-    }// end readProperties()
+    }
 
-    public void replacefromfile(SuperAdmin nuevo) {
+    /**
+     * método que reemplaza por completo el archivo por uno actual
+     *
+     * @param superAdmin nuevo objeto superAdmin que será agregado al nuevo .txt
+     */
+    public void replacefromfile(SuperAdmin superAdmin) {
         File previousFile = new File("SuperAdminConfig.txt");
 
-            previousFile.deleteOnExit();
-      
+        previousFile.deleteOnExit();
+
         File fileNew = new File("SuperAdminConfig.txt");
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(fileNew);
             PrintStream printStream = new PrintStream(fileOutputStream);
-            printStream.println(nuevo.getIdentificadorSA() + "|" + nuevo.getAbreClinica() + "|" + nuevo.getCierreClinica() + "|"
-                    + nuevo.getTiempoConsulta() + "|" + nuevo.getNombreLogo() + "|" + nuevo.getPathDeGuardado()
-                    + "|" + nuevo.getPaginacion());
+            printStream.println(superAdmin.getIdentificadorSA() + "|" + superAdmin.getAbreClinica() + "|" + superAdmin.getCierreClinica() + "|"
+                    + superAdmin.getTiempoConsulta() + "|" + superAdmin.getNombreLogo() + "|" + superAdmin.getPathDeGuardado()
+                    + "|" + superAdmin.getPaginacion());
 
         } catch (FileNotFoundException fileNotFoundException) {
             JOptionPane.showMessageDialog(null, fileNotFoundException + "\nProblemas con el archivo");
         }
-    }//end replacefromfile(
+    }
 
+    /**
+     * método que convierte un String a un objeto SuperAdmin
+     *
+     * @param lines linea que será convertida
+     * @return objeto SuperAdmin que será obtenido de la línea parámetro
+     */
     public SuperAdmin stringTokenizer(String lines) {
 
         StringTokenizer stringTokenizer = new StringTokenizer(lines, "|");
@@ -115,12 +136,18 @@ public class ArchSupAdmin {
 
         }
 
-        SuperAdmin u = new SuperAdmin(identificadorSA, abreClinica, cierreClinica,
+        SuperAdmin superAdmin = new SuperAdmin(identificadorSA, abreClinica, cierreClinica,
                 TiempoConsulta, NombreLogo, pathDeGuardado, paginacion);
-        return u;
+        return superAdmin;
 
     }
 
+    /**
+     * método que lee una línea específica del archivo SuperAdminConfig.txt
+     *
+     * @param idIdentifier identificador para leer línea exacta
+     * @return String obtenido de la línea leída
+     */
     public String readLine(String idIdentifier) {
 
         File newFile = new File("SuperAdminConfig.txt");
@@ -146,8 +173,15 @@ public class ArchSupAdmin {
             JOptionPane.showMessageDialog(null, IOException + ": Problemas con el archivo");
         }
         return null;
-    }// end readProperties()
+    }
 
+    /**
+     * método que lee la cantidad de líneas encontradas en el archivo
+     * Historial.txt
+     *
+     * @return retorna el número de líneas encontradas en el archivo
+     * Historial.txt
+     */
     public int cantidadDeLineas() {
         int cantidad = 0;
         File newFile = new File("Historial.txt");
@@ -159,7 +193,6 @@ public class ArchSupAdmin {
 
             while (currentRegistry != null) {
 
-                //arrayListClientes.add(logic.stringTokenizer(currentRegistry));
                 cantidad++;
 
                 currentRegistry = bufferedReader.readLine();
@@ -172,6 +205,13 @@ public class ArchSupAdmin {
         return cantidad;
     }// end readProperties()
 
+    /**
+     * método que lee líneas específica deL archivo Historial.txt
+     *
+     * @param identificador se utiliza para obtener líneas específica
+     * @return líneas encontradas que coinciden con el identificador en el
+     * archivo Historial.txt
+     */
     public String leeArchivo(int identificador) {
 
         File newFile = new File("Historial.txt");
@@ -198,6 +238,12 @@ public class ArchSupAdmin {
         return returned;
     }// end readProperties()
 
+    /**
+     * método que convierte un String en el objeto Acciones
+     *
+     * @param lines String a ser convertido
+     * @return objeto Acciones obtenido del String ingresado como parámetro
+     */
     public Acciones stringTokenizerHistorial(String lines) {
 
         StringTokenizer stringTokenizer = new StringTokenizer(lines, "&");
@@ -230,11 +276,16 @@ public class ArchSupAdmin {
         return acciones;
 
     }
-    
-public int cantidadDC = 0;
-    
-       public ArrayList<Usuario> guardaEnAL(String identificador) {
-        ArrayList<Usuario> aL= new ArrayList<>();
+
+    /**
+     * método que guarda en arrayList los usuarios
+     *
+     * @param identificador identificador para validar que tipo de usuario se
+     * ingresa
+     * @return retorna ArrayList con usuarios (objeto)
+     */
+    public ArrayList<Usuario> guardaEnAL(String identificador) {
+        ArrayList<Usuario> arrayListUsuarios = new ArrayList<>();
         File newFile = new File("usuarios.txt");
         try {
             FileInputStream fileInputStream = new FileInputStream(newFile);
@@ -244,7 +295,7 @@ public int cantidadDC = 0;
 
             while (currentRegistry != null) {
                 if (currentRegistry.contains(identificador)) {
-                    aL.add(stringTokenizerUsuario(currentRegistry));
+                    arrayListUsuarios.add(stringTokenizerUsuario(currentRegistry));
                     cantidadDC++;
                 }
                 currentRegistry = bufferedReader.readLine();
@@ -254,9 +305,15 @@ public int cantidadDC = 0;
         } catch (IOException IOException) {
             JOptionPane.showMessageDialog(null, IOException + ": Problemas con el archivo");
         }
-        return aL;
-    }// end readProperties()
-       
+        return arrayListUsuarios;
+    }
+
+    /**
+     * método que convierte un String en el objeto Usuario
+     *
+     * @param lineas String a ser convertido
+     * @return objeto Usuario obtenido del String ingresado como parámetro
+     */
     public Usuario stringTokenizerUsuario(String lineas) {
 
         StringTokenizer stringTokenizer = new StringTokenizer(lineas, "|");
@@ -305,9 +362,9 @@ public int cantidadDC = 0;
 
         }
 
-        Usuario u = new Usuario(tipo, ID, nombre, contraseña, correo, telefono, direccion);
-        return u;
+        Usuario usuario = new Usuario(tipo, ID, nombre, contraseña, correo, telefono, direccion);
+        return usuario;
 
     }
 
-}//end archSupAdmin
+}

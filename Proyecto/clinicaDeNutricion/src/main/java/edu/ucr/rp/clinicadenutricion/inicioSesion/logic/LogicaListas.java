@@ -1,7 +1,7 @@
 package edu.ucr.rp.clinicadenutricion.inicioSesion.logic;
 
 import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.LogicaSuperAdmin;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,34 +16,38 @@ import javax.swing.JOptionPane;
 public class LogicaListas {
 
     ImplementacionListas implementacionListas = new ImplementacionListas();
-    ArchSupAdmin logiSuper = new ArchSupAdmin();
+    LogicaSuperAdmin logicaSuperAdmin = new LogicaSuperAdmin();
 
+    /**
+     * método que escribe en el archivo usuarios.txt
+     *
+     * @param usuario usuario que será agregado al archivo .txt
+     */
     public void escribirArchivo(Usuario usuario) {
 
         File newFile = new File("usuarios.txt");
         String tipoDeToken = "";
-
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(newFile, true);
             PrintStream printStream = new PrintStream(fileOutputStream);
-
             if (newFile.length() == 0) {
                 printStream.println("ë|Super|1234");
             }
-
             if (usuario.getTipo().equals("Cliente")) {
                 tipoDeToken = "ä";
             } else if (usuario.getTipo().equals("Administrador")) {
                 tipoDeToken = "ö";
             }
-
             printStream.println(tipoDeToken + "|" + usuario.getId() + "|" + usuario.getName() + "|" + usuario.getContraseña() + "|" + usuario.getCorreo() + "|" + usuario.getTelefono() + "|" + usuario.getDireccion());
 
         } catch (FileNotFoundException fileNotFoundException) {
             JOptionPane.showMessageDialog(null, fileNotFoundException + "\nProblemas con el archivo");
         }
-    }//end writeFileCatalogue()
+    }
 
+    /**
+     * método que lee del archivo usuarios.txt
+     */
     public void leerArchivo() {
 
         File newFile = new File("usuarios.txt");
@@ -64,8 +68,13 @@ public class LogicaListas {
         } catch (IOException IOException) {
             JOptionPane.showMessageDialog(null, IOException + ": Problemas con el archivo");
         }
-    }// end readProperties()
+    }
 
+    /**
+     * método que remueve una línea del archivo usuarios.txt
+     *
+     * @param IDBuscar identificador de la línea a eliminar
+     */
     public void remueveLineaDeArchivo(String IDBuscar) {
         ImplementacionListas implementacionListas = new ImplementacionListas();
         File archivoAntiguo = new File("usuarios.txt");
@@ -98,8 +107,14 @@ public class LogicaListas {
         } catch (FileNotFoundException fileNotFoundException) {
             JOptionPane.showMessageDialog(null, fileNotFoundException + "\nProblemas con el archivo");
         }
-    }//end remueveLineaDeArchivo(
+    }
 
+    /**
+     * método que recibe un String y lo convierte en el objeto Usuario
+     *
+     * @param lineas línea que será convertida
+     * @return objeto usuario que viene de la línea del parámetro
+     */
     public Usuario stringTokenizer(String lineas) {
 
         StringTokenizer stringTokenizer = new StringTokenizer(lineas, "|");
@@ -153,6 +168,13 @@ public class LogicaListas {
 
     }
 
+    /**
+     * método que lee una línea en específico del archivo usuarios.txt
+     *
+     * @param IDIdentificador identificador de la línea a leer
+     * @return devuelve la línea que encontró el identificador dentro del
+     * archivo usuarios.txt
+     */
     public String leeLinea(String IDIdentificador) {
 
         File newFile = new File("usuarios.txt");
@@ -166,7 +188,6 @@ public class LogicaListas {
 
                 if (currentRegistry.contains(IDIdentificador)) {
                     return currentRegistry;
-
                 }
 
                 currentRegistry = bufferedReader.readLine();
@@ -178,10 +199,16 @@ public class LogicaListas {
             JOptionPane.showMessageDialog(null, IOException + ": Problemas con el archivo");
         }
         return null;
-    }// end readProperties()
-    
-    
-        public int cantidadDeClientes(String identificador) {
+    }
+
+    /**
+     * método que cuenta la cantidad de clientes que hay en el archivo
+     * usuarios.txt
+     *
+     * @param identificador identificador de qué tipo de usuario se busca contar
+     * @return retorna la cantidad de clientes encontrados
+     */
+    public int cantidadDeClientes(String identificador) {
         int cantidad = 0;
         File newFile = new File("usuarios.txt");
         try {
@@ -202,28 +229,55 @@ public class LogicaListas {
             JOptionPane.showMessageDialog(null, IOException + ": Problemas con el archivo");
         }
         return cantidad;
-    }// end readProperties()
-
-    public void modificado(Usuario usuario, String cadena) {
-        implementacionListas.remove(usuario);
-        implementacionListas.add(nuevaContraseña(usuario, cadena));
     }
 
+    /**
+     * método que modifica listas
+     *
+     * @param usuario recibe el usuario que va a modificar
+     * @param cadena string del nuevo usuario que modificó
+     */
+    public void modificado(Usuario usuario, String cadena) {
+        implementacionListas.remove(usuario);
+        implementacionListas.add(nuevosDatos(usuario, cadena));
+    }
+
+    /**
+     * método que remueve de las listas
+     *
+     * @param usuario usuario que será removido de la lista
+     */
     public void remueve(Usuario usuario) {
         implementacionListas.remove(usuario);
 
     }
 
+    /**
+     * método que busca un usuario dentro de la lista
+     *
+     * @param usuario usuario a buscar
+     * @return true si lo encuentra, false si no lo encuentra
+     */
     public boolean busca(String usuario) {
         return implementacionListas.search(usuario);
     }
 
-    public void muestra() { //mostrar nodos
+    /**
+     * método que muestra la lista
+     */
+    public void muestra() {
         implementacionListas.display();
 
     }
 
-    public Usuario nuevaContraseña(Usuario usuario, String contraseña) {
+    /**
+     * método que cambia los atributos de usuario
+     *
+     * @param usuario usuario que será cambiado
+     * @param contraseña contraseña cambiada y para validar
+     * @return usuario nuevo y cambiado
+     */
+    public Usuario nuevosDatos(Usuario usuario, String contraseña) {
         Usuario usuarioTemp = usuario;
         Usuario usuarioNuevo = new Usuario(usuarioTemp.getTipo(), usuarioTemp.getId(), usuarioTemp.getName(), contraseña, usuarioTemp.getCorreo(), usuarioTemp.getTelefono(), usuarioTemp.getDireccion());
         return usuarioNuevo;

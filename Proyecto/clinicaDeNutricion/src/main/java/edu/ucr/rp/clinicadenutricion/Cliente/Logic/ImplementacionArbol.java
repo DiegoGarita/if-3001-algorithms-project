@@ -7,13 +7,13 @@ public class ImplementacionArbol implements InterfaceArbol {
     public static class NodoBinario {
 
         ReporteMedico dato;
-        NodoBinario izq, der;
+        NodoBinario izquierda, derecha;
 
-        NodoBinario(ReporteMedico n) {
-            dato = n;
-            izq = null;
-            der = null;
-        }//fin de nodo binario
+        NodoBinario(ReporteMedico reporteMedico) {
+            dato = reporteMedico;
+            izquierda = null;
+            derecha = null;
+        }
     }//fin de clase NodoBinario
 
     private NodoBinario raiz;
@@ -23,8 +23,8 @@ public class ImplementacionArbol implements InterfaceArbol {
     }
 
     @Override
-    public void insertar(ReporteMedico dato) {
-        raiz = insertar(raiz, dato);
+    public void insertar(ReporteMedico reporteMedico) {
+        raiz = insertar(raiz, reporteMedico);
     }
 
     @Override
@@ -42,19 +42,23 @@ public class ImplementacionArbol implements InterfaceArbol {
         InOrden(raiz);
     }
 
-    // metodos privados a implementar
-    private NodoBinario insertar(NodoBinario nodo, ReporteMedico dato) { //recibe el nodo y el valor
+    /**
+     *
+     * @param nodo nodo a ser validado y realizar rotaciones
+     * @param reporteMedico objeto a ser agregado
+     * @return nodo binario con reporteMedico agregado
+     */
+    private NodoBinario insertar(NodoBinario nodo, ReporteMedico reporteMedico) {
 
-        NodoBinario nodoElemento = new NodoBinario(dato);
-        if (nodo == null) { //saber si es el primer elemento
+        NodoBinario nodoElemento = new NodoBinario(reporteMedico);
+        if (nodo == null) {
             nodo = nodoElemento;
-            raiz = nodo; //agrga el nuevo nodo en la raíz
+            raiz = nodo;
         } else {
-            ///if (dato < nodo.dato) { //agregar en el hijo izquierdo
-            if (!dato.equals(nodo.dato)) {
-                nodo.izq = insertar(nodo.izq, dato);
-            } else { //agregar en el hijo derecho
-                nodo.der = insertar(nodo.der, dato);
+            if (!reporteMedico.equals(nodo.dato)) {
+                nodo.izquierda = insertar(nodo.izquierda, reporteMedico);
+            } else {
+                nodo.derecha = insertar(nodo.derecha, reporteMedico);
             }
 
         }
@@ -62,32 +66,44 @@ public class ImplementacionArbol implements InterfaceArbol {
         return nodo;
     }
 
+    /**
+     *
+     * @param nodo nodo que será mostrado en preOrden
+     */
     private void PreOrden(NodoBinario nodo) {
         if (nodo != null) {
             System.out.print(nodo.dato + ", ");
-            PreOrden(nodo.izq); //impime el arbol de forma recursiva
-            PreOrden(nodo.der);
+            PreOrden(nodo.izquierda);
+            PreOrden(nodo.derecha);
         }
 
     }
 
+    /**
+     *
+     * @param nodo nodo que será mostrado en inOrden
+     */
     private void InOrden(NodoBinario nodo) {
         if (nodo != null) {
-            InOrden(nodo.izq); //impime el arbol de forma recursiva
+            InOrden(nodo.izquierda);
             System.out.print(nodo.dato + ", ");
-            InOrden(nodo.der);
+            InOrden(nodo.derecha);
         }
 
     }
 
+    /**
+     *
+     * @param nodo nodo que será mostrado en postOrden
+     */
     private void PostOrden(NodoBinario nodo) {
         if (nodo != null) {
-            InOrden(nodo.izq); //impime el arbol de forma recursiva
-            InOrden(nodo.der);
+            InOrden(nodo.izquierda);
+            InOrden(nodo.derecha);
             System.out.print(nodo.dato + ", ");
         }
 
     }
 
-}// fin de clase arbol Binario
+}// end ImplementacionArbol
 

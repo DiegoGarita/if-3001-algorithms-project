@@ -1,7 +1,7 @@
 package edu.ucr.rp.clinicadenutricion.Cliente.Gui;
 
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.LogicaSuperAdmin;
 import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
 import java.awt.Desktop;
 import java.io.IOException;
@@ -27,22 +27,18 @@ public class MainMenuBarCliente {
     PlanesAlimenticios planesAlimenticios = new PlanesAlimenticios();
     AjustesCliente ajustesCliente = new AjustesCliente();
     Alertas alerta = new Alertas();
-    
-    ArchSupAdmin logiSuper = new ArchSupAdmin();
+    LogicaSuperAdmin logiSuper = new LogicaSuperAdmin();
 
     public GridPane menuCliente() {
 
         GridPane gridPaneUsuario = new GridPane();
         gridPaneUsuario.setMinSize(900, 700);
-
         SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
-
         gridPaneUsuario.setStyle(("-fx-background-image:url('file:src/image/" + configuracion.getNombreLogo() + "');"
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
-
+        
         MenuBar menuBarMenu = new MenuBar();
-
         menuBarMenu.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"
                 + "-fx-effect: dropshadow(gaussian, red, 50, 0, 0, 0);"
                 + "-fx-background-insets: 50;");
@@ -100,7 +96,7 @@ public class MainMenuBarCliente {
         MenuItem menuItemPalnes = new MenuItem("Ver planes", new ImageView(new Image("file:src/image/verPlan.png")));
         menuItemPalnes.setOnAction((event) -> {
             gridPaneUsuario.getChildren().clear();
-            gridPaneUsuario.getChildren().addAll(planesAlimenticios.misPlanesAlimentos());
+            gridPaneUsuario.getChildren().addAll(planesAlimenticios.planesAlimenticios());
         });
         menuPlanes.getItems().addAll(menuItemPalnes);
 
@@ -126,15 +122,11 @@ public class MainMenuBarCliente {
         MenuItem menuItemMasInfo = new MenuItem("Encuentra más información", new ImageView(new Image("file:src/image/pagW.png")));
         menuItemMasInfo.setAccelerator(KeyCombination.keyCombination("Ctrl+V"));
 
-        //  link.setText("");
         menuItemMasInfo.setOnAction((event) -> {
-            System.out.println("entro pero no voy");
-            Hyperlink link = new Hyperlink();
             if (Desktop.isDesktopSupported()) {
                 try {
                     Desktop.getDesktop().browse(new URI("https://clinicasusanadistancia.wordpress.com/"));
                 } catch (IOException | URISyntaxException io) {
-                    System.out.println("No sirvo");
                 }
             }
         });
@@ -160,5 +152,5 @@ public class MainMenuBarCliente {
 
         return gridPaneUsuario;
 
-    }//end Scene getMainScene()
+    }//end menuCliente()
 }//end class MainMenuBarCliente 

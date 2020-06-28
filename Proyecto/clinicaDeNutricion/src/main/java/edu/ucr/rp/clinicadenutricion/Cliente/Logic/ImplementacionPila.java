@@ -12,15 +12,15 @@ class Node {
         next = null;
     }
 
-    Cita seeElement() { //instancia para ver el elemento (utilizado solo en IndexOf)
+    Cita seeElement() {
 
-        return this.element; //retorna al elemento recibido por public Node
-    }// end seeElement
+        return this.element;
+    }
 
-    Node seeNext() { //instancia para ver al siguiente
+    Node seeNext() {
 
-        return this.next; //retorna next
-    } //ver siguiente
+        return this.next;
+    }
 
 }
 
@@ -28,59 +28,73 @@ public class ImplementacionPila implements InterfacePila {
 
     Node start, end;
 
+    /**
+     *
+     * @param cita recibe objeto a insertar a la pila
+     */
     @Override
-    public void push(Cita cita) { //agrega nuevo
+    public void push(Cita cita) {
         Node aux = start;
         if (aux == null) {
-            aux = new Node(cita); //agrega si no hay
-            start = aux; //start guarda el aux
-        }// end if
-        else {
-            while (aux.next != null) {//si el siguiente es siguiente de nulo 
-                aux = aux.next;//recorre
-            }// end while
-            aux.next = new Node(cita); //nuevo si ya hay uno
-        }// end else
-        //  return salida;
+            aux = new Node(cita);
+            start = aux;
+        } else {
+            while (aux.next != null) {
+                aux = aux.next;
+            }
+            aux.next = new Node(cita);
+        }
     }
 
+    /**
+     *
+     * @return retorna objeto, el último en la pila
+     */
     @Override
-    public Object peek() { //muestra el ultimo 
+    public Object peek() {
         Node aux = start;
         Object peekNode = null;
-        if (aux == null) { //si es nulo retorna -1
+        if (aux == null) {
             return -1;
         } else {
             do {
-                if (aux.next == null) {//si el siguiente es nulo
-                    peekNode = aux.element; //toma el ultimo
+                if (aux.next == null) {
+                    peekNode = aux.element;
                 }
-                aux = aux.next; //recorre
-            } while (aux != null); //mientras no sea nulo
+                aux = aux.next;
+            } while (aux != null);
         }
         return peekNode;
     }
 
+    /**
+     *
+     * @param cita recibe cita a quitar
+     * @return devuelve el objeto sin la cita recibida
+     */
     @Override
-    public Object pop(Cita cita) { //quita el ultimo    -->>> Seria este ?????
+    public Object pop(Cita cita) {
         Node aux = start;
-        cita = null; //para devolver el que borra
-        if (aux == null) { //si es nulo retorna -1
+        cita = null;
+        if (aux == null) {
             return -1;
-        }//end if
-        else {
+        } else {
             do {
-                if (aux.next == null) { //si el siguiente es nulo
+                if (aux.next == null) {
                     cita = aux.element;
                 }
                 aux = aux.next;
             } while (aux != null);
-        }//end else
+        }
         return cita;
-    }//end pop
+    }
 
+    /**
+     *
+     * @return devuelve tamaño de la pila
+     */
     @Override
-    public int size() { //tamaño (hecho en clase)
+    public int size() {
         int s = 1;
         Node aux = start;
 
@@ -95,6 +109,11 @@ public class ImplementacionPila implements InterfacePila {
         return s;
     }
 
+    /**
+     *
+     * @param index recibe indice
+     * @return devuelve cita del indice indicado en el @param
+     */
     @Override
     public Cita indexOf(int index) {
 
@@ -103,10 +122,10 @@ public class ImplementacionPila implements InterfacePila {
         for (int i = -1; i < index - 1; i++) {
 
             aux = aux.seeNext();
-        } // end for
+        }
 
         return aux.seeElement();
 
-    } //end indexOf
+    }
 
 }

@@ -1,7 +1,5 @@
 package edu.ucr.rp.clinicadenutricion.Utilitario;
 
-//en esta clase se realizara la encriptacion de las contra de los usuarios usando protocolo MD5
-
 import java.security.MessageDigest;
 import java.util.Arrays;
 import javax.crypto.Cipher;
@@ -11,12 +9,12 @@ import javax.swing.JOptionPane;
 import org.apache.commons.codec.binary.Base64;
 
 public class EncryptMD5 {
-    
+
     /**
-     * 
+     *
      * @param secretKey "llave" para tener acceso
-     * @param cadena    texto a encriptar
-     * @return          texto encriptado en base64 por medio de un arreglo
+     * @param cadena texto a encriptar
+     * @return texto encriptado en base64 por medio de un arreglo
      */
     public String encriptar(String secretKey, String cadena) {
         String encriptacion = "";
@@ -38,10 +36,10 @@ public class EncryptMD5 {
     }
 
     /**
-     * 
-     * @param secretKey        "llave" para tener acceso
-     * @param cadenaEncriptada  texto a desencriptar
-     * @return                 texto encriptado
+     *
+     * @param secretKey "llave" para tener acceso
+     * @param cadenaEncriptada texto a desencriptar
+     * @return texto encriptado
      */
     public String desencriptar(String secretKey, String cadenaEncriptada) {
         String desencriptacion = "";
@@ -61,5 +59,5 @@ public class EncryptMD5 {
         }
         return desencriptacion;
     }
-    
+
 }

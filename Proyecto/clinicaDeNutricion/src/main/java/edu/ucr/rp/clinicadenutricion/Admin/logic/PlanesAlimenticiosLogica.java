@@ -10,8 +10,18 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class PlanesAlimenticiosLogica {
- public ArrayList<String> arrayListRecetas = new ArrayList<>();
+
+    public ArrayList<String> arrayListRecetas = new ArrayList<>();
     public ArrayList<String> arrayListPlanes = new ArrayList<>();
+
+    /**
+     * método que lee archivo y devuelve la cantidad de recetas que tiene
+     *
+     * @param identificador utilizado para validar si contiene token
+     * @param nombreArchivo nombre del archivo .txt
+     * @param mantieneLista Arraylist que mantiene lista de recetas y planes
+     * @return cantidad de recetas
+     */
     public int cantidadRecetas(String identificador, String nombreArchivo, ArrayList<String> mantieneLista) {
         int cantidad = 0;
         File newFile = new File(nombreArchivo + ".txt");
@@ -35,8 +45,17 @@ public class PlanesAlimenticiosLogica {
             JOptionPane.showMessageDialog(null, IOException + ": Problemas con el archivo");
         }
         return cantidad;
-    }// end readProperties()
+    }
 
+    /**
+     * método que lee archivo de recetas o planes para mostrarlo en forma de
+     * String
+     *
+     * @param buscar muestra el plan o receta que se busque del lado del GUI
+     * comboBox
+     * @param nombreArchivo puede ser planes o recetas
+     * @return String obtenido del archivo .txt
+     */
     public String leeArchivo(String buscar, String nombreArchivo) {
 
         File newFile = new File(nombreArchivo + ".txt");
@@ -70,6 +89,6 @@ public class PlanesAlimenticiosLogica {
             JOptionPane.showMessageDialog(null, IOException + ": Problemas con el archivo");
         }
         return returned;
-    }// end readProperties()
+    }
 
 }

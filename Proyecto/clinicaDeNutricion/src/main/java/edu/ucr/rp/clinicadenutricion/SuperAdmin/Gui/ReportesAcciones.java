@@ -1,7 +1,7 @@
 package edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui;
 
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.LogicaSuperAdmin;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
@@ -11,21 +11,20 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 
-// en esta clase se podra tener acceso a los reportes de acciones
 public class ReportesAcciones {
 
-    ArchSupAdmin archSupAdmin = new ArchSupAdmin();
+    LogicaSuperAdmin archSupAdmin = new LogicaSuperAdmin();
     TableView<Acciones> tableViewAcciones;
 
-    public GridPane historial() {
+    public GridPane reportesAcciones() {
 
-        GridPane gridPaneCitaNue = new GridPane();
-        gridPaneCitaNue.setMinSize(600, 700);
-        gridPaneCitaNue.setVgap(15);
-        gridPaneCitaNue.setHgap(15);
-        gridPaneCitaNue.setAlignment(Pos.CENTER);
+        GridPane gridPaneReportesAcciones = new GridPane();
+        gridPaneReportesAcciones.setMinSize(600, 700);
+        gridPaneReportesAcciones.setVgap(15);
+        gridPaneReportesAcciones.setHgap(15);
+        gridPaneReportesAcciones.setAlignment(Pos.CENTER);
 
-        gridPaneCitaNue.setStyle(("-fx-background-image:url('file:src/image/SuperAdmin.gif');"
+        gridPaneReportesAcciones.setStyle(("-fx-background-image:url('file:src/image/SuperAdmin.gif');"
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
@@ -52,24 +51,28 @@ public class ReportesAcciones {
         tableViewAcciones.setItems(obtieneAcciones());
         tableViewAcciones.getColumns().addAll(accionadorColunm, accionColunm, fechaHoraAccionColunm);
         tableViewAcciones.setMinSize(500, 400);
-        gridPaneCitaNue.add(tableViewAcciones, 0, 2);
+        gridPaneReportesAcciones.add(tableViewAcciones, 0, 2);
 
         Button botonCerrar = new Button("Cerrar");
-        botonCerrar.setTextFill(Color.WHITE);//Color de la letra del boton
-        botonCerrar.setStyle("-fx-background-color: BLACK");//Color del fondo
-        botonCerrar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
-        gridPaneCitaNue.add(botonCerrar, 0, 8);
+        botonCerrar.setTextFill(Color.WHITE);
+        botonCerrar.setStyle("-fx-background-color: BLACK");
+        botonCerrar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        gridPaneReportesAcciones.add(botonCerrar, 0, 8);
         botonCerrar.setOnAction((event) -> {
 
-            gridPaneCitaNue.getChildren().clear();
-            gridPaneCitaNue.setBackground(Background.EMPTY);
-            gridPaneCitaNue.getChildren().add(barSuper.menuSuperAdmi());
+            gridPaneReportesAcciones.getChildren().clear();
+            gridPaneReportesAcciones.setBackground(Background.EMPTY);
+            gridPaneReportesAcciones.getChildren().add(barSuper.menuSuperAdmi());
 
-        });//end btn cerrar
+        });
 
-        return gridPaneCitaNue;
-    }//end GridPane createCatalogue()
+        return gridPaneReportesAcciones;
+    }//end gridPaneReportesAcciones()
 
+    /**
+     * método observableList necesario para el funcionamiento del tableView
+     * @return retorna el objeto Acciones dentro del observableList
+     */
     public ObservableList<Acciones> obtieneAcciones() {
         ObservableList<Acciones> reporteMedico = FXCollections.observableArrayList();
         for (int i = 0; i < archSupAdmin.cantidadDeLineas(); i++) {

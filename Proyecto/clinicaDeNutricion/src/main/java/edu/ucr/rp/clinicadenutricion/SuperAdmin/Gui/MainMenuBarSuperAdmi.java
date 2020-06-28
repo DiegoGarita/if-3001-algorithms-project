@@ -2,7 +2,6 @@ package edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui;
 
 import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
 import javafx.application.Platform;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -15,10 +14,8 @@ import javafx.scene.layout.GridPane;
 public class MainMenuBarSuperAdmi {
 
     HorarioTiempoClinica horarioTiempoClinica = new HorarioTiempoClinica();
-
     LogoApp logo = new LogoApp();
     IndicarPath indicadorPath = new IndicarPath();
-
     ReportesAcciones reportesAcciones = new ReportesAcciones();
     RespaldarArchivos respaldarArchivos = new RespaldarArchivos();
     ResgistrosPaginacion registrosPaginacion = new ResgistrosPaginacion();
@@ -32,15 +29,12 @@ public class MainMenuBarSuperAdmi {
         gridPaneSuperAdmi.setStyle(("-fx-background-image:url('file:src/image/SuperAdmin.gif');"
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
-
         MenuBar menuBarMenu = new MenuBar();
-
         menuBarMenu.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"
                 + "-fx-effect: dropshadow(gaussian, red, 50, 0, 0, 0);"
                 + "-fx-background-insets: 50;");
 
         SeparatorMenuItem separator = new SeparatorMenuItem();
-
         Menu menuAjustes = new Menu("Ajustes", new ImageView(new Image("file:src/image/ajus.png")));
         menuAjustes.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"
                 + "-fx-effect: dropshadow(gaussian, red, 50, 0, 0, 0);"
@@ -70,7 +64,7 @@ public class MainMenuBarSuperAdmi {
 
         menuItemReporAcciones.setOnAction((event) -> {
             gridPaneSuperAdmi.getChildren().clear();
-            gridPaneSuperAdmi.getChildren().addAll(reportesAcciones.historial());
+            gridPaneSuperAdmi.getChildren().addAll(reportesAcciones.reportesAcciones());
         });
         menuItemRespaldar.setOnAction((event) -> {
             gridPaneSuperAdmi.getChildren().clear();
@@ -79,18 +73,17 @@ public class MainMenuBarSuperAdmi {
         });
         menuItemNumPag.setOnAction((event) -> {
             gridPaneSuperAdmi.getChildren().clear();
-            gridPaneSuperAdmi.getChildren().addAll(registrosPaginacion.historial());
+            gridPaneSuperAdmi.getChildren().addAll(registrosPaginacion.registrosPaginacion());
 
         });
 
         menuItemCreaCuenta.setOnAction((event) -> {
-            try{
-            gridPaneSuperAdmi.getChildren().clear();
-            gridPaneSuperAdmi.getChildren().addAll(primerUsu.creaUsuario());
-            }
-            catch(java.lang.NullPointerException jlnpe){
-               alerta.alertWarning("Ya no se pueden realizar más registros desde aquí.");
-               Platform.exit();
+            try {
+                gridPaneSuperAdmi.getChildren().clear();
+                gridPaneSuperAdmi.getChildren().addAll(primerUsu.primerUsuario());
+            } catch (java.lang.NullPointerException jlnpe) {
+                alerta.alertWarning("Ya no se pueden realizar más registros desde aquí.");
+                Platform.exit();
             }
         });
 

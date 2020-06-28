@@ -4,8 +4,7 @@ import edu.ucr.rp.clinicadenutricion.AVL.LogicaAVL;
 import edu.ucr.rp.clinicadenutricion.Admin.logic.PlanesAlimenticiosLogica;
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.LogicaSuperAdmin;
 import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
 import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.IniciarSesion;
@@ -17,25 +16,25 @@ import javafx.scene.text.*;
 
 public class PlanesAlimenticios {
 
-    Alertas alerta = new Alertas();
-    ComboBox comboBoxSele = new ComboBox();
     Button buttonDesplegarInfo;
     Button buttonAceptar;
     TextArea textAreaMostrar = new TextArea();
-    ComboBox comboBoxOp = new ComboBox();
-    LogoApp logo = new LogoApp();
+    ComboBox comboBoxOpciones = new ComboBox();
+    ComboBox comboBoxSeleccion = new ComboBox();
+
+    Alertas alerta = new Alertas();
     IniciarSesion iniciarSesion;
-    ArchSupAdmin logiSuper = new ArchSupAdmin();
+    LogicaSuperAdmin logicaSuperAdmin = new LogicaSuperAdmin();
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
 
-    PlanesAlimenticiosLogica planAl = new PlanesAlimenticiosLogica();
+    PlanesAlimenticiosLogica planesAlimentacionLogica = new PlanesAlimenticiosLogica();
 
     public GridPane planesAlimenticios() {
 
         GridPane gridPanePlanesAlimenticios = new GridPane();
         gridPanePlanesAlimenticios.setMinSize(600, 700);
-        SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+        SuperAdmin configuracion = logicaSuperAdmin.stringTokenizer(logicaSuperAdmin.readLine("KEYDistancia"));
         gridPanePlanesAlimenticios.setVgap(15);
         gridPanePlanesAlimenticios.setHgap(15);
         gridPanePlanesAlimenticios.setAlignment(Pos.CENTER);
@@ -43,19 +42,19 @@ public class PlanesAlimenticios {
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
-        comboBoxOp.setValue("Elige una opción");
-        comboBoxOp.setStyle("-fx-background-color: lightblue");
-        comboBoxOp.getItems().addAll("Planes alimenticios", "Recetas");
-        gridPanePlanesAlimenticios.add(comboBoxOp, 0, 0);
-        comboBoxOp.setOnMouseClicked((event) -> {
+        comboBoxOpciones.setValue("Elige una opción");
+        comboBoxOpciones.setStyle("-fx-background-color: lightblue");
+        comboBoxOpciones.getItems().addAll("Planes alimenticios", "Recetas");
+        gridPanePlanesAlimenticios.add(comboBoxOpciones, 0, 0);
+        comboBoxOpciones.setOnMouseClicked((event) -> {
             buttonAceptar.setDisable(false);
         });
 
-        comboBoxSele.setValue("Elige una opción");
-        comboBoxSele.setVisible(false);
-        comboBoxSele.setStyle("-fx-background-color: lightblue");
-        gridPanePlanesAlimenticios.add(comboBoxSele, 0, 1);
-        comboBoxSele.setOnMouseClicked((event) -> {
+        comboBoxSeleccion.setValue("Elige una opción");
+        comboBoxSeleccion.setVisible(false);
+        comboBoxSeleccion.setStyle("-fx-background-color: lightblue");
+        gridPanePlanesAlimenticios.add(comboBoxSeleccion, 0, 1);
+        comboBoxSeleccion.setOnMouseClicked((event) -> {
             buttonDesplegarInfo.setDisable(false);
         });
 
@@ -67,30 +66,29 @@ public class PlanesAlimenticios {
         buttonAceptar.setDisable(true);
         buttonAceptar.setOnAction((event) -> {
 
-            if (comboBoxOp.getSelectionModel().getSelectedItem().equals("Elige una opción") != true) {
+            if (comboBoxOpciones.getSelectionModel().getSelectedItem().equals("Elige una opción") != true) {
 
-                if (comboBoxOp.getValue().toString().equals("Recetas")) {
-                    comboBoxSele.setVisible(true);
+                if (comboBoxOpciones.getValue().toString().equals("Recetas")) {
+                    comboBoxSeleccion.setVisible(true);
                     buttonDesplegarInfo.setVisible(true);
-                    for (int i = 0; i < planAl.cantidadRecetas("*", "Recetas", planAl.arrayListRecetas); i++) {
-                        comboBoxSele.getItems().addAll(planAl.arrayListRecetas.get(i));
+                    for (int i = 0; i < planesAlimentacionLogica.cantidadRecetas("*", "Recetas", planesAlimentacionLogica.arrayListRecetas); i++) {
+                        comboBoxSeleccion.getItems().addAll(planesAlimentacionLogica.arrayListRecetas.get(i));
                     }
-                } else if (comboBoxOp.getValue().toString().equals("Planes alimenticios")) {
-                    comboBoxSele.setVisible(true);
+                } else if (comboBoxOpciones.getValue().toString().equals("Planes alimenticios")) {
+                    comboBoxSeleccion.setVisible(true);
                     buttonDesplegarInfo.setVisible(true);
-                    for (int i = 0; i < planAl.cantidadRecetas("*", "Planes", planAl.arrayListPlanes); i++) {
-                        comboBoxSele.getItems().addAll(planAl.arrayListPlanes.get(i));
+                    for (int i = 0; i < planesAlimentacionLogica.cantidadRecetas("*", "Planes", planesAlimentacionLogica.arrayListPlanes); i++) {
+                        comboBoxSeleccion.getItems().addAll(planesAlimentacionLogica.arrayListPlanes.get(i));
                     }
                 }
                 buttonAceptar.setDisable(true);
-                comboBoxOp.setDisable(true);
+                comboBoxOpciones.setDisable(true);
 
-            }//end if 
-            else {
+            } else {
                 alerta.alertWarning("No selecciono una opcion\nIntente de nuevo");
             }
 
-        });//end setOnAction
+        });
 
         buttonDesplegarInfo = new Button("Desplegar");
         buttonDesplegarInfo.setTextFill(Color.WHITE);
@@ -101,25 +99,25 @@ public class PlanesAlimenticios {
         gridPanePlanesAlimenticios.add(buttonDesplegarInfo, 1, 1);
         buttonDesplegarInfo.setOnAction((event) -> {
 
-            if (comboBoxSele.getSelectionModel().getSelectedItem().equals("Elige una opción") != true) {
+            if (comboBoxSeleccion.getSelectionModel().getSelectedItem().equals("Elige una opción") != true) {
 
-                if (comboBoxOp.getValue().toString().equals("Recetas")) {
-                    textAreaMostrar.setText(planAl.leeArchivo(comboBoxSele.getValue().toString(), "Recetas"));
+                if (comboBoxOpciones.getValue().toString().equals("Recetas")) {
+                    textAreaMostrar.setText(planesAlimentacionLogica.leeArchivo(comboBoxSeleccion.getValue().toString(), "Recetas"));
                     Acciones acciones = new Acciones(iniciarSesion.ID, "Solicitó la lista de Recetas", fechaHora.histoFechaHora());
                     logicaAVL.escribeHistorial(acciones);
-                } else if (comboBoxOp.getValue().toString().equals("Planes alimenticios")) {
-                    textAreaMostrar.setText(planAl.leeArchivo(comboBoxSele.getValue().toString(), "Planes"));
+                } else if (comboBoxOpciones.getValue().toString().equals("Planes alimenticios")) {
+                    textAreaMostrar.setText(planesAlimentacionLogica.leeArchivo(comboBoxSeleccion.getValue().toString(), "Planes"));
                     Acciones acciones = new Acciones(iniciarSesion.ID, "Solicitó la lista de planes alimenticios", fechaHora.histoFechaHora());
                     logicaAVL.escribeHistorial(acciones);
                 }
                 buttonDesplegarInfo.setDisable(true);
 
-            }//end if 
+            }
             else {
-                alerta.alertWarning("No selecciono una opcion\nIntente de nuevo");
+                alerta.alertWarning("No seleccionó una opción\nIntentelo de nuevo");
             }
 
-        });//end setOnAction
+        });
 
         textAreaMostrar.setEditable(false);
         gridPanePlanesAlimenticios.add(textAreaMostrar, 0, 3);
@@ -137,9 +135,9 @@ public class PlanesAlimenticios {
             gridPanePlanesAlimenticios.setBackground(Background.EMPTY);
             gridPanePlanesAlimenticios.getChildren().add(o.menuAdministrador());
 
-        });//end btn cerrar
+        });
 
         return gridPanePlanesAlimenticios;
-    }//end GridPane createCatalogue()
+    }//end gridPanePlanesAlimenticios
 
 }//end PlanesAlimenticios

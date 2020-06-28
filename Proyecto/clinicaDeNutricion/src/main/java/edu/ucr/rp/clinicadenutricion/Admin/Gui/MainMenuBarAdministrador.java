@@ -1,7 +1,7 @@
 package edu.ucr.rp.clinicadenutricion.Admin.Gui;
 
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.LogicaSuperAdmin;
 import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
 import javafx.application.Platform;
 import javafx.scene.control.*;
@@ -15,23 +15,17 @@ public class MainMenuBarAdministrador {
     PlanesAlimenticios planesAlimenticios = new PlanesAlimenticios();
     ReservaCita reservarCita = new ReservaCita();
     Formulario formulario = new Formulario();
-    ModiCancel modificaCancelaCita = new ModiCancel();
-    ArchSupAdmin logiSuper = new ArchSupAdmin();
+    ModificaCancela modificaCancelaCita = new ModificaCancela();
+    LogicaSuperAdmin logicaSuperAdmin = new LogicaSuperAdmin();
     Alertas alerta = new Alertas();
     PaginacionAdmin paginacionAdmin = new PaginacionAdmin();
 
-
-    /**
-     *
-     * @return Nos da la GUI que contiene todos los elementos por mostrar en la
-     * barra de menú
-     */
     public GridPane menuAdministrador() {
 
         GridPane gridPaneAdministrador = new GridPane();
         gridPaneAdministrador.setMinSize(900, 700);
 
-        SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+        SuperAdmin configuracion = logicaSuperAdmin.stringTokenizer(logicaSuperAdmin.readLine("KEYDistancia"));
 
         gridPaneAdministrador.setStyle(("-fx-background-image:url('file:src/image/" + configuracion.getNombreLogo() + "');"
                 + "-fx-background-repeat : no-repeat;"
@@ -46,8 +40,8 @@ public class MainMenuBarAdministrador {
         menuPaciente.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"
                 + "-fx-effect: dropshadow(gaussian, red, 50, 0, 0, 0);"
                 + "-fx-background-insets: 50;");
-        
-        MenuItem menuItemInformacionPaciente = new MenuItem("Acceder a informacion", new ImageView(new Image("file:src/image/infoPaci.png")));
+
+        MenuItem menuItemInformacionPaciente = new MenuItem("Acceder a información", new ImageView(new Image("file:src/image/infoPaci.png")));
         menuItemInformacionPaciente.setAccelerator(KeyCombination.keyCombination("Ctrl+A"));
         MenuItem menuItemFormulario = new MenuItem("Form nuevo", new ImageView(new Image("file:src/image/formDo.png")));
         menuItemFormulario.setAccelerator(KeyCombination.keyCombination("Ctrl+F"));
@@ -61,13 +55,12 @@ public class MainMenuBarAdministrador {
             gridPaneAdministrador.getChildren().clear();
             gridPaneAdministrador.getChildren().addAll(formulario.formulario());
         });
-        
-            MenuItem menuItemNumPag = new MenuItem("Número de registros, paginación", new ImageView(new Image("file:src/image/numRegis.png")));
+
+        MenuItem menuItemNumPag = new MenuItem("Número de registros, paginación", new ImageView(new Image("file:src/image/numRegis.png")));
         menuItemNumPag.setOnAction((event) -> {
-         gridPaneAdministrador.getChildren().clear();
-            gridPaneAdministrador.getChildren().addAll(paginacionAdmin.historial());
+            gridPaneAdministrador.getChildren().clear();
+            gridPaneAdministrador.getChildren().addAll(paginacionAdmin.PaginacionAdmin());
         });
-        
 
         menuPaciente.getItems().addAll(menuItemInformacionPaciente, menuItemFormulario, menuItemNumPag);
 
@@ -87,7 +80,7 @@ public class MainMenuBarAdministrador {
         menuItemModiCancela.setOnAction((event) -> {
             try {
                 gridPaneAdministrador.getChildren().clear();
-                gridPaneAdministrador.getChildren().addAll(modificaCancelaCita.modificaCancelaCita());
+                gridPaneAdministrador.getChildren().addAll(modificaCancelaCita.modificaCancela());
             } catch (java.lang.NullPointerException e) {
                 alerta.alertWarning("Error, primero deben existir citas agendadas\nsi desea ingresar aquí");
                 Platform.exit();
@@ -111,7 +104,7 @@ public class MainMenuBarAdministrador {
 
         Menu menuUsuario = new Menu("                                                      "
                 + "                                                                                        Usuario");
-        MenuItem menuItemSalir = new MenuItem("Cerrar sesion", new ImageView(new Image("file:src/image/salir.png")));
+        MenuItem menuItemSalir = new MenuItem("Cerrar sesión", new ImageView(new Image("file:src/image/salir.png")));
         menuItemSalir.setAccelerator(KeyCombination.keyCombination("Alt+S"));
 
         menuItemSalir.setOnAction((event) -> Platform.exit());
@@ -128,6 +121,6 @@ public class MainMenuBarAdministrador {
 
         return gridPaneAdministrador;
 
-    }//end Scene getMainScene()
+    }//end menuAdministrador()
 }//end class MainMenuBarAdministrador 
 

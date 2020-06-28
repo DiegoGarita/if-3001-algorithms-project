@@ -1,7 +1,14 @@
 package edu.ucr.rp.clinicadenutricion.Objetos;
 
 public class Cita {
- 
+
+    /**
+     * IDCita: ID de la cita, debe ser único
+     * Nombre: nombre/ID del paciente
+     * fecha: fecha de la cita 
+     * hora: hora de la cita 
+     * doctora: nombre del doctor(a) realizador de la cita
+     */
     private String IDCita;
     private String Nombre;
     private String fecha;
@@ -55,7 +62,5 @@ public class Cita {
     public void setDoctora(String doctora) {
         this.doctora = doctora;
     }
-
-    
 
 }//end cita

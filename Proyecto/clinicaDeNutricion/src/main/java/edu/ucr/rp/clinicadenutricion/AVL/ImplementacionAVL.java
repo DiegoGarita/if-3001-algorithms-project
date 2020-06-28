@@ -3,7 +3,7 @@ package edu.ucr.rp.clinicadenutricion.AVL;
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import static java.lang.Integer.max;
 
-public class ImplementacionAVL implements InterfaceAVL{
+public class ImplementacionAVL implements InterfaceAVL {
 
     class Node {
 
@@ -16,34 +16,37 @@ public class ImplementacionAVL implements InterfaceAVL{
             this.altura = 1;
             this.left = null;
             this.right = null;
-        }// end constructor() 
-    }// end class Node()
+        }
+    }//end class Node
 
     Node root;
 
     /**
-     *
-     * @param raiz raiz del arbol
-     * @return devuelve la altura del arbol
+     * @param raiz raíz del árbol
+     * @return devuelve la altura del árbol
      */
     @Override
     public int altura(Node raiz) {
         if (raiz == null) {
             return 0;
-        }//end if
+        }
         return raiz.altura;
-    }// end altura()
+    }//end altura()
 
+    /**
+     *
+     * @return devuelve la altura del árbol
+     */
     @Override
     public int buscarAltura() {
         return altura(root);
-    }// end buscarAltur()
+    }// end buscarAltura()
 
     /**
      * metodo que equilibra arboles desbalanceados a la izquierda
      *
-     * @param node
-     * @return arbol balanceado
+     * @param node nodo recibido para realizar la rotación
+     * @return árbol balanceado
      */
     @Override
     public Node rotacionDerecha(Node node) {
@@ -53,13 +56,13 @@ public class ImplementacionAVL implements InterfaceAVL{
         node.altura = Integer.max(altura(node.left), altura(node.right) + 1);
         hijoIzq.altura = Integer.max(altura(hijoIzq.left), altura(hijoIzq.right)) + 1;
         return hijoIzq;
-    }// end rotacion derecha
+    }// end rotacionDerecha()
 
     /**
      * metodo que equilibra arboles desbalanceados a la derecha
      *
-     * @param node
-     * @return arbol balanceado
+     * @param node recibido para realizar la rotación
+     * @return árbol balanceado
      */
     @Override
     public Node rotacionIzquierda(Node node) {
@@ -69,81 +72,72 @@ public class ImplementacionAVL implements InterfaceAVL{
         node.altura = Integer.max(altura(node.left), altura(node.right)) + 1;
         hijoDer.altura = Integer.max(altura(hijoDer.left), altura(hijoDer.right)) + 1;
         return hijoDer;
-    }// end rotacion derecha()
+    }// end rotacionIzquierda()
 
     /**
-     * metodo para insertar elementos
-     *
-     * @param acciones
+     * @param acciones es el objeto Acciones para insertarlas
      */
     @Override
     public void insertar(Acciones acciones) {
-        root = InsertarNodo(root, acciones);
-    }
+        root = insertarNodo(root, acciones);
+    }//insertar()
 
     /**
-     * Metodo que se relaciona con el metod de arriba
-     *
      * @param node nodo raiz
-     * @param acciones elemento a ingresar
-     * @return
+     * @param acciones elemento a ingresar, en este caso acciones
+     * @return retorna el nodo de acciones
      */
     @Override
-    public Node InsertarNodo(Node node, Acciones acciones) {
+    public Node insertarNodo(Node node, Acciones acciones) {
 
         if (node == null) {
-
             node = new Node(acciones);
         } else {
             if (Integer.parseInt(acciones.getFechaHoraAccion().substring(8, 19).replaceAll(":", "").replaceAll(" ", "")) < Integer.parseInt(root.acciones.getFechaHoraAccion().substring(8, 19).replaceAll(":", "").replaceAll(" ", ""))) {
-
-                node.left = InsertarNodo(node.left, acciones);
+                node.left = insertarNodo(node.left, acciones);
 
             } else {
-
-                node.right = InsertarNodo(node.right, acciones);
+                node.right = insertarNodo(node.right, acciones);
             }
-
         }
         node.altura = max(altura(node.left), altura(node.right)) + 1;
         int balance = altura(node.left) - altura(node.right);
         if (balance > 1) {
             if (Integer.parseInt(acciones.getFechaHoraAccion().substring(8, 19).replaceAll(":", "").replaceAll(" ", "")) < Integer.parseInt(node.left.acciones.getFechaHoraAccion().substring(8, 19).replaceAll(":", "").replaceAll(" ", ""))) {
-                // caso izq : izq
                 node = rotacionDerecha(node);
             } else {
-                // caso izq : der
                 node.left = rotacionIzquierda(node.left);
                 node = rotacionDerecha(node);
             }
-            // caso der : der
         } else if (balance < -1) {
             if (Integer.parseInt(acciones.getFechaHoraAccion().substring(8, 19).replaceAll(":", "").replaceAll(" ", "")) > Integer.parseInt(node.right.acciones.getFechaHoraAccion().substring(8, 19).replaceAll(":", "").replaceAll(" ", ""))) {
                 node = rotacionIzquierda(node);
             } else {
-                // caso der : izq
                 node.right = rotacionDerecha(node.right);
                 node = rotacionIzquierda(node);
             }
 
         }
         return node;
-    }//end insertarNodo
+    }//end insertarNodo()
 
     @Override
-    public void PreOrden() {
-        PreOrden(root);
-    }
+    public void preOrden() {
+        preOrden(root);
+    }//end preOrden()
 
+    /**
+     * 
+     * @param nodo recibe el nodo a mostrar en preorden
+     */
     @Override
-    public void PreOrden(Node nodo) {
+    public void preOrden(Node nodo) {
         if (nodo != null) {
             System.out.print(nodo.acciones.getFechaHoraAccion() + ", ");
-            PreOrden(nodo.left);
-            PreOrden(nodo.right);
+            preOrden(nodo.left);
+            preOrden(nodo.right);
         }
     }
 
-
-}// end class AVL
+}// end class ImplementacionAVL
 

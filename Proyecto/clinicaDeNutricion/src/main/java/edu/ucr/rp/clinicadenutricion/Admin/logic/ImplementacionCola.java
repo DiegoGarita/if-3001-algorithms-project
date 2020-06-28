@@ -24,6 +24,11 @@ public class ImplementacionCola implements InterfaceCola {
         size = 0;
     }
 
+    /**
+     *
+     * @param reporteMedico recibido para agregar a cola
+     * @return String mostrando a quién agrega
+     */
     @Override
     public String enqueue(ReporteMedico reporteMedico) {
         Node newNode = new Node(reporteMedico);
@@ -44,6 +49,10 @@ public class ImplementacionCola implements InterfaceCola {
 
     }
 
+    /**
+     *
+     * @return objeto reporteMedico sin el último elemento
+     */
     @Override
     public ReporteMedico dequeue() {
         if (first == null) {

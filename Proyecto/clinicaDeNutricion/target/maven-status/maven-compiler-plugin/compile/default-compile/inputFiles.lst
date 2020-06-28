@@ -1,6 +1,8 @@
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\Utilitario\Calendario.java
+C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\Admin\Gui\ModificaCancela.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\SuperAdmin\Gui\ReportesAcciones.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\Cliente\Logic\ImplementacionArbol.java
+C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\SuperAdmin\Logic\ImplementacionCola.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\inicioSesion\Gui\Creditos.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\inicioSesion\logic\LogicaListas.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\Cliente\Gui\ReporteCitas.java
@@ -17,7 +19,6 @@ C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\j
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\Admin\logic\InterfaceCola.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\EjecutorClinica.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\Admin\Gui\InformacionPaciente.java
-C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\Admin\Gui\ModiCancel.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\Utilitario\EncryptMD5.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\SuperAdmin\Gui\LogoApp.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\Cliente\Logic\LogicaPila.java
@@ -26,7 +27,6 @@ C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\j
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\Utilitario\Grafico.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\Objetos\Usuario.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\SuperAdmin\Gui\MainMenuBarSuperAdmi.java
-C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\SuperAdmin\Logic\ArchSupAdmin.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\inicioSesion\Gui\CrearUsuarioNuevo.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\inicioSesion\logic\ImplementacionListas.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\AVL\ImplementacionAVL.java
@@ -54,8 +54,8 @@ C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\j
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\Cliente\Logic\InterfaceArbol.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\SuperAdmin\Gui\IndicarPath.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\Cliente\Gui\ModificaCancelaCita.java
+C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\SuperAdmin\Logic\LogicaSuperAdmin.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\AVL\InterfaceAVL.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\Cliente\Logic\InterfacePila.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\Admin\Gui\PlanesAlimenticios.java
-C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\SuperAdmin\Logic\LogicSuperAdmin.java
 C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion\src\main\java\edu\ucr\rp\clinicadenutricion\SuperAdmin\Gui\RespaldarArchivos.java

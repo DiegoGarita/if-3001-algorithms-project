@@ -1,14 +1,13 @@
 package edu.ucr.rp.clinicadenutricion.inicioSesion.Gui;
 
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.LogicaSuperAdmin;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 
-//en esta clase se colocara ayudas paara los distintos tipos de usuario
 public class Ayuda {
 
     Label labelClie = new Label("");
@@ -18,13 +17,12 @@ public class Ayuda {
     Button superAdmin;
     Button admin;
 
+    LogicaSuperAdmin logicaSuperAdmin = new LogicaSuperAdmin();
 
-    ArchSupAdmin logiSuper = new ArchSupAdmin();
-
-    public GridPane getGraphicalUserInterfaceAyuda() {
+    public GridPane Ayuda() {
         GridPane gridPaneAyuda = new GridPane();
         gridPaneAyuda.setMinSize(600, 700);
-        SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+        SuperAdmin configuracion = logicaSuperAdmin.stringTokenizer(logicaSuperAdmin.readLine("KEYDistancia"));
         gridPaneAyuda.setVgap(15);
         gridPaneAyuda.setHgap(15);
         gridPaneAyuda.setAlignment(Pos.TOP_LEFT);
@@ -48,7 +46,7 @@ public class Ayuda {
             labelClie = new Label("Reportes: Acceso a informes de avance y historial de citas\n"
                     + "Citas: Reservar una cita, modificarla o eliminarla\nPlanes: Acceso a planes y recetas\n"
                     + "Ajustes: Modificar o eliminar su usuario\nMás: Página web de la clínica con más información\n");
-            labelClie.setFont(Font.font("Rockwell", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 20));  // tipo y tamaño de letra
+            labelClie.setFont(Font.font("Rockwell", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 20));
             labelClie.setStyle("-fx-background-color: rgb(41, 75, 152);");
             labelClie.setTextFill(Color.POWDERBLUE);
             labelClie.setVisible(true);
@@ -57,7 +55,7 @@ public class Ayuda {
             admin.setDisable(false);
             cliente.setDisable(true);
 
-        }); //end action Paises
+        });
 
         admin = new Button("Administrador");
         admin.setTextFill(Color.WHITE);
@@ -80,7 +78,7 @@ public class Ayuda {
             cliente.setDisable(false);
             admin.setDisable(true);
 
-        }); //end action report
+        });
 
         superAdmin = new Button("Super administrador");
         superAdmin.setTextFill(Color.WHITE);
@@ -92,7 +90,7 @@ public class Ayuda {
             labelClie.setVisible(false);
             labelPaci.setVisible(false);
             labelAjus = new Label("Ajustes: Cambiar el horario de la clínica\n"
-            +"Registros: Donde se crearan respaldos de información, se podrá cambiar\n la paginación y se tendra acceso a un historial\n"
+                    + "Registros: Donde se crearan respaldos de información, se podrá cambiar\n la paginación y se tendrá acceso a un historial\n"
                     + "Otros: En donde se podrá cambiar el logo del app y el path de los archivos");
             labelAjus.setTextFill(Color.POWDERBLUE);
             labelAjus.setFont(Font.font("Rockwell", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 20));
@@ -102,7 +100,7 @@ public class Ayuda {
             cliente.setDisable(false);
             admin.setDisable(false);
             superAdmin.setDisable(true);
-        }); //end action Mant
+        });
 
         Button buttonCerrar = new Button("Cerrar");
         buttonCerrar.setTextFill(Color.WHITE);
@@ -112,8 +110,8 @@ public class Ayuda {
         buttonCerrar.setOnAction((event) -> {
             gridPaneAyuda.getChildren().clear();
             gridPaneAyuda.setBackground(Background.EMPTY);
-        });//end action Cerrar
+        });
 
         return gridPaneAyuda;
-    }//end method getGraphicalUserInterfaceAyuda
-}//end class Help
+    }//end method Ayuda
+}

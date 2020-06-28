@@ -1,11 +1,22 @@
 package edu.ucr.rp.clinicadenutricion.Objetos;
 
 public class SuperAdmin {
+    
+    /**
+     * identificadorSA: identificador de la clínica y del super administrador
+     * abreClinica: hora en que abre la clínica
+     * cierreClinica: hora en que cierra la clínica
+     * TiempoConsulta: tiempo de duración de la consulta (*por hora*)
+     * NombreLogo: nombre del logo de la aplicación
+     * pathDeGuardado: path de guardado 
+     * paginacion: número de elementos mostrados por página
+     */
+    
 
     private String identificadorSA;
     private String abreClinica;
     private String cierreClinica;
-    private String TiempoConsulta ;
+    private String TiempoConsulta;
     private String NombreLogo;
     private String pathDeGuardado;
     private String paginacion;

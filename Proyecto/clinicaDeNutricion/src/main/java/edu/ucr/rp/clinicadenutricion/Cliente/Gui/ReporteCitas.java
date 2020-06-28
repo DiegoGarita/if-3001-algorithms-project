@@ -1,13 +1,12 @@
 package edu.ucr.rp.clinicadenutricion.Cliente.Gui;
 
 import edu.ucr.rp.clinicadenutricion.AVL.LogicaAVL;
-import edu.ucr.rp.clinicadenutricion.Admin.logic.LogicaCola;
 import edu.ucr.rp.clinicadenutricion.Cliente.Logic.LogicaArbol;
 import edu.ucr.rp.clinicadenutricion.Cliente.Logic.LogicaPila;
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Objetos.ReporteMedico;
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.LogicaSuperAdmin;
 import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.IniciarSesion;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
@@ -23,18 +22,16 @@ import javafx.scene.text.*;
 
 public class ReporteCitas {
 
+    Label labelTraeId = new Label();
+    TableView<ReporteMedico> tableViewReporteMedico;
+
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
-    LogicaPila logicaCliente = new LogicaPila();
-
-    TableView<ReporteMedico> tableViewReporteMedico;
-    LogicaCola logicaCola = new LogicaCola();
+    LogicaPila logicaPila = new LogicaPila();
     LogicaArbol logicaArbol = new LogicaArbol();
-    Label labelTraeId = new Label();
-
     LogicaListas logicaListas = new LogicaListas();
     IniciarSesion iniciarSesion;
-    ArchSupAdmin logiSuper = new ArchSupAdmin();
+    LogicaSuperAdmin logicaSuperAdmin = new LogicaSuperAdmin();
 
     public GridPane reporteCita() {
 
@@ -43,7 +40,7 @@ public class ReporteCitas {
         gridPaneReporteCitas.setVgap(15);
         gridPaneReporteCitas.setHgap(15);
         gridPaneReporteCitas.setAlignment(Pos.CENTER);
-        SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+        SuperAdmin configuracion = logicaSuperAdmin.stringTokenizer(logicaSuperAdmin.readLine("KEYDistancia"));
         gridPaneReporteCitas.setStyle(("-fx-background-image:url('file:src/image/" + configuracion.getNombreLogo() + "');"
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
@@ -58,7 +55,6 @@ public class ReporteCitas {
 
         labelTraeId.setText(usuario.getId());
 
-        //---------------------------------------------------------------------------------------------------------------------------      
         tableViewReporteMedico = new TableView<>();
 
         TableColumn<ReporteMedico, String> idColunm = new TableColumn<>("ID");
@@ -156,15 +152,13 @@ public class ReporteCitas {
             gridPaneReporteCitas.add(tableViewReporteMedico, 0, 4);
             GridPane.setColumnSpan(tableViewReporteMedico, Integer.BYTES);
             tableViewReporteMedico.setItems(obtieneReporteMedicos(labelTraeId.getText()));
-            //  System.out.println(labelTraeId.getText());
             tableViewReporteMedico.getColumns().addAll(idColunm, nombreColunm, fechaColunm,
                     horaColunm, edadColunm, edadMetabolicaColunm, alturaColunm, pesoColunm,
                     porcenMasaMuscularColunm, grasaColunm, grasaVisceralColunm, huesoColunm,
                     porcenAguaColunm, actividadFisicaColunm, horasDeSueñoColunm, textAreaNotasColunm);
             buttonBuscar.setDisable(true);
-        });// end boton
+        });
 
-//---------------------------------------------------------------------------------------------------------------------------
         MainMenuBarCliente barCliente = new MainMenuBarCliente();
 
         Button buttonCerrar = new Button("Cerrar");
@@ -178,11 +172,11 @@ public class ReporteCitas {
             gridPaneReporteCitas.getChildren().add(barCliente.menuCliente());
         });
 
-        logicaCliente.leeArchivoSolicitudCita();
+        logicaPila.leeArchivoSolicitudCita();
 
         return gridPaneReporteCitas;
 
-    }
+    } //end reporteCita
 
     public ObservableList<ReporteMedico> obtieneReporteMedicos(String file) {
         ObservableList<ReporteMedico> reporteMedico = FXCollections.observableArrayList();
@@ -192,4 +186,4 @@ public class ReporteCitas {
         return reporteMedico;
     }
 
-}//end class reporte citas
+}//end class reporteCitas

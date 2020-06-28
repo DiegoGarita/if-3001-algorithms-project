@@ -1,6 +1,25 @@
 package edu.ucr.rp.clinicadenutricion.Objetos;
 
 public class ReporteMedico {
+    
+    /**
+     *  ID: ID del cliente (debe ser único)
+     *  nombre: nombre del cliente 
+     *  fecha: fecha en que se realiza el reporte
+     *  hora: hora en que se realiza el reporte
+     *  edad: edad del cliente
+     *  edadMetabolica: edad metabólica del cliente
+     *  altura: altura del cliente
+     *  peso: peso del cliente
+     *  porcentajeMasaMuscular: porcentaje de masa muscular del cliente
+     *  grasa: grasa del cliente
+     *  grasaVisceral: grasa visceral del cliente
+     *  hueso: hueso del cliente
+     *  porcentajeAgua: porcentaje de agua que bebe el cliente por día
+     *  actividadFisica: horas de actividad física realizada por día por el cliente
+     *  horasDeSueño: horas de sueño por día del cliente
+     *  textAreaNotas: notas tomadas por el doctor que realiza el reporte
+     */
 
     private String ID;
     private String nombre;
@@ -10,16 +29,16 @@ public class ReporteMedico {
     private String edadMetabolica;
     private String altura;
     private String peso;
-    private String porcenMasaMuscular;
+    private String porcentajeMasaMuscular;
     private String grasa;
     private String grasaVisceral;
     private String hueso;
-    private String porcenAgua;
+    private String porcentajeAgua;
     private String actividadFisica;
     private String horasDeSueño;
     private String textAreaNotas;
 
-    public ReporteMedico(String ID, String nombre, String fecha, String hora, String edad, String edadMetabolica, String altura, String peso, String porcenMasaMuscular, String grasa, String grasaVisceral, String hueso, String porcenAgua, String actividadFisica, String horasDeSueño, String textAreaNotas) {
+    public ReporteMedico(String ID, String nombre, String fecha, String hora, String edad, String edadMetabolica, String altura, String peso, String porcentajeMasaMuscular, String grasa, String grasaVisceral, String hueso, String porcentajeAgua, String actividadFisica, String horasDeSueño, String textAreaNotas) {
         this.ID = ID;
         this.nombre = nombre;
         this.fecha = fecha;
@@ -28,11 +47,11 @@ public class ReporteMedico {
         this.edadMetabolica = edadMetabolica;
         this.altura = altura;
         this.peso = peso;
-        this.porcenMasaMuscular = porcenMasaMuscular;
+        this.porcentajeMasaMuscular = porcentajeMasaMuscular;
         this.grasa = grasa;
         this.grasaVisceral = grasaVisceral;
         this.hueso = hueso;
-        this.porcenAgua = porcenAgua;
+        this.porcentajeAgua = porcentajeAgua;
         this.actividadFisica = actividadFisica;
         this.horasDeSueño = horasDeSueño;
         this.textAreaNotas = textAreaNotas;
@@ -102,12 +121,12 @@ public class ReporteMedico {
         this.peso = peso;
     }
 
-    public String getPorcenMasaMuscular() {
-        return porcenMasaMuscular;
+    public String getPorcentajeMasaMuscular() {
+        return porcentajeMasaMuscular;
     }
 
-    public void setPorcenMasaMuscular(String porcenMasaMuscular) {
-        this.porcenMasaMuscular = porcenMasaMuscular;
+    public void setPorcentajeMasaMuscular(String porcentajeMasaMuscular) {
+        this.porcentajeMasaMuscular = porcentajeMasaMuscular;
     }
 
     public String getGrasa() {
@@ -134,12 +153,12 @@ public class ReporteMedico {
         this.hueso = hueso;
     }
 
-    public String getPorcenAgua() {
-        return porcenAgua;
+    public String getPorcentajeAgua() {
+        return porcentajeAgua;
     }
 
-    public void setPorcenAgua(String porcenAgua) {
-        this.porcenAgua = porcenAgua;
+    public void setPorcentajeAgua(String porcentajeAgua) {
+        this.porcentajeAgua = porcentajeAgua;
     }
 
     public String getActividadFisica() {

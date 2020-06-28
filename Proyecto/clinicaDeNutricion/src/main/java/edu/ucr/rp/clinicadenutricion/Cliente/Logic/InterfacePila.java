@@ -11,7 +11,7 @@ public interface InterfacePila {
     public Object pop(Cita cita);
 
     public int size();
-    
-   public Cita indexOf(int index);
+
+    public Cita indexOf(int index);
 
 }

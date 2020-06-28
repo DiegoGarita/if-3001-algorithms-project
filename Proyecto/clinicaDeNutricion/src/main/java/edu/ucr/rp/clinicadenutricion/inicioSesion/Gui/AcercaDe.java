@@ -1,11 +1,7 @@
 package edu.ucr.rp.clinicadenutricion.inicioSesion.Gui;
 
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
-import java.awt.Desktop;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.LogicaSuperAdmin;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -14,12 +10,12 @@ import javafx.scene.text.*;
 
 public class AcercaDe {
 
-    ArchSupAdmin logiSuper = new ArchSupAdmin();
+    LogicaSuperAdmin logicaSuperAdmin = new LogicaSuperAdmin();
 
-    public GridPane getGraphicalUserInterfaceAcercaDe() {
+    public GridPane AcercaDe() {
         GridPane acercaDe = new GridPane();
         acercaDe.setMinSize(600, 700);
-        SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+        SuperAdmin configuracion = logicaSuperAdmin.stringTokenizer(logicaSuperAdmin.readLine("KEYDistancia"));
         acercaDe.setVgap(15);
         acercaDe.setHgap(15);
         acercaDe.setAlignment(Pos.TOP_LEFT);
@@ -41,27 +37,6 @@ public class AcercaDe {
         acercaDe.add(labelAcercaDe, 0, 1);
         labelAcercaDe.setVisible(true);
 
-//        Button paWeb = new Button("Ir a la web");
-//        paWeb.setTextFill(Color.WHITE);
-//        paWeb.setStyle("-fx-background-color: BLACK");
-//        paWeb.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
-//        acercaDe.add(paWeb, 0, 2);
-//        paWeb.setOnMouseClicked((event) -> {
-//            //   acercaDe.getChildren().clear();
-//            //  acercaDe.setBackground(Background.EMPTY);
-//            Hyperlink link = new Hyperlink();
-//            link.setText("");
-//            link.setOnAction((event) -> {
-//                if (Desktop.isDesktopSupported()) {
-//                    try {
-//                        Desktop.getDesktop().browse(new URI("https://www.youtube.com/watch?v=Ivf6_cj6ELk"));
-//                    } catch (IOException | URISyntaxException io) {
-//
-//                    }
-//                }
-//            });
-//        });
-
         Button buttonCerrar = new Button("Cerrar");
         buttonCerrar.setTextFill(Color.WHITE);
         buttonCerrar.setStyle("-fx-background-color: BLACK");
@@ -72,5 +47,5 @@ public class AcercaDe {
             acercaDe.setBackground(Background.EMPTY);
         });
         return acercaDe;
-    }//end method acercaDe
-}//end acercaDe
+    }
+}

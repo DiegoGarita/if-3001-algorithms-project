@@ -5,7 +5,7 @@ import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Utilitario.EncryptMD5;
 import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.LogicaSuperAdmin;
 import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
 import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
 import edu.ucr.rp.clinicadenutricion.Utilitario.EnviarCorreo;
@@ -18,7 +18,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 
-//en esta clase se colocara la GUI para crear un usuario nuevo, de cualquier de los 3 tipos posibles
 public class CrearUsuarioNuevo{
 
     TextField textFieldNombre;
@@ -29,24 +28,25 @@ public class CrearUsuarioNuevo{
     TextField textFieldCorreo;
     Button buttonCreaUsuario;
     ComboBox comboBoxRol = new ComboBox();
-    LogicaListas logic = new LogicaListas();
+    
+    LogicaListas logicaListas = new LogicaListas();
     EncryptMD5 encrypt = new EncryptMD5();
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
-    ArchSupAdmin logiSuper = new ArchSupAdmin();
+    LogicaSuperAdmin logicaSuperAdmin = new LogicaSuperAdmin();
     Alertas alertas = new Alertas();
     EnviarCorreo enviarCorreo = new EnviarCorreo();
     GridPane gridPaneCreaUsuario;
     public GridPane creaUsuario() {
 
-        if (logic.cantidadDeClientes("|") < 3) {
+        if (logicaListas.cantidadDeClientes("|") < 3) {
             alertas.alertWarning("Se deben registrar primero un cliente\n y un admin desde Super administrador");
-            System.out.println(logic.cantidadDeClientes("|") + "if");
+            System.out.println(logicaListas.cantidadDeClientes("|") + "if");
         } else {
-            System.out.println(logic.cantidadDeClientes("|") + "else");
+            System.out.println(logicaListas.cantidadDeClientes("|") + "else");
             gridPaneCreaUsuario = new GridPane();
             gridPaneCreaUsuario.setMinSize(600, 700);
-            SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+            SuperAdmin configuracion = logicaSuperAdmin.stringTokenizer(logicaSuperAdmin.readLine("KEYDistancia"));
             gridPaneCreaUsuario.setVgap(15);
             gridPaneCreaUsuario.setHgap(15);
             gridPaneCreaUsuario.setAlignment(Pos.CENTER);
@@ -161,8 +161,8 @@ public class CrearUsuarioNuevo{
                         Optional<ButtonType> result = alertas.alertConfirmation("").showAndWait();
                         if (result.get() == ButtonType.OK) {
 
-                            logic.leerArchivo();
-                            if (logic.busca(textFieldID.getText()) == false) {
+                            logicaListas.leerArchivo();
+                            if (logicaListas.busca(textFieldID.getText()) == false) {
                                 enviarCorreo.sendPDF(textFieldCorreo.getText(), "Clínica Susana Distancia", "Manual",
                                         "Mensaje de confirmación de creación de nuevo usuario en nuestra clínica Susana Distancia.\n"
                                         + "¡Bienvenido! " + textFieldNombre.getText() + " es un gusto atenderle.\n"
@@ -172,7 +172,7 @@ public class CrearUsuarioNuevo{
                                         textFieldNombre.getText(), encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()),
                                         textFieldCorreo.getText(),  textFieldTelefono.getText(), textFieldDireccion.getText());
 
-                                logic.escribirArchivo(usuario);
+                                logicaListas.escribirArchivo(usuario);
                                 Acciones acciones = new Acciones(textFieldID.getText(), "Se registró como nuevo usuario", fechaHora.histoFechaHora());
                                 logicaAVL.escribeHistorial(acciones);
 
@@ -183,7 +183,7 @@ public class CrearUsuarioNuevo{
                                 Acciones acciones = new Acciones(textFieldID.getText(), "Intentó registrarse cuando ya estaba registrado", fechaHora.histoFechaHora());
                                 logicaAVL.escribeHistorial(acciones);
                             }
-                        }//end if alert
+                        }
                         else{
                             alertas.alertWarning("Accion cancelada");
                         }
@@ -193,21 +193,21 @@ public class CrearUsuarioNuevo{
                         textFieldTelefono.clear();
                         textFieldDireccion.clear();
                         textFieldCorreo.clear();
-                    }//end if validaciones basicas
+                    }
                     else {
                         alertas.alertWarning("correo,contraseña y/o teléfono no validos1");
-                    }//end else validaciones
+                    }
                 } catch (NumberFormatException nfe) {
                     alertas.alertWarning("correo,contraseña y/o teléfono no validos\nO espacios vacios2");
-                } //Esto permite que si el correo no existe se envie y no se cae el app
-                catch (Exception jr) {
+                }
+                catch (Exception ex) {
                     alertas.alertWarning("Correo no existe, cree un correo primero3");
                 }
-                 }//end if 
+                 }
                  else{
                     alertas.alertWarning("No selecciono su rol\nIntente de nuevo");
                  }
-            });//end setOnAction
+            });
 
             Label labelAclaracion = new Label();
             labelAclaracion.setText("* La contraseña debe tener 5 o más caracteres \n* El teléfono de incluir solo números \n* El correo debe ser válido y existente(@gmail.com)");
@@ -227,11 +227,11 @@ public class CrearUsuarioNuevo{
                 gridPaneCreaUsuario.getChildren().clear();
                 gridPaneCreaUsuario.setBackground(Background.EMPTY);
 
-            });//end btn cerrar
+            });
 
-            return gridPaneCreaUsuario;   //---> cambio
-        }//end else 
-        return gridPaneCreaUsuario;   //---> cambio
-    }//end GridPane createCatalogue()
+            return gridPaneCreaUsuario;
+        }
+        return gridPaneCreaUsuario;  
+    }//end creaUsuario()
 
 }

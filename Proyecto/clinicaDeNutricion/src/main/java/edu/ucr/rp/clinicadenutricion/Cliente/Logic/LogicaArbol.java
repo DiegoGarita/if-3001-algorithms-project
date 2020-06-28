@@ -1,7 +1,6 @@
 package edu.ucr.rp.clinicadenutricion.Cliente.Logic;
 
 import edu.ucr.rp.clinicadenutricion.Objetos.ReporteMedico;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,10 +13,15 @@ import javax.swing.JOptionPane;
 public class LogicaArbol {
 
     ImplementacionArbol implementacionArbol = new ImplementacionArbol();
-    ArchSupAdmin logiSuper = new ArchSupAdmin();
 
-    
-        public String leeArchivo(String file, int identificador) {
+    /**
+     * método que lee el archivo solicitud de cita para X cliente
+     *
+     * @param file nombre del cliente para leer del archivo
+     * @param identificador verificador de líneas para validar si lo contiene
+     * @return String con lo obtenido del archivo
+     */
+    public String leeArchivo(String file, int identificador) {
 
         File newFile = new File("Solicitud de cita para " + file + ".txt");
         String returned = "";
@@ -44,6 +48,13 @@ public class LogicaArbol {
         return returned;
     }// end readProperties()
 
+    /**
+     * método que lee la cantidad de líneas encontradas en el archivo solicitud
+     * de cita para X cliente
+     *
+     * @param file nombre del cliente para leer del archivo
+     * @return cantidad de líneas encontradas
+     */
     public int cantidadDeLineas(String file) {
         int cantidad = 0;
         File newFile = new File("Solicitud de cita para " + file + ".txt");
@@ -54,10 +65,7 @@ public class LogicaArbol {
             String currentRegistry = bufferedReader.readLine();
 
             while (currentRegistry != null) {
-
-                //arrayListClientes.add(logic.stringTokenizer(currentRegistry));
                 cantidad++;
-
                 currentRegistry = bufferedReader.readLine();
             }
 
@@ -66,8 +74,14 @@ public class LogicaArbol {
             JOptionPane.showMessageDialog(null, IOException + ": Problemas con el archivo");
         }
         return cantidad;
-    }// end readProperties()
+    }
 
+    /**
+     * método que convierte de String al objeto Reporte Médico
+     *
+     * @param lines recibe la línea a convertir
+     * @return objeto Reporte Médico obtenido del String recibido
+     */
     public ReporteMedico stringTokenizer(String lines) {
 
         StringTokenizer stringTokenizer = new StringTokenizer(lines, "|");

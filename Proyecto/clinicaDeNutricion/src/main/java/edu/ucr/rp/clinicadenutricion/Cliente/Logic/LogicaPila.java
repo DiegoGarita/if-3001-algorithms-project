@@ -1,7 +1,7 @@
 package edu.ucr.rp.clinicadenutricion.Cliente.Logic;
 
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.LogicaSuperAdmin;
 import edu.ucr.rp.clinicadenutricion.Objetos.Cita;
 import java.io.BufferedReader;
 import java.io.File;
@@ -18,13 +18,16 @@ import javax.swing.JOptionPane;
 public class LogicaPila {
 
     ImplementacionPila implementacionPila = new ImplementacionPila();
-    ArchSupAdmin logiSuper = new ArchSupAdmin();
     public int contadorHoras = 0;
 
+    /**
+     * método que escribe el archivo ApartaCita
+     *
+     * @param cita cita que será escrita en el archivo
+     */
     public void EscribeArchivoSolicitudCita(Cita cita) {
 
-        SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
-        File newFile = new File(configuracion.getPathDeGuardado() + "\\ApartaCita.txt");
+        File newFile = new File("ApartaCita.txt");
 
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(newFile, true);
@@ -35,10 +38,12 @@ public class LogicaPila {
         } catch (FileNotFoundException fileNotFoundException) {
             JOptionPane.showMessageDialog(null, fileNotFoundException + "\nProblemas con el archivo");
         }
-    }//end writeFileCatalogue()
+    }
 
+    /**
+     * método que lee el archivo ApartaCita para hacer push de las citas
+     */
     public void leeArchivoSolicitudCita() {
-        //  SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
         File newFile = new File("ApartaCita.txt");
         String currentRegistry = null;
         try {
@@ -65,15 +70,15 @@ public class LogicaPila {
                         hora = stringTokenizer.nextToken();
                         doctor = stringTokenizer.nextToken();
                         counterTokens++;
-                    }//end elseif
-                }//end while 
+                    }
+                }
 
                 Cita cita = new Cita(IDCita, nombre, fecha, hora, doctor);
                 implementacionPila.push(cita);
 
                 currentRegistry = bufferedReader.readLine();
 
-            }//end while
+            }
 
         } catch (FileNotFoundException fileNotFoundException) {
             System.out.println(fileNotFoundException + ": Problemas con el archivo");
@@ -81,10 +86,15 @@ public class LogicaPila {
             System.out.println(IOException + ": Problemas con el archivo");
         }
 
-    }// end readProperties()
+    }
 
+    /**
+     * método que elimina/remueve línea del archivo ApartaCita
+     *
+     * @param IDBuscar identificador para eliminar línea específico
+     */
     public void remueveLineaDelArchivo(String IDBuscar) {
-        //  SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+
         ImplementacionPila implementacionPila = new ImplementacionPila();
         File previousFile = new File("ApartaCita.txt");
         try {
@@ -119,6 +129,12 @@ public class LogicaPila {
         }
     }//end remueveLineaDelArchivo(
 
+    /**
+     * método que convierte String en el Objeto Cita
+     *
+     * @param linea String recibido a convertir
+     * @return Objeto tipo Cita
+     */
     public Cita stringTokenizer(String linea) {
 
         StringTokenizer stringTokenizer = new StringTokenizer(linea, "&");
@@ -153,17 +169,22 @@ public class LogicaPila {
                     break;
                 default:
                     break;
-            }//end switch
+            }
 
-        }//end while
+        }
 
         Cita cita = new Cita(IDCita, nombre, fecha, hora, doctor);
         return cita;
 
-    }//end token
+    }
 
+    /**
+     * método que lee línea especifico del archivo ApartaCita
+     *
+     * @param identificador recibe identificador de la linea que se busca leer
+     * @return retorna línea que contiene el identificador
+     */
     public String leeLinea(String identificador) {
-        //    SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
         File newFile = new File("ApartaCita.txt");
         try {
             FileInputStream fileInputStream = new FileInputStream(newFile);
@@ -187,10 +208,17 @@ public class LogicaPila {
             JOptionPane.showMessageDialog(null, IOException + ": Problemas con el archivo");
         }
         return null;
-    }// end readProperties()
+    }
 
+    /**
+     * método que lee especificamente fecha y hora del archivo ApartaCita
+     *
+     * @param date recibe identificador de la fecha
+     * @return retorna ArrayList de las fechas obtenidas en similitud con el
+     * identificador
+     */
     public ArrayList<String> leeArchivoHoraFecha(String date) {
-        //  SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+
         File newFile = new File("ApartaCita.txt");
         ArrayList<String> returned = new ArrayList<>();
         try {
@@ -208,7 +236,7 @@ public class LogicaPila {
 
                 currentRegistry = bufferedReader.readLine();
 
-            }//end while
+            }
 
         } catch (FileNotFoundException fileNotFoundException) {
             System.out.println(fileNotFoundException + ": Problemas con el archivo");
@@ -218,14 +246,33 @@ public class LogicaPila {
         return returned;
     }
 
+    /**
+     * método que devuelve el tamaño del contador de horas utilizado en
+     * leeArchivoHoraFecha()
+     *
+     * @return cantidad de horas encontradas en el método anterior
+     */
     public int tamanio() {
         return contadorHoras;
     }
 
+    /**
+     * método que elimina la cita de la pila
+     *
+     * @param cita cita a eliminar
+     */
     public void elimina(Cita cita) {
         implementacionPila.pop(cita);
     }
 
+    /**
+     * método booleano que verifica si existe una cita específica en el archivo
+     * ApartaCita
+     *
+     * @param identificador para hacer la búsqueda específica
+     * @param usuarioIngresado para buscar directamente del usuario
+     * @return booleano, true si encuentra y false si no encuentra
+     */
     public boolean existeCita(String identificador, String usuarioIngresado) {
 
         File newFile = new File("ApartaCita.txt");
@@ -259,4 +306,4 @@ public class LogicaPila {
         return false;
     }
 
-}// end writeFileCitas
+}

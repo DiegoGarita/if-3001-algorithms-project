@@ -4,6 +4,10 @@ import java.util.Date;
 
 public class FechaHora {
 
+    /**
+     * método que muestra la hora actual obtenida desde la computadora
+     * @return retorna String con hora y fecha obtenida del método java.util.Date
+     */
     public String histoFechaHora() {
         
         String salida;
