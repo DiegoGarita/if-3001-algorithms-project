@@ -87,3 +87,4 @@ xxxxx & Inició sesión como cliente & Sun Jun 28 09:58:07 CST 2020
  & Intentó registrarse cuando ya estaba registrado & Sun Jun 28 15:58:44 CST 2020
 54321 & Inició sesión como cliente & Sun Jun 28 15:58:55 CST 2020
 666666 & Inició sesión como admistrador & Sun Jun 28 15:59:42 CST 2020
+666666 & Inició sesión como admistrador & Sun Jun 28 16:11:58 CST 2020
