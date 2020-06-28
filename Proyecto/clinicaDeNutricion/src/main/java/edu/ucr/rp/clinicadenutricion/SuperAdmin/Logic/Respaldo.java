@@ -7,28 +7,30 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.zip.*;
 
-
 public class Respaldo {
-ArchSupAdmin logiSuper = new ArchSupAdmin();
-SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
-    public void createZipFile(String porRespaldar, String nombreZip) throws IOException {
-        String TARGET_FILE = configuracion.getPathDeGuardado()+"\\"+nombreZip+".zip";
-        FileOutputStream fout = new FileOutputStream(TARGET_FILE);
-        CheckedOutputStream checksum = new CheckedOutputStream(fout, new Adler32());
-        ZipOutputStream zout = new ZipOutputStream(checksum);
 
-        FileInputStream fin = new FileInputStream(porRespaldar);
+    LogicaSuperAdmin logiSuper = new LogicaSuperAdmin();
+    SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+
+    public void createZipFile(String porRespaldar, String nombreZip) throws IOException {
+
+        String TARGET_FILE = configuracion.getPathDeGuardado() + "\\" + nombreZip + ".zip";
+        FileOutputStream fos = new FileOutputStream(TARGET_FILE);
+        CheckedOutputStream cos = new CheckedOutputStream(fos, new Adler32());
+        ZipOutputStream zos = new ZipOutputStream(cos);
+
+        FileInputStream fis = new FileInputStream(porRespaldar);
         ZipEntry zipEntry = new ZipEntry(porRespaldar);
-        zout.putNextEntry(zipEntry);
+        zos.putNextEntry(zipEntry);
         int length;
         byte[] buffer = new byte[1024];
-        while ((length = fin.read(buffer)) > 0) {
-            zout.write(buffer, 0, length);
+        while ((length = fis.read(buffer)) > 0) {
+            zos.write(buffer, 0, length);
         }
 
-        zout.closeEntry();
-        fin.close();
-        zout.close();
-    }//end createZipFile
+        zos.closeEntry();
+        fis.close();
+        zos.close();
+    }
 
-}//end respaldo
+}

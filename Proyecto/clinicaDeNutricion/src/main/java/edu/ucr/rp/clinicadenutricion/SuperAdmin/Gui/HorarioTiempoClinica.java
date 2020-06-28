@@ -1,7 +1,7 @@
 package edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui;
 
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.LogicaSuperAdmin;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
 import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
 import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
@@ -23,8 +23,9 @@ public class HorarioTiempoClinica {
     Label labelInter;
     Label labelAbre;
     Label labelCierra;
-    LogicaListas logic = new LogicaListas();
-    ArchSupAdmin logiSuper = new ArchSupAdmin();
+    
+    LogicaListas logicaListas = new LogicaListas();
+    LogicaSuperAdmin logicaSuperAdmin = new LogicaSuperAdmin();
     Alertas alerta = new Alertas();
     EncryptMD5 encrypt = new EncryptMD5();
 
@@ -35,12 +36,10 @@ public class HorarioTiempoClinica {
         gridPaneHorarioTiempoClinica.setVgap(15);
         gridPaneHorarioTiempoClinica.setHgap(15);
         gridPaneHorarioTiempoClinica.setAlignment(Pos.CENTER);
-
         gridPaneHorarioTiempoClinica.setStyle(("-fx-background-image:url('file:src/image/SuperAdmin.gif');"
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
-
-        SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+        SuperAdmin configuracion = logicaSuperAdmin.stringTokenizer(logicaSuperAdmin.readLine("KEYDistancia"));
 
         textFieldContraseña = new TextField();
         textFieldContraseña.setPromptText("Contraseña");
@@ -126,12 +125,12 @@ public class HorarioTiempoClinica {
             buttonGuardar.setDisable(false);
         });
 
-        Usuario usuarioTemp = logic.stringTokenizer(logic.leeLinea("ë"));
+        Usuario usuarioTemp = logicaListas.stringTokenizer(logicaListas.leeLinea("ë"));
 
         buttonModificar = new Button("Modificar valores");
-        buttonModificar.setTextFill(Color.WHITE);//Color de la letra del boton
-        buttonModificar.setStyle("-fx-background-color: BLACK");//Color del fondo
-        buttonModificar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
+        buttonModificar.setTextFill(Color.WHITE);
+        buttonModificar.setStyle("-fx-background-color: BLACK");
+        buttonModificar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         gridPaneHorarioTiempoClinica.add(buttonModificar, 1, 1);
         buttonModificar.setDisable(true);
         buttonModificar.setOnAction((event) -> {
@@ -147,12 +146,12 @@ public class HorarioTiempoClinica {
             }
             textFieldContraseña.setDisable(true);
 
-        });//end setOnAction
+        });
 
         buttonGuardar = new Button("Guardar");
-        buttonGuardar.setTextFill(Color.WHITE);//Color de la letra del boton
-        buttonGuardar.setStyle("-fx-background-color: BLACK");//Color del fondo
-        buttonGuardar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
+        buttonGuardar.setTextFill(Color.WHITE);
+        buttonGuardar.setStyle("-fx-background-color: BLACK");
+        buttonGuardar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         gridPaneHorarioTiempoClinica.add(buttonGuardar, 0, 7);
         buttonGuardar.setDisable(true);
         buttonGuardar.setOnAction((event) -> {
@@ -167,7 +166,7 @@ public class HorarioTiempoClinica {
                             configuracion.getNombreLogo(),
                             configuracion.getPathDeGuardado(), configuracion.getPaginacion());
 
-                    logiSuper.replacefromfile(configuracion2);
+                    logicaSuperAdmin.replacefromfile(configuracion2);
 
                     textFieldAbreClinica.clear();
                     textFieldAbreClinica.setDisable(true);
@@ -179,22 +178,22 @@ public class HorarioTiempoClinica {
                     alerta.alertInformation("Horario cambiado, correctamente");
                     buttonGuardar.setDisable(true);
 
-                }//end if
+                }
                 else {
-                    alerta.alertWarning("Campos vacíos o error de formato\nIntente de nuevo");
-                }//end else
-            }//end try
-            catch (java.lang.NumberFormatException jLNFE) {
+                    alerta.alertWarning("Campos vacíos o error de formato\nIntentelo de nuevo");
+                }
+            }
+            catch (java.lang.NumberFormatException nfe) {
                 alerta.alertWarning("Campos vacíos o error de formato\nIntente de nuevo");
-            }//end catch
-        });//END BUTTON
+            }
+        });
 
         MainMenuBarSuperAdmi barSuper = new MainMenuBarSuperAdmi();
 
         Button botonCerrar = new Button("Cerrar");
-        botonCerrar.setTextFill(Color.WHITE);//Color de la letra del boton
-        botonCerrar.setStyle("-fx-background-color: BLACK");//Color del fondo
-        botonCerrar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
+        botonCerrar.setTextFill(Color.WHITE);
+        botonCerrar.setStyle("-fx-background-color: BLACK");
+        botonCerrar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         gridPaneHorarioTiempoClinica.add(botonCerrar, 0, 8);
         botonCerrar.setOnAction((event) -> {
 
@@ -202,7 +201,7 @@ public class HorarioTiempoClinica {
             gridPaneHorarioTiempoClinica.setBackground(Background.EMPTY);
             gridPaneHorarioTiempoClinica.getChildren().add(barSuper.menuSuperAdmi());
 
-        });//end btn cerrar
+        });
 
         Label aclaracion1 = new Label();
         aclaracion1.setText("* Formato de horario a utilizar es de 24 horas");
@@ -233,5 +232,5 @@ public class HorarioTiempoClinica {
         GridPane.setColumnSpan(aclaracion3, Integer.BYTES);
 
         return gridPaneHorarioTiempoClinica;
-    }//end GridPane createCatalogue()
+    }// end gridPaneHorarioTiempoClinica
 }

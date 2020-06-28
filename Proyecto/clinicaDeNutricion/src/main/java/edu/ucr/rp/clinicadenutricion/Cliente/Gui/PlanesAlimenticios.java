@@ -4,7 +4,7 @@ import edu.ucr.rp.clinicadenutricion.AVL.LogicaAVL;
 import edu.ucr.rp.clinicadenutricion.Admin.logic.PlanesAlimenticiosLogica;
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.LogicaSuperAdmin;
 import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
 import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.IniciarSesion;
@@ -16,27 +16,28 @@ import javafx.scene.text.*;
 
 public class PlanesAlimenticios {
 
-    Alertas alerta = new Alertas();
-    ComboBox comboBoxSeleccion = new ComboBox();
     Button buttonDesplegarInformacion;
     Button buttonAceptar;
     TextArea textAreaMostrar = new TextArea();
     ComboBox comboBoxOpciones = new ComboBox();
+    ComboBox comboBoxSeleccion = new ComboBox();
+
+    Alertas alerta = new Alertas();
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
     IniciarSesion inicioSesion;
-    ArchSupAdmin logiSuper = new ArchSupAdmin();
+    LogicaSuperAdmin logicaSuperAdmin = new LogicaSuperAdmin();
 
     PlanesAlimenticiosLogica planesAlimenticiosLogica = new PlanesAlimenticiosLogica();
 
-    public GridPane misPlanesAlimentos() {
+    public GridPane planesAlimenticios() {
 
         GridPane gridPanePlanesAlimenticios = new GridPane();
         gridPanePlanesAlimenticios.setMinSize(600, 700);
         gridPanePlanesAlimenticios.setVgap(15);
         gridPanePlanesAlimenticios.setHgap(15);
         gridPanePlanesAlimenticios.setAlignment(Pos.CENTER);
-        SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+        SuperAdmin configuracion = logicaSuperAdmin.stringTokenizer(logicaSuperAdmin.readLine("KEYDistancia"));
         gridPanePlanesAlimenticios.setStyle(("-fx-background-image:url('file:src/image/" + configuracion.getNombreLogo() + "');"
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
@@ -83,12 +84,11 @@ public class PlanesAlimenticios {
                 comboBoxOpciones.setDisable(true);
                 buttonAceptar.setDisable(true);
 
-            }//end if 
-            else {
+            } else {
                 alerta.alertWarning("No selecciono una opcion\nIntente de nuevo");
             }
 
-        });//end setOnAction
+        });
 
         buttonDesplegarInformacion = new Button("Desplegar");
         buttonDesplegarInformacion.setTextFill(Color.WHITE);
@@ -113,12 +113,11 @@ public class PlanesAlimenticios {
                 buttonDesplegarInformacion.setDisable(true);
                 comboBoxOpciones.setDisable(true);
 
-            }//end if 
-            else {
-                alerta.alertWarning("No selecciono una opcion\nIntente de nuevo");
+            } else {
+                alerta.alertWarning("No seleccionó una opción\nIntentelo de nuevo");
             }
 
-        });//end setOnAction
+        });
 
         textAreaMostrar.setEditable(false);
         gridPanePlanesAlimenticios.add(textAreaMostrar, 0, 3);
@@ -136,8 +135,8 @@ public class PlanesAlimenticios {
             gridPanePlanesAlimenticios.setBackground(Background.EMPTY);
             gridPanePlanesAlimenticios.getChildren().add(mainMenuBarCliente.menuCliente());
 
-        });//end btn cerrar
+        });
 
         return gridPanePlanesAlimenticios;
-    }//end GridPane createCatalogue()
+    }
 }

@@ -12,7 +12,10 @@ import javafx.util.Callback;
 
 public class Calendario {
 
-    // public DatePicker calenCita() {
+    /**
+     * método que crea el calendario datePicker con detalles como colores
+     * distintos en fines de semana y cada quincenas
+     */
     public Callback<DatePicker, DateCell> dayCellFactory = dp -> new DateCell() {
         @Override
         public void updateItem(LocalDate item, boolean empty) {
@@ -23,11 +26,6 @@ public class Calendario {
             this.setBackground(null);
             this.setTextFill(Color.BLACK);
 
-//                // deshabilitar las fechas futuras
-//                if (item.isAfter(LocalDate.now())) {
-//                    this.setDisable(true);
-//                }
-            // marcar los dias de quincena
             int day = item.getDayOfMonth();
             if (day == 15 || day == 30) {
 
@@ -38,7 +36,6 @@ public class Calendario {
                 this.setTextFill(Color.WHITESMOKE);
             }
 
-            // fines de semana en color verde
             DayOfWeek dayweek = item.getDayOfWeek();
             if (dayweek == DayOfWeek.SATURDAY || dayweek == DayOfWeek.SUNDAY) {
                 this.setTextFill(Color.ORANGE);
@@ -51,4 +48,4 @@ public class Calendario {
         }
     };
 
-}//end Calendario
+}

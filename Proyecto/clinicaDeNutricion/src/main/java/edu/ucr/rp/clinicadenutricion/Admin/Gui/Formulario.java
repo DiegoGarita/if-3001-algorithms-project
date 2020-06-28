@@ -2,7 +2,7 @@ package edu.ucr.rp.clinicadenutricion.Admin.Gui;
 
 import edu.ucr.rp.clinicadenutricion.AVL.LogicaAVL;
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.LogicaSuperAdmin;
 import edu.ucr.rp.clinicadenutricion.Admin.logic.LogicaCola;
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Objetos.ReporteMedico;
@@ -29,7 +29,6 @@ import java.util.logging.Logger;
 public class Formulario {
 
     ComboBox comboBoxClientes = new ComboBox();
-
     TextField textFieldID;
     TextField textFieldNombre;
     TextField textFieldFecha;
@@ -45,26 +44,26 @@ public class Formulario {
     TextField textFieldPorcentajeAgua;
     TextField textFieldActividadFisica;
     TextField textFieldHorasDescanso;
-
     TextArea textAreaNotas = new TextArea();
     Button buttonAceptar;
     Button buttonIngresar;
     Button buttonEnviarCorreo;
     Button buttongeneraPDF;
     Button buttonCerrar;
-    LogicaCola adminLogic = new LogicaCola();
+
+    LogicaCola logicaCola = new LogicaCola();
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
-    ArchSupAdmin logiSuper = new ArchSupAdmin();
-    IniciarSesion iniciarSesion;
+    LogicaSuperAdmin logicaSuperAdmin = new LogicaSuperAdmin();
     Alertas alerta = new Alertas();
     EnviarCorreo enviarCorreo = new EnviarCorreo();
+    IniciarSesion iniciarSesion;
 
     public GridPane formulario() {
 
         GridPane gridPaneFormulario = new GridPane();
         gridPaneFormulario.setMinSize(600, 700);
-        SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+        SuperAdmin configuracion = logicaSuperAdmin.stringTokenizer(logicaSuperAdmin.readLine("KEYDistancia"));
         gridPaneFormulario.setVgap(15);
         gridPaneFormulario.setHgap(15);
         gridPaneFormulario.setAlignment(Pos.CENTER);
@@ -75,9 +74,8 @@ public class Formulario {
         comboBoxClientes.setValue("Clientes");
         comboBoxClientes.setStyle("-fx-background-color: lightblue");
         gridPaneFormulario.add(comboBoxClientes, 0, 0);
-
-        for (int i = 0; i < adminLogic.cantidadDeClientes("ä"); i++) {
-            comboBoxClientes.getItems().addAll(adminLogic.arrayListClientes.get(i).getId());
+        for (int i = 0; i < logicaCola.cantidadDeClientes("ä"); i++) {
+            comboBoxClientes.getItems().addAll(logicaCola.arrayListClientes.get(i).getId());
         }
         comboBoxClientes.setOnMouseClicked((event) -> {
             buttonIngresar.setDisable(false);
@@ -92,7 +90,6 @@ public class Formulario {
         buttonIngresar.setOnAction((event) -> {
 
             if (comboBoxClientes.getSelectionModel().getSelectedItem().equals("Clientes") != true) {
-
                 comboBoxClientes.setDisable(true);
                 buttonIngresar.setDisable(true);
                 if (!comboBoxClientes.getValue().toString().equals("")) {
@@ -111,24 +108,22 @@ public class Formulario {
                     textFieldPorcentajeAgua.setVisible(true);
                     textFieldActividadFisica.setVisible(true);
                     textFieldHorasDescanso.setVisible(true);
-
                     textAreaNotas.setVisible(true);
-
                     buttonAceptar.setVisible(true);
                     buttongeneraPDF.setVisible(true);
                     buttonEnviarCorreo.setVisible(true);
 
-                    textFieldID.setText(adminLogic.obtieneUsuario(comboBoxClientes.getValue().toString()).getId());
-                    textFieldNombre.setText(adminLogic.obtieneUsuario(comboBoxClientes.getValue().toString()).getName());
+                    textFieldID.setText(logicaCola.obtieneUsuario(comboBoxClientes.getValue().toString()).getId());
+                    textFieldNombre.setText(logicaCola.obtieneUsuario(comboBoxClientes.getValue().toString()).getName());
                     textFieldFecha.setText(fechaHora.histoFechaHora().substring(0, 10));
                     textFieldHora.setText(fechaHora.histoFechaHora().substring(11, 19));
 
                 }
-            }//end if 
+            }
             else {
                 alerta.alertWarning("No selecciono un cliente\nIntente de nuevo");
             }
-        });//end setOnAction
+        });
 
         textFieldID = new TextField();
         textFieldID.setDisable(true);
@@ -281,7 +276,6 @@ public class Formulario {
         textFieldGrasaVisceral = new TextField();
         textFieldGrasaVisceral.setPromptText("Grasa Visceral");
         textFieldGrasaVisceral.setVisible(false);
-
         textFieldGrasaVisceral.setStyle(
                 "-fx-background-color: lightblue; "
                 + "-fx-background-insets: 4; "
@@ -397,32 +391,27 @@ public class Formulario {
                             new FileOutputStream("Reporte " + comboBoxClientes.getValue().toString() + ".pdf"));
                     document.open();
 
-                    //Add Image
                     Image image1 = Image.getInstance("file:src/image/" + configuracion.getNombreLogo());
-                    //Fixed Positioning
                     image1.setAbsolutePosition(0f, 0f);
-                    //Scale to new height and new width of image
                     image1.scaleAbsolute(300, 300);
-                    //Add to document
                     document.add(image1);
 
-                    document.add(new Paragraph("Reporte medico del paciente: " + textFieldNombre.getText()));
-                    document.add(new Paragraph("Id--> " + textFieldID.getText()));
-                    document.add(new Paragraph("Nombre--> " + textFieldNombre.getText()));
-                    document.add(new Paragraph("Fecha--> " + textFieldFecha.getText()));
-                    document.add(new Paragraph("Hora--> " + textFieldHora.getText()));
-                    document.add(new Paragraph("Edad--> " + textFieldEdad.getText()));
-                    document.add(new Paragraph("Edad Metabolica--> " + textFieldEdadMetabolica.getText()));
-                    document.add(new Paragraph("Altura--> " + textFieldAltura.getText()));
-                    document.add(new Paragraph("Peso--> " + textFieldPeso.getText()));
-                    document.add(new Paragraph("Masa muscular--> " + textFieldPorcentajeMasaMuscular.getText()));
-                    document.add(new Paragraph("Grasa--> " + textFieldGrasa.getText()));
-                    document.add(new Paragraph("Grasa visceral--> " + textFieldGrasaVisceral.getText()));
-                    document.add(new Paragraph("Hueso--> " + textFieldHueso.getText()));
-                    document.add(new Paragraph("Porcentaje de Agua--> " + textFieldPorcentajeAgua.getText()));
-                    document.add(new Paragraph("Actividad fisica--> " + textFieldActividadFisica.getText()));
-                    document.add(new Paragraph("Horas de descanso--> " + textFieldHorasDescanso.getText()));
-                    document.add(new Paragraph("Notas--> " + textAreaNotas.getText()));
+                    document.add(new Paragraph("Reporte médico del paciente: " + textFieldNombre.getText()));
+                    document.add(new Paragraph("Id ------------------> " + textFieldID.getText()));
+                    document.add(new Paragraph("Fecha ---------------> " + textFieldFecha.getText()));
+                    document.add(new Paragraph("Hora ----------------> " + textFieldHora.getText()));
+                    document.add(new Paragraph("Edad ----------------> " + textFieldEdad.getText()));
+                    document.add(new Paragraph("Edad Metabólica -----> " + textFieldEdadMetabolica.getText()));
+                    document.add(new Paragraph("Altura --------------> " + textFieldAltura.getText()));
+                    document.add(new Paragraph("Peso ----------------> " + textFieldPeso.getText()));
+                    document.add(new Paragraph("Masa muscular -------> " + textFieldPorcentajeMasaMuscular.getText()));
+                    document.add(new Paragraph("Grasa ---------------> " + textFieldGrasa.getText()));
+                    document.add(new Paragraph("Grasa visceral ------> " + textFieldGrasaVisceral.getText()));
+                    document.add(new Paragraph("Hueso ---------------> " + textFieldHueso.getText()));
+                    document.add(new Paragraph("Porcentaje de agua --> " + textFieldPorcentajeAgua.getText()));
+                    document.add(new Paragraph("Actividad física ----> " + textFieldActividadFisica.getText()));
+                    document.add(new Paragraph("Horas de descanso ---> " + textFieldHorasDescanso.getText()));
+                    document.add(new Paragraph("Notas ---------------> " + textAreaNotas.getText()));
 
                     document.close();
                     writer.close();
@@ -435,11 +424,11 @@ public class Formulario {
                 }
 
                 buttongeneraPDF.setDisable(true);
-            }//end if
+            }
             else {
                 alerta.alertWarning("Hay campos vacios\nIntentelo de nuevo");
-            }//end else
-        });//end setOnAction
+            }
+        });
 
         buttonEnviarCorreo = new Button("Enviar Correo");
         buttonEnviarCorreo.setVisible(false);
@@ -449,7 +438,7 @@ public class Formulario {
         gridPaneFormulario.add(buttonEnviarCorreo, 1, 6);
         buttonEnviarCorreo.setDisable(true);
         buttonEnviarCorreo.setOnAction((event) -> {
-            String correo = adminLogic.obtieneUsuario(comboBoxClientes.getValue().toString()).getCorreo();
+            String correo = logicaCola.obtieneUsuario(comboBoxClientes.getValue().toString()).getCorreo();
             try {
                 enviarCorreo.sendPDF(correo, "Clínica Susana Distancia", "Reporte " + comboBoxClientes.getValue().toString(), "Reporte de los datos tomados en formulario");
             } catch (IOException ex) {
@@ -488,7 +477,7 @@ public class Formulario {
                                 textFieldAltura.getText(), textFieldPeso.getText(), textFieldPorcentajeMasaMuscular.getText(), textFieldGrasa.getText(),
                                 textFieldGrasaVisceral.getText(), textFieldHueso.getText(), textFieldPorcentajeAgua.getText(), textFieldActividadFisica.getText(),
                                 textFieldHorasDescanso.getText(), textAreaNotas.getText());
-                        adminLogic.escribeCitas(reporteMedico);
+                        logicaCola.escribeCitas(reporteMedico);
 
                         Acciones acciones = new Acciones(iniciarSesion.ID, "Ingresó nuevo formulario para un paciente", fechaHora.histoFechaHora());
                         logicaAVL.escribeHistorial(acciones);
@@ -513,38 +502,34 @@ public class Formulario {
                         buttonAceptar.setDisable(true);
                         buttonCerrar.setDisable(false);
                         buttonEnviarCorreo.setDisable(true);
-                    }//end if
+                    }
                     else {
                         alerta.alertWarning("Hay campos vacios\nIntentelo de nuevo");
-                    }//end else
+                    }
 
-                }//end if 
+                }
                 else {
                     alerta.alertWarning("Campos obligatorios con numeros\n(Agua,Grasa,Mas Muscular,Grasa viceral)\nIntente de nuevo");
                 }
-            } catch (java.lang.NumberFormatException Nfe) {
+            } catch (java.lang.NumberFormatException nfe) {
                 alerta.alertWarning("Campos obligatorios con numeros\n(Agua,Grasa,Mas Muscular,Grasa viceral)\nIntente de nuevo");
             }
-        });//end setOnAction
+        });
 
         buttonCerrar = new Button("Cerrar");
         buttonCerrar.setTextFill(Color.WHITE);
         buttonCerrar.setStyle("-fx-background-color: BLACK");
         buttonCerrar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         gridPaneFormulario.add(buttonCerrar, 0, 8);
-
+        
         MainMenuBarAdministrador o = new MainMenuBarAdministrador();
-
+        
         buttonCerrar.setOnAction((event) -> {
-
             gridPaneFormulario.getChildren().clear();
-
             gridPaneFormulario.setBackground(Background.EMPTY);
-
             gridPaneFormulario.getChildren().add(o.menuAdministrador());
-
-        });//end btn cerrar
+        });
 
         return gridPaneFormulario;
-    }//end GridPane createCatalogue()
+    }//end gridPaneFormulario()
 }

@@ -1,8 +1,6 @@
 package edu.ucr.rp.clinicadenutricion.AVL;
 
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
-import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,27 +16,31 @@ public class LogicaAVL {
 
     ImplementacionAVL implementacionAVL = new ImplementacionAVL();
 
-    ArchSupAdmin logiSuper = new ArchSupAdmin();
-
+    /**
+     * método que escribe en el archivo .txt del historial
+     * @param acciones objeto que será insertado en el archivo
+     */
     public void escribeHistorial(Acciones acciones) {
 
-        SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
-        File newFile = new File(configuracion.getPathDeGuardado() + "\\Historial.txt");
+        File newFile = new File("Historial.txt");
 
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(newFile, true);
             PrintStream printStream = new PrintStream(fileOutputStream);
-
             printStream.println(acciones.getAccionador() + " & " + acciones.getAccion() + " & " + acciones.getFechaHoraAccion());
 
         } catch (FileNotFoundException fileNotFoundException) {
             JOptionPane.showMessageDialog(null, fileNotFoundException + "\nProblemas con el archivo");
         }
-    }//end writeFileCatalogue()
+    }//end escribeHistorial()
 
+    /**
+     * método que lee el archivo .txt del historial
+     */
     public void leerHistorial() {
-       // SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+
         File newFile = new File("Historial.txt");
+
         try {
             FileInputStream fileInputStream = new FileInputStream(newFile);
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
@@ -51,41 +53,25 @@ public class LogicaAVL {
 
                 currentRegistry = bufferedReader.readLine();
             }
-            //implementacionAVL.PreOrden();
+            //implementacionAVL.preOrden();
 
         } catch (FileNotFoundException fileNotFoundException) {
         } catch (IOException IOException) {
             JOptionPane.showMessageDialog(null, IOException + ": Problemas con el archivo");
         }
-    }// end readProperties()
+    }// end leerHistorial()
 
+    /**
+     * método que convierte una línea (String) en acciones (objeto)
+     * @param lineas linea recibida 
+     * @return objeto accion
+     */
     public Acciones stringTokenizer(String lineas) {
 
         StringTokenizer stringTokenizer = new StringTokenizer(lineas, "&");
-        int counterTokens = 0;
-        String nombre = "";
-        String accion = "";
-        String fechaHora = "";
-
-        while (stringTokenizer.hasMoreTokens()) {
-            switch (counterTokens) {
-                case 0:
-                    nombre = stringTokenizer.nextToken();
-                    counterTokens++;
-                    break;
-                case 1:
-                    accion = stringTokenizer.nextToken();
-                    counterTokens++;
-                    break;
-                case 2:
-                    fechaHora = stringTokenizer.nextToken();
-                    counterTokens++;
-                    break;
-                default:
-                    break;
-            }
-
-        }
+        String nombre = stringTokenizer.nextToken();
+        String accion = stringTokenizer.nextToken();
+        String fechaHora = stringTokenizer.nextToken();
 
         Acciones acciones = new Acciones(nombre, accion, fechaHora);
         return acciones;

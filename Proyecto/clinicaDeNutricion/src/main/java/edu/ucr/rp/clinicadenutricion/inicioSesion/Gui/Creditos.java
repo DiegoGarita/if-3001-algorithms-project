@@ -1,7 +1,7 @@
 package edu.ucr.rp.clinicadenutricion.inicioSesion.Gui;
 
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.LogicaSuperAdmin;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -9,22 +9,20 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 
 public class Creditos {
-    
-        ArchSupAdmin logiSuper = new ArchSupAdmin();
 
-    public GridPane getGraphicalUserInterfaceCreditos() {
+    LogicaSuperAdmin logicaSuperAdmin = new LogicaSuperAdmin();
+
+    public GridPane Creditos() {
         GridPane gridPaneCreditos = new GridPane();
         gridPaneCreditos.setMinSize(600, 700);
-        SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+        SuperAdmin configuracion = logicaSuperAdmin.stringTokenizer(logicaSuperAdmin.readLine("KEYDistancia"));
         gridPaneCreditos.setVgap(15);
         gridPaneCreditos.setHgap(15);
         gridPaneCreditos.setAlignment(Pos.TOP_LEFT);
 
-
         gridPaneCreditos.setStyle(("-fx-background-image:url('file:src/image/" + configuracion.getNombreLogo() + "');"
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
-
 
         Text Titulo = new Text(200, 200, "Créditos de la aplicación: Clínica de alimentación");
         Titulo.setFont(Font.font(20));
@@ -52,5 +50,5 @@ public class Creditos {
         });
 
         return gridPaneCreditos;
-    }//end GridPane getGraphicalUserInterfaceCreditos()
-}//end class Credits 
+    }//end GridPane Creditos()
+}

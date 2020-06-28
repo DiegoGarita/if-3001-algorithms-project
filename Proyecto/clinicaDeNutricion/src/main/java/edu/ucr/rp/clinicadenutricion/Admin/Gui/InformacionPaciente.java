@@ -4,7 +4,7 @@ import edu.ucr.rp.clinicadenutricion.AVL.LogicaAVL;
 import edu.ucr.rp.clinicadenutricion.Admin.logic.LogicaCola;
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.LogicaSuperAdmin;
 import edu.ucr.rp.clinicadenutricion.Objetos.ReporteMedico;
 import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
 import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
@@ -20,15 +20,16 @@ import javafx.scene.text.*;
 
 public class InformacionPaciente {
 
-    LogicaCola logicaCola = new LogicaCola();
+    Button buttonBuscar;
     ComboBox comboBoxClientes = new ComboBox();
+    TableView<ReporteMedico> tableViewReporteMedico;
+
+    LogicaCola logicaCola = new LogicaCola();
     IniciarSesion iniciarSesion;
-    ArchSupAdmin logiSuper = new ArchSupAdmin();
+    LogicaSuperAdmin logicaSuperAdmin = new LogicaSuperAdmin();
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
-    Button buttonBuscar;
     Alertas alerta = new Alertas();
-    TableView<ReporteMedico> tableViewReporteMedico;
 
     public GridPane informacionPaciente() {
 
@@ -37,7 +38,7 @@ public class InformacionPaciente {
         gridPaneInformacionPaciente.setVgap(15);
         gridPaneInformacionPaciente.setHgap(15);
         gridPaneInformacionPaciente.setAlignment(Pos.CENTER);
-        SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+        SuperAdmin configuracion = logicaSuperAdmin.stringTokenizer(logicaSuperAdmin.readLine("KEYDistancia"));
         gridPaneInformacionPaciente.setStyle(("-fx-background-image:url('file:src/image/" + configuracion.getNombreLogo() + "');"
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
@@ -45,12 +46,11 @@ public class InformacionPaciente {
         comboBoxClientes.setValue("Clientes");
         comboBoxClientes.setStyle("-fx-background-color: lightblue");
         gridPaneInformacionPaciente.add(comboBoxClientes, 0, 0);
-
         for (int i = 0; i < logicaCola.cantidadDeClientes("ä"); i++) {
             comboBoxClientes.getItems().addAll(logicaCola.arrayListClientes.get(i).getId());
         }
-        comboBoxClientes.setOnMouseClicked((even) -> {
-            tableViewReporteMedico.getItems().clear();  //---> tratando de limpiar table
+        comboBoxClientes.setOnMouseClicked((event) -> {
+            tableViewReporteMedico.getItems().clear();
             buttonBuscar.setDisable(false);
         });
 
@@ -154,20 +154,17 @@ public class InformacionPaciente {
         buttonBuscar.setOnAction((event) -> {
 
             if (comboBoxClientes.getSelectionModel().getSelectedItem().equals("Clientes") != true) {
-
                 tableViewReporteMedico.setVisible(true);
                 Acciones acciones = new Acciones(iniciarSesion.ID, "Solicitó información de pacientes", fechaHora.histoFechaHora());
                 logicaAVL.escribeHistorial(acciones);
-
                 tableViewReporteMedico.setItems(obtieneReporteMedico(comboBoxClientes.getValue().toString()));
-
                 buttonBuscar.setDisable(true);
 
-            }//end if 
-            else {
-                alerta.alertWarning("No selecciono un cliente\nIntente de nuevo");
             }
-        });// end boton
+            else {
+                alerta.alertWarning("No seleccionó un cliente\nIntentelo de nuevo");
+            }
+        });
 
         Button buttonCerrar = new Button("Cerrar");
         buttonCerrar.setTextFill(Color.WHITE);
@@ -185,8 +182,13 @@ public class InformacionPaciente {
         });
 
         return gridPaneInformacionPaciente;
-    }
+    } //end gridPaneInformacionPaciente
 
+    /**
+     * 
+     * @param file nombre del paciente para traer su información directamente del .txt
+     * @return observableList necesario para el tableView
+     */
     public ObservableList<ReporteMedico> obtieneReporteMedico(String file) {
         ObservableList<ReporteMedico> reporteMedico = FXCollections.observableArrayList();
         for (int i = 0; i < logicaCola.cantidadDeLineas(file); i++) {

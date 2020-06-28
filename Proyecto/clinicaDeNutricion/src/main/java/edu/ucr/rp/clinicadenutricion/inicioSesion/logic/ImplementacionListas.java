@@ -11,61 +11,65 @@ class Node {
         element = usuario;
         next = null;
 
-    } //end public
+    }
 
-    Usuario seeElement() { //instancia para ver el elemento (utilizado solo en IndexOf)
+    Usuario seeElement() {
 
-        return this.element; //retorna al elemento recibido por public Node
-    }// end seeElement
+        return this.element;
+    }
 
-    Node seeNext() { //instancia para ver al siguiente
+    Node seeNext() {
 
-        return this.next; //retorna next
-    } //ver siguiente
+        return this.next;
+    }
 
 }
 
-public class ImplementacionListas implements InterfaceListas{
+public class ImplementacionListas implements InterfaceListas {
 
     public ImplementacionListas() {
     }
     Node inicio, fin;
 
+    /**
+     *
+     * @param usuario objeto usuario que será agregado a la lista
+     */
     @Override
-    public void add(Usuario usuario) { //inserta un elemento en la lista
+    public void add(Usuario usuario) {
 
-        Node aux = inicio; //auxiliar tipo nodo 
+        Node aux = inicio;
 
-        if (aux == null) { //se pregunta si la lista está vacia
+        if (aux == null) {
 
-            aux = new Node(usuario); //se crea un primer objeto
-            inicio = aux; //inicio es igual al auxiliar tipo Nodo con el elemento usuario que pasa como parámetro en el método
+            aux = new Node(usuario);
+            inicio = aux;
 
-        } //end if
-        else { //else
-            while (aux.next != null) { //mientras el siguiente del auxiliar sea diferente de nulo
+        } else {
+            while (aux.next != null) {
 
-                aux = aux.next; //se le asigna la variable aux a los siguientes
+                aux = aux.next;
+            }
+            aux.next = new Node(usuario);
+            fin = aux.next;
 
-            } // end while
-            aux.next = new Node(usuario); //el auxiliar siguiente es siguiente nodo
-            fin = aux.next; //la variable fin guarda al auxiliar siguiente
+        }
+    }
 
-        }// end else  
-    } //end add(Object n)
-
+    /**
+     *
+     * @param usuario objeto usuario que será removido de la lista
+     */
     @Override
     public void remove(Usuario usuario) {
 
         if (isEmpty() == false) {
             if (inicio.equals(fin) && usuario.equals(inicio.element)) {
                 inicio = fin = null;
-            }//end if
-            else if (usuario.equals(inicio.element)) {
+            } else if (usuario.equals(inicio.element)) {
                 inicio = inicio.next;
 
-            }// end else if
-            else { //else
+            } else {
                 Node aux1, aux;
                 aux1 = inicio;
                 aux = inicio.next;
@@ -80,14 +84,16 @@ public class ImplementacionListas implements InterfaceListas{
                     aux1.next = aux.next;
                     if (aux.equals(fin)) {
                         fin = aux1;
-                    }//end if
-                }//end if
-            }//end else
+                    }
+                }
+            }
+        }
+    }
 
-        }//end IF
-
-    } //end remove
-
+    /**
+     *
+     * @return booleano, true si está vacío, false si no está vacío
+     */
     @Override
     public boolean isEmpty() {
 
@@ -96,11 +102,10 @@ public class ImplementacionListas implements InterfaceListas{
 
         if (aux == null) {
             return empty = true;
-        }// end if
-        else { //else
+        } else {
             return empty;
 
-        } // end else
+        }
     }
 
     @Override
@@ -119,6 +124,11 @@ public class ImplementacionListas implements InterfaceListas{
         System.out.println();
     }
 
+    /**
+     *
+     * @param aBuscar busca un string en los nodos dentro de la lista
+     * @return retorna booleano, true si lo encuentra y false si no lo encuentra
+     */
     @Override
     public boolean search(String aBuscar) {
         Node current = inicio;
@@ -129,9 +139,14 @@ public class ImplementacionListas implements InterfaceListas{
             }
             current = current.next;
         }
-        return false;    //data not found 
+        return false;
     }
 
+    /**
+     *
+     * @param index indice del Usuario a buscar
+     * @return Usuario encontrado en el indice indicado
+     */
     @Override
     public Usuario indexOf(int index) {
 
@@ -140,12 +155,16 @@ public class ImplementacionListas implements InterfaceListas{
         for (int i = -1; i < index - 1; i++) {
 
             aux = aux.seeNext();
-        } // end for
+        }
 
         return aux.seeElement();
 
-    } //end indexOf
+    }
 
+    /**
+     *
+     * @return tamaño de la lista
+     */
     @Override
     public int size() {
 
@@ -154,9 +173,7 @@ public class ImplementacionListas implements InterfaceListas{
         while (aux.next != null) {
             aux = aux.next;
             output++;
-        }// end while
-        return output + 1; //retorna el output +1 por los indices
-
-    }//end size
-
+        }
+        return output + 1;
+    }
 }

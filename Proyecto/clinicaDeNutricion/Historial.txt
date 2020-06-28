@@ -79,3 +79,11 @@ xxxxx & Inició sesión como cliente & Sun Jun 28 09:45:37 CST 2020
 xxxxx & Inició sesión como cliente & Sun Jun 28 09:56:52 CST 2020
 xxx & , usuario no registrado intentó iniciar sesión & Sun Jun 28 09:58:02 CST 2020
 xxxxx & Inició sesión como cliente & Sun Jun 28 09:58:07 CST 2020
+666666 & Inició sesión como admistrador & Sun Jun 28 13:40:43 CST 2020
+54321 & , usuario no registrado intentó iniciar sesión & Sun Jun 28 15:57:16 CST 2020
+555555 & , usuario no registrado intentó iniciar sesión & Sun Jun 28 15:57:25 CST 2020
+55555 & , usuario no registrado intentó iniciar sesión & Sun Jun 28 15:57:32 CST 2020
+54321 & Se registró como nuevo usuario & Sun Jun 28 15:57:59 CST 2020
+ & Intentó registrarse cuando ya estaba registrado & Sun Jun 28 15:58:44 CST 2020
+54321 & Inició sesión como cliente & Sun Jun 28 15:58:55 CST 2020
+666666 & Inició sesión como admistrador & Sun Jun 28 15:59:42 CST 2020

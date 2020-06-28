@@ -1,10 +1,16 @@
 package edu.ucr.rp.clinicadenutricion.Objetos;
 
 public class Acciones {
+    
+    /**
+     * Accionador: Es quien realiza la acción
+     * Accion: Qué acción realiza
+     * fechaHoraAccion: Fecha y hora de la realización de la acción
+     */
 
-    private String Accionador;   // --> Quien realiza la accion
-    private String accion;       // --> Que accion realiza
-    private String fechaHoraAccion;   // --> Fecha y hora de accion
+    private String Accionador;
+    private String accion;
+    private String fechaHoraAccion;
 
     public Acciones(String Accionador, String accion, String fechaHoraAccion) {
         this.Accionador = Accionador;

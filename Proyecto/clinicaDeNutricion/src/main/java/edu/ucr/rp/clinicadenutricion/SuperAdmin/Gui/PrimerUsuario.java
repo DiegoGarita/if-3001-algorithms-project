@@ -4,13 +4,14 @@ import edu.ucr.rp.clinicadenutricion.AVL.LogicaAVL;
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Utilitario.EncryptMD5;
 import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
-import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
 import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
 import edu.ucr.rp.clinicadenutricion.Utilitario.EnviarCorreo;
 import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.*;
+import java.io.IOException;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.*;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -28,29 +29,28 @@ public class PrimerUsuario {
     TextField textFieldCorreo;
     Button buttonCreaUsuario;
     ComboBox comboBoxRol = new ComboBox();
-    LogicaListas logic = new LogicaListas();
+
+    LogicaListas logicaListas = new LogicaListas();
     EncryptMD5 encrypt = new EncryptMD5();
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
-    ArchSupAdmin logiSuper = new ArchSupAdmin();
     Alertas alertas = new Alertas();
     EnviarCorreo enviarCorreo = new EnviarCorreo();
 
-    public GridPane creaUsuario() {
+    public GridPane primerUsuario() {
 
-        if (logic.cantidadDeClientes("|") >= 3) {
+        if (logicaListas.cantidadDeClientes("|") >= 3) {
             alertas.alertWarning("Ya se registo el primer usuario y el primer Administrador\nDirigase a la parte de registro");
-            System.out.println(logic.cantidadDeClientes("|") + "if");
+            System.out.println(logicaListas.cantidadDeClientes("|") + "if");
         } else {
-            System.out.println(logic.cantidadDeClientes("|") + "else");
-            GridPane gridPaneCreaUsuario = new GridPane();
-            gridPaneCreaUsuario.setMinSize(600, 700);
-            SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
-            gridPaneCreaUsuario.setVgap(15);
-            gridPaneCreaUsuario.setHgap(15);
-            gridPaneCreaUsuario.setAlignment(Pos.CENTER);
+            System.out.println(logicaListas.cantidadDeClientes("|") + "else");
+            GridPane gridPanePrimerUsuario = new GridPane();
+            gridPanePrimerUsuario.setMinSize(600, 700);
+            gridPanePrimerUsuario.setVgap(15);
+            gridPanePrimerUsuario.setHgap(15);
+            gridPanePrimerUsuario.setAlignment(Pos.CENTER);
 
-            gridPaneCreaUsuario.setStyle(("-fx-background-image:url('file:src/image/SuperAdmin.gif');"
+            gridPanePrimerUsuario.setStyle(("-fx-background-image:url('file:src/image/SuperAdmin.gif');"
                     + "-fx-background-repeat : no-repeat;"
                     + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
@@ -62,7 +62,7 @@ public class PrimerUsuario {
                             "Cliente"
                     );
             comboBoxRol.setItems(Roles);
-            gridPaneCreaUsuario.add(comboBoxRol, 0, 0);
+            gridPanePrimerUsuario.add(comboBoxRol, 0, 0);
 
             textFieldID = new TextField();
             textFieldID.setPromptText("Número de identificación");
@@ -73,7 +73,7 @@ public class PrimerUsuario {
                     "-fx-background-radius: 4; "
                     +// tamano
                     "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-            gridPaneCreaUsuario.add(textFieldID, 0, 1);
+            gridPanePrimerUsuario.add(textFieldID, 0, 1);
             textFieldID.setFocusTraversable(false);
 
             textFieldNombre = new TextField();
@@ -85,7 +85,7 @@ public class PrimerUsuario {
                     "-fx-background-radius: 4; "
                     +// tamano
                     "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-            gridPaneCreaUsuario.add(textFieldNombre, 0, 2);
+            gridPanePrimerUsuario.add(textFieldNombre, 0, 2);
             textFieldNombre.setFocusTraversable(false);
 
             textFieldContraseña = new TextField();
@@ -97,7 +97,7 @@ public class PrimerUsuario {
                     "-fx-background-radius: 4; "
                     +// tamano
                     "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-            gridPaneCreaUsuario.add(textFieldContraseña, 0, 3);
+            gridPanePrimerUsuario.add(textFieldContraseña, 0, 3);
             textFieldContraseña.setFocusTraversable(false);
 
             textFieldCorreo = new TextField();
@@ -109,7 +109,7 @@ public class PrimerUsuario {
                     "-fx-background-radius: 4; "
                     +// tamano
                     "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-            gridPaneCreaUsuario.add(textFieldCorreo, 0, 4);
+            gridPanePrimerUsuario.add(textFieldCorreo, 0, 4);
             textFieldCorreo.setFocusTraversable(false);
 
             textFieldTelefono = new TextField();
@@ -121,7 +121,7 @@ public class PrimerUsuario {
                     "-fx-background-radius: 4; "
                     +// tamano
                     "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-            gridPaneCreaUsuario.add(textFieldTelefono, 0, 5);
+            gridPanePrimerUsuario.add(textFieldTelefono, 0, 5);
             textFieldTelefono.setFocusTraversable(false);
 
             textFieldDireccion = new TextField();
@@ -133,7 +133,7 @@ public class PrimerUsuario {
                     "-fx-background-radius: 4; "
                     +// tamano
                     "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-            gridPaneCreaUsuario.add(textFieldDireccion, 0, 6);
+            gridPanePrimerUsuario.add(textFieldDireccion, 0, 6);
             textFieldDireccion.setFocusTraversable(false);
             textFieldDireccion.setOnKeyPressed((event) -> {
                 buttonCreaUsuario.setDisable(false);
@@ -143,7 +143,7 @@ public class PrimerUsuario {
             buttonCreaUsuario.setTextFill(Color.WHITE);
             buttonCreaUsuario.setStyle("-fx-background-color: BLACK");
             buttonCreaUsuario.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
-            gridPaneCreaUsuario.add(buttonCreaUsuario, 0, 8);
+            gridPanePrimerUsuario.add(buttonCreaUsuario, 0, 8);
             buttonCreaUsuario.setDisable(true);
             buttonCreaUsuario.setOnAction((event) -> {
                 if (comboBoxRol.getSelectionModel().getSelectedItem().equals("Elige un rol") != true) {
@@ -159,57 +159,57 @@ public class PrimerUsuario {
                             Optional<ButtonType> result = alertas.alertConfirmation("").showAndWait();
                             if (result.get() == ButtonType.OK) {
 
-                                logic.leerArchivo();
-                                if (logic.busca(textFieldID.getText()) == false) {
-                                    enviarCorreo.sendMessage(textFieldCorreo.getText(), "Clínica Susana Distancia",
-                                            "Mensaje de confirmación de creación de nuevo usuario en nuestra clínica Susana Distancia.\n"
-                                            + "¡Bienvenido! " + textFieldNombre.getText() + " es un gusto atenderle.\n"
-                                            + "Si desea realizar consultas directamente con nuestro soporte de aplicación deberá realizarlas"
-                                            + " por este medio a este correo electrónico.\nSerá un gusto atenderle.");
+                                logicaListas.leerArchivo();
+                                if (logicaListas.busca(textFieldID.getText()) == false) {
+                                  enviarCorreo.sendPDF(textFieldCorreo.getText(), "Clínica Susana Distancia", "Manual",
+                                        "Mensaje de confirmación de creación de nuevo usuario en nuestra clínica Susana Distancia.\n"
+                                        + "¡Bienvenido! " + textFieldNombre.getText() + " es un gusto atenderle.\n"
+                                        + "Si desea realizar consultas directamente con nuestro soporte de aplicación deberá realizarlas"
+                                        + " por este medio a este correo electrónico.\nSerá un gusto atenderle.");
 
                                     Usuario usuario = new Usuario(comboBoxRol.getValue().toString(), textFieldID.getText(),
                                             textFieldNombre.getText(), encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()),
                                             textFieldCorreo.getText(), textFieldTelefono.getText(),
                                             textFieldDireccion.getText());
 
-                                    logic.escribirArchivo(usuario);
+                                    logicaListas.escribirArchivo(usuario);
                                     Acciones acciones = new Acciones(textFieldID.getText(), "Se registró como nuevo usuario", fechaHora.histoFechaHora());
                                     logicaAVL.escribeHistorial(acciones);
 
                                 } else {
                                     System.out.println("Ya existe alguien con este ID");
-                                    alertas.alertWarning("Su ID ya esta registrado en sistema, intentelo de nuevo");
+                                    alertas.alertWarning("Su ID ya está registrado en sistema, intentelo de nuevo");
                                     textFieldID.clear();
                                     Acciones acciones = new Acciones(textFieldID.getText(), "Intentó registrarse cuando ya estaba registrado", fechaHora.histoFechaHora());
                                     logicaAVL.escribeHistorial(acciones);
                                 }
-                            }//end if alert
+                            }
                             textFieldNombre.clear();
                             textFieldContraseña.clear();
                             textFieldID.clear();
                             textFieldTelefono.clear();
                             textFieldDireccion.clear();
                             textFieldCorreo.clear();
-                        }//end if validaciones basicas
-                        else {
-                            alertas.alertWarning("correo,contraseña y/o teléfono no validos");
-                        }//end else validaciones
+                        } else {
+                            alertas.alertWarning("Correo,contraseña y/o teléfono no validos");
+                        }
                     } catch (NumberFormatException nfe) {
-                        alertas.alertWarning("correo,contraseña y/o teléfono no validos\nO espacios vacios");
+                        alertas.alertWarning("Correo,contraseña y/o teléfono no validos\nO espacios vacíos");
+                    } catch (IOException ex) {
+                        Logger.getLogger(PrimerUsuario.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                }//end if 
-                else {
+                } else {
                     alertas.alertWarning("No selecciono su rol\nIntente de nuevo");
                 }
-            });//end setOnAction
+            });
 
             Label labelAclaracion = new Label();
-            labelAclaracion.setText("* La contraseña debe tener 5 o mas caracteres \n* El teléfono de incluir solo números \n* Y el correo debe ser válido(@gmail.com)");
+            labelAclaracion.setText("* La contraseña debe tener 5 o más caracteres \n* El teléfono de incluir solo números \n* Y el correo debe ser válido(@gmail.com)");
             labelAclaracion.setFont(new Font("Arial", 15));
             labelAclaracion.setStyle("-fx-font-weight: bold");
             labelAclaracion.setTextFill(Color.web("#0076a3"));
             labelAclaracion.setStyle("-fx-background-color: rgb(111, 210, 170);");
-            gridPaneCreaUsuario.add(labelAclaracion, 0, 9);
+            gridPanePrimerUsuario.add(labelAclaracion, 0, 9);
             GridPane.setColumnSpan(labelAclaracion, Integer.BYTES);
 
             MainMenuBarSuperAdmi mainMenuBarSuperAdmi = new MainMenuBarSuperAdmi();
@@ -217,18 +217,18 @@ public class PrimerUsuario {
             buttonCerrar.setTextFill(Color.WHITE);
             buttonCerrar.setStyle("-fx-background-color: BLACK");
             buttonCerrar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
-            gridPaneCreaUsuario.add(buttonCerrar, 2, 8);
+            gridPanePrimerUsuario.add(buttonCerrar, 2, 8);
             buttonCerrar.setOnAction((event) -> {
 
-                gridPaneCreaUsuario.getChildren().clear();
-                gridPaneCreaUsuario.setBackground(Background.EMPTY);
-                gridPaneCreaUsuario.getChildren().add(mainMenuBarSuperAdmi.menuSuperAdmi());
+                gridPanePrimerUsuario.getChildren().clear();
+                gridPanePrimerUsuario.setBackground(Background.EMPTY);
+                gridPanePrimerUsuario.getChildren().add(mainMenuBarSuperAdmi.menuSuperAdmi());
 
-            });//end btn cerrar
+            });
 
-            return gridPaneCreaUsuario;   //---> cambio
-        }//end else 
-        return null;   //---> cambio
-    }//end GridPane createCatalogue()
+            return gridPanePrimerUsuario;
+        }
+        return null;
+    }
 
 }

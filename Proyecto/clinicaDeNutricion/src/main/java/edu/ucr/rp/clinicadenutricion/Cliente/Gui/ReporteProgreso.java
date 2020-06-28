@@ -4,7 +4,7 @@ import edu.ucr.rp.clinicadenutricion.AVL.LogicaAVL;
 import edu.ucr.rp.clinicadenutricion.Utilitario.Grafico;
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.LogicaSuperAdmin;
 import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.IniciarSesion;
@@ -16,17 +16,17 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 
-//en esta clase el cliente podra ver su avance
 public class ReporteProgreso {
 
-    IniciarSesion iniciarSesion;
     Button buttonGraficoActual;
     Button buttonGraficoInicial;
     Grafico grafico = new Grafico();
+
+    IniciarSesion iniciarSesion;
     LogicaListas logicaListas = new LogicaListas();
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
-    ArchSupAdmin logiSuper = new ArchSupAdmin();
+    LogicaSuperAdmin logicaSuperAdmin = new LogicaSuperAdmin();
     Alertas alertas = new Alertas();
 
     public GridPane reporteProgreso() {
@@ -36,7 +36,7 @@ public class ReporteProgreso {
         gridPaneReportePorgreso.setVgap(15);
         gridPaneReportePorgreso.setHgap(15);
         gridPaneReportePorgreso.setAlignment(Pos.CENTER);
-        SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+        SuperAdmin configuracion = logicaSuperAdmin.stringTokenizer(logicaSuperAdmin.readLine("KEYDistancia"));
         gridPaneReportePorgreso.setStyle(("-fx-background-image:url('file:src/image/" + configuracion.getNombreLogo() + "');"
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
@@ -76,15 +76,15 @@ public class ReporteProgreso {
         gridPaneReportePorgreso.add(buttonGraficoActual, 3, 3);
         buttonGraficoActual.setOnAction((event) -> {
             try {
-                grafico.MuestraGraficoActual(); //--> %agua, %masMusc, grasa , grasaVisc
+                grafico.MuestraGraficoActual();
                 Acciones acciones = new Acciones(iniciarSesion.ID, "Revisó su progreso graficamente", fechaHora.histoFechaHora());
                 logicaAVL.escribeHistorial(acciones);
                 buttonGraficoActual.setDisable(true);
-            }//end try
+            }
             catch (java.lang.NumberFormatException kk) {
                 alertas.alertWarning("No hay informacion por mostrar, debe tener una primer cita\nO no se hizo un registro correcto");
-            }//end catch
-        });//END BUTTON
+            }
+        });
 
         buttonGraficoInicial = new Button("Ver datos iniciales");
         buttonGraficoInicial.setTextFill(Color.WHITE);
@@ -93,13 +93,13 @@ public class ReporteProgreso {
         gridPaneReportePorgreso.add(buttonGraficoInicial, 1, 3);
         buttonGraficoInicial.setOnAction((event) -> {
             try {
-                grafico.MuestraGraficoInicial(); //--> %agua, %masMusc, grasa , grasaVisc
+                grafico.MuestraGraficoInicial();
                 buttonGraficoInicial.setDisable(true);
-            }//end try
-            catch (java.lang.NumberFormatException kk) {
+            }
+            catch (java.lang.NumberFormatException nfe) {
                 alertas.alertWarning("No hay informacion por mostrar, debe tener una primer cita\nO no se hizo un registro correcto");
-            }//end catch
-        });//END BUTTON
+            }
+        });
 
         MainMenuBarCliente mainMenuBarCliente = new MainMenuBarCliente();
 
@@ -117,5 +117,5 @@ public class ReporteProgreso {
         });
 
         return gridPaneReportePorgreso;
-    }//end GridPane createCatalogue()
+    }//end gridPaneReportePorgreso()
 }

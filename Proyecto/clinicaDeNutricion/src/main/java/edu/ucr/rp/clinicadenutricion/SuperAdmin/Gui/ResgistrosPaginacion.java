@@ -2,7 +2,7 @@ package edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui;
 
 import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.LogicaSuperAdmin;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
@@ -16,33 +16,34 @@ import javafx.scene.text.*;
 
 public class ResgistrosPaginacion {
 
-    ArchSupAdmin archSupAdmin = new ArchSupAdmin();
-    TableView<Usuario> tableViewUsuarios;
     public int divisionInt = 0;
     public ObservableList<Usuario> reporteMedico = FXCollections.observableArrayList();
-    ArrayList<Button> ButtonAL;
+    ArrayList<Button> ButtonArrayList;
     Label labelInter;
     Button button;
     Button botonModificar;
     Button buttonModificar;
     TextField textFieldContraseña;
     TextField textFieldIntervalo;
+    TableView<Usuario> tableViewUsuarios;
+
+    LogicaSuperAdmin LogicaSuperAdmin = new LogicaSuperAdmin();
     LogicaListas logic = new LogicaListas();
 
-    public GridPane historial() {
+    public GridPane registrosPaginacion() {
 
-        GridPane gridPanePagi = new GridPane();
-        gridPanePagi.setMinSize(600, 700);
-        gridPanePagi.setVgap(15);
-        gridPanePagi.setHgap(15);
-        gridPanePagi.setAlignment(Pos.CENTER);
+        GridPane gridPaneRegistrosPaginacion = new GridPane();
+        gridPaneRegistrosPaginacion.setMinSize(600, 700);
+        gridPaneRegistrosPaginacion.setVgap(15);
+        gridPaneRegistrosPaginacion.setHgap(15);
+        gridPaneRegistrosPaginacion.setAlignment(Pos.CENTER);
 
-        gridPanePagi.setStyle(("-fx-background-image:url('file:src/image/SuperAdmin.gif');"
+        gridPaneRegistrosPaginacion.setStyle(("-fx-background-image:url('file:src/image/SuperAdmin.gif');"
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
         MainMenuBarSuperAdmi barSuper = new MainMenuBarSuperAdmi();
-        SuperAdmin configuracion = archSupAdmin.stringTokenizer(archSupAdmin.readLine("KEYDistancia"));
+        SuperAdmin configuracion = LogicaSuperAdmin.stringTokenizer(LogicaSuperAdmin.readLine("KEYDistancia"));
 
         textFieldContraseña = new TextField();
         textFieldContraseña.setPromptText("Contraseña");
@@ -53,7 +54,7 @@ public class ResgistrosPaginacion {
                 "-fx-background-radius: 4; "
                 +// tamano
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-        gridPanePagi.add(textFieldContraseña, 0, 0);
+        gridPaneRegistrosPaginacion.add(textFieldContraseña, 0, 0);
         textFieldContraseña.setFocusTraversable(false);
         textFieldContraseña.setOnKeyPressed((event) -> {
             buttonModificar.setDisable(false);
@@ -62,10 +63,10 @@ public class ResgistrosPaginacion {
         Usuario usuarioTemp = logic.stringTokenizer(logic.leeLinea("ë"));
 
         buttonModificar = new Button("Modificar valores");
-        buttonModificar.setTextFill(Color.WHITE);//Color de la letra del boton
-        buttonModificar.setStyle("-fx-background-color: BLACK");//Color del fondo
-        buttonModificar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
-        gridPanePagi.add(buttonModificar, 1, 0);
+        buttonModificar.setTextFill(Color.WHITE);
+        buttonModificar.setStyle("-fx-background-color: BLACK");
+        buttonModificar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        gridPaneRegistrosPaginacion.add(buttonModificar, 1, 0);
         GridPane.setColumnSpan(buttonModificar, Integer.BYTES);
         buttonModificar.setDisable(true);
         buttonModificar.setOnAction((event) -> {
@@ -78,11 +79,11 @@ public class ResgistrosPaginacion {
             }
             textFieldContraseña.setDisable(true);
 
-        });//end setOnAction
+        });
 
         labelInter = new Label();
         labelInter.setText("Cantidad de usuarios por página");
-        gridPanePagi.add(labelInter, 0, 1);
+        gridPaneRegistrosPaginacion.add(labelInter, 0, 1);
         labelInter.setFont(new Font("Arial", 15));
         labelInter.setTextFill(Color.web("#0076a3"));
         labelInter.setVisible(false);
@@ -99,19 +100,19 @@ public class ResgistrosPaginacion {
                 "-fx-background-radius: 4; "
                 +// tamano
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-        gridPanePagi.add(textFieldIntervalo, 1, 1);
+        gridPaneRegistrosPaginacion.add(textFieldIntervalo, 1, 1);
         textFieldIntervalo.setFocusTraversable(false);
         textFieldIntervalo.setOnKeyPressed((event) -> {
             botonModificar.setDisable(false);
         });
 
         botonModificar = new Button("Modificar");
-        botonModificar.setTextFill(Color.WHITE);//Color de la letra del boton
-        botonModificar.setStyle("-fx-background-color: BLACK");//Color del fondo
-        botonModificar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
+        botonModificar.setTextFill(Color.WHITE);
+        botonModificar.setStyle("-fx-background-color: BLACK");
+        botonModificar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         botonModificar.setVisible(false);
         botonModificar.setDisable(true);
-        gridPanePagi.add(botonModificar, 2, 1);
+        gridPaneRegistrosPaginacion.add(botonModificar, 2, 1);
         GridPane.setColumnSpan(botonModificar, Integer.BYTES);
         botonModificar.setOnAction((event) -> {
 
@@ -120,7 +121,7 @@ public class ResgistrosPaginacion {
                     configuracion.getNombreLogo(),
                     configuracion.getPathDeGuardado(), textFieldIntervalo.getText());
 
-            archSupAdmin.replacefromfile(configuracion2);
+            LogicaSuperAdmin.replacefromfile(configuracion2);
 
             labelInter.setVisible(false);
             botonModificar.setDisable(true);
@@ -129,21 +130,21 @@ public class ResgistrosPaginacion {
         });
 
         Button botonBuscar = new Button("Mostrar");
-        botonBuscar.setTextFill(Color.WHITE);//Color de la letra del boton
-        botonBuscar.setStyle("-fx-background-color: BLACK");//Color del fondo
-        botonBuscar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
-        gridPanePagi.add(botonBuscar, 2, 0);
+        botonBuscar.setTextFill(Color.WHITE);
+        botonBuscar.setStyle("-fx-background-color: BLACK");
+        botonBuscar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        gridPaneRegistrosPaginacion.add(botonBuscar, 2, 0);
         botonBuscar.setOnAction((event) -> {
             tableViewUsuarios.setVisible(true);
-            SuperAdmin configuracionActual = archSupAdmin.stringTokenizer(archSupAdmin.readLine("KEYDistancia"));
-            archSupAdmin.guardaEnAL("ä");
-            divisionInt = archSupAdmin.cantidadDC / Integer.parseInt(configuracionActual.getPaginacion());
-            Double divisionDouble = archSupAdmin.cantidadDC / Double.parseDouble(configuracionActual.getPaginacion());
+            SuperAdmin configuracionActual = LogicaSuperAdmin.stringTokenizer(LogicaSuperAdmin.readLine("KEYDistancia"));
+            LogicaSuperAdmin.guardaEnAL("ä");
+            divisionInt = LogicaSuperAdmin.cantidadDC / Integer.parseInt(configuracionActual.getPaginacion());
+            Double divisionDouble = LogicaSuperAdmin.cantidadDC / Double.parseDouble(configuracionActual.getPaginacion());
             if (divisionDouble > divisionInt) {
                 divisionInt = divisionInt + 1;
             }
 
-            ButtonAL = new ArrayList<>();
+            ButtonArrayList = new ArrayList<>();
 
             for (int i = 0; i < divisionInt; i++) {
                 button = new Button();
@@ -151,35 +152,30 @@ public class ResgistrosPaginacion {
                 button.setTextFill(Color.WHITE);
                 button.setStyle("-fx-background-color: rgb(41, 75, 152);");
                 button.setText((i + 1) + "");
-                ButtonAL.add(i, button);
-                final int x = Integer.parseInt(ButtonAL.get(i).getText()) - 1;
-
+                ButtonArrayList.add(i, button);
+                final int x = Integer.parseInt(ButtonArrayList.get(i).getText()) - 1;
                 if (i <= 5) {
-                    gridPanePagi.add(ButtonAL.get(i), i + 2, 4);       //1,   4 -->fila
-
+                    gridPaneRegistrosPaginacion.add(ButtonArrayList.get(i), i + 2, 4);
                 } else if (i <= 11) {
-                    gridPanePagi.add(ButtonAL.get(i), i - 4, 5);        //5 -->fila
-
+                    gridPaneRegistrosPaginacion.add(ButtonArrayList.get(i), i - 4, 5);
                 } else if (i <= 17) {
-                    gridPanePagi.add(ButtonAL.get(i), i - 10, 6);         //6 -->fila
-
+                    gridPaneRegistrosPaginacion.add(ButtonArrayList.get(i), i - 10, 6);
                 }
 
-                ButtonAL.get(i).setOnMouseClicked((event1) -> {
+                ButtonArrayList.get(i).setOnMouseClicked((event1) -> {
                     tableViewUsuarios.getItems().clear();
-                    ArchSupAdmin a = new ArchSupAdmin();
-
+                    LogicaSuperAdmin a = new LogicaSuperAdmin();
                     for (int j = x * Integer.parseInt(configuracionActual.getPaginacion()); j < Integer.parseInt(configuracionActual.getPaginacion()) * (x + 1); j++) {
                         try {
                             reporteMedico.add(a.guardaEnAL("ä").get(j));
-                        } catch (IndexOutOfBoundsException ide) {
+                        } catch (IndexOutOfBoundsException ioobe) {
 
                         }
                     }
 
                 });
 
-            }//for
+            }
             botonBuscar.setDisable(true);
         });
 
@@ -204,23 +200,23 @@ public class ResgistrosPaginacion {
         tableViewUsuarios.setItems(reporteMedico);
         tableViewUsuarios.getColumns().addAll(idColunm, nameColunm, correoColunm);
         tableViewUsuarios.setMinSize(300, 200);
-        gridPanePagi.add(tableViewUsuarios, 0, 2);
+        gridPaneRegistrosPaginacion.add(tableViewUsuarios, 0, 2);
 
         Button botonCerrar = new Button("Cerrar");
-        botonCerrar.setTextFill(Color.WHITE);//Color de la letra del boton
-        botonCerrar.setStyle("-fx-background-color: BLACK");//Color del fondo
-        botonCerrar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
-        gridPanePagi.add(botonCerrar, 1, 2);
+        botonCerrar.setTextFill(Color.WHITE);
+        botonCerrar.setStyle("-fx-background-color: BLACK");
+        botonCerrar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        gridPaneRegistrosPaginacion.add(botonCerrar, 1, 2);
         GridPane.setColumnSpan(botonCerrar, Integer.BYTES);
         botonCerrar.setOnAction((event) -> {
 
-            gridPanePagi.getChildren().clear();
-            gridPanePagi.setBackground(Background.EMPTY);
-            gridPanePagi.getChildren().add(barSuper.menuSuperAdmi());
+            gridPaneRegistrosPaginacion.getChildren().clear();
+            gridPaneRegistrosPaginacion.setBackground(Background.EMPTY);
+            gridPaneRegistrosPaginacion.getChildren().add(barSuper.menuSuperAdmi());
 
-        });//end btn cerrar
+        });
 
-        return gridPanePagi;
-    }//end GridPane createCatalogue()
+        return gridPaneRegistrosPaginacion;
+    }//end gridPaneRegistrosPaginacion()
 
 }

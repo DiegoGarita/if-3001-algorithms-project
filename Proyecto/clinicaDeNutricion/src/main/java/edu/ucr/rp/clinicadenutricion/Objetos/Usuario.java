@@ -1,6 +1,16 @@
 package edu.ucr.rp.clinicadenutricion.Objetos;
 
 public class Usuario {
+    
+    /**
+     * tipo: tipo de usuario (cliente/administrador)
+     * id: identificador (debe ser único)
+     * name: nombre, puede repetirse
+     * contraseña: contraseña con longitud de cinco o más caracteres
+     * correo: correo (solo se permite @gmail.com)
+     * telefono: número telefónico (solo números sin +, -, etc)
+     * direccion: dirección de residencia del usuario
+     */
 
     private String tipo;
     private String id;

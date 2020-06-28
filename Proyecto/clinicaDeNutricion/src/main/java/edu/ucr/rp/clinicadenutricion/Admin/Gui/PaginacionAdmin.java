@@ -2,9 +2,7 @@ package edu.ucr.rp.clinicadenutricion.Admin.Gui;
 
 import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.MainMenuBarSuperAdmi;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
-import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.LogicaSuperAdmin;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,49 +15,41 @@ import javafx.scene.text.*;
 
 public class PaginacionAdmin {
 
-    ArchSupAdmin archSupAdmin = new ArchSupAdmin();
-    TableView<Usuario> tableViewUsuarios;
     public int divisionInt = 0;
-    public ObservableList<Usuario> reporteMedico = FXCollections.observableArrayList();
-    ArrayList<Button> ButtonAL;
-    Label labelInter;
+    ArrayList<Button> ButtonArrayList;
     Button button;
-    Button botonModificar;
-    Button buttonModificar;
-    TextField textFieldContraseña;
-    TextField textFieldIntervalo;
-    LogicaListas logic = new LogicaListas();
+    TableView<Usuario> tableViewUsuarios;
+    public ObservableList<Usuario> reporteMedico = FXCollections.observableArrayList();
+    LogicaSuperAdmin logicaSuperAdmin = new LogicaSuperAdmin();
 
-    public GridPane historial() {
+    public GridPane PaginacionAdmin() {
 
-        GridPane gridPanePagi = new GridPane();
-        gridPanePagi.setMinSize(600, 700);
-        gridPanePagi.setVgap(15);
-        gridPanePagi.setHgap(15);
-        gridPanePagi.setAlignment(Pos.CENTER);
-        SuperAdmin configuracion = archSupAdmin.stringTokenizer(archSupAdmin.readLine("KEYDistancia"));
-        gridPanePagi.setStyle(("-fx-background-image:url('file:src/image/" + configuracion.getNombreLogo() + "');"
+        GridPane gridPanePaginacionAdmin = new GridPane();
+        gridPanePaginacionAdmin.setMinSize(600, 700);
+        gridPanePaginacionAdmin.setVgap(15);
+        gridPanePaginacionAdmin.setHgap(15);
+        gridPanePaginacionAdmin.setAlignment(Pos.CENTER);
+        SuperAdmin configuracion = logicaSuperAdmin.stringTokenizer(logicaSuperAdmin.readLine("KEYDistancia"));
+        gridPanePaginacionAdmin.setStyle(("-fx-background-image:url('file:src/image/" + configuracion.getNombreLogo() + "');"
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
-        MainMenuBarSuperAdmi barSuper = new MainMenuBarSuperAdmi();
-
-        Button botonBuscar = new Button("Mostrar");
-        botonBuscar.setTextFill(Color.WHITE);//Color de la letra del boton
-        botonBuscar.setStyle("-fx-background-color: BLACK");//Color del fondo
-        botonBuscar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
-        gridPanePagi.add(botonBuscar, 2, 0);
-        botonBuscar.setOnAction((event) -> {
+        Button buttonMostrar = new Button("Mostrar");
+        buttonMostrar.setTextFill(Color.WHITE);
+        buttonMostrar.setStyle("-fx-background-color: BLACK");
+        buttonMostrar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        gridPanePaginacionAdmin.add(buttonMostrar, 2, 0);
+        buttonMostrar.setOnAction((event) -> {
             tableViewUsuarios.setVisible(true);
-            SuperAdmin configuracionActual = archSupAdmin.stringTokenizer(archSupAdmin.readLine("KEYDistancia"));
-            archSupAdmin.guardaEnAL("ä");
-            divisionInt = archSupAdmin.cantidadDC / Integer.parseInt(configuracionActual.getPaginacion());
-            Double divisionDouble = archSupAdmin.cantidadDC / Double.parseDouble(configuracionActual.getPaginacion());
+            SuperAdmin configuracionActual = logicaSuperAdmin.stringTokenizer(logicaSuperAdmin.readLine("KEYDistancia"));
+            logicaSuperAdmin.guardaEnAL("ä");
+            divisionInt = logicaSuperAdmin.cantidadDC / Integer.parseInt(configuracionActual.getPaginacion());
+            Double divisionDouble = logicaSuperAdmin.cantidadDC / Double.parseDouble(configuracionActual.getPaginacion());
             if (divisionDouble > divisionInt) {
                 divisionInt = divisionInt + 1;
             }
 
-            ButtonAL = new ArrayList<>();
+            ButtonArrayList = new ArrayList<>();
 
             for (int i = 0; i < divisionInt; i++) {
                 button = new Button();
@@ -67,27 +57,24 @@ public class PaginacionAdmin {
                 button.setTextFill(Color.WHITE);
                 button.setStyle("-fx-background-color: rgb(41, 75, 152);");
                 button.setText((i + 1) + "");
-                ButtonAL.add(i, button);
-                final int x = Integer.parseInt(ButtonAL.get(i).getText()) - 1;
+                ButtonArrayList.add(i, button);
+                final int x = Integer.parseInt(ButtonArrayList.get(i).getText()) - 1;
 
                 if (i <= 5) {
-                    gridPanePagi.add(ButtonAL.get(i), i + 2, 4);       //1,   4 -->fila
-
+                    gridPanePaginacionAdmin.add(ButtonArrayList.get(i), i + 2, 4);
                 } else if (i <= 11) {
-                    gridPanePagi.add(ButtonAL.get(i), i - 4, 5);        //5 -->fila
-
+                    gridPanePaginacionAdmin.add(ButtonArrayList.get(i), i - 4, 5);
                 } else if (i <= 17) {
-                    gridPanePagi.add(ButtonAL.get(i), i - 10, 6);         //6 -->fila
-
+                    gridPanePaginacionAdmin.add(ButtonArrayList.get(i), i - 10, 6);
                 }
 
-                ButtonAL.get(i).setOnMouseClicked((event1) -> {
+                ButtonArrayList.get(i).setOnMouseClicked((event1) -> {
                     tableViewUsuarios.getItems().clear();
-                    ArchSupAdmin a = new ArchSupAdmin();
+                    LogicaSuperAdmin newLogicaSuperAdmin = new LogicaSuperAdmin();
 
                     for (int j = x * Integer.parseInt(configuracionActual.getPaginacion()); j < Integer.parseInt(configuracionActual.getPaginacion()) * (x + 1); j++) {
                         try {
-                            reporteMedico.add(a.guardaEnAL("ä").get(j));
+                            reporteMedico.add(newLogicaSuperAdmin.guardaEnAL("ä").get(j));
                         } catch (IndexOutOfBoundsException ide) {
 
                         }
@@ -95,8 +82,8 @@ public class PaginacionAdmin {
 
                 });
 
-            }//for
-            botonBuscar.setDisable(true);
+            }
+            buttonMostrar.setDisable(true);
         });
 
         tableViewUsuarios = new TableView<>();
@@ -120,23 +107,23 @@ public class PaginacionAdmin {
         tableViewUsuarios.setItems(reporteMedico);
         tableViewUsuarios.getColumns().addAll(idColunm, nameColunm, correoColunm);
         tableViewUsuarios.setMinSize(300, 200);
-        gridPanePagi.add(tableViewUsuarios, 0, 2);
+        gridPanePaginacionAdmin.add(tableViewUsuarios, 0, 2);
 
         Button buttonCerrar = new Button("Cerrar");
         buttonCerrar.setTextFill(Color.WHITE);
         buttonCerrar.setStyle("-fx-background-color: BLACK");
         buttonCerrar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
-        gridPanePagi.add(buttonCerrar, 1, 2);
+        gridPanePaginacionAdmin.add(buttonCerrar, 1, 2);
         MainMenuBarAdministrador o = new MainMenuBarAdministrador();
         buttonCerrar.setOnAction((event) -> {
 
-            gridPanePagi.getChildren().clear();
-            gridPanePagi.setBackground(Background.EMPTY);
-            gridPanePagi.getChildren().add(o.menuAdministrador());
+            gridPanePaginacionAdmin.getChildren().clear();
+            gridPanePaginacionAdmin.setBackground(Background.EMPTY);
+            gridPanePaginacionAdmin.getChildren().add(o.menuAdministrador());
 
-        });//end btn cerrar
+        });
 
-        return gridPanePagi;
-    }//end GridPane createCatalogue()
+        return gridPanePaginacionAdmin;
+    }//end gridPanePaginacionAdmin
 
 }

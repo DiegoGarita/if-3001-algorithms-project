@@ -1,7 +1,7 @@
 package edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui;
 
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.LogicaSuperAdmin;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
 import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
 import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
@@ -20,8 +20,9 @@ public class LogoApp {
     Button buttonGuardar;
     Button buttonLogo;
     Button buttonModifica;
-    LogicaListas logic = new LogicaListas();
-    ArchSupAdmin logiSuper = new ArchSupAdmin();
+    
+    LogicaListas logicaListas = new LogicaListas();
+    LogicaSuperAdmin logicaSuperAdmin = new LogicaSuperAdmin();
     Alertas alerta = new Alertas();
     EncryptMD5 encrypt = new EncryptMD5();
 
@@ -32,7 +33,6 @@ public class LogoApp {
         gridPaneLogoApp.setVgap(15);
         gridPaneLogoApp.setHgap(15);
         gridPaneLogoApp.setAlignment(Pos.CENTER);
-
         gridPaneLogoApp.setStyle(("-fx-background-image:url('file:src/image/SuperAdmin.gif');"
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
@@ -52,7 +52,7 @@ public class LogoApp {
             buttonModifica.setDisable(false);
         });
 
-        Usuario usuarioTemp = logic.stringTokenizer(logic.leeLinea("ë"));
+        Usuario usuarioTemp = logicaListas.stringTokenizer(logicaListas.leeLinea("ë"));
 
         buttonModifica = new Button("Modificar logo");
         buttonModifica.setTextFill(Color.WHITE);
@@ -69,7 +69,7 @@ public class LogoApp {
             }
             textFieldContraseña.setDisable(true);
             buttonModifica.setDisable(true);
-        });//end setOnAction
+        });
 
         Label label = new Label("no files selected");
         buttonLogo = new Button("Elegir logo");
@@ -85,7 +85,7 @@ public class LogoApp {
                 label.setText(file1.getName());
             }
             buttonLogo.setDisable(true);
-        });//END BUTTON
+        });
         buttonLogo.setOnMousePressed((event) -> {
             buttonGuardar.setDisable(false);
         });
@@ -99,19 +99,19 @@ public class LogoApp {
         buttonGuardar.setDisable(true);
         buttonGuardar.setOnAction((event) -> {
 
-            SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+            SuperAdmin configuracion = logicaSuperAdmin.stringTokenizer(logicaSuperAdmin.readLine("KEYDistancia"));
             SuperAdmin configuracion2 = new SuperAdmin(configuracion.getIdentificadorSA(), configuracion.getAbreClinica(),
                     configuracion.getCierreClinica(), configuracion.getTiempoConsulta(),
                     label.getText(),
                     configuracion.getPathDeGuardado(), configuracion.getPaginacion());
 
-            logiSuper.replacefromfile(configuracion2);
+            logicaSuperAdmin.replacefromfile(configuracion2);
 
             textFieldContraseña.clear();
             buttonGuardar.setDisable(true);
             alerta.alertInformation("Imagen de fonde cambiada, correctamente");
 
-        });//END BUTTON
+        });
 
         MainMenuBarSuperAdmi mainMenuBarSuperAdmi = new MainMenuBarSuperAdmi();
         Button botonCerrar = new Button("Cerrar");
@@ -125,24 +125,23 @@ public class LogoApp {
             gridPaneLogoApp.setBackground(Background.EMPTY);
             gridPaneLogoApp.getChildren().add(mainMenuBarSuperAdmi.menuSuperAdmi());
 
-        });//end btn cerrar
+        });
 
         return gridPaneLogoApp;
-    }//end GridPane createCatalogue()
+    }//end LogoApp()
 
+    /**
+     * método que crea el fileChooser, va a escoger las imagenes
+     * @return el file seleccionado
+     */
     public FileChooser setFileChooser() {
-        //Este metodo crea el fileChooser que va a escoger las imagenes
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Buscar Imagen");
-
         fileChooser.setInitialDirectory(new File("C:\\source-code\\if-3001-algorithms-project\\Proyecto\\clinicaDeNutricion\\src\\image"));
-
-        //Filtros de lo que muestra la ventana
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("JPEG", "*.jpeg")
-        );//fin filtro
-
+        );
         return fileChooser;
-    }//end method setFileChooser
+    }
 
 }

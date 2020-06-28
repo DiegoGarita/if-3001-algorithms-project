@@ -1,8 +1,7 @@
 package edu.ucr.rp.clinicadenutricion.Admin.logic;
 
 import edu.ucr.rp.clinicadenutricion.Objetos.ReporteMedico;
-import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.LogicaSuperAdmin;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
 import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
 import java.io.*;
@@ -12,37 +11,46 @@ import javax.swing.JOptionPane;
 
 public class LogicaCola {
 
-    ImplementacionCola implementacionCola = new ImplementacionCola();
-
     public ArrayList<Usuario> arrayListClientes = new ArrayList<>();
-    ArchSupAdmin logiSuper = new ArchSupAdmin();
-    LogicaListas logic = new LogicaListas();
-     
+    ImplementacionCola implementacionCola = new ImplementacionCola();
+    LogicaSuperAdmin logicaSuperAdmin = new LogicaSuperAdmin();
+    LogicaListas logicaListas = new LogicaListas();
+
+    /**
+     * método que escribe archivo .txt de solicitud de cita para X cliente
+     *
+     * @param reporteMedico objeto a agregar al archivo con todos sus atributos
+     */
     public void escribeCitas(ReporteMedico reporteMedico) {
 
-        SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
-        File newFile = new File(configuracion.getPathDeGuardado() + "\\Solicitud de cita para " + reporteMedico.getID() + ".txt");
+        File newFile = new File("Solicitud de cita para " + reporteMedico.getID() + ".txt");
 
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(newFile, true);
             PrintStream printStream = new PrintStream(fileOutputStream);
-
             printStream.println(reporteMedico.getID() + "|" + reporteMedico.getNombre() + "|"
                     + reporteMedico.getFecha() + "|" + reporteMedico.getHora() + "|"
                     + reporteMedico.getEdad() + "|" + reporteMedico.getEdadMetabolica() + "|"
                     + reporteMedico.getAltura() + "|" + reporteMedico.getPeso() + "|"
-                    + reporteMedico.getPorcenMasaMuscular() + "|" + reporteMedico.getGrasa() + "|"
+                    + reporteMedico.getPorcentajeMasaMuscular() + "|" + reporteMedico.getGrasa() + "|"
                     + reporteMedico.getGrasaVisceral() + "|" + reporteMedico.getHueso() + "|"
-                    + reporteMedico.getPorcenAgua() + "|" + reporteMedico.getActividadFisica() + "|"
+                    + reporteMedico.getPorcentajeAgua() + "|" + reporteMedico.getActividadFisica() + "|"
                     + reporteMedico.getHorasDeSueño() + "|" + reporteMedico.getTextAreaNotas());
 
         } catch (FileNotFoundException fileNotFoundException) {
             JOptionPane.showMessageDialog(null, fileNotFoundException + "\nProblemas con el archivo");
         }
-    }//end writeFileCatalogue()
+    }
 
+    /**
+     * método que lee el archivo .txt de solicitud de cita para X cliente
+     *
+     * @param file nombre del archivo .txt que va a leer
+     * @param identificador utilizado para comparar y validar posteriormente
+     * @return String de lo que leyó en el archivo
+     */
     public String leeArchivo(String file, int identificador) {
-       // SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+
         File newFile = new File("Solicitud de cita para " + file + ".txt");
         String returned = "";
         try {
@@ -68,9 +76,18 @@ public class LogicaCola {
         return returned;
     }// end readProperties()
 
+    /**
+     * método que lee el archivo .txt de solicitud de cita para X cliente y
+     * devuelve línea en específico
+     *
+     * @param file nombre del .txt (cliente)
+     * @param identificador identificador booleano para saber si se permite leer
+     * más
+     * @return String de las líneas leídas, utilizado en grafico
+     */
     public String obtieneLineaEspecifica(String file, boolean identificador) {
-     //   SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
-        File newFile = new File( "Solicitud de cita para " + file + ".txt");
+
+        File newFile = new File("Solicitud de cita para " + file + ".txt");
         String returned = "";
         try {
             FileInputStream fileInputStream = new FileInputStream(newFile);
@@ -97,6 +114,12 @@ public class LogicaCola {
         return returned;
     }// end readProperties()
 
+    /**
+     * método que lee la cantidad de clientes de un archivo
+     *
+     * @param identificador filtro para leer cierto tipo de usuarios
+     * @return cantidad de clientes encontrados
+     */
     public int cantidadDeClientes(String identificador) {
         int cantidad = 0;
         File newFile = new File("usuarios.txt");
@@ -108,7 +131,7 @@ public class LogicaCola {
 
             while (currentRegistry != null) {
                 if (currentRegistry.contains(identificador)) {
-                    arrayListClientes.add(logic.stringTokenizer(currentRegistry));
+                    arrayListClientes.add(logicaListas.stringTokenizer(currentRegistry));
                     cantidad++;
                 }
                 currentRegistry = bufferedReader.readLine();
@@ -121,10 +144,15 @@ public class LogicaCola {
         return cantidad;
     }// end readProperties()
 
+    /**
+     * método que lee la cantidad de líneas encontradas en el archivo de solicitud de cita para X cliente 
+     * @param file recibe nombre del archivo (cliente)
+     * @return cantidad de líneas encontradas en el archivo
+     */
+     
     public int cantidadDeLineas(String file) {
         int cantidad = 0;
-        //SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
-        File newFile = new File( "Solicitud de cita para " + file + ".txt");
+        File newFile = new File("Solicitud de cita para " + file + ".txt");
         try {
             FileInputStream fileInputStream = new FileInputStream(newFile);
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
@@ -133,7 +161,6 @@ public class LogicaCola {
 
             while (currentRegistry != null) {
 
-                //arrayListClientes.add(logic.stringTokenizer(currentRegistry));
                 cantidad++;
 
                 currentRegistry = bufferedReader.readLine();
@@ -146,13 +173,23 @@ public class LogicaCola {
         return cantidad;
     }// end readProperties()
 
-    public Usuario obtieneUsuario(String s) {
-        return logic.stringTokenizer(logic.leeLinea(s));
+    /**
+     * método que une dos métodos para obtener usuarios apartir de un String
+     * @param string string que será convertido
+     * @return Usuario retornado por medio de los dos métodos utilizados 
+     */
+    public Usuario obtieneUsuario(String string) {
+        return logicaListas.stringTokenizer(logicaListas.leeLinea(string));
     }
 
-    public ReporteMedico stringTokenizer(String lines) {
+    /**
+     * método que convierte de String al objeto Reporte Médico
+     * @param lineas String a ser convertido
+     * @return Reporte médico que viene de procesos con StringTokenizer
+     */
+    public ReporteMedico stringTokenizer(String lineas) {
 
-        StringTokenizer stringTokenizer = new StringTokenizer(lines, "|");
+        StringTokenizer stringTokenizer = new StringTokenizer(lineas, "|");
         int counterTokens = 0;
         String iD = "";
         String nombre = "";

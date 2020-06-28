@@ -7,6 +7,10 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Start extends Application {
+/**
+ * start, utilizado para armar la escena del FX
+ *
+ */
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -19,6 +23,9 @@ public class Start extends Application {
         stage.show();
     }//end Start
 
+    /**
+     * displayer, reproduce el FX
+     */
     public void display() {
         launch();
     }//end display

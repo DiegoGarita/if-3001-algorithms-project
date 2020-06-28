@@ -41,9 +41,7 @@ public class AjustesCliente {
     EncryptMD5 encrypt = new EncryptMD5();
     LogicaListas logicaLista = new LogicaListas();
     IniciarSesion iniciarSesion;
-
     Alertas alertas = new Alertas();
-
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
     EnviarCorreo enviarCorreo = new EnviarCorreo();
@@ -101,7 +99,6 @@ public class AjustesCliente {
 
         labelNombreUsuario = new Label("Nombre: ");
         gridPaneAjustesCliente.add(labelNombreUsuario, 0, 2);
-
         textFieldNombreUsuario = new TextField(usuarioTemp.getName());
         textFieldNombreUsuario.setPromptText("Nombre");
         textFieldNombreUsuario.setDisable(true);
@@ -117,7 +114,6 @@ public class AjustesCliente {
 
         labelContraseña = new Label("Contraseña: ");
         gridPaneAjustesCliente.add(labelContraseña, 0, 3);
-
         textFieldContraseña = new TextField();
         textFieldContraseña.setPromptText("Contraseña");
         textFieldContraseña.setStyle(
@@ -137,7 +133,6 @@ public class AjustesCliente {
         labelCorreo = new Label("Correo: ");
         labelCorreo.setVisible(false);
         gridPaneAjustesCliente.add(labelCorreo, 0, 4);
-
         textFieldCorreo = new TextField(usuarioTemp.getCorreo());
         textFieldCorreo.setPromptText("correo");
         textFieldCorreo.setVisible(false);
@@ -154,7 +149,6 @@ public class AjustesCliente {
         labelTelefono = new Label("Teléfono: ");
         labelTelefono.setVisible(false);
         gridPaneAjustesCliente.add(labelTelefono, 0, 5);
-
         textFieldTelefono = new TextField(usuarioTemp.getTelefono());
         textFieldTelefono.setPromptText("telefono");
         textFieldTelefono.setVisible(false);
@@ -171,7 +165,6 @@ public class AjustesCliente {
         labelDireccion = new Label("Dirección: ");
         labelDireccion.setVisible(false);
         gridPaneAjustesCliente.add(labelDireccion, 0, 6);
-
         textFieldDireccion = new TextField(usuarioTemp.getDireccion());
         textFieldDireccion.setPromptText("direccion");
         textFieldDireccion.setVisible(false);
@@ -194,10 +187,8 @@ public class AjustesCliente {
         buttonModificar.setOnAction((event) -> {
 
             if (!textFieldContraseña.getText().trim().equals("")) {
-
                 Acciones acciones = new Acciones(iniciarSesion.ID, "Modificó su perfil", fechaHora.histoFechaHora());
                 logicaAVL.escribeHistorial(acciones);
-
                 if (usuarioTemp.getContraseña().equals(encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()))) {
                     textFieldCorreo.setVisible(true);
                     textFieldDireccion.setVisible(true);
@@ -205,7 +196,6 @@ public class AjustesCliente {
                     labelTelefono.setVisible(true);
                     labelCorreo.setVisible(true);
                     labelDireccion.setVisible(true);
-
                     buttonAceptar.setVisible(true);
                     buttonEliminar.setVisible(false);
                     buttonModificar.setVisible(false);
@@ -214,14 +204,13 @@ public class AjustesCliente {
                     buttonModificar.setDisable(true);
                     textFieldContraseña.clear();
                     alertas.alertWarning("Contraseña incorrecta\nIntente de nuevo");
-                }//end else
+                }
 
-            }//end if
-            else {
+            } else {
                 alertas.alertWarning("Espacio vacio\nIntente de nuevo");
-            }//end else
+            }
 
-        });//end setOnAction
+        });
 
         buttonEliminar = new Button("Eliminar usuario");
         buttonEliminar.setTextFill(Color.WHITE);
@@ -251,18 +240,17 @@ public class AjustesCliente {
                     buttonEliminar.setDisable(true);
                     buttonModificar.setDisable(true);
                     textFieldContraseña.clear();
-                    alertas.alertWarning("Contraseña incorrecta\nIntente de nuevo");
+                    alertas.alertWarning("Contraseña incorrecta\nIntentelo de nuevo");
                 }
                 buttonEliminar.setDisable(true);
                 buttonModificar.setDisable(true);
                 textFieldContraseña.clear();
 
-            }//end if
-            else {
-                alertas.alertWarning("Espacio vacio\nIntente de nuevo");
-            }//end else
+            } else {
+                alertas.alertWarning("Espacio vacío\nIntentelo de nuevo");
+            }
 
-        });//end setOnAction
+        });
 
         buttonAceptar = new Button("Aceptar");
         buttonAceptar.setTextFill(Color.WHITE);
@@ -271,9 +259,7 @@ public class AjustesCliente {
         gridPaneAjustesCliente.add(buttonAceptar, 1, 8);
         buttonAceptar.setVisible(false);
         buttonAceptar.setOnAction((event) -> {
-
             try {
-
                 if (!textFieldCorreo.getText().trim().equals("")
                         && !textFieldContraseña.getText().trim().equals("")
                         && !textFieldTelefono.getText().trim().equals("")
@@ -309,14 +295,12 @@ public class AjustesCliente {
 
                     buttonAceptar.setDisable(true);
 
-                }//end if
-                else {
+                } else {
                     alertas.alertWarning("Espacio vacio o error en formato\nIntente de nuevo");
-                }//end else
-            }//end try
-            catch (java.lang.NumberFormatException jlNFE) {
-                alertas.alertWarning("Espacio vacio o error en formato\nIntente de nuevo");
-            }//end catch
+                }
+            } catch (java.lang.NumberFormatException nfe) {
+                alertas.alertWarning("Espacio vacío o error en formato\nIntentelo de nuevo");
+            }
 
             alertas.alertInformation("Ingrese de nuevo a su cuenta para\ncomprobar los cambios realizados");
             Platform.exit();
@@ -336,8 +320,8 @@ public class AjustesCliente {
             gridPaneAjustesCliente.setBackground(Background.EMPTY);
             gridPaneAjustesCliente.getChildren().add(barCliente.menuCliente());
 
-        });//end btn cerrar
+        });
 
         return gridPaneAjustesCliente;
-    }//end GridPane createCatalogue()
+    }//end gridPaneAjustesCliente
 }

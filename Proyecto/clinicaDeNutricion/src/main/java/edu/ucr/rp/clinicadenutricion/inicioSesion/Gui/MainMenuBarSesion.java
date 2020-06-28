@@ -1,7 +1,7 @@
 package edu.ucr.rp.clinicadenutricion.inicioSesion.Gui;
 
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
-import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.LogicaSuperAdmin;
 import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -19,13 +19,13 @@ public class MainMenuBarSesion {
     CrearUsuarioNuevo crearUsuarionuevo = new CrearUsuarioNuevo();
     IniciarSesion entrar = new IniciarSesion();
     VBox vBoxWindows, vBoxMain;
-    ArchSupAdmin logiSuper = new ArchSupAdmin();
+    LogicaSuperAdmin logicaSuperAdmin = new LogicaSuperAdmin();
     Alertas alerta = new Alertas();
 
     public Scene getMainScene() {
 
         vBoxMain = new VBox();
-        SuperAdmin configuracion = logiSuper.stringTokenizer(logiSuper.readLine("KEYDistancia"));
+        SuperAdmin configuracion = logicaSuperAdmin.stringTokenizer(logicaSuperAdmin.readLine("KEYDistancia"));
         vBoxMain.setStyle(("-fx-background-image:url('file:src/image/" + configuracion.getNombreLogo() + "');"
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
@@ -53,17 +53,17 @@ public class MainMenuBarSesion {
 
         menuItemCredits.setOnAction((event) -> {
             vBoxWindows.getChildren().clear();
-            vBoxWindows.getChildren().addAll(creditos.getGraphicalUserInterfaceCreditos());
+            vBoxWindows.getChildren().addAll(creditos.Creditos());
         });
 
         menuItemAbout.setOnAction((event) -> {
             vBoxWindows.getChildren().clear();
-            vBoxWindows.getChildren().addAll(acercaDe.getGraphicalUserInterfaceAcercaDe());
+            vBoxWindows.getChildren().addAll(acercaDe.AcercaDe());
         });
 
         menuItemPerformance.setOnAction((event) -> {
             vBoxWindows.getChildren().clear();
-            vBoxWindows.getChildren().addAll(ayuda.getGraphicalUserInterfaceAyuda());
+            vBoxWindows.getChildren().addAll(ayuda.Ayuda());
         });
 
         menuItemExit.setOnAction((event) -> Platform.exit());
@@ -81,11 +81,10 @@ public class MainMenuBarSesion {
         menuItemIngresar.setAccelerator(KeyCombination.keyCombination("Ctrl+I"));
 
         menuItemCreaCuenta.setOnAction((event) -> {
-            try{
-            vBoxWindows.getChildren().clear();
-            vBoxWindows.getChildren().addAll(crearUsuarionuevo.creaUsuario());
-            }
-            catch(java.lang.NullPointerException jlnpe){
+            try {
+                vBoxWindows.getChildren().clear();
+                vBoxWindows.getChildren().addAll(crearUsuarionuevo.creaUsuario());
+            } catch (java.lang.NullPointerException npe) {
                 alerta.alertWarning("Se esta usando por primera el app\nIngrese como SuperAdmin");
             }
         });
@@ -107,6 +106,6 @@ public class MainMenuBarSesion {
 
         return scene;
 
-    }//end Scene getMainScene()
+    }//end getMainScene()
 
-}//end MainMenuBarSesion
+}

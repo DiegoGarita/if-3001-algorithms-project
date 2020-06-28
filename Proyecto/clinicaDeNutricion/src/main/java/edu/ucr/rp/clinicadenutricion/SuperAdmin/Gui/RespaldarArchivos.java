@@ -1,8 +1,10 @@
 package edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui;
 
+import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.Respaldo;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
 import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.LogicaSuperAdmin;
 import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
 import edu.ucr.rp.clinicadenutricion.Utilitario.EncryptMD5;
 import java.io.IOException;
@@ -12,26 +14,26 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 
-// en esta clase se podra realizar un respaldo de la informacion contenida en archivos
 public class RespaldarArchivos {
 
     TextField textFieldContra;
     Button buttonModiUsu;
     Button buttonRespaldo;
+    
     LogicaListas logic = new LogicaListas();
-    Usuario uwu = logic.stringTokenizer(logic.leeLinea("ë"));
+    LogicaSuperAdmin logicaSuperAdmin = new LogicaSuperAdmin();
     Alertas alerta = new Alertas();
     EncryptMD5 encrypt = new EncryptMD5();
 
     public GridPane respaldo() {
 
-        GridPane gridPaneCitaNue = new GridPane();
-        gridPaneCitaNue.setMinSize(600, 700);
-        gridPaneCitaNue.setVgap(15);
-        gridPaneCitaNue.setHgap(15);
-        gridPaneCitaNue.setAlignment(Pos.CENTER);
+        GridPane gridPaneRespaldarAchivos = new GridPane();
+        gridPaneRespaldarAchivos.setMinSize(600, 700);
+        gridPaneRespaldarAchivos.setVgap(15);
+        gridPaneRespaldarAchivos.setHgap(15);
+        gridPaneRespaldarAchivos.setAlignment(Pos.CENTER);
 
-        gridPaneCitaNue.setStyle(("-fx-background-image:url('file:src/image/SuperAdmin.gif');"
+        gridPaneRespaldarAchivos.setStyle(("-fx-background-image:url('file:src/image/SuperAdmin.gif');"
                 + "-fx-background-repeat : no-repeat;"
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
@@ -44,17 +46,19 @@ public class RespaldarArchivos {
                 "-fx-background-radius: 4; "
                 +// tamano
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-        gridPaneCitaNue.add(textFieldContra, 0, 1); /// columna fila
+        gridPaneRespaldarAchivos.add(textFieldContra, 0, 1);
         textFieldContra.setFocusTraversable(false);
         textFieldContra.setOnKeyPressed((event) -> {
             buttonModiUsu.setDisable(false);
         });
 
+        Usuario uwu = logic.stringTokenizer(logic.leeLinea("ë"));
+        
         buttonModiUsu = new Button("Aceptar");
-        buttonModiUsu.setTextFill(Color.WHITE);//Color de la letra del boton
-        buttonModiUsu.setStyle("-fx-background-color: BLACK");//Color del fondo
-        buttonModiUsu.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
-        gridPaneCitaNue.add(buttonModiUsu, 1, 1);
+        buttonModiUsu.setTextFill(Color.WHITE);
+        buttonModiUsu.setStyle("-fx-background-color: BLACK");
+        buttonModiUsu.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        gridPaneRespaldarAchivos.add(buttonModiUsu, 1, 1);
         buttonModiUsu.setDisable(true);
         buttonModiUsu.setOnAction((event) -> {
 
@@ -64,27 +68,29 @@ public class RespaldarArchivos {
             }
             buttonModiUsu.setDisable(true);
             textFieldContra.setDisable(true);
-        });//end setOnAction
+        });
 
         Respaldo resUsuarios = new Respaldo();
         Respaldo resHistorial = new Respaldo();
         Respaldo resApartaCita = new Respaldo();
+        
+         SuperAdmin configuracion = logicaSuperAdmin.stringTokenizer(logicaSuperAdmin.readLine("KEYDistancia"));
 
         buttonRespaldo = new Button("Respaldar informacion");
-        buttonRespaldo.setTextFill(Color.WHITE);//Color de la letra del boton
-        buttonRespaldo.setStyle("-fx-background-color: BLACK");//Color del fondo
-        buttonRespaldo.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
-        gridPaneCitaNue.add(buttonRespaldo, 0, 5);
+        buttonRespaldo.setTextFill(Color.WHITE);
+        buttonRespaldo.setStyle("-fx-background-color: BLACK");
+        buttonRespaldo.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        gridPaneRespaldarAchivos.add(buttonRespaldo, 0, 5);
         buttonRespaldo.setVisible(false);
         buttonRespaldo.setOnAction((event) -> {
 
             try {
-                resUsuarios.createZipFile("C:\\source-code\\if-3001-algorithms-project\\Proyecto\\clinicaDeNutricion\\usuarios.txt", "usuario");
+                 resUsuarios.createZipFile("C:\\source-code\\if-3001-algorithms-project\\Proyecto\\clinicaDeNutricion\\usuarios.txt", "usuario");
                 resHistorial.createZipFile("C:\\source-code\\if-3001-algorithms-project\\Proyecto\\clinicaDeNutricion\\Historial.txt", "historial");
                 resApartaCita.createZipFile("C:\\source-code\\if-3001-algorithms-project\\Proyecto\\clinicaDeNutricion\\ApartaCita.txt", "citas");
-            } catch (java.io.FileNotFoundException jio) {
+            } catch (java.io.FileNotFoundException fnfe) {
                 alerta.alertWarning("No se pudo realizar todos los respaldos\nNo se encontraron todos los archivos");
-            } catch (IOException ex) {
+            } catch (IOException ioe) {
                 alerta.alertWarning("No se pudo realizar todos los respaldos\nNo se encontraron todos los archivos");
             }
 
@@ -92,25 +98,24 @@ public class RespaldarArchivos {
             textFieldContra.setDisable(true);
             alerta.alertInformation("Respaldo creado correctamente");
             buttonRespaldo.setDisable(true);
-        });//end setOnAction
+        });
 
-        //***
         MainMenuBarSuperAdmi barSuper = new MainMenuBarSuperAdmi();
-        //***
+        
         Button botonCerrar = new Button("Cerrar");
-        botonCerrar.setTextFill(Color.WHITE);//Color de la letra del boton
-        botonCerrar.setStyle("-fx-background-color: BLACK");//Color del fondo
-        botonCerrar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));//Tipo de letra
-        gridPaneCitaNue.add(botonCerrar, 0, 8);
+        botonCerrar.setTextFill(Color.WHITE);
+        botonCerrar.setStyle("-fx-background-color: BLACK");
+        botonCerrar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        gridPaneRespaldarAchivos.add(botonCerrar, 0, 8);
         botonCerrar.setOnAction((event) -> {
 
-            gridPaneCitaNue.getChildren().clear();
-            gridPaneCitaNue.setBackground(Background.EMPTY);
-            gridPaneCitaNue.getChildren().add(barSuper.menuSuperAdmi());
+            gridPaneRespaldarAchivos.getChildren().clear();
+            gridPaneRespaldarAchivos.setBackground(Background.EMPTY);
+            gridPaneRespaldarAchivos.getChildren().add(barSuper.menuSuperAdmi());
 
-        });//end btn cerrar
+        });
 
-        return gridPaneCitaNue;
-    }//end GridPane createCatalogue()
+        return gridPaneRespaldarAchivos;
+    }//end gridPaneRespaldarAchivos()
 
 }
