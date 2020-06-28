@@ -79,45 +79,55 @@ public class Formulario {
         for (int i = 0; i < adminLogic.cantidadDeClientes("ä"); i++) {
             comboBoxClientes.getItems().addAll(adminLogic.arrayListClientes.get(i).getId());
         }
+        comboBoxClientes.setOnMouseClicked((event) -> {
+            buttonIngresar.setDisable(false);
+        });
 
         buttonIngresar = new Button("Ingresar");
         buttonIngresar.setTextFill(Color.WHITE);
         buttonIngresar.setStyle("-fx-background-color: BLACK");
         buttonIngresar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
+        buttonIngresar.setDisable(true);
         gridPaneFormulario.add(buttonIngresar, 1, 0);
         buttonIngresar.setOnAction((event) -> {
-            comboBoxClientes.setDisable(true);
-            buttonIngresar.setDisable(true);
-            if (!comboBoxClientes.getValue().toString().equals("")) {
-                textFieldID.setVisible(true);
-                textFieldNombre.setVisible(true);
-                textFieldFecha.setVisible(true);
-                textFieldHora.setVisible(true);
-                textFieldEdad.setVisible(true);
-                textFieldEdadMetabolica.setVisible(true);
-                textFieldAltura.setVisible(true);
-                textFieldPeso.setVisible(true);
-                textFieldPorcentajeMasaMuscular.setVisible(true);
-                textFieldGrasa.setVisible(true);
-                textFieldGrasaVisceral.setVisible(true);
-                textFieldHueso.setVisible(true);
-                textFieldPorcentajeAgua.setVisible(true);
-                textFieldActividadFisica.setVisible(true);
-                textFieldHorasDescanso.setVisible(true);
 
-                textAreaNotas.setVisible(true);
+            if (comboBoxClientes.getSelectionModel().getSelectedItem().equals("Clientes") != true) {
 
-                buttonAceptar.setVisible(true);
-                buttongeneraPDF.setVisible(true);
-                buttonEnviarCorreo.setVisible(true);
+                comboBoxClientes.setDisable(true);
+                buttonIngresar.setDisable(true);
+                if (!comboBoxClientes.getValue().toString().equals("")) {
+                    textFieldID.setVisible(true);
+                    textFieldNombre.setVisible(true);
+                    textFieldFecha.setVisible(true);
+                    textFieldHora.setVisible(true);
+                    textFieldEdad.setVisible(true);
+                    textFieldEdadMetabolica.setVisible(true);
+                    textFieldAltura.setVisible(true);
+                    textFieldPeso.setVisible(true);
+                    textFieldPorcentajeMasaMuscular.setVisible(true);
+                    textFieldGrasa.setVisible(true);
+                    textFieldGrasaVisceral.setVisible(true);
+                    textFieldHueso.setVisible(true);
+                    textFieldPorcentajeAgua.setVisible(true);
+                    textFieldActividadFisica.setVisible(true);
+                    textFieldHorasDescanso.setVisible(true);
 
-                textFieldID.setText(adminLogic.obtieneUsuario(comboBoxClientes.getValue().toString()).getId());
-                textFieldNombre.setText(adminLogic.obtieneUsuario(comboBoxClientes.getValue().toString()).getName());
-                textFieldFecha.setText(fechaHora.histoFechaHora().substring(0, 10));
-                textFieldHora.setText(fechaHora.histoFechaHora().substring(11, 19));
+                    textAreaNotas.setVisible(true);
 
+                    buttonAceptar.setVisible(true);
+                    buttongeneraPDF.setVisible(true);
+                    buttonEnviarCorreo.setVisible(true);
+
+                    textFieldID.setText(adminLogic.obtieneUsuario(comboBoxClientes.getValue().toString()).getId());
+                    textFieldNombre.setText(adminLogic.obtieneUsuario(comboBoxClientes.getValue().toString()).getName());
+                    textFieldFecha.setText(fechaHora.histoFechaHora().substring(0, 10));
+                    textFieldHora.setText(fechaHora.histoFechaHora().substring(11, 19));
+
+                }
+            }//end if 
+            else {
+                alerta.alertWarning("No selecciono un cliente\nIntente de nuevo");
             }
-
         });//end setOnAction
 
         textFieldID = new TextField();
@@ -145,7 +155,6 @@ public class Formulario {
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
         gridPaneFormulario.add(textFieldNombre, 1, 1);
         textFieldNombre.setFocusTraversable(false);
-  
 
         textFieldFecha = new TextField();
         textFieldFecha.setDisable(true);
@@ -160,7 +169,6 @@ public class Formulario {
         gridPaneFormulario.add(textFieldFecha, 2, 1);
         textFieldFecha.setFocusTraversable(false);
 
-
         textFieldHora = new TextField();
         textFieldHora.setDisable(true);
         textFieldHora.setVisible(false);
@@ -173,7 +181,6 @@ public class Formulario {
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
         gridPaneFormulario.add(textFieldHora, 3, 1);
         textFieldHora.setFocusTraversable(false);
-
 
         textFieldEdad = new TextField();
         textFieldEdad.setPromptText("Edad");
@@ -188,7 +195,7 @@ public class Formulario {
         gridPaneFormulario.add(textFieldEdad, 0, 2);
         textFieldEdad.setFocusTraversable(false);
         textFieldEdad.setOnKeyPressed((t) -> {
-             buttonAceptar.setDisable(true);
+            buttonAceptar.setDisable(true);
         });
 
         textFieldEdadMetabolica = new TextField();
@@ -204,7 +211,7 @@ public class Formulario {
         gridPaneFormulario.add(textFieldEdadMetabolica, 1, 2);
         textFieldEdadMetabolica.setFocusTraversable(false);
         textFieldEdadMetabolica.setOnKeyPressed((t) -> {
-             buttonAceptar.setDisable(true);
+            buttonAceptar.setDisable(true);
         });
 
         textFieldAltura = new TextField();
@@ -220,7 +227,7 @@ public class Formulario {
         gridPaneFormulario.add(textFieldAltura, 2, 2);
         textFieldAltura.setFocusTraversable(false);
         textFieldAltura.setOnKeyPressed((t) -> {
-             buttonAceptar.setDisable(true);
+            buttonAceptar.setDisable(true);
         });
 
         textFieldPeso = new TextField();
@@ -236,7 +243,7 @@ public class Formulario {
         gridPaneFormulario.add(textFieldPeso, 3, 2);
         textFieldPeso.setFocusTraversable(false);
         textFieldPeso.setOnKeyPressed((t) -> {
-             buttonAceptar.setDisable(true);
+            buttonAceptar.setDisable(true);
         });
 
         textFieldPorcentajeMasaMuscular = new TextField();
@@ -252,7 +259,7 @@ public class Formulario {
         gridPaneFormulario.add(textFieldPorcentajeMasaMuscular, 0, 3);
         textFieldPorcentajeMasaMuscular.setFocusTraversable(false);
         textFieldPorcentajeMasaMuscular.setOnKeyPressed((t) -> {
-             buttonAceptar.setDisable(true);
+            buttonAceptar.setDisable(true);
         });
 
         textFieldGrasa = new TextField();
@@ -268,7 +275,7 @@ public class Formulario {
         gridPaneFormulario.add(textFieldGrasa, 1, 3);
         textFieldGrasa.setFocusTraversable(false);
         textFieldGrasa.setOnKeyPressed((t) -> {
-             buttonAceptar.setDisable(true);
+            buttonAceptar.setDisable(true);
         });
 
         textFieldGrasaVisceral = new TextField();
@@ -285,7 +292,7 @@ public class Formulario {
         gridPaneFormulario.add(textFieldGrasaVisceral, 2, 3);
         textFieldGrasaVisceral.setFocusTraversable(false);
         textFieldGrasaVisceral.setOnKeyPressed((t) -> {
-             buttonAceptar.setDisable(true);
+            buttonAceptar.setDisable(true);
         });
 
         textFieldHueso = new TextField();
@@ -301,7 +308,7 @@ public class Formulario {
         gridPaneFormulario.add(textFieldHueso, 3, 3);
         textFieldHueso.setFocusTraversable(false);
         textFieldHueso.setOnKeyPressed((t) -> {
-             buttonAceptar.setDisable(true);
+            buttonAceptar.setDisable(true);
         });
 
         textFieldPorcentajeAgua = new TextField();
@@ -317,7 +324,7 @@ public class Formulario {
         gridPaneFormulario.add(textFieldPorcentajeAgua, 0, 4);
         textFieldPorcentajeAgua.setFocusTraversable(false);
         textFieldPorcentajeAgua.setOnKeyPressed((t) -> {
-             buttonAceptar.setDisable(true);
+            buttonAceptar.setDisable(true);
         });
 
         textFieldActividadFisica = new TextField();
@@ -333,7 +340,7 @@ public class Formulario {
         gridPaneFormulario.add(textFieldActividadFisica, 1, 4);
         textFieldActividadFisica.setFocusTraversable(false);
         textFieldActividadFisica.setOnKeyPressed((t) -> {
-             buttonAceptar.setDisable(true);
+            buttonAceptar.setDisable(true);
         });
 
         textFieldHorasDescanso = new TextField();
@@ -353,7 +360,7 @@ public class Formulario {
             buttongeneraPDF.setDisable(false);
             textAreaNotas.setDisable(false);
             textAreaNotas.setDisable(false);
-             buttonAceptar.setDisable(true);
+            buttonAceptar.setDisable(true);
         });
 
         GridPane.setColumnSpan(textAreaNotas, Integer.BYTES);
@@ -444,7 +451,7 @@ public class Formulario {
         buttonEnviarCorreo.setOnAction((event) -> {
             String correo = adminLogic.obtieneUsuario(comboBoxClientes.getValue().toString()).getCorreo();
             try {
-                enviarCorreo.sendPDF(correo, "Clínica Susana Distancia", "Reporte " +comboBoxClientes.getValue().toString(), "Reporte de los datos tomados en formulario");
+                enviarCorreo.sendPDF(correo, "Clínica Susana Distancia", "Reporte " + comboBoxClientes.getValue().toString(), "Reporte de los datos tomados en formulario");
             } catch (IOException ex) {
                 Logger.getLogger(Formulario.class.getName()).log(Level.SEVERE, null, ex);
             }

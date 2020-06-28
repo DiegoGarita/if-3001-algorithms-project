@@ -318,6 +318,9 @@ public class AjustesCliente {
                 alertas.alertWarning("Espacio vacio o error en formato\nIntente de nuevo");
             }//end catch
 
+            alertas.alertInformation("Ingrese de nuevo a su cuenta para\ncomprobar los cambios realizados");
+            Platform.exit();
+
         });//end setOnAction
 
         MainMenuBarCliente barCliente = new MainMenuBarCliente();

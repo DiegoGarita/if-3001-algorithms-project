@@ -26,7 +26,7 @@ public class HorarioTiempoClinica {
     LogicaListas logic = new LogicaListas();
     ArchSupAdmin logiSuper = new ArchSupAdmin();
     Alertas alerta = new Alertas();
-     EncryptMD5 encrypt = new EncryptMD5();
+    EncryptMD5 encrypt = new EncryptMD5();
 
     public GridPane horarioClinica() {
 
