@@ -11,9 +11,9 @@ import javafx.scene.text.*;
 //en esta clase se colocara ayudas paara los distintos tipos de usuario
 public class Ayuda {
 
-    Label labelDefinicion = new Label("");
-    Label labelMantenimiento = new Label("");
-    Label labelReportes = new Label("");
+    Label labelClie = new Label("");
+    Label labelAjus = new Label("");
+    Label labelPaci = new Label("");
     Button cliente;
     Button superAdmin;
     Button admin;
@@ -43,16 +43,16 @@ public class Ayuda {
         cliente.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         gridPaneAyuda.add(cliente, 0, 4);
         cliente.setOnAction((event) -> {
-            labelReportes.setVisible(false);
-            labelMantenimiento.setVisible(false);
-            labelDefinicion = new Label("Reportes: Acceso a informes de avance y historial de citas\n"
+            labelPaci.setVisible(false);
+            labelAjus.setVisible(false);
+            labelClie = new Label("Reportes: Acceso a informes de avance y historial de citas\n"
                     + "Citas: Reservar una cita, modificarla o eliminarla\nPlanes: Acceso a planes y recetas\n"
                     + "Ajustes: Modificar o eliminar su usuario\nMás: Página web de la clínica con más información\n");
-            labelDefinicion.setFont(Font.font("Rockwell", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 20));  // tipo y tamaño de letra
-            labelDefinicion.setStyle("-fx-background-color: rgb(41, 75, 152);");
-            labelDefinicion.setTextFill(Color.POWDERBLUE);
-            labelDefinicion.setVisible(true);
-            gridPaneAyuda.add(labelDefinicion, 0, 7);
+            labelClie.setFont(Font.font("Rockwell", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 20));  // tipo y tamaño de letra
+            labelClie.setStyle("-fx-background-color: rgb(41, 75, 152);");
+            labelClie.setTextFill(Color.POWDERBLUE);
+            labelClie.setVisible(true);
+            gridPaneAyuda.add(labelClie, 0, 7);
             superAdmin.setDisable(false);
             admin.setDisable(false);
             cliente.setDisable(true);
@@ -65,17 +65,17 @@ public class Ayuda {
         admin.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         gridPaneAyuda.add(admin, 0, 3);
         admin.setOnMouseClicked((event) -> {
-            labelMantenimiento.setVisible(false);
-            labelDefinicion.setVisible(false);
+            labelAjus.setVisible(false);
+            labelClie.setVisible(false);
 
-            labelReportes = new Label("Paciente: Crear reportes de los pacientes acceso a información \n"
-                    + "Citas: En el cual podrá agendar una cita para cualquier usuario registrado\n"
+            labelPaci = new Label("Paciente: Crear reportes de los pacientes acceso a información \n"
+                    + "Citas: En el cual podrá agendar una cita para cualquier usuario registrado\n ademas de cancelar y modificar\n"
                     + "Planes: Acceso a planes y recetas varias \n");
-            labelReportes.setTextFill(Color.POWDERBLUE);
-            labelReportes.setFont(Font.font("Rockwell", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 20));
-            labelReportes.setStyle("-fx-background-color: rgb(41, 75, 152);");
-            labelReportes.setVisible(true);
-            gridPaneAyuda.add(labelReportes, 0, 7);
+            labelPaci.setTextFill(Color.POWDERBLUE);
+            labelPaci.setFont(Font.font("Rockwell", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 20));
+            labelPaci.setStyle("-fx-background-color: rgb(41, 75, 152);");
+            labelPaci.setVisible(true);
+            gridPaneAyuda.add(labelPaci, 0, 7);
             superAdmin.setDisable(false);
             cliente.setDisable(false);
             admin.setDisable(true);
@@ -89,16 +89,16 @@ public class Ayuda {
         gridPaneAyuda.add(superAdmin, 0, 2);
         superAdmin.setOnMouseClicked((event) -> {
 
-            labelDefinicion.setVisible(false);
-            labelReportes.setVisible(false);
-            labelMantenimiento = new Label("Ajustes: Cambiar el horario de la clínica\n"
+            labelClie.setVisible(false);
+            labelPaci.setVisible(false);
+            labelAjus = new Label("Ajustes: Cambiar el horario de la clínica\n"
             +"Registros: Donde se crearan respaldos de información, se podrá cambiar\n la paginación y se tendra acceso a un historial\n"
                     + "Otros: En donde se podrá cambiar el logo del app y el path de los archivos");
-            labelMantenimiento.setTextFill(Color.POWDERBLUE);
-            labelMantenimiento.setFont(Font.font("Rockwell", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 20));
-            labelMantenimiento.setStyle("-fx-background-color: rgb(41, 75, 152);");
-            labelMantenimiento.setVisible(true);
-            gridPaneAyuda.add(labelMantenimiento, 0, 7);
+            labelAjus.setTextFill(Color.POWDERBLUE);
+            labelAjus.setFont(Font.font("Rockwell", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 20));
+            labelAjus.setStyle("-fx-background-color: rgb(41, 75, 152);");
+            labelAjus.setVisible(true);
+            gridPaneAyuda.add(labelAjus, 0, 7);
             cliente.setDisable(false);
             admin.setDisable(false);
             superAdmin.setDisable(true);

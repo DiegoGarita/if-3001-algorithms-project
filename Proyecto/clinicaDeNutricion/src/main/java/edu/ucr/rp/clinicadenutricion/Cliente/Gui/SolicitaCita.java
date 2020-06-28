@@ -206,6 +206,17 @@ public class SolicitaCita {
 
         });//end btn cerrar
 
+        Label aclaracion1 = new Label();
+        aclaracion1.setText("* Es de suma importancia que recuerde el ID de su cita\n"
+                + "Ya que si desea modificar/cancelar este será necesario");
+        aclaracion1.setFont(new Font("Arial", 15));
+        aclaracion1.setTextFill(Color.web("#0076a3"));
+        aclaracion1.setStyle("-fx-font-weight: bold");
+        aclaracion1.setStyle("-fx-background-color: rgb(111, 210, 170);");
+        gridPaneSolicitaCita.add(aclaracion1, 0, 9);
+
+        GridPane.setColumnSpan(aclaracion1, Integer.BYTES);
+
         return gridPaneSolicitaCita;
     }//end GridPane createCatalogue()
 }

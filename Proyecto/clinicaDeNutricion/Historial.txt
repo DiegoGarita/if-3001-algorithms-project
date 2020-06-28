@@ -20,3 +20,62 @@
 54321 & Modificó su perfil & Sat Jun 27 18:33:10 CST 2020
 54321 & Modificó su perfil & Sat Jun 27 18:33:15 CST 2020
 54321 & Modificó su perfil & Sat Jun 27 18:33:36 CST 2020
+666666 & Inició sesión como admistrador & Sun Jun 28 08:26:14 CST 2020
+666666 & Solicitó la lista de Recetas & Sun Jun 28 08:26:42 CST 2020
+54321 & Inició sesión como cliente & Sun Jun 28 08:27:23 CST 2020
+666666 & Inició sesión como admistrador & Sun Jun 28 08:31:55 CST 2020
+666666 & Inició sesión como admistrador & Sun Jun 28 08:33:06 CST 2020
+666666 & Solicitó información de pacientes & Sun Jun 28 08:33:20 CST 2020
+666666 & Inició sesión como admistrador & Sun Jun 28 08:37:20 CST 2020
+666666 & Solicitó información de pacientes & Sun Jun 28 08:37:36 CST 2020
+666666 & Solicitó información de pacientes & Sun Jun 28 08:37:46 CST 2020
+666666 & Solicitó la lista de Recetas & Sun Jun 28 08:38:03 CST 2020
+666666 & Inició sesión como admistrador & Sun Jun 28 08:41:24 CST 2020
+666666 & Solicitó información de pacientes & Sun Jun 28 08:41:45 CST 2020
+666666 & Inició sesión como admistrador & Sun Jun 28 08:42:51 CST 2020
+666666 & Solicitó la lista de Recetas & Sun Jun 28 08:43:17 CST 2020
+54321 & Inició sesión como cliente & Sun Jun 28 08:43:48 CST 2020
+54321 & consultó su reporte de citas & Sun Jun 28 08:44:00 CST 2020
+54321 & Inició sesión como cliente & Sun Jun 28 08:47:58 CST 2020
+54321 & Solicitó información sobre planes alimenticios & Sun Jun 28 08:48:50 CST 2020
+54321 & Modificó su perfil & Sun Jun 28 08:49:21 CST 2020
+54321 & Eliminó su perfil & Sun Jun 28 08:49:26 CST 2020
+54321 & Inició sesión como cliente & Sun Jun 28 08:51:07 CST 2020
+54321 & Eliminó su perfil & Sun Jun 28 08:51:14 CST 2020
+xxxxx & Se registró como nuevo usuario & Sun Jun 28 08:59:19 CST 2020
+ & Intentó registrarse cuando ya estaba registrado & Sun Jun 28 09:00:30 CST 2020
+zzzzz & Se registró como nuevo usuario & Sun Jun 28 09:03:05 CST 2020
+xxxxx & Intentó iniciar sesión pero falló la contraseña & Sun Jun 28 09:04:08 CST 2020
+     & , usuario no registrado intentó iniciar sesión & Sun Jun 28 09:04:15 CST 2020
+xxxxx & Intentó iniciar sesión pero falló la contraseña & Sun Jun 28 09:04:29 CST 2020
+xxxxx & Inició sesión como cliente & Sun Jun 28 09:04:44 CST 2020
+xxxxx & consultó su reporte de citas & Sun Jun 28 09:05:41 CST 2020
+xxxxx & Solicitó información sobre recetas & Sun Jun 28 09:05:51 CST 2020
+xxxxx & Solicitó información sobre recetas & Sun Jun 28 09:05:54 CST 2020
+xxxxx & Solicitó información sobre recetas & Sun Jun 28 09:05:58 CST 2020
+xxxxx & Solicitó información sobre planes alimenticios & Sun Jun 28 09:06:32 CST 2020
+xxxxx & Solicitó información sobre planes alimenticios & Sun Jun 28 09:06:37 CST 2020
+xxxxx & Solicitó una cita & Sun Jun 28 09:08:27 CST 2020
+xxxxx & Solicitó una cita & Sun Jun 28 09:09:33 CST 2020
+xxxxx & Inició sesión como cliente & Sun Jun 28 09:12:51 CST 2020
+xxxxx & Modificó su perfil & Sun Jun 28 09:12:57 CST 2020
+xxxxx & Modificó su cita & Sun Jun 28 09:13:21 CST 2020
+xxxxx & Eliminó su cita & Sun Jun 28 09:14:02 CST 2020
+xxxxx & Modificó su perfil & Sun Jun 28 09:14:58 CST 2020
+xxxxx & Eliminó su perfil & Sun Jun 28 09:15:02 CST 2020
+xxxxx & Modificó su perfil & Sun Jun 28 09:15:10 CST 2020
+xxxxx & Inició sesión como cliente & Sun Jun 28 09:16:38 CST 2020
+xxxxx & Inició sesión como cliente & Sun Jun 28 09:17:30 CST 2020
+xxxxx & Modificó su perfil & Sun Jun 28 09:17:35 CST 2020
+xxxxx & Inició sesión como cliente & Sun Jun 28 09:20:48 CST 2020
+xxxxx & Modificó su perfil & Sun Jun 28 09:20:56 CST 2020
+zzzzz & Inició sesión como admistrador & Sun Jun 28 09:21:35 CST 2020
+zzzzz & Solicitó información de pacientes & Sun Jun 28 09:21:41 CST 2020
+zzzzz & Solicitó la lista de planes alimenticios & Sun Jun 28 09:22:19 CST 2020
+zzzzz & Solicitó la lista de Recetas & Sun Jun 28 09:22:34 CST 2020
+zzzzz & Ingresó nuevo formulario para un paciente & Sun Jun 28 09:25:18 CST 2020
+zzzzz & Solicitó información de pacientes & Sun Jun 28 09:25:43 CST 2020
+xxxxx & Inició sesión como cliente & Sun Jun 28 09:45:37 CST 2020
+xxxxx & Inició sesión como cliente & Sun Jun 28 09:56:52 CST 2020
+xxx & , usuario no registrado intentó iniciar sesión & Sun Jun 28 09:58:02 CST 2020
+xxxxx & Inició sesión como cliente & Sun Jun 28 09:58:07 CST 2020

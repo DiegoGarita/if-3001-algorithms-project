@@ -6,6 +6,7 @@ import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
 import edu.ucr.rp.clinicadenutricion.Objetos.ReporteMedico;
+import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
 import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.IniciarSesion;
 import javafx.collections.FXCollections;
@@ -26,6 +27,7 @@ public class InformacionPaciente {
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
     Button buttonBuscar;
+    Alertas alerta = new Alertas();
     TableView<ReporteMedico> tableViewReporteMedico;
 
     public GridPane informacionPaciente() {
@@ -151,13 +153,20 @@ public class InformacionPaciente {
         buttonBuscar.setDisable(true);
         buttonBuscar.setOnAction((event) -> {
 
-            tableViewReporteMedico.setVisible(true);
-            Acciones acciones = new Acciones(iniciarSesion.ID, "Solicitó información de pacientes", fechaHora.histoFechaHora());
-            logicaAVL.escribeHistorial(acciones);
+            if (comboBoxClientes.getSelectionModel().getSelectedItem().equals("Clientes") != true) {
 
-            tableViewReporteMedico.setItems(obtieneReporteMedico(comboBoxClientes.getValue().toString()));
+                tableViewReporteMedico.setVisible(true);
+                Acciones acciones = new Acciones(iniciarSesion.ID, "Solicitó información de pacientes", fechaHora.histoFechaHora());
+                logicaAVL.escribeHistorial(acciones);
 
-            buttonBuscar.setDisable(true);
+                tableViewReporteMedico.setItems(obtieneReporteMedico(comboBoxClientes.getValue().toString()));
+
+                buttonBuscar.setDisable(true);
+
+            }//end if 
+            else {
+                alerta.alertWarning("No selecciono un cliente\nIntente de nuevo");
+            }
         });// end boton
 
         Button buttonCerrar = new Button("Cerrar");

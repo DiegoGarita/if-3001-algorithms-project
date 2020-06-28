@@ -6,6 +6,7 @@ import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.LogoApp;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
+import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
 import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.IniciarSesion;
 import javafx.geometry.Pos;
@@ -16,6 +17,7 @@ import javafx.scene.text.*;
 
 public class PlanesAlimenticios {
 
+    Alertas alerta = new Alertas();
     ComboBox comboBoxSele = new ComboBox();
     Button buttonDesplegarInfo;
     Button buttonAceptar;
@@ -64,21 +66,30 @@ public class PlanesAlimenticios {
         gridPanePlanesAlimenticios.add(buttonAceptar, 1, 0);
         buttonAceptar.setDisable(true);
         buttonAceptar.setOnAction((event) -> {
-            if (comboBoxOp.getValue().toString().equals("Recetas")) {
-                comboBoxSele.setVisible(true);
-                buttonDesplegarInfo.setVisible(true);
-                for (int i = 0; i < planAl.cantidadRecetas("*", "Recetas", planAl.arrayListRecetas); i++) {
-                    comboBoxSele.getItems().addAll(planAl.arrayListRecetas.get(i));
+
+            if (comboBoxOp.getSelectionModel().getSelectedItem().equals("Elige una opción") != true) {
+
+                if (comboBoxOp.getValue().toString().equals("Recetas")) {
+                    comboBoxSele.setVisible(true);
+                    buttonDesplegarInfo.setVisible(true);
+                    for (int i = 0; i < planAl.cantidadRecetas("*", "Recetas", planAl.arrayListRecetas); i++) {
+                        comboBoxSele.getItems().addAll(planAl.arrayListRecetas.get(i));
+                    }
+                } else if (comboBoxOp.getValue().toString().equals("Planes alimenticios")) {
+                    comboBoxSele.setVisible(true);
+                    buttonDesplegarInfo.setVisible(true);
+                    for (int i = 0; i < planAl.cantidadRecetas("*", "Planes", planAl.arrayListPlanes); i++) {
+                        comboBoxSele.getItems().addAll(planAl.arrayListPlanes.get(i));
+                    }
                 }
-            } else if (comboBoxOp.getValue().toString().equals("Planes alimenticios")) {
-                comboBoxSele.setVisible(true);
-                buttonDesplegarInfo.setVisible(true);
-                for (int i = 0; i < planAl.cantidadRecetas("*", "Planes", planAl.arrayListPlanes); i++) {
-                    comboBoxSele.getItems().addAll(planAl.arrayListPlanes.get(i));
-                }
+                buttonAceptar.setDisable(true);
+                comboBoxOp.setDisable(true);
+
+            }//end if 
+            else {
+                alerta.alertWarning("No selecciono una opcion\nIntente de nuevo");
             }
-            buttonAceptar.setDisable(true);
-            comboBoxOp.setDisable(true);
+
         });//end setOnAction
 
         buttonDesplegarInfo = new Button("Desplegar");
@@ -89,16 +100,25 @@ public class PlanesAlimenticios {
         buttonDesplegarInfo.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         gridPanePlanesAlimenticios.add(buttonDesplegarInfo, 1, 1);
         buttonDesplegarInfo.setOnAction((event) -> {
-            if (comboBoxOp.getValue().toString().equals("Recetas")) {
-                textAreaMostrar.setText(planAl.leeArchivo(comboBoxSele.getValue().toString(), "Recetas"));
-                Acciones acciones = new Acciones(iniciarSesion.ID, "Solicitó la lista de Recetas", fechaHora.histoFechaHora());
-                logicaAVL.escribeHistorial(acciones);
-            } else if (comboBoxOp.getValue().toString().equals("Planes alimenticios")) {
-                textAreaMostrar.setText(planAl.leeArchivo(comboBoxSele.getValue().toString(), "Planes"));
-                Acciones acciones = new Acciones(iniciarSesion.ID, "Solicitó la lista de planes alimenticios", fechaHora.histoFechaHora());
-                logicaAVL.escribeHistorial(acciones);
+
+            if (comboBoxSele.getSelectionModel().getSelectedItem().equals("Elige una opción") != true) {
+
+                if (comboBoxOp.getValue().toString().equals("Recetas")) {
+                    textAreaMostrar.setText(planAl.leeArchivo(comboBoxSele.getValue().toString(), "Recetas"));
+                    Acciones acciones = new Acciones(iniciarSesion.ID, "Solicitó la lista de Recetas", fechaHora.histoFechaHora());
+                    logicaAVL.escribeHistorial(acciones);
+                } else if (comboBoxOp.getValue().toString().equals("Planes alimenticios")) {
+                    textAreaMostrar.setText(planAl.leeArchivo(comboBoxSele.getValue().toString(), "Planes"));
+                    Acciones acciones = new Acciones(iniciarSesion.ID, "Solicitó la lista de planes alimenticios", fechaHora.histoFechaHora());
+                    logicaAVL.escribeHistorial(acciones);
+                }
+                buttonDesplegarInfo.setDisable(true);
+
+            }//end if 
+            else {
+                alerta.alertWarning("No selecciono una opcion\nIntente de nuevo");
             }
-            buttonDesplegarInfo.setDisable(true);
+
         });//end setOnAction
 
         textAreaMostrar.setEditable(false);

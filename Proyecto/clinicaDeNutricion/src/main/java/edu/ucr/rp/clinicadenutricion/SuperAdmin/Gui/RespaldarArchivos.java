@@ -88,8 +88,8 @@ public class RespaldarArchivos {
                 alerta.alertWarning("No se pudo realizar todos los respaldos\nNo se encontraron todos los archivos");
             }
 
-            buttonModiUsu.setDisable(false);
-            textFieldContra.setDisable(false);
+            buttonModiUsu.setDisable(true);
+            textFieldContra.setDisable(true);
             alerta.alertInformation("Respaldo creado correctamente");
             buttonRespaldo.setDisable(true);
         });//end setOnAction
