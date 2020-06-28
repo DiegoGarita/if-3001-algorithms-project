@@ -81,9 +81,9 @@ public class LogicaPila {
             }
 
         } catch (FileNotFoundException fileNotFoundException) {
-            System.out.println(fileNotFoundException + ": Problemas con el archivo");
+             JOptionPane.showMessageDialog(null, fileNotFoundException + "\nProblemas con el archivo");
         } catch (IOException IOException) {
-            System.out.println(IOException + ": Problemas con el archivo");
+            JOptionPane.showMessageDialog(null, IOException + "\nProblemas con el archivo");
         }
 
     }
@@ -239,9 +239,9 @@ public class LogicaPila {
             }
 
         } catch (FileNotFoundException fileNotFoundException) {
-            System.out.println(fileNotFoundException + ": Problemas con el archivo");
+             JOptionPane.showMessageDialog(null, fileNotFoundException + "\nProblemas con el archivo");
         } catch (IOException IOException) {
-            System.out.println(IOException + ": Problemas con el archivo");
+            JOptionPane.showMessageDialog(null, IOException + "\nProblemas con el archivo");
         }
         return returned;
     }
@@ -299,9 +299,9 @@ public class LogicaPila {
             }
 
         } catch (FileNotFoundException fileNotFoundException) {
-            System.out.println(fileNotFoundException + ": Problemas con el archivo");
+             JOptionPane.showMessageDialog(null, fileNotFoundException + "\nProblemas con el archivo");
         } catch (IOException IOException) {
-            System.out.println(IOException + ": Problemas con el archivo");
+             JOptionPane.showMessageDialog(null, IOException+ "\nProblemas con el archivo");
         }
         return false;
     }
