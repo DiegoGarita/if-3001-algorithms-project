@@ -17,7 +17,7 @@ public class MainMenuBarSesion {
     Ayuda ayuda = new Ayuda();
     Creditos creditos = new Creditos();
     CrearUsuarioNuevo crearUsuarionuevo = new CrearUsuarioNuevo();
-    IniciarSesion entrar = new IniciarSesion();
+    IniciarSesion entra = new IniciarSesion();
     VBox vBoxWindows, vBoxMain;
     ArchSupAdmin logiSuper = new ArchSupAdmin();
     Alertas alerta = new Alertas();
@@ -81,18 +81,17 @@ public class MainMenuBarSesion {
         menuItemIngresar.setAccelerator(KeyCombination.keyCombination("Ctrl+I"));
 
         menuItemCreaCuenta.setOnAction((event) -> {
-            try{
-            vBoxWindows.getChildren().clear();
-            vBoxWindows.getChildren().addAll(crearUsuarionuevo.creaUsuario());
-            }
-            catch(java.lang.NullPointerException jlnpe){
+            try {
+                vBoxWindows.getChildren().clear();
+                vBoxWindows.getChildren().addAll(crearUsuarionuevo.creaUsuario());
+            } catch (java.lang.NullPointerException jlnpe) {
                 alerta.alertWarning("Se esta usando por primera el app\nIngrese como SuperAdmin");
             }
         });
 
         menuItemIngresar.setOnAction((event) -> {
             vBoxWindows.getChildren().clear();
-            vBoxWindows.getChildren().addAll(entrar.iniciarSesion());
+            vBoxWindows.getChildren().addAll(entra.iniciarSesion());
         });
 
         menuCrearUsuario.getItems().addAll(menuItemCreaCuenta, menuItemIngresar);

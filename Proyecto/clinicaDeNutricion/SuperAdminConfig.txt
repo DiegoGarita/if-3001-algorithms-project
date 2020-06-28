@@ -1,1 +1,1 @@
-KEYDistancia|8|18|4|3.jpeg|C:\Users\diego\Desktop\UCR|4
+KEYDistancia|8|18|6|3.jpeg|C:\source-code\if-3001-algorithms-project\Proyecto\clinicaDeNutricion|6

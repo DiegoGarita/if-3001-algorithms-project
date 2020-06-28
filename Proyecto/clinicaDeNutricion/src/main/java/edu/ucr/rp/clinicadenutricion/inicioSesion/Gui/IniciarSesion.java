@@ -18,6 +18,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
+import javax.swing.JOptionPane;
 
 public class IniciarSesion {
 
@@ -37,7 +38,7 @@ public class IniciarSesion {
     ArchSupAdmin logiSuper = new ArchSupAdmin();
     Alertas alertas = new Alertas();
 
-    public GridPane iniciarSesion() {
+   public GridPane iniciarSesion() {
 
         GridPane gridPaneIniciarSesion = new GridPane();
         gridPaneIniciarSesion.setMinSize(600, 700);
@@ -91,8 +92,8 @@ public class IniciarSesion {
             Node node = gridPaneIniciarSesion.getChildren().get(2);  //--> Limpia para que entren los otros grids con su menuBar
             logic.leerArchivo();
 
-            if (textFieldID.getText().equals("Super") && encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()).equals("aWWPEVnhogU=")) {
-                alertas.alertInformation("Bienvenido super administrador");
+            if (textFieldID.getText().equals("Super") && textFieldContraseña.getText().equals("1234")) {
+                alertas.alertInformation("Bienvenido super administrador: " + textFieldID.getText());
                 gridPaneIniciarSesion.getChildren().clear();
                 gridPaneIniciarSesion.getChildren().add(0, node);
                 gridPaneIniciarSesion.getChildren().add(mainMenuBarSuperAdmi.menuSuperAdmi());
@@ -104,7 +105,7 @@ public class IniciarSesion {
                     if (logic.stringTokenizer(logic.leeLinea(textFieldID.getText())).getId().equals(textFieldID.getText())
                             && !textFieldID.getText().trim().equals("") && !textFieldContraseña.getText().trim().equals("")) {
                         if (logic.stringTokenizer(logic.leeLinea(textFieldID.getText())).getContraseña().equals(encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()))) {
-                            alertas.alertInformation("Bienvenido usuario: " + logic.stringTokenizer(logic.leeLinea(textFieldID.getText())).getName());
+                            alertas.alertInformation("Bienvenido usuario: " + textFieldID.getText());
                             ID = textFieldID.getText();
                             Acciones acciones = new Acciones(ID, "Inició sesión como cliente", fechaHora.histoFechaHora());
                             logicaAVL.escribeHistorial(acciones);
@@ -122,7 +123,7 @@ public class IniciarSesion {
                 } else if (logic.leeLinea(textFieldID.getText()).substring(0, 1).equals("ö")) {
                     if (logic.stringTokenizer(logic.leeLinea(textFieldID.getText())).getId().equals(textFieldID.getText())) {
                         if (logic.stringTokenizer(logic.leeLinea(textFieldID.getText())).getContraseña().equals(encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()))) {
-                            alertas.alertInformation("Bienvenido administrador: " + logic.stringTokenizer(logic.leeLinea(textFieldID.getText())).getName());
+                            alertas.alertInformation("Bienvenido administrador: " + textFieldID.getText());
                             ID = textFieldID.getText();
                             Acciones acciones = new Acciones(ID, "Inició sesión como admistrador", fechaHora.histoFechaHora());
                             logicaAVL.escribeHistorial(acciones);

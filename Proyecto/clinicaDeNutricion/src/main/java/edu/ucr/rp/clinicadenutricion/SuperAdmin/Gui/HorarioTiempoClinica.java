@@ -5,7 +5,6 @@ import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
 import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
 import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
-import edu.ucr.rp.clinicadenutricion.Utilitario.EncryptMD5;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -26,7 +25,6 @@ public class HorarioTiempoClinica {
     LogicaListas logic = new LogicaListas();
     ArchSupAdmin logiSuper = new ArchSupAdmin();
     Alertas alerta = new Alertas();
-     EncryptMD5 encrypt = new EncryptMD5();
 
     public GridPane horarioClinica() {
 
@@ -136,7 +134,7 @@ public class HorarioTiempoClinica {
         buttonModificar.setDisable(true);
         buttonModificar.setOnAction((event) -> {
 
-            if (encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()).equals(usuarioTemp.getName())) {
+            if (textFieldContraseña.getText().equals(usuarioTemp.getName())) {
                 textFieldIntervalo.setVisible(true);
                 textFieldAbreClinica.setVisible(true);
                 textFieldCierraClinica.setVisible(true);
