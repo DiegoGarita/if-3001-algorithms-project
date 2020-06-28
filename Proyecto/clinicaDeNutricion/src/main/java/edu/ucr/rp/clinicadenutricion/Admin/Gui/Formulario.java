@@ -145,7 +145,6 @@ public class Formulario {
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
         gridPaneFormulario.add(textFieldNombre, 1, 1);
         textFieldNombre.setFocusTraversable(false);
-  
 
         textFieldFecha = new TextField();
         textFieldFecha.setDisable(true);
@@ -160,7 +159,6 @@ public class Formulario {
         gridPaneFormulario.add(textFieldFecha, 2, 1);
         textFieldFecha.setFocusTraversable(false);
 
-
         textFieldHora = new TextField();
         textFieldHora.setDisable(true);
         textFieldHora.setVisible(false);
@@ -174,7 +172,6 @@ public class Formulario {
         gridPaneFormulario.add(textFieldHora, 3, 1);
         textFieldHora.setFocusTraversable(false);
 
-
         textFieldEdad = new TextField();
         textFieldEdad.setPromptText("Edad");
         textFieldEdad.setVisible(false);
@@ -187,9 +184,6 @@ public class Formulario {
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
         gridPaneFormulario.add(textFieldEdad, 0, 2);
         textFieldEdad.setFocusTraversable(false);
-        textFieldEdad.setOnKeyPressed((t) -> {
-             buttonAceptar.setDisable(true);
-        });
 
         textFieldEdadMetabolica = new TextField();
         textFieldEdadMetabolica.setPromptText("Edad metabolica");
@@ -203,9 +197,6 @@ public class Formulario {
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
         gridPaneFormulario.add(textFieldEdadMetabolica, 1, 2);
         textFieldEdadMetabolica.setFocusTraversable(false);
-        textFieldEdadMetabolica.setOnKeyPressed((t) -> {
-             buttonAceptar.setDisable(true);
-        });
 
         textFieldAltura = new TextField();
         textFieldAltura.setPromptText("Altura");
@@ -219,9 +210,6 @@ public class Formulario {
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
         gridPaneFormulario.add(textFieldAltura, 2, 2);
         textFieldAltura.setFocusTraversable(false);
-        textFieldAltura.setOnKeyPressed((t) -> {
-             buttonAceptar.setDisable(true);
-        });
 
         textFieldPeso = new TextField();
         textFieldPeso.setPromptText("Peso");
@@ -235,9 +223,6 @@ public class Formulario {
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
         gridPaneFormulario.add(textFieldPeso, 3, 2);
         textFieldPeso.setFocusTraversable(false);
-        textFieldPeso.setOnKeyPressed((t) -> {
-             buttonAceptar.setDisable(true);
-        });
 
         textFieldPorcentajeMasaMuscular = new TextField();
         textFieldPorcentajeMasaMuscular.setPromptText("% masa muscular");
@@ -251,9 +236,6 @@ public class Formulario {
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
         gridPaneFormulario.add(textFieldPorcentajeMasaMuscular, 0, 3);
         textFieldPorcentajeMasaMuscular.setFocusTraversable(false);
-        textFieldPorcentajeMasaMuscular.setOnKeyPressed((t) -> {
-             buttonAceptar.setDisable(true);
-        });
 
         textFieldGrasa = new TextField();
         textFieldGrasa.setPromptText("Grasa");
@@ -267,9 +249,6 @@ public class Formulario {
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
         gridPaneFormulario.add(textFieldGrasa, 1, 3);
         textFieldGrasa.setFocusTraversable(false);
-        textFieldGrasa.setOnKeyPressed((t) -> {
-             buttonAceptar.setDisable(true);
-        });
 
         textFieldGrasaVisceral = new TextField();
         textFieldGrasaVisceral.setPromptText("Grasa Visceral");
@@ -284,9 +263,6 @@ public class Formulario {
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
         gridPaneFormulario.add(textFieldGrasaVisceral, 2, 3);
         textFieldGrasaVisceral.setFocusTraversable(false);
-        textFieldGrasaVisceral.setOnKeyPressed((t) -> {
-             buttonAceptar.setDisable(true);
-        });
 
         textFieldHueso = new TextField();
         textFieldHueso.setPromptText("Hueso");
@@ -300,9 +276,6 @@ public class Formulario {
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
         gridPaneFormulario.add(textFieldHueso, 3, 3);
         textFieldHueso.setFocusTraversable(false);
-        textFieldHueso.setOnKeyPressed((t) -> {
-             buttonAceptar.setDisable(true);
-        });
 
         textFieldPorcentajeAgua = new TextField();
         textFieldPorcentajeAgua.setPromptText("% de agua");
@@ -316,9 +289,6 @@ public class Formulario {
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
         gridPaneFormulario.add(textFieldPorcentajeAgua, 0, 4);
         textFieldPorcentajeAgua.setFocusTraversable(false);
-        textFieldPorcentajeAgua.setOnKeyPressed((t) -> {
-             buttonAceptar.setDisable(true);
-        });
 
         textFieldActividadFisica = new TextField();
         textFieldActividadFisica.setPromptText("Actividad fisica");
@@ -332,9 +302,6 @@ public class Formulario {
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
         gridPaneFormulario.add(textFieldActividadFisica, 1, 4);
         textFieldActividadFisica.setFocusTraversable(false);
-        textFieldActividadFisica.setOnKeyPressed((t) -> {
-             buttonAceptar.setDisable(true);
-        });
 
         textFieldHorasDescanso = new TextField();
         textFieldHorasDescanso.setPromptText("Horas de descanso");
@@ -353,7 +320,6 @@ public class Formulario {
             buttongeneraPDF.setDisable(false);
             textAreaNotas.setDisable(false);
             textAreaNotas.setDisable(false);
-             buttonAceptar.setDisable(true);
         });
 
         GridPane.setColumnSpan(textAreaNotas, Integer.BYTES);
@@ -363,9 +329,6 @@ public class Formulario {
         gridPaneFormulario.add(textAreaNotas, 0, 5);
         textAreaNotas.setPromptText("");
         textAreaNotas.setFocusTraversable(false);
-        textAreaNotas.setOnMouseClicked((t) -> {
-            buttongeneraPDF.setDisable(false);
-        });
 
         buttongeneraPDF = new Button("Generar PDF");
         buttongeneraPDF.setVisible(false);
@@ -444,7 +407,7 @@ public class Formulario {
         buttonEnviarCorreo.setOnAction((event) -> {
             String correo = adminLogic.obtieneUsuario(comboBoxClientes.getValue().toString()).getCorreo();
             try {
-                enviarCorreo.sendPDF(correo, "Clínica Susana Distancia", "Reporte " +comboBoxClientes.getValue().toString(), "Reporte de los datos tomados en formulario");
+                enviarCorreo.sendPDF(correo, "Clínica Susana Distancia", comboBoxClientes.getValue().toString());
             } catch (IOException ex) {
                 Logger.getLogger(Formulario.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -525,15 +488,10 @@ public class Formulario {
         buttonCerrar.setStyle("-fx-background-color: BLACK");
         buttonCerrar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         gridPaneFormulario.add(buttonCerrar, 0, 8);
-
         MainMenuBarAdministrador o = new MainMenuBarAdministrador();
-
         buttonCerrar.setOnAction((event) -> {
-
             gridPaneFormulario.getChildren().clear();
-
             gridPaneFormulario.setBackground(Background.EMPTY);
-
             gridPaneFormulario.getChildren().add(o.menuAdministrador());
 
         });//end btn cerrar
