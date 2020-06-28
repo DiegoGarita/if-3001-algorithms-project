@@ -54,7 +54,7 @@ public class EnviarCorreo {
 
     }
 
-    public void sendPDF(String correo, String tema, String texto) throws IOException {
+    public void sendPDF(String correo, String tema, String texto, String text) throws IOException {
 
         String to = correo; //Recipient's email ID needs to be mentioned.
         String from = "ClinicaSusanaDistancia@gmail.com"; //Sender's email ID needs to be mentioned
@@ -89,10 +89,10 @@ public class EnviarCorreo {
 
             try {
 
-                File f = new File("Reporte " +texto + ".pdf");
+                File f = new File(texto + ".pdf");
 
                 attachmentPart.attachFile(f);
-                textPart.setText("Reporte de los datos tomados en formulario");
+                textPart.setText(text);
                 multipart.addBodyPart(textPart);
                 multipart.addBodyPart(attachmentPart);
 
