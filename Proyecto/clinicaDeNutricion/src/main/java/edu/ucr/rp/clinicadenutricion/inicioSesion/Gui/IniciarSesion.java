@@ -38,7 +38,7 @@ public class IniciarSesion {
     ArchSupAdmin logiSuper = new ArchSupAdmin();
     Alertas alertas = new Alertas();
 
-    public GridPane iniciarSesion() {
+   public GridPane iniciarSesion() {
 
         GridPane gridPaneIniciarSesion = new GridPane();
         gridPaneIniciarSesion.setMinSize(600, 700);

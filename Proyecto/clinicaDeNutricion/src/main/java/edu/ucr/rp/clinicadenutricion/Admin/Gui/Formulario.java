@@ -488,15 +488,10 @@ public class Formulario {
         buttonCerrar.setStyle("-fx-background-color: BLACK");
         buttonCerrar.setFont(Font.font("Castellar", FontWeight.SEMI_BOLD, FontPosture.ITALIC, 10));
         gridPaneFormulario.add(buttonCerrar, 0, 8);
-
         MainMenuBarAdministrador o = new MainMenuBarAdministrador();
-
         buttonCerrar.setOnAction((event) -> {
-
             gridPaneFormulario.getChildren().clear();
-
             gridPaneFormulario.setBackground(Background.EMPTY);
-
             gridPaneFormulario.getChildren().add(o.menuAdministrador());
 
         });//end btn cerrar
