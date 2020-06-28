@@ -14,3 +14,9 @@
 44444 & Inició sesión como cliente & Sat Jun 27 17:55:10 CST 2020
 44444 & Revisó su progreso graficamente & Sat Jun 27 17:57:00 CST 2020
 54321 & Inició sesión como cliente & Sat Jun 27 18:02:07 CST 2020
+666666 & Inició sesión como admistrador & Sat Jun 27 18:30:40 CST 2020
+54321 & Inició sesión como cliente & Sat Jun 27 18:31:17 CST 2020
+54321 & Inició sesión como cliente & Sat Jun 27 18:32:59 CST 2020
+54321 & Modificó su perfil & Sat Jun 27 18:33:10 CST 2020
+54321 & Modificó su perfil & Sat Jun 27 18:33:15 CST 2020
+54321 & Modificó su perfil & Sat Jun 27 18:33:36 CST 2020
