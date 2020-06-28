@@ -1,0 +1,70 @@
+Plan1*
+|
+Desayuno (7 a.m.)
+Fruta
+Cereal (Harina)
+Leche o derivado
+Grasa
+|
+Almuerzo (1 p.m.)
+Fruta
+Harina
+Proteina
+Vegetales
+Grasa
+|
+Merienda (4 p.m.)
+Fruta
+Harina
+Leche o derivados
+Grasa
+|
+Cena (7.30 p.m.)
+Fruta
+Harina
+Proteina
+Vegetales
+Grasas
+|
+----------------------------------
+Plan2*
+|
+Desayuno (7 a.m.)
+Platano
+1 punado de frutos secos
+|
+Almuerzo (1 p.m.)
+Ensalada de pasta integral
+Hamburguesa de soja con sesamo
+1 manzana
+|
+Merienda (4 p.m.)
+Bebida vegetal
+1 barrita energetica
+|
+Cena (7.30 p.m.)
+Dips vegetales
+Tofu a la plancha con patata al horno
+2 mandarinas
+|
+-------------------------------
+Plan3*
+|
+Desayuno (7 a.m.)
+Bebida vegetal
+Bocadillo integral de jamon
+|
+Almuerzo (1 p.m.)
+Ensalada de pasta integral
+Atun rebozado con sesamo
+1 manzana
+|
+Merienda (4 p.m.)
+Yogurt liquido
+1 barrita energetica
+|
+Cena (7.30 p.m.)
+Ensalada de acelgas crudas con champinones
+Queso de cabra y vinagre de miel
+1 manzana
+|
