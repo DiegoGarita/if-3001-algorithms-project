@@ -5,6 +5,7 @@ import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ArchSupAdmin;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
 import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
 import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
+import edu.ucr.rp.clinicadenutricion.Utilitario.EncryptMD5;
 import java.io.File;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -23,6 +24,7 @@ public class IndicarPath {
     LogicaListas logic = new LogicaListas();
     ArchSupAdmin logiSuper = new ArchSupAdmin();
     Alertas alerta = new Alertas();
+    EncryptMD5 encrypt = new EncryptMD5();
 
     public GridPane path() {
 
@@ -61,7 +63,7 @@ public class IndicarPath {
         buttonModiUsu.setDisable(true);
         buttonModiUsu.setOnAction((event) -> {
 
-            if (textFieldContra.getText().equals(uwu.getName())) {
+            if (encrypt.encriptar("SusanaDistancia", textFieldContra.getText()).equals(uwu.getName())) {
                 botonLogo.setVisible(true);
                 botonGuardar.setVisible(true);
                 buttonModiUsu.setDisable(true);
@@ -83,6 +85,7 @@ public class IndicarPath {
             File file1 = setPath().showDialog(null);
             if (file1 != null) {
                 label.setText(file1.getAbsolutePath());
+                System.out.println(label.getText());
             }
             botonLogo.setDisable(true);
         });//END BUTTON
