@@ -163,7 +163,7 @@ public class CrearUsuarioNuevo{
 
                             logic.leerArchivo();
                             if (logic.busca(textFieldID.getText()) == false) {
-                                enviarCorreo.sendMessage(textFieldCorreo.getText(), "Clínica Susana Distancia",
+                                enviarCorreo.sendPDF(textFieldCorreo.getText(), "Clínica Susana Distancia", "Manual",
                                         "Mensaje de confirmación de creación de nuevo usuario en nuestra clínica Susana Distancia.\n"
                                         + "¡Bienvenido! " + textFieldNombre.getText() + " es un gusto atenderle.\n"
                                         + "Si desea realizar consultas directamente con nuestro soporte de aplicación deberá realizarlas"
