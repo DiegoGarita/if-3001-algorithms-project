@@ -1,7 +1,8 @@
-package edu.ucr.rp.clinicadenutricion.Cliente.Gui;
+package edu.ucr.rp.clinicadenutricion.Admin.Gui;
 
 import edu.ucr.rp.clinicadenutricion.inicioSesion.Gui.IniciarSesion;
 import edu.ucr.rp.clinicadenutricion.AVL.LogicaAVL;
+import edu.ucr.rp.clinicadenutricion.Cliente.Gui.MainMenuBarCliente;
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
 import edu.ucr.rp.clinicadenutricion.Utilitario.EncryptMD5;
@@ -18,7 +19,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 
-public class AjustesCliente {
+public class AjustesAdmin {
 
     TextField textFieldTipo;
     TextField textFieldID;
@@ -46,7 +47,7 @@ public class AjustesCliente {
     FechaHora fechaHora = new FechaHora();
     EnviarCorreo enviarCorreo = new EnviarCorreo();
 
-    public GridPane ajustesCliente() {
+    public GridPane ajustesAdministracion() {
 
         GridPane gridPaneAjustesCliente = new GridPane();
         gridPaneAjustesCliente.setMinSize(600, 700);
@@ -63,7 +64,7 @@ public class AjustesCliente {
         if (usuarioTemp.getTipo().equals("ä")) {
             tipo = "Cliente";
         } else if (usuarioTemp.getTipo().equals("ö")) {
-            tipo = "Administración";
+            tipo = "Administrador";
         }
 
         labelTipo = new Label("Tipo");
@@ -307,7 +308,7 @@ public class AjustesCliente {
             }
         });//end setOnAction
 
-        MainMenuBarCliente barCliente = new MainMenuBarCliente();
+        MainMenuBarAdministrador barAdmin = new MainMenuBarAdministrador();
 
         Button buttonCerrar = new Button("Cerrar");
         buttonCerrar.setTextFill(Color.WHITE);
@@ -318,10 +319,11 @@ public class AjustesCliente {
 
             gridPaneAjustesCliente.getChildren().clear();
             gridPaneAjustesCliente.setBackground(Background.EMPTY);
-            gridPaneAjustesCliente.getChildren().add(barCliente.menuCliente());
+            gridPaneAjustesCliente.getChildren().add(barAdmin.menuAdministrador());
 
         });
 
         return gridPaneAjustesCliente;
     }//end gridPaneAjustesCliente
+
 }

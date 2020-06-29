@@ -3,6 +3,7 @@ package edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui;
 import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.LogicaSuperAdmin;
+import edu.ucr.rp.clinicadenutricion.Utilitario.EncryptMD5;
 import edu.ucr.rp.clinicadenutricion.inicioSesion.logic.LogicaListas;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
@@ -29,6 +30,7 @@ public class ResgistrosPaginacion {
 
     LogicaSuperAdmin LogicaSuperAdmin = new LogicaSuperAdmin();
     LogicaListas logic = new LogicaListas();
+    EncryptMD5 encrypt = new EncryptMD5();
 
     public GridPane registrosPaginacion() {
 
@@ -71,7 +73,7 @@ public class ResgistrosPaginacion {
         buttonModificar.setDisable(true);
         buttonModificar.setOnAction((event) -> {
 
-            if (textFieldContraseña.getText().equals(usuarioTemp.getName())) {
+            if (encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()).equals(usuarioTemp.getName())) {
                 labelInter.setVisible(true);
                 textFieldIntervalo.setVisible(true);
                 botonModificar.setVisible(true);

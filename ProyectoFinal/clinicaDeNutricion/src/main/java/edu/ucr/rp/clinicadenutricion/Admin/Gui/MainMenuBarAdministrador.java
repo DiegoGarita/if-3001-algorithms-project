@@ -19,6 +19,7 @@ public class MainMenuBarAdministrador {
     LogicaSuperAdmin logicaSuperAdmin = new LogicaSuperAdmin();
     Alertas alerta = new Alertas();
     PaginacionAdmin paginacionAdmin = new PaginacionAdmin();
+    AjustesAdmin ajustesAdmin = new AjustesAdmin();
 
     public GridPane menuAdministrador() {
 
@@ -102,8 +103,21 @@ public class MainMenuBarAdministrador {
         });
         menuAlimentacion.getItems().addAll(menuItemVerPlanes);
 
-        Menu menuUsuario = new Menu("                                                      "
-                + "                                                                                        Usuario");
+        Menu menuAjustes = new Menu("Ajustes", new ImageView(new Image("file:src/image/ajus.png")));
+        menuAjustes.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);"
+                + "-fx-effect: dropshadow(gaussian, red, 50, 0, 0, 0);"
+                + "-fx-background-insets: 50;");
+        MenuItem menuItemCuenta = new MenuItem("Cuenta", new ImageView(new Image("file:src/image/usua.png")));
+        menuItemCuenta.setAccelerator(KeyCombination.keyCombination("Ctrl+V"));
+
+        menuItemCuenta.setOnAction((event) -> {
+            gridPaneAdministrador.getChildren().clear();
+            gridPaneAdministrador.getChildren().addAll(ajustesAdmin.ajustesAdministracion());
+        });
+        menuAjustes.getItems().addAll(menuItemCuenta);
+
+        Menu menuUsuario = new Menu("                                          "
+                + "                                                       Usuario");
         MenuItem menuItemSalir = new MenuItem("Cerrar sesión", new ImageView(new Image("file:src/image/salir.png")));
         menuItemSalir.setAccelerator(KeyCombination.keyCombination("Alt+S"));
 
@@ -116,7 +130,7 @@ public class MainMenuBarAdministrador {
             menuBarMenu.setOpacity(0.9);
         });
 
-        menuBarMenu.getMenus().addAll(menuPaciente, menuCita, menuAlimentacion, menuUsuario);
+        menuBarMenu.getMenus().addAll(menuPaciente, menuCita, menuAlimentacion, menuAjustes ,menuUsuario);
         gridPaneAdministrador.add(menuBarMenu, 0, 0);
 
         return gridPaneAdministrador;

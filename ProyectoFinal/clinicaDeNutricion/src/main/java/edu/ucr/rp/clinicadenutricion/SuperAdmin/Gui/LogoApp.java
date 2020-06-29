@@ -137,7 +137,7 @@ public class LogoApp {
     public FileChooser setFileChooser() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Buscar Imagen");
-        fileChooser.setInitialDirectory(new File("C:\\source-code\\if-3001-algorithms-project\\Proyecto\\clinicaDeNutricion\\src\\image"));
+        fileChooser.setInitialDirectory(new File("C:\\source-code\\if-3001-algorithms-project\\ProyectoFinal\\clinicaDeNutricion\\src\\image"));
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("JPEG", "*.jpeg")
         );
