@@ -91,7 +91,8 @@ public class LogicaListas {
                 }
                 currentRegistry = bufferedReader.readLine();
             }
-            archivoAntiguo.deleteOnExit();
+            //archivoAntiguo.deleteOnExit();
+            archivoAntiguo.delete();
         } catch (FileNotFoundException fileNotFoundException) {
             JOptionPane.showMessageDialog(null, fileNotFoundException + "\nProblemas con el archivo");
         } catch (IOException IOException) {

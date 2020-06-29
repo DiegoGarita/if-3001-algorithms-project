@@ -109,7 +109,8 @@ public class LogicaPila {
                 }
                 currentRegistry = bufferedReader.readLine();
             }
-            previousFile.deleteOnExit();
+           // previousFile.deleteOnExit();
+           previousFile.delete();
         } catch (FileNotFoundException fileNotFoundException) {
             JOptionPane.showMessageDialog(null, fileNotFoundException + "\nProblemas con el archivo");
         } catch (IOException IOException) {

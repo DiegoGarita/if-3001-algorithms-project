@@ -19,7 +19,7 @@ public class RespaldarArchivos {
     TextField textFieldContra;
     Button buttonModiUsu;
     Button buttonRespaldo;
-    
+
     LogicaListas logic = new LogicaListas();
     LogicaSuperAdmin logicaSuperAdmin = new LogicaSuperAdmin();
     Alertas alerta = new Alertas();
@@ -53,7 +53,7 @@ public class RespaldarArchivos {
         });
 
         Usuario uwu = logic.stringTokenizer(logic.leeLinea("ë"));
-        
+
         buttonModiUsu = new Button("Aceptar");
         buttonModiUsu.setTextFill(Color.WHITE);
         buttonModiUsu.setStyle("-fx-background-color: BLACK");
@@ -73,8 +73,8 @@ public class RespaldarArchivos {
         Respaldo resUsuarios = new Respaldo();
         Respaldo resHistorial = new Respaldo();
         Respaldo resApartaCita = new Respaldo();
-        
-         SuperAdmin configuracion = logicaSuperAdmin.stringTokenizer(logicaSuperAdmin.readLine("KEYDistancia"));
+
+        SuperAdmin configuracion = logicaSuperAdmin.stringTokenizer(logicaSuperAdmin.readLine("KEYDistancia"));
 
         buttonRespaldo = new Button("Respaldar informacion");
         buttonRespaldo.setTextFill(Color.WHITE);
@@ -85,9 +85,9 @@ public class RespaldarArchivos {
         buttonRespaldo.setOnAction((event) -> {
 
             try {
-                 resUsuarios.createZipFile("C:\\source-code\\if-3001-algorithms-project\\Proyecto\\clinicaDeNutricion\\usuarios.txt", "usuario");
-                resHistorial.createZipFile("C:\\source-code\\if-3001-algorithms-project\\Proyecto\\clinicaDeNutricion\\Historial.txt", "historial");
-                resApartaCita.createZipFile("C:\\source-code\\if-3001-algorithms-project\\Proyecto\\clinicaDeNutricion\\ApartaCita.txt", "citas");
+                resUsuarios.createZipFile("C:\\source-code\\if-3001-algorithms-project\\ProyectoFinal\\clinicaDeNutricion\\usuarios.txt", "usuario");
+                resHistorial.createZipFile("C:\\source-code\\if-3001-algorithms-project\\ProyectoFinal\\clinicaDeNutricion\\Historial.txt", "historial");
+                resApartaCita.createZipFile("C:\\source-code\\if-3001-algorithms-project\\ProyectoFinal\\clinicaDeNutricion\\ApartaCita.txt", "citas");
             } catch (java.io.FileNotFoundException fnfe) {
                 alerta.alertWarning("No se pudo realizar todos los respaldos\nNo se encontraron todos los archivos");
             } catch (IOException ioe) {
@@ -101,7 +101,7 @@ public class RespaldarArchivos {
         });
 
         MainMenuBarSuperAdmi barSuper = new MainMenuBarSuperAdmi();
-        
+
         Button botonCerrar = new Button("Cerrar");
         botonCerrar.setTextFill(Color.WHITE);
         botonCerrar.setStyle("-fx-background-color: BLACK");

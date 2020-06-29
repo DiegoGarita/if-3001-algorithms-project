@@ -154,49 +154,55 @@ public class PrimerUsuario {
                                 && !textFieldTelefono.getText().trim().equals("") && !textFieldDireccion.getText().trim().equals("")
                                 && Integer.parseInt(textFieldTelefono.getText()) % 2 == 0
                                 || Integer.parseInt(textFieldTelefono.getText()) % 2 == 1) {
+                            if (!textFieldCorreo.getText().trim().equals("") && textFieldCorreo.getText().contains("@gmail.com")) {
 
-                            alertas.alertConfirmation("");
-                            Optional<ButtonType> result = alertas.alertConfirmation("").showAndWait();
-                            if (result.get() == ButtonType.OK) {
+                                alertas.alertConfirmation("");
+                                Optional<ButtonType> result = alertas.alertConfirmation("").showAndWait();
+                                if (result.get() == ButtonType.OK) {
 
-                                logicaListas.leerArchivo();
-                                if (logicaListas.busca(textFieldID.getText()) == false) {
-                                  enviarCorreo.sendPDF(textFieldCorreo.getText(), "Clínica Susana Distancia", "Manual",
-                                        "Mensaje de confirmación de creación de nuevo usuario en nuestra clínica Susana Distancia.\n"
-                                        + "¡Bienvenido! " + textFieldNombre.getText() + " es un gusto atenderle.\n"
-                                        + "Si desea realizar consultas directamente con nuestro soporte de aplicación deberá realizarlas"
-                                        + " por este medio a este correo electrónico.\nSerá un gusto atenderle.");
+                                    logicaListas.leerArchivo();
+                                    if (logicaListas.busca(textFieldID.getText()) == false) {
+                                        try{
+                                        enviarCorreo.sendPDF(textFieldCorreo.getText(), "Clínica Susana Distancia", "Manual",
+                                                "Mensaje de confirmación de creación de nuevo usuario en nuestra clínica Susana Distancia.\n"
+                                                + "¡Bienvenido! " + textFieldNombre.getText() + " es un gusto atenderle.\n"
+                                                + "Si desea realizar consultas directamente con nuestro soporte de aplicación deberá realizarlas"
+                                                + " por este medio a este correo electrónico.\nSerá un gusto atenderle.");
+                                        }
+                                        catch(Exception fsd){
+                                            alertas.alertWarning("Correo no existente");
+                                        }
+                                        Usuario usuario = new Usuario(comboBoxRol.getValue().toString(), textFieldID.getText(),
+                                                textFieldNombre.getText(), encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()),
+                                                textFieldCorreo.getText(), textFieldTelefono.getText(),
+                                                textFieldDireccion.getText());
 
-                                    Usuario usuario = new Usuario(comboBoxRol.getValue().toString(), textFieldID.getText(),
-                                            textFieldNombre.getText(), encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()),
-                                            textFieldCorreo.getText(), textFieldTelefono.getText(),
-                                            textFieldDireccion.getText());
+                                        logicaListas.escribirArchivo(usuario);
+                                        Acciones acciones = new Acciones(textFieldID.getText(), "Se registró como nuevo usuario", fechaHora.histoFechaHora());
+                                        logicaAVL.escribeHistorial(acciones);
 
-                                    logicaListas.escribirArchivo(usuario);
-                                    Acciones acciones = new Acciones(textFieldID.getText(), "Se registró como nuevo usuario", fechaHora.histoFechaHora());
-                                    logicaAVL.escribeHistorial(acciones);
-
-                                } else {
-                                    System.out.println("Ya existe alguien con este ID");
-                                    alertas.alertWarning("Su ID ya está registrado en sistema, intentelo de nuevo");
-                                    textFieldID.clear();
-                                    Acciones acciones = new Acciones(textFieldID.getText(), "Intentó registrarse cuando ya estaba registrado", fechaHora.histoFechaHora());
-                                    logicaAVL.escribeHistorial(acciones);
+                                    } else {
+                                        System.out.println("Ya existe alguien con este ID");
+                                        alertas.alertWarning("Su ID ya está registrado en sistema, intentelo de nuevo");
+                                        textFieldID.clear();
+                                        Acciones acciones = new Acciones(textFieldID.getText(), "Intentó registrarse cuando ya estaba registrado", fechaHora.histoFechaHora());
+                                        logicaAVL.escribeHistorial(acciones);
+                                    }
                                 }
+                                textFieldNombre.clear();
+                                textFieldContraseña.clear();
+                                textFieldID.clear();
+                                textFieldTelefono.clear();
+                                textFieldDireccion.clear();
+                                textFieldCorreo.clear();
+                            } else {
+                                alertas.alertWarning("Correo,contraseña y/o teléfono no validos");
                             }
-                            textFieldNombre.clear();
-                            textFieldContraseña.clear();
-                            textFieldID.clear();
-                            textFieldTelefono.clear();
-                            textFieldDireccion.clear();
-                            textFieldCorreo.clear();
                         } else {
                             alertas.alertWarning("Correo,contraseña y/o teléfono no validos");
                         }
                     } catch (NumberFormatException nfe) {
                         alertas.alertWarning("Correo,contraseña y/o teléfono no validos\nO espacios vacíos");
-                    } catch (IOException ex) {
-                        Logger.getLogger(PrimerUsuario.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
                     alertas.alertWarning("No selecciono su rol\nIntente de nuevo");

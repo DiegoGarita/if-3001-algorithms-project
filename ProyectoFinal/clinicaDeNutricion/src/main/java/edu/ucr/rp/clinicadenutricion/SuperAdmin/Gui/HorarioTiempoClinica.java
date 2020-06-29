@@ -23,7 +23,7 @@ public class HorarioTiempoClinica {
     Label labelInter;
     Label labelAbre;
     Label labelCierra;
-    
+
     LogicaListas logicaListas = new LogicaListas();
     LogicaSuperAdmin logicaSuperAdmin = new LogicaSuperAdmin();
     Alertas alerta = new Alertas();
@@ -161,29 +161,34 @@ public class HorarioTiempoClinica {
                         && !textFieldIntervalo.getText().trim().equals("")
                         && Integer.parseInt(textFieldAbreClinica.getText()) < Integer.parseInt(textFieldCierraClinica.getText())) {
 
-                    SuperAdmin configuracion2 = new SuperAdmin(configuracion.getIdentificadorSA(), textFieldAbreClinica.getText(),
-                            textFieldCierraClinica.getText(), textFieldIntervalo.getText(),
-                            configuracion.getNombreLogo(),
-                            configuracion.getPathDeGuardado(), configuracion.getPaginacion());
+                    if (Integer.parseInt(textFieldAbreClinica.getText()) >= 0
+                            && Integer.parseInt(textFieldCierraClinica.getText()) < 24) {
 
-                    logicaSuperAdmin.replacefromfile(configuracion2);
+                        SuperAdmin configuracion2 = new SuperAdmin(configuracion.getIdentificadorSA(), textFieldAbreClinica.getText(),
+                                textFieldCierraClinica.getText(), textFieldIntervalo.getText(),
+                                configuracion.getNombreLogo(),
+                                configuracion.getPathDeGuardado(), configuracion.getPaginacion());
 
-                    textFieldAbreClinica.clear();
-                    textFieldAbreClinica.setDisable(true);
-                    textFieldCierraClinica.clear();
-                    textFieldCierraClinica.setDisable(true);
-                    textFieldIntervalo.clear();
-                    textFieldIntervalo.setDisable(true);
-                    textFieldContraseña.clear();
-                    alerta.alertInformation("Horario cambiado, correctamente");
-                    buttonGuardar.setDisable(true);
+                        logicaSuperAdmin.replacefromfile(configuracion2);
 
-                }
+                        textFieldAbreClinica.clear();
+                        textFieldAbreClinica.setDisable(true);
+                        textFieldCierraClinica.clear();
+                        textFieldCierraClinica.setDisable(true);
+                        textFieldIntervalo.clear();
+                        textFieldIntervalo.setDisable(true);
+                        textFieldContraseña.clear();
+                        alerta.alertInformation("Horario cambiado, correctamente");
+                        buttonGuardar.setDisable(true);
+
+                    } else {
+                        alerta.alertWarning("Campos vacíos o error de formato\nIntentelo de nuevo");
+                    }
+                }//end if grande
                 else {
                     alerta.alertWarning("Campos vacíos o error de formato\nIntentelo de nuevo");
                 }
-            }
-            catch (java.lang.NumberFormatException nfe) {
+            } catch (java.lang.NumberFormatException nfe) {
                 alerta.alertWarning("Campos vacíos o error de formato\nIntente de nuevo");
             }
         });

@@ -3,6 +3,7 @@ package edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic;
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
 import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
+import edu.ucr.rp.clinicadenutricion.Utilitario.FechaHora;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
@@ -11,6 +12,7 @@ import javax.swing.JOptionPane;
 public class LogicaSuperAdmin {
 
     ImplementacionCola implementacionCola = new ImplementacionCola();
+    FechaHora fechaHora = new FechaHora();
 
     public int cantidadDC = 0;
 
@@ -67,8 +69,9 @@ public class LogicaSuperAdmin {
     public void replacefromfile(SuperAdmin superAdmin) {
         File previousFile = new File("SuperAdminConfig.txt");
 
-        previousFile.deleteOnExit();
-
+        //previousFile.deleteOnExit();  //--> Here
+          previousFile.delete();
+        
         File fileNew = new File("SuperAdminConfig.txt");
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(fileNew);
@@ -373,5 +376,23 @@ public class LogicaSuperAdmin {
     public void muestra() {
         implementacionCola.display();
     }
+    
+    
+    /**
+ * método que elimina el historial en el archivo Historial.txt
+ */
+    public void eliminaHistorial() {
+        File previousFile = new File("Historial.txt");
+        previousFile.delete();
+        File fileNew = new File("Historial.txt");
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(fileNew);
+            PrintStream printStream = new PrintStream(fileOutputStream);
+            printStream.print("SuperAdmin" + " & " + "Eliminó el historial" + " & " + fechaHora.histoFechaHora());
+        } catch (FileNotFoundException fileNotFoundException) {
+            JOptionPane.showMessageDialog(null, fileNotFoundException + "\nProblemas con el archivo");
+        }
+    }
+    
 
 }

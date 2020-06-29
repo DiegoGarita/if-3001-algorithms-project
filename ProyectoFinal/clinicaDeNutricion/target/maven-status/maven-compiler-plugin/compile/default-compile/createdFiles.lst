@@ -49,6 +49,7 @@ edu\ucr\rp\clinicadenutricion\Cliente\Gui\MainMenuBarCliente.class
 edu\ucr\rp\clinicadenutricion\inicioSesion\Gui\Ayuda.class
 edu\ucr\rp\clinicadenutricion\Admin\logic\ImplementacionCola$Node.class
 edu\ucr\rp\clinicadenutricion\SuperAdmin\Logic\InterfaceCola.class
+edu\ucr\rp\clinicadenutricion\Admin\Gui\AjustesAdmin.class
 edu\ucr\rp\clinicadenutricion\Cliente\Logic\ImplementacionPila.class
 edu\ucr\rp\clinicadenutricion\Utilitario\FechaHora.class
 edu\ucr\rp\clinicadenutricion\Utilitario\Grafico.class

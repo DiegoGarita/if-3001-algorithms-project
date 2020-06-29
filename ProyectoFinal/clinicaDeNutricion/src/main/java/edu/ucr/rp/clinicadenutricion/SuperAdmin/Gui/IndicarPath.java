@@ -141,7 +141,7 @@ public class IndicarPath {
 
         DirectoryChooser direcChooser = new DirectoryChooser();
         direcChooser.setTitle("Path");
-        direcChooser.setInitialDirectory(new File("C:\\source-code\\if-3001-algorithms-project\\Proyecto\\clinicaDeNutricion"));
+        direcChooser.setInitialDirectory(new File("C:\\source-code\\if-3001-algorithms-project\\ProyectoFinal\\clinicaDeNutricion"));
 
         return direcChooser;
     }//end setPATH()
