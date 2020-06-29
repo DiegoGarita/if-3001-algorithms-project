@@ -127,5 +127,20 @@ public class ImplementacionPila implements InterfacePila {
         return aux.seeElement();
 
     }
+    
+            public void display() {
+        Node current = start;
+
+        if (start == null) {
+            System.out.println("List is empty");
+            return;
+        }
+        System.out.println("linked list: ");
+        while (current != null) {
+            System.out.print(current.element.getIDCita() + "* ");
+            current = current.next;
+        }
+        System.out.println();
+    }
 
 }

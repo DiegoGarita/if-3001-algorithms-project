@@ -144,5 +144,20 @@ public class ImplementacionCola implements InterfaceCola {
         return output + 1;
 
     }//end size
+    
+        public void display() {
+        Node current = inicio;
+
+        if (inicio == null) {
+            System.out.println("List is empty");
+            return;
+        }
+        System.out.println("linked list: ");
+        while (current != null) {
+            System.out.print(current.element.getPathDeGuardado() + "* ");
+            current = current.next;
+        }
+        System.out.println();
+    }
 
 }

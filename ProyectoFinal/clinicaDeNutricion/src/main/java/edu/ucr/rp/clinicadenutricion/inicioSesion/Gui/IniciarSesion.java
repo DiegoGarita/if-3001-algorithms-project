@@ -2,10 +2,14 @@ package edu.ucr.rp.clinicadenutricion.inicioSesion.Gui;
 
 import edu.ucr.rp.clinicadenutricion.AVL.LogicaAVL;
 import edu.ucr.rp.clinicadenutricion.Admin.Gui.MainMenuBarAdministrador;
+import edu.ucr.rp.clinicadenutricion.Admin.logic.LogicaCola;
 import edu.ucr.rp.clinicadenutricion.Cliente.Gui.MainMenuBarCliente;
+import edu.ucr.rp.clinicadenutricion.Cliente.Logic.LogicaArbol;
+import edu.ucr.rp.clinicadenutricion.Cliente.Logic.LogicaPila;
 import edu.ucr.rp.clinicadenutricion.Objetos.Acciones;
 import edu.ucr.rp.clinicadenutricion.Objetos.SuperAdmin;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Gui.MainMenuBarSuperAdmi;
+import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.ImplementacionCola;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.LogicaSuperAdmin;
 import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
 import edu.ucr.rp.clinicadenutricion.Utilitario.EncryptMD5;
@@ -26,7 +30,7 @@ public class IniciarSesion {
     TextField textFieldID;
     PasswordField textFieldContraseña;
     Button buttonCreaUsuario;
-    
+
     LogicaListas logicaListas = new LogicaListas();
     LogicaAVL logicaAVL = new LogicaAVL();
     FechaHora fechaHora = new FechaHora();
@@ -88,7 +92,28 @@ public class IniciarSesion {
         gridPaneIniciarSesion.add(buttonCreaUsuario, 0, 4);
         buttonCreaUsuario.setOnAction((event) -> {
 
-            Node node = gridPaneIniciarSesion.getChildren().get(2); 
+            ///////////////////////////////////////////////////////////////////////////
+//            System.out.println("\n Listas: \n");
+//            logicaListas.leerArchivo();
+//            logicaListas.muestra();
+//            System.out.println("\n Colas: \n");
+//            logicaSuperAdmin.readInFile();
+//            logicaSuperAdmin.muestra();
+//            System.out.println("\n Arbol binario: \n");
+//            LogicaArbol l = new LogicaArbol();
+//            l.leeArchivo("44444", 0);
+//            l.muestra();
+//            System.out.println("\n Pila: \n");
+//            LogicaPila lp = new LogicaPila();
+//            lp.leeArchivoSolicitudCita();
+//            lp.muestra();
+//            System.out.println("\n Arbol AVL: \n");
+//            LogicaAVL lAVL = new LogicaAVL();
+//            lAVL.leerHistorial();
+//            lAVL.muestra();
+
+            ////////////////////////////////////////////////////////////////////////////
+            Node node = gridPaneIniciarSesion.getChildren().get(2);
             logicaListas.leerArchivo();
 
             if (textFieldID.getText().equals("Super") && encrypt.encriptar("SusanaDistancia", textFieldContraseña.getText()).equals("aWWPEVnhogU=")) {

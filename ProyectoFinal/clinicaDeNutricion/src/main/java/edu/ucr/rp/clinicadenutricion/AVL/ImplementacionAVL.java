@@ -133,7 +133,7 @@ public class ImplementacionAVL implements InterfaceAVL {
     @Override
     public void preOrden(Node nodo) {
         if (nodo != null) {
-            System.out.print(nodo.acciones.getFechaHoraAccion() + ", ");
+            System.out.print(nodo.acciones.getAccion() + ", ");
             preOrden(nodo.left);
             preOrden(nodo.right);
         }

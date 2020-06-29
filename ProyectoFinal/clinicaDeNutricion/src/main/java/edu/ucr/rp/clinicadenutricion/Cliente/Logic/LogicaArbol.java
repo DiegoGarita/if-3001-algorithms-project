@@ -182,5 +182,9 @@ public class LogicaArbol {
         return reporteMedico;
 
     }
+    
+        public void muestra() {
+        implementacionArbol.InOrden();
+    }
 
 }

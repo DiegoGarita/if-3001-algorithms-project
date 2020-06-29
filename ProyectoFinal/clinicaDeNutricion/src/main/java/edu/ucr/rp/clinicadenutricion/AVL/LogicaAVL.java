@@ -77,5 +77,9 @@ public class LogicaAVL {
         return acciones;
 
     }
+    
+        public void muestra() {
+        implementacionAVL.preOrden();
+    }
 
 }
