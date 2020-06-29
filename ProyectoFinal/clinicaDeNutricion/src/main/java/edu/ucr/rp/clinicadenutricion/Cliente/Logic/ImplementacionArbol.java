@@ -86,7 +86,7 @@ public class ImplementacionArbol implements InterfaceArbol {
     private void InOrden(NodoBinario nodo) {
         if (nodo != null) {
             InOrden(nodo.izquierda);
-            System.out.print(nodo.dato + ", ");
+            System.out.print(nodo.dato.getNombre() + ", ");
             InOrden(nodo.derecha);
         }
 

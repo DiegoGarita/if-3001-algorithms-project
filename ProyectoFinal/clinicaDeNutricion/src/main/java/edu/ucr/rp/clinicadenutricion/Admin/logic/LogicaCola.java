@@ -145,11 +145,12 @@ public class LogicaCola {
     }// end readProperties()
 
     /**
-     * método que lee la cantidad de líneas encontradas en el archivo de solicitud de cita para X cliente 
+     * método que lee la cantidad de líneas encontradas en el archivo de
+     * solicitud de cita para X cliente
+     *
      * @param file recibe nombre del archivo (cliente)
      * @return cantidad de líneas encontradas en el archivo
      */
-     
     public int cantidadDeLineas(String file) {
         int cantidad = 0;
         File newFile = new File("Solicitud de cita para " + file + ".txt");
@@ -175,8 +176,9 @@ public class LogicaCola {
 
     /**
      * método que une dos métodos para obtener usuarios apartir de un String
+     *
      * @param string string que será convertido
-     * @return Usuario retornado por medio de los dos métodos utilizados 
+     * @return Usuario retornado por medio de los dos métodos utilizados
      */
     public Usuario obtieneUsuario(String string) {
         return logicaListas.stringTokenizer(logicaListas.leeLinea(string));
@@ -184,6 +186,7 @@ public class LogicaCola {
 
     /**
      * método que convierte de String al objeto Reporte Médico
+     *
      * @param lineas String a ser convertido
      * @return Reporte médico que viene de procesos con StringTokenizer
      */

@@ -367,4 +367,11 @@ public class LogicaSuperAdmin {
 
     }
 
+    /**
+     * método que muestra la lista
+     */
+    public void muestra() {
+        implementacionCola.display();
+    }
+
 }

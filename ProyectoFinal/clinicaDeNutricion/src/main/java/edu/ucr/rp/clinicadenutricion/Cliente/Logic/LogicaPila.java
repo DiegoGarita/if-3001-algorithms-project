@@ -305,5 +305,9 @@ public class LogicaPila {
         }
         return false;
     }
+    
+        public void muestra() {
+        implementacionPila.display();
+    }
 
 }
