@@ -1,19 +1,15 @@
-vvvvv & Inició sesión como cliente & Mon Jun 29 11:07:04 CST 2020
-vvvvv & Solicitó una cita & Mon Jun 29 11:07:29 CST 2020
-vvvvv & Solicitó una cita & Mon Jun 29 11:07:43 CST 2020
-qqqqq & Inició sesión como cliente & Mon Jun 29 11:08:00 CST 2020
-qqqqq & Solicitó una cita & Mon Jun 29 11:08:21 CST 2020
-qqqqq & Solicitó una cita & Mon Jun 29 11:08:46 CST 2020
-qqqqq & Modificó su cita & Mon Jun 29 11:09:37 CST 2020
-qqqqq & Eliminó su cita & Mon Jun 29 11:10:03 CST 2020
-zzzzz & Inició sesión como admistrador & Mon Jun 29 11:13:52 CST 2020
-zzzzz & Modificó su cita & Mon Jun 29 11:14:24 CST 2020
-zzzzz & Modificó su perfil & Mon Jun 29 11:19:53 CST 2020
-qqqqq & Inició sesión como cliente & Mon Jun 29 14:43:30 CST 2020
-qqqqq & Solicitó una cita & Mon Jun 29 14:43:56 CST 2020
-qqqqq & Solicitó una cita & Mon Jun 29 14:44:12 CST 2020
-qqqqq & Inició sesión como cliente & Mon Jun 29 14:45:57 CST 2020
-qqqqq & Solicitó una cita & Mon Jun 29 14:46:28 CST 2020
-qqqqq & Modificó su cita & Mon Jun 29 14:47:15 CST 2020
-qqqqq & Eliminó su cita & Mon Jun 29 14:47:28 CST 2020
-qqqqq & Inició sesión como cliente & Mon Jun 29 14:50:36 CST 2020
+SuperAdmin & Eliminó el historial & Mon Jun 29 16:12:54 CST 2020qqqqq & Inició sesión como cliente & Mon Jun 29 16:15:25 CST 2020
+qqqqq & Inició sesión como cliente & Mon Jun 29 16:20:23 CST 2020
+qqqqq & consultó su reporte de citas & Mon Jun 29 16:20:26 CST 2020
+zzzzz & Inició sesión como admistrador & Mon Jun 29 16:20:48 CST 2020
+zzzzz & Solicitó información de pacientes & Mon Jun 29 16:20:52 CST 2020
+zzzzz & Solicitó información de pacientes & Mon Jun 29 16:20:59 CST 2020
+zzzzz & Modificó su perfil & Mon Jun 29 16:21:06 CST 2020
+qqqqq & Inició sesión como cliente & Mon Jun 29 16:23:09 CST 2020
+qqqqq & Modificó su perfil & Mon Jun 29 16:23:19 CST 2020
+zzzzz & Inició sesión como admistrador & Mon Jun 29 16:24:25 CST 2020
+zzzzz & Modificó su perfil & Mon Jun 29 16:24:29 CST 2020
+zzzzz & Inició sesión como admistrador & Mon Jun 29 16:25:51 CST 2020
+zzzzz & Modificó su perfil & Mon Jun 29 16:25:55 CST 2020
+zzzzz & Inició sesión como admistrador & Mon Jun 29 16:27:49 CST 2020
+zzzzz & Modificó su perfil & Mon Jun 29 16:27:59 CST 2020
