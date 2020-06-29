@@ -18,7 +18,7 @@ import javafx.scene.text.*;
 public class ResgistrosPaginacion {
 
     public int divisionInt = 0;
-    public ObservableList<Usuario> reporteMedico = FXCollections.observableArrayList();
+    public ObservableList<Usuario> reporteUsu = FXCollections.observableArrayList();
     ArrayList<Button> ButtonArrayList;
     Label labelInter;
     Button button;
@@ -119,7 +119,7 @@ public class ResgistrosPaginacion {
         botonModificar.setOnAction((event) -> {
 
             SuperAdmin configuracion2 = new SuperAdmin(configuracion.getIdentificadorSA(), configuracion.getAbreClinica(),
-                    configuracion.getCierreClinica(), textFieldIntervalo.getText(),
+                    configuracion.getCierreClinica(), configuracion.getTiempoConsulta(),
                     configuracion.getNombreLogo(),
                     configuracion.getPathDeGuardado(), textFieldIntervalo.getText());
 
@@ -141,26 +141,26 @@ public class ResgistrosPaginacion {
             SuperAdmin configuracionActual = LogicaSuperAdmin.stringTokenizer(LogicaSuperAdmin.readLine("KEYDistancia"));
             LogicaSuperAdmin.guardaEnAL("ä");
             divisionInt = LogicaSuperAdmin.cantidadDC / Integer.parseInt(configuracionActual.getPaginacion());
-            Double divisionDouble = LogicaSuperAdmin.cantidadDC / Double.parseDouble(configuracionActual.getPaginacion());
+            Double divisionDouble = LogicaSuperAdmin.cantidadDC / Double.parseDouble(configuracionActual.getPaginacion()); //Num exaacto
             if (divisionDouble > divisionInt) {
-                divisionInt = divisionInt + 1;
+                divisionInt = divisionInt + 1;  //Para que no quede cliente y medio.
             }
 
             ButtonArrayList = new ArrayList<>();
 
-            for (int i = 0; i < divisionInt; i++) {
+            for (int i = 0; i < divisionInt; i++) {//cantidad e botones por agregar
                 button = new Button();
                 button.setFont(Font.font("Times New Roman", FontWeight.SEMI_BOLD, 20));
                 button.setTextFill(Color.WHITE);
                 button.setStyle("-fx-background-color: rgb(41, 75, 152);");
                 button.setText((i + 1) + "");
                 ButtonArrayList.add(i, button);
-                final int x = Integer.parseInt(ButtonArrayList.get(i).getText()) - 1;
-                if (i <= 5) {
-                    gridPaneRegistrosPaginacion.add(ButtonArrayList.get(i), i + 2, 4);
-                } else if (i <= 11) {
+                final int x = Integer.parseInt(ButtonArrayList.get(i).getText()) - 1;//Texto de boton -1
+                if (i <= 5) { //controla por columna en las misma fila 4
+                    gridPaneRegistrosPaginacion.add(ButtonArrayList.get(i), i + 2, 4); // primeros 6, i+2-> Mueve columna
+                } else if (i <= 11) {//toma del 6 al 11
                     gridPaneRegistrosPaginacion.add(ButtonArrayList.get(i), i - 4, 5);
-                } else if (i <= 17) {
+                } else if (i <= 17) { // toma de 12 a 17
                     gridPaneRegistrosPaginacion.add(ButtonArrayList.get(i), i - 10, 6);
                 }
 
@@ -169,7 +169,7 @@ public class ResgistrosPaginacion {
                     LogicaSuperAdmin a = new LogicaSuperAdmin();
                     for (int j = x * Integer.parseInt(configuracionActual.getPaginacion()); j < Integer.parseInt(configuracionActual.getPaginacion()) * (x + 1); j++) {
                         try {
-                            reporteMedico.add(a.guardaEnAL("ä").get(j));
+                            reporteUsu.add(a.guardaEnAL("ä").get(j));
                         } catch (IndexOutOfBoundsException ioobe) {
 
                         }
@@ -199,7 +199,7 @@ public class ResgistrosPaginacion {
         correoColunm.setCellValueFactory(new PropertyValueFactory<>("correo"));
         correoColunm.setStyle("-fx-alignment: CENTER;");
 
-        tableViewUsuarios.setItems(reporteMedico);
+        tableViewUsuarios.setItems(reporteUsu);
         tableViewUsuarios.getColumns().addAll(idColunm, nameColunm, correoColunm);
         tableViewUsuarios.setMinSize(300, 200);
         gridPaneRegistrosPaginacion.add(tableViewUsuarios, 0, 2);

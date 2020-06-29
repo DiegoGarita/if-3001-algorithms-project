@@ -14,6 +14,7 @@ import edu.ucr.rp.clinicadenutricion.Objetos.Usuario;
 import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.LogicaSuperAdmin;
 import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
 import java.time.LocalDate;
+import java.util.Random;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -28,6 +29,7 @@ public class SolicitaCita {
     ComboBox comboBoxHora = new ComboBox();
     DatePicker datePicker;
 
+    Random random = new Random();
     LogicaPila logicaPila = new LogicaPila();
     LogicaListas logicaListas = new LogicaListas();
     IniciarSesion inicioSesion;
@@ -51,7 +53,8 @@ public class SolicitaCita {
                 + "-fx-background-size: 900 700, 20 20, 20 20, 20 20, auto;"));
 
         textFieldIDReservacion = new TextField();
-        textFieldIDReservacion.setPromptText("ID reservacion");
+        textFieldIDReservacion.setText(random.nextInt(999999) + "");
+        textFieldIDReservacion.setDisable(true);
         textFieldIDReservacion.setStyle(
                 "-fx-background-color: lightblue; "
                 + "-fx-background-insets: 4; "
@@ -61,14 +64,11 @@ public class SolicitaCita {
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
         gridPaneSolicitaCita.add(textFieldIDReservacion, 0, 1);
         textFieldIDReservacion.setFocusTraversable(false);
-        textFieldIDReservacion.setOnKeyPressed((event) -> {
-            datePicker.setDisable(false);
-        });
 
         datePicker = new DatePicker(LocalDate.now());
         datePicker.setEditable(false);
         datePicker.setDayCellFactory(calendario.dayCellFactory);
-        datePicker.setDisable(true);
+        //datePicker.setDisable(true);
         gridPaneSolicitaCita.add(datePicker, 0, 2);
         datePicker.setOnMouseClicked((event) -> {
             comboBoxHora.getItems().clear();
@@ -178,13 +178,11 @@ public class SolicitaCita {
                     comboBoxDoctora.setDisable(true);
                     comboBoxHora.setDisable(true);
                     datePicker.setDisable(true);
-                }
-                else {
+                } else {
                     alerta.alertWarning("Hay campos vacíos\nIntentelo de nuevo");
                 }
 
-            }
-            else {
+            } else {
                 alerta.alertWarning("No seleccionó la hora de cita o doctora\nIntentelo de nuevo");
             }
         });

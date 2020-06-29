@@ -104,7 +104,7 @@ public class ImplementacionPila implements InterfacePila {
             do {
                 s++;
                 aux = aux.next;
-            } while (aux.next != null);
+            } while (aux.next != null);   //---> Aqui
         }
         return s;
     }

@@ -196,7 +196,7 @@ public class ModificaCancelaCita {
                 Cita citaAux = new Cita(textFieldId.getText(), cita.getNombre(),
                         datePicker.getValue().toString(), comboBoxHora.getValue().toString(), cita.getDoctora());
                 logicaPila.leeArchivoSolicitudCita();
-                logicaPila.remueveLineaDelArchivo(cita.getIDCita());
+                logicaPila.remueveLineaDelArchivo(cita.getIDCita());  //---> Cambio  cita por x citaAux(no funciono)
                 logicaPila.EscribeArchivoSolicitudCita(citaAux);
                 Acciones acciones = new Acciones(iniciarSesion.ID, "Modificó su cita", fechaHora.histoFechaHora());
                 logicaAVL.escribeHistorial(acciones);
