@@ -14,6 +14,7 @@ import edu.ucr.rp.clinicadenutricion.SuperAdmin.Logic.LogicaSuperAdmin;
 import edu.ucr.rp.clinicadenutricion.Utilitario.Alertas;
 import edu.ucr.rp.clinicadenutricion.Utilitario.Calendario;
 import java.time.LocalDate;
+import java.util.Random;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -29,6 +30,7 @@ public class ReservaCita {
     ComboBox comboBoxClientes = new ComboBox();
     DatePicker datePicker;
 
+    Random random = new Random();
     IniciarSesion iniciarSesion;
     Alertas alertas = new Alertas();
     LogicaPila logicaPila = new LogicaPila();
@@ -69,11 +71,12 @@ public class ReservaCita {
             comboBoxClientes.getItems().addAll(logicaCola.arrayListClientes.get(i).getId());
         }
         comboBoxClientes.setOnMouseClicked((event) -> {
-            textFieldIDReservacion.setDisable(false);
+            datePicker.setDisable(false);
         });
 
         textFieldIDReservacion = new TextField();
-        textFieldIDReservacion.setPromptText("ID reservacion");
+        textFieldIDReservacion.setText(random.nextInt(999999) + "");
+        textFieldIDReservacion.setDisable(true);
         textFieldIDReservacion.setStyle(
                 "-fx-background-color: lightblue; "
                 + "-fx-background-insets: 4; "
@@ -81,17 +84,13 @@ public class ReservaCita {
                 "-fx-background-radius: 4; "
                 +// tamano
                 "-fx-effect: dropshadow(three-pass-box, blue, 20, 0, 0, 0);");
-        textFieldIDReservacion.setDisable(true);
         gridPaneReservaCita.add(textFieldIDReservacion, 0, 1);
         textFieldIDReservacion.setFocusTraversable(false);
-        textFieldIDReservacion.setOnKeyPressed((event) -> {
-            datePicker.setDisable(false);
-        });
 
         datePicker = new DatePicker(LocalDate.now());
         datePicker.setEditable(false);
-        datePicker.setDayCellFactory(calendario.dayCellFactory);
         datePicker.setDisable(true);
+        datePicker.setDayCellFactory(calendario.dayCellFactory);
         gridPaneReservaCita.add(datePicker, 0, 2);
         datePicker.setOnMouseClicked((event) -> {
             comboBoxHora.getItems().clear();

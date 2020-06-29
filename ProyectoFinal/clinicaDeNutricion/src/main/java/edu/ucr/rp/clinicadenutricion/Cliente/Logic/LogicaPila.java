@@ -109,8 +109,8 @@ public class LogicaPila {
                 }
                 currentRegistry = bufferedReader.readLine();
             }
-           // previousFile.deleteOnExit();
-           previousFile.delete();
+            // previousFile.deleteOnExit();
+            previousFile.delete();
         } catch (FileNotFoundException fileNotFoundException) {
             JOptionPane.showMessageDialog(null, fileNotFoundException + "\nProblemas con el archivo");
         } catch (IOException IOException) {
@@ -120,7 +120,7 @@ public class LogicaPila {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(fileNew);
             PrintStream printStream = new PrintStream(fileOutputStream);
-            for (int i = 0; i < implementacionPila.size(); i++) {
+            for (int i = 0; i < implementacionPila.size(); i++) {    //---> Aqui
                 printStream.println(implementacionPila.indexOf(i).getIDCita() + "&" + implementacionPila.indexOf(i).getNombre()
                         + "&" + implementacionPila.indexOf(i).getFecha() + "&"
                         + implementacionPila.indexOf(i).getHora() + "&" + implementacionPila.indexOf(i).getDoctora());
@@ -306,8 +306,8 @@ public class LogicaPila {
         }
         return false;
     }
-    
-        public void muestra() {
+
+    public void muestra() {
         implementacionPila.display();
     }
 
