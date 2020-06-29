@@ -270,32 +270,37 @@ public class AjustesCliente {
 
                     if (!textFieldCorreo.getText().trim().equals("") && textFieldCorreo.getText().contains("@gmail.com")) {
 
-                        enviarCorreo.sendMessage(textFieldCorreo.getText(), "Clínica Susana Distancia",
-                                "Mensaje de confirmación:\n\nSus datos han sido actualizados correctamente.\n"
-                                + "\nSi usted no modificó sus datos recientemente por favor contactese con nosotros.");
+                        if (textFieldContraseña.getText().length() >= 5) {
 
-                        alertas.alertInformation("Usuario modificado correctamente");
-                        Usuario usuario = logicaLista.stringTokenizer(logicaLista.leeLinea(textFieldID.getText()));
-                        Usuario usuario1 = new Usuario(textFieldTipo.getText(), textFieldID.getText(),
-                                textFieldNombreUsuario.getText(),
-                                encrypt.encriptar("SusanaDistancia",
-                                        textFieldContraseña.getText()),
-                                textFieldCorreo.getText(), textFieldTelefono.getText(), textFieldDireccion.getText());
+                            enviarCorreo.sendMessage(textFieldCorreo.getText(), "Clínica Susana Distancia",
+                                    "Mensaje de confirmación:\n\nSus datos han sido actualizados correctamente.\n"
+                                    + "\nSi usted no modificó sus datos recientemente por favor contactese con nosotros.");
 
-                        logicaLista.leerArchivo();
-                        logicaLista.modificado(usuario, encrypt.encriptar("SusanaDistancia", textFieldCorreo.getText()));
-                        logicaLista.remueveLineaDeArchivo(usuario.getId());
-                        logicaLista.escribirArchivo(usuario1);
+                            alertas.alertInformation("Usuario modificado correctamente");
+                            Usuario usuario = logicaLista.stringTokenizer(logicaLista.leeLinea(textFieldID.getText()));
+                            Usuario usuario1 = new Usuario(textFieldTipo.getText(), textFieldID.getText(),
+                                    textFieldNombreUsuario.getText(),
+                                    encrypt.encriptar("SusanaDistancia",
+                                            textFieldContraseña.getText()),
+                                    textFieldCorreo.getText(), textFieldTelefono.getText(), textFieldDireccion.getText());
 
-                        textFieldDireccion.setDisable(true);
-                        textFieldCorreo.setDisable(true);
-                        textFieldTelefono.setDisable(true);
-                        textFieldDireccion.clear();
-                        textFieldCorreo.clear();
-                        textFieldTelefono.clear();
-                        textFieldContraseña.clear();
+                            logicaLista.leerArchivo();
+                            logicaLista.modificado(usuario, encrypt.encriptar("SusanaDistancia", textFieldCorreo.getText()));
+                            logicaLista.remueveLineaDeArchivo(usuario.getId());
+                            logicaLista.escribirArchivo(usuario1);
 
-                        buttonAceptar.setDisable(true);
+                            textFieldDireccion.setDisable(true);
+                            textFieldCorreo.setDisable(true);
+                            textFieldTelefono.setDisable(true);
+                            textFieldDireccion.clear();
+                            textFieldCorreo.clear();
+                            textFieldTelefono.clear();
+                            textFieldContraseña.clear();
+
+                            buttonAceptar.setDisable(true);
+                        } else {
+                            alertas.alertWarning("Espacio vacio o error en formato\nIntente de nuevo");
+                        }
                     } else {
                         alertas.alertWarning("Espacio vacio o error en formato\nIntente de nuevo");
                     }

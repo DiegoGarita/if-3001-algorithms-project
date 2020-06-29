@@ -265,38 +265,44 @@ public class AjustesAdmin {
                         && !textFieldContraseña.getText().trim().equals("")
                         && !textFieldTelefono.getText().trim().equals("")
                         && !textFieldDireccion.getText().trim().equals("")
-                        && textFieldCorreo.getText().contains("@gmail.com")
                         && Integer.parseInt(textFieldTelefono.getText()) % 2 == 0
                         || Integer.parseInt(textFieldTelefono.getText()) % 2 == 1) {
 
-                    if (!textFieldCorreo.getText().trim().equals("") && textFieldCorreo.getText().contains("@gmail.com")) {
+                    if (textFieldContraseña.getText().length() >= 5) {
 
-                        enviarCorreo.sendMessage(textFieldCorreo.getText(), "Clínica Susana Distancia",
-                                "Mensaje de confirmación:\n\nSus datos han sido actualizados correctamente.\n"
-                                + "\nSi usted no modificó sus datos recientemente por favor contactese con nosotros.");
+                        if (!textFieldCorreo.getText().trim().equals("") && textFieldCorreo.getText().contains("@gmail.com")) {
 
-                        alertas.alertInformation("Usuario modificado correctamente");
-                        Usuario usuario = logicaLista.stringTokenizer(logicaLista.leeLinea(textFieldID.getText()));
-                        Usuario usuario1 = new Usuario(textFieldTipo.getText(), textFieldID.getText(),
-                                textFieldNombreUsuario.getText(),
-                                encrypt.encriptar("SusanaDistancia",
-                                        textFieldContraseña.getText()),
-                                textFieldCorreo.getText(), textFieldTelefono.getText(), textFieldDireccion.getText());
 
-                        logicaLista.leerArchivo();
-                        logicaLista.modificado(usuario, encrypt.encriptar("SusanaDistancia", textFieldCorreo.getText()));
-                        logicaLista.remueveLineaDeArchivo(usuario.getId());
-                        logicaLista.escribirArchivo(usuario1);
+                                enviarCorreo.sendMessage(textFieldCorreo.getText(), "Clínica Susana Distancia",
+                                        "Mensaje de confirmación:\n\nSus datos han sido actualizados correctamente.\n"
+                                        + "\nSi usted no modificó sus datos recientemente por favor contactese con nosotros.");
 
-                        textFieldDireccion.setDisable(true);
-                        textFieldCorreo.setDisable(true);
-                        textFieldTelefono.setDisable(true);
-                        textFieldDireccion.clear();
-                        textFieldCorreo.clear();
-                        textFieldTelefono.clear();
-                        textFieldContraseña.clear();
+                                alertas.alertInformation("Usuario modificado correctamente");
+                                Usuario usuario = logicaLista.stringTokenizer(logicaLista.leeLinea(textFieldID.getText()));
+                                Usuario usuario1 = new Usuario(textFieldTipo.getText(), textFieldID.getText(),
+                                        textFieldNombreUsuario.getText(),
+                                        encrypt.encriptar("SusanaDistancia",
+                                                textFieldContraseña.getText()),
+                                        textFieldCorreo.getText(), textFieldTelefono.getText(), textFieldDireccion.getText());
 
-                        buttonAceptar.setDisable(true);
+                                logicaLista.leerArchivo();
+                                logicaLista.modificado(usuario, encrypt.encriptar("SusanaDistancia", textFieldCorreo.getText()));
+                                logicaLista.remueveLineaDeArchivo(usuario.getId());
+                                logicaLista.escribirArchivo(usuario1);
+
+                                textFieldDireccion.setDisable(true);
+                                textFieldCorreo.setDisable(true);
+                                textFieldTelefono.setDisable(true);
+                                textFieldDireccion.clear();
+                                textFieldCorreo.clear();
+                                textFieldTelefono.clear();
+                                textFieldContraseña.clear();
+
+                                buttonAceptar.setDisable(true);
+
+                        } else {
+                            alertas.alertWarning("Espacio vacio o error en formato\nIntente de nuevo");
+                        }
                     } else {
                         alertas.alertWarning("Espacio vacio o error en formato\nIntente de nuevo");
                     }

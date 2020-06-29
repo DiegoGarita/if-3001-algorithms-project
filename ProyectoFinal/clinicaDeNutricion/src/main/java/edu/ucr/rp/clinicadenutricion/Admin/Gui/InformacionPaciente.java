@@ -99,7 +99,7 @@ public class InformacionPaciente {
 
         TableColumn<ReporteMedico, String> porcenMasaMuscularColunm = new TableColumn<>("% Masa muscular");
         porcenMasaMuscularColunm.setMaxWidth(200);
-        porcenMasaMuscularColunm.setCellValueFactory(new PropertyValueFactory<>("porcenMasaMuscular"));
+        porcenMasaMuscularColunm.setCellValueFactory(new PropertyValueFactory<>("porcentajeMasaMuscular"));
         porcenMasaMuscularColunm.setStyle("-fx-alignment: CENTER;");
 
         TableColumn<ReporteMedico, String> grasaColunm = new TableColumn<>("Grasa");
@@ -119,7 +119,7 @@ public class InformacionPaciente {
 
         TableColumn<ReporteMedico, String> porcenAguaColunm = new TableColumn<>("% Agua");
         porcenAguaColunm.setMaxWidth(200);
-        porcenAguaColunm.setCellValueFactory(new PropertyValueFactory<>("porcenAgua"));
+        porcenAguaColunm.setCellValueFactory(new PropertyValueFactory<>("porcentajeAgua"));
         porcenAguaColunm.setStyle("-fx-alignment: CENTER;");
 
         TableColumn<ReporteMedico, String> actividadFisicaColunm = new TableColumn<>("Actividad fisica");
